@@ -1,0 +1,16 @@
+.layout-navbar {
+    position: sticky;
+}
+
+#content {
+    background-image: url(/background-content.jpg);
+    background-size: 20%;
+    background-repeat: no-repeat;
+}
+
+#content .content-outlet {
+    background-color: white;
+    color: rgb(111, 109, 109);
+    margin: 0 12%;
+    padding-top: 30px;
+}

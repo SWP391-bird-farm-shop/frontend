@@ -1,0 +1,41 @@
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+    position: absolute;
+    left: 5%;
+}
+
+#logo img {
+    height: 100%;
+    width: 70px;
+}
+
+.first-section,
+.second-section {
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon {
+    display: flex;
+    color: black;
+}
+
+.search {
+    margin: 0 20px;
+}
+
+.first-section .first-section-component {
+    margin: 0 30px;
+}
+
+.second-section {
+    position: absolute;
+    line-height: 55px;
+    right: 1%;
+}
+
