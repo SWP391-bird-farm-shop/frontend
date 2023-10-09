@@ -12,7 +12,6 @@ const Layout = () => {
                 <div className="content-outlet">
                     <Outlet />
                 </div>
-
             </div>
             <Footer />
         </Fragment>

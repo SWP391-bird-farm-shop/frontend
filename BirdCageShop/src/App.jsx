@@ -5,7 +5,9 @@ import BlogPage from './page/BlogPage'
 import LogInPage from './page/LogInPage'
 import SignUpPage from './page/SignUpPage'
 import SpeciesPage from './page/SpeciesPage'
+import AboutPage from './page/AboutPage'
 import './App.css'
+import CartPage from './page/CartPage'
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
             <Route path="/home" element={<HomePage />} />
             <Route path="/blogs" element={<BlogPage />}/>
             <Route path='/parrot' element={<SpeciesPage />} />
+            <Route path='/about-us' element={<AboutPage />} />
+            <Route path='/cart' element={<CartPage />} />
           </Route>
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/log-in" element={<LogInPage />} />

@@ -29,7 +29,7 @@ const Navbar = ({ className }) => {
           <NavLink to='/blogs' activeStyle className='first-section-component'>
             Bài viết
           </NavLink>
-          <NavLink to='/about' activeStyle className='first-section-component'>
+          <NavLink to='/about-us' activeStyle className='first-section-component'>
             Giới thiệu
           </NavLink>
           {/* Second Nav */}

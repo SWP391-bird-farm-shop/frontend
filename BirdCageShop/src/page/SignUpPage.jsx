@@ -22,7 +22,7 @@ const SignUpPage = () => {
           <h2>Đăng ký</h2>
           <form>
             <div className="sign-up-input-container">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Username</label>
               <input type="text" id="name" name="name" className='sign-up-input' />
             </div>
             <div className="sign-up-input-container">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slide1 from "/Slide 1.png";
 import Slide2 from "/Slide 2.png";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
@@ -11,6 +11,15 @@ const Slider = () => {
         Slide1,
         Slide2,
     ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 2500);
+
+        return () => clearInterval(interval);
+    }, [images.length]);
+
     const nextImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     };
@@ -34,14 +43,14 @@ const Slider = () => {
                         <img className="product-box-image" src="/demo.jpg" alt="product" />
                         <h3 className="product-box-heading">Products</h3>
                     </a>
-                    
+
                 </div>
                 <div className="custom-product-box-section">
                     <a href="/custom-products" className="custom-product-box">
                         <img className="custom-product-box-image" src="/demo.jpg" alt="custom-product" />
                         <h3 className="custom-product-box-heading">Custom Products</h3>
                     </a>
-                    
+
                 </div>
 
             </div>
