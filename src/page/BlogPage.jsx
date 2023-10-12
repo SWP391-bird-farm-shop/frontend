@@ -25,11 +25,17 @@ const BlogPage = () => {
       <div className="blog-list">
         {blogs.map((blog) => (
           <div key={blog.id} className="blog-item">
-            <h3 className="blog-title">{blog.title}</h3>
-            <p className="blog-meta">
-              <span className="blog-date">{blog.date}</span> | <span className="blog-author">{blog.author}</span>
-            </p>
-            <p className="blog-content">{blog.content}</p>
+            <div className="blog-item-image">
+              <img src="bocau.jpg" alt="blog-image" />
+            </div>
+            <div className="blog-item-information">
+              <h3 className="blog-title">{blog.title}</h3>
+              <p className="blog-meta">
+                <span className="blog-date">{blog.date}</span> | <span className="blog-author">{blog.author}</span>
+              </p>
+              <p className="blog-content">{blog.content}</p>
+            </div>
+
           </div>
         ))}
       </div>
