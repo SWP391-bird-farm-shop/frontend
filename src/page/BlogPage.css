@@ -8,31 +8,44 @@
     margin-bottom: 20px;
 }
 
-.blog-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
+.blog-item {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 15px;
 }
 
-.blog-item {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
+.blog-item-image {
+    width: 30%;
+}
+
+.blog-item-image img {
+    border-radius: 15px;
+    width: 60%;
+    height: auto;
+}
+
+.blog-item-information {
+    width: 60%;
 }
 
 .blog-title {
+    text-align: justify;
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .blog-meta {
+    text-align: justify;
     font-size: 14px;
     color: #888;
     margin-bottom: 10px;
 }
 
 .blog-content {
+    text-align: justify;
     font-size: 16px;
     line-height: 1.5;
 }

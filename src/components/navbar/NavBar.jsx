@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Nav,
-  NavLink,
-  Bars,
-  NavMenu,
-} from './NavbarElements.jsx';
+import { Nav, NavLink, Bars, NavMenu, SubNav, SubNavItem } from './NavbarElements.jsx';
 import "./NavBar.css"
 import { FaShoppingCart } from 'react-icons/fa';
 import SearchBar from '../search/SearchBar.jsx';
@@ -23,8 +18,16 @@ const Navbar = ({ className }) => {
           <NavLink to='/home' activeStyle className='first-section-component'>
             Trang chủ
           </NavLink>
-          <NavLink to='/products' activeStyle className='first-section-component'>
+          <NavLink className='first-section-component'>
             Sản phẩm
+            <SubNav>
+              <h3>Lồng</h3>
+              <SubNavItem to="/products/category1">Lồng</SubNavItem>
+              <h3>Thức ăn</h3>
+              <SubNavItem to="/products/category2">Thức ăn</SubNavItem>
+              <h3>Phụ kiện - Đồ chơi</h3>
+              <SubNavItem to="/products/category3">Phụ kiện - Đồ chơi</SubNavItem>
+            </SubNav>
           </NavLink>
           <NavLink to='/blogs' activeStyle className='first-section-component'>
             Bài viết
@@ -35,8 +38,9 @@ const Navbar = ({ className }) => {
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
-        <SearchBar className='search' />
+
         <NavMenu className='second-section'>
+          <SearchBar className='search' />
           <NavLink to='/cart' activeStyle>
             <FaShoppingCart className='cart-icon' />
           </NavLink>

@@ -1,0 +1,85 @@
+.update-info-section {
+    background-image: url('./sign-in-up-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+
+.update-info-section .homepage-link {
+    position: absolute;
+    display: block;
+    right: 2%;
+    top: 4.7%;
+    color: rgb(0, 0, 0);
+    opacity: 0.3;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.update-info-section .homepage-link:hover {
+    opacity: 0.8;
+}
+
+.update-info-section .homepage-link::before {
+    content: '\2190';
+    font-size: 24px;
+}
+
+.update-info-section .sign-in-arrow {
+    padding-top: 5px;
+    font-weight: 300;
+}
+
+.update-info-container {
+    width: 27vw;
+    float: right;
+    margin-left: 59vw;
+    padding: 20px;
+}
+
+.update-info-container h2 {
+    color: #4CAF50;
+    text-align: center;
+}
+
+.update-info-input-container {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    color: #4CAF50;
+    text-align: left;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.update-info-input {
+    background-color: aliceblue;
+    color: black;
+    width: 96%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    outline: none;
+}
+
+.update-info-button {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 30px 0;
+    cursor: pointer;
+}
+
+.update-info-button:hover {
+    background-color: #45a049;
+}
