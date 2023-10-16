@@ -62,6 +62,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 15px;
+    margin: 0;
     outline: none;
 }
 
@@ -112,7 +113,7 @@
 }
 
 .authentication-input-container .log-in-password-toggle-button {
-    top: 47.1vh;
+    top: 47.2vh;
 }
 
 .authentication-input-container .sign-up-password-toggle-button {
@@ -120,7 +121,7 @@
 }
 
 .authentication-input-container .confirm-password-toggle-button {
-    top: 59.5vh;
+    top: 60vh;
 }
 
 .authentication-input-container .reset-password-toggle-button {

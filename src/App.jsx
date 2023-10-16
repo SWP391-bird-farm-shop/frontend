@@ -13,7 +13,7 @@ import LogInPage from './page/authenticationpage/LogInPage'
 import QuestionPage from './page/authenticationpage/forgotpasswordpage/QuestionPage'
 import ResetPasswordPage from './page/authenticationpage/forgotpasswordpage/ResetPasswordPage'
 import SignUpPage from './page/authenticationpage/SignUpPage'
-import UpdateInformationPage from './page/UpdateInformationPage'
+import UpdateInformationPage from './page/authenticationpage/UpdateInformationPage'
 import './App.css'
 
 

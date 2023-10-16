@@ -9,11 +9,11 @@ const QuestionPage = () => {
                 <h2>Câu hỏi xác thực</h2>
                 <form>
                     <div className="authentication-input-container">
-                        <label htmlFor="question">Câu hỏi</label>
+                        <label htmlFor="question" className='authentication-input-container-label'>Câu hỏi</label>
                         <p id="question" name="question" className='authentication-input'>Câu hỏi</p>
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="answer">Trả lời</label>
+                        <label htmlFor="answer" className='authentication-input-container-label'>Trả lời</label>
                         <input type="text" id="answer" name="answer" className='authentication-input' required />
                     </div>
 

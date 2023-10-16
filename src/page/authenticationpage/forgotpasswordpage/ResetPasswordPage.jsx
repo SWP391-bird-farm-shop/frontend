@@ -21,14 +21,14 @@ const ResetPasswordPage = () => {
           <h2>Đặt lại mật khẩu</h2>
           <form>
             <div className="authentication-input-container">
-              <label htmlFor="password">Mật khẩu</label>
+              <label htmlFor="password" className='authentication-input-container-label'>Mật khẩu</label>
               <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required/>
               <button type="button" className="reset-password-toggle-button" onClick={togglePasswordVisibility}>
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
             <div className="authentication-input-container">
-              <label htmlFor="password-confirm">Xác nhận mật khẩu</label>
+              <label htmlFor="password-confirm" className='authentication-input-container-label'>Xác nhận mật khẩu</label>
               <input type={showConfirmPassword ? "text" : "password"} id="password-confirm" name="password-confirm" className='authentication-input' required/>
               <button type="button" className="confirm-reset-password-toggle-button" onClick={toggleConfirmPasswordVisibility}>
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}

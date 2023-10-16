@@ -15,11 +15,11 @@ const LogInPage = () => {
                 <h2>Đăng nhập</h2>
                 <form>
                     <div className="authentication-input-container">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email" className='authentication-input-container-label'>Email</label>
                         <input type="email" id="email" name="email" className='authentication-input' required/>
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="password">Mật khẩu</label>
+                        <label htmlFor="password" className='authentication-input-container-label'>Mật khẩu</label>
                         <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required/>
                         <button type="button" className="log-in-password-toggle-button" onClick={togglePasswordVisibility}>
                             {showPassword ? <FaEyeSlash /> : <FaEye />}
