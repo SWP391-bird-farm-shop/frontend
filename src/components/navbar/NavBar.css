@@ -15,7 +15,8 @@
 }
 
 .first-section,
-.second-section {
+.second-section,
+.third-section {
     display: flex;
     align-items: center;
 }

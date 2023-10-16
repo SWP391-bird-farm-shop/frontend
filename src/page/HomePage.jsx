@@ -14,17 +14,10 @@ const HomePage = () => {
                 <Carousel />
                 <h3>Lồng chim</h3>
                 <Carousel />
-                <h3>Phụ kiện</h3>
+                <h3>Phụ kiện - Đồ chơi</h3>
                 <Carousel />
             </div>
             <Article />
-            {/* <div className="blogs-section">
-                <h3>Cẩm nang về chim</h3>
-                <a href="/blogs">
-                    <button type="submit">Xem thêm</button>
-                </a>
-
-            </div> */}
         </Fragment>
     )
 }
