@@ -27,7 +27,10 @@ const ItemInformation = () => {
       </div>
 
       <Feedback />
-      <Carousel />
+      <div className="different-products-carousel">
+        <h3 className='different-products-carousel-heading'>Các sản phẩm tương tự</h3>
+        <Carousel />
+      </div>
     </div>
   );
 };

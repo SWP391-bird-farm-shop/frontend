@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SignUpPage.css';
+import './AuthenticationPage.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const SignUpPage = () => {
@@ -15,34 +15,34 @@ const SignUpPage = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
   return (
-      <div className="sign-up-section">
+      <div className="authentication-section">
         <a href='/home' className='homepage-link'> Về trang chủ</a>
-        <div className="sign-up-container">
+        <div className="authentication-container">
           <h2>Đăng ký</h2>
           <form>
-            <div className="sign-up-input-container">
+            <div className="authentication-input-container">
               <label htmlFor="username">Tên đăng nhập</label>
-              <input type="text" id="name" name="name" className='sign-up-input' required/>
+              <input type="text" id="name" name="name" className='authentication-input' required/>
             </div>
-            <div className="sign-up-input-container">
+            <div className="authentication-input-container">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" className='sign-up-input' required/>
+              <input type="email" id="email" name="email" className='authentication-input' required/>
             </div>
-            <div className="sign-up-input-container">
+            <div className="authentication-input-container">
               <label htmlFor="password">Mật khẩu</label>
-              <input type={showPassword ? "text" : "password"} id="password" name="password" className='sign-up-input' required/>
-              <button type="button" className="password-toggle-button" onClick={togglePasswordVisibility}>
+              <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required/>
+              <button type="button" className="sign-up-password-toggle-button" onClick={togglePasswordVisibility}>
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
-            <div className="sign-up-input-container">
-              <label htmlFor="password">Xác nhận mật khẩu</label>
-              <input type={showConfirmPassword ? "text" : "password"} id="password-confirm" name="password-confirm" className='sign-up-input' required/>
+            <div className="authentication-input-container">
+              <label htmlFor="password-confirm">Xác nhận mật khẩu</label>
+              <input type={showConfirmPassword ? "text" : "password"} id="password-confirm" name="password-confirm" className='authentication-input' required/>
               <button type="button" className="confirm-password-toggle-button" onClick={toggleConfirmPasswordVisibility}>
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
-            <button type="submit" className='sign-up-button'>Đăng ký</button>
+            <button type="submit" className='authentication-button'>Đăng ký</button>
           </form>
           <p>Bạn đã có tài khoản? <a href='/log-in'>Đăng nhập</a></p>
         </div>

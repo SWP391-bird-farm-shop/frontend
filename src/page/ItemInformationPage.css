@@ -78,3 +78,16 @@
     font-size: 17px;
     text-align: left;
 }
+
+.different-products-carousel {
+    margin: 30px 0;
+    margin-top: 0;
+}
+
+.different-products-carousel .different-products-carousel-heading {
+    color: #1B8600;
+    border-bottom: 2px solid #1B8600;
+    padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: 650;
+}
