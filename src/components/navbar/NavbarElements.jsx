@@ -15,7 +15,7 @@ export const Nav = styled.nav`
 export const SubNav = styled.div`
   display: none;
   position: absolute;
-  width: 500px;
+  width: 250px;
   top: 100%;
   left: -30px;
   background: white;

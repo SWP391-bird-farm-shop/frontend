@@ -15,24 +15,21 @@ const Navbar = ({ className }) => {
           </a>
         </div>
         <NavMenu className='first-section'>
-          <NavLink to='/home' activeStyle className='first-section-component'>
+          <NavLink to='/home' className='first-section-component'>
             Trang chủ
           </NavLink>
           <NavLink className='first-section-component'>
             Sản phẩm
             <SubNav>
-              <h3>Lồng</h3>
-              <SubNavItem to="/products/category1">Lồng</SubNavItem>
-              <h3>Thức ăn</h3>
-              <SubNavItem to="/products/category2">Thức ăn</SubNavItem>
-              <h3>Phụ kiện - Đồ chơi</h3>
-              <SubNavItem to="/products/category3">Phụ kiện - Đồ chơi</SubNavItem>
+              <SubNavItem to="/products/cages">Lồng chim</SubNavItem>
+              <SubNavItem to="/products/food">Thức ăn cho chim</SubNavItem>
+              <SubNavItem to="/products/accessories-toys">Phụ kiện - Đồ chơi</SubNavItem>
             </SubNav>
           </NavLink>
-          <NavLink to='/blogs' activeStyle className='first-section-component'>
+          <NavLink to='/blogs' className='first-section-component'>
             Bài viết
           </NavLink>
-          <NavLink to='/about-us' activeStyle className='first-section-component'>
+          <NavLink to='/about-us' className='first-section-component'>
             Giới thiệu
           </NavLink>
           {/* Second Nav */}
@@ -41,13 +38,15 @@ const Navbar = ({ className }) => {
 
         <NavMenu className='second-section'>
           <SearchBar className='search' />
-          <NavLink to='/cart' activeStyle>
+          <NavLink to='/cart'>
             <FaShoppingCart className='cart-icon' />
           </NavLink>
-          <NavLink to='/log-in' activeStyle>
+        </NavMenu>
+        <NavMenu className='third-section'>
+        <NavLink to='/log-in'>
             Đăng nhập
           </NavLink>
-          <NavLink to='/sign-up' activeStyle>
+          <NavLink to='/sign-up'>
             Đăng ký
           </NavLink>
         </NavMenu>
