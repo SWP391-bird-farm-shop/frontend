@@ -9,6 +9,8 @@ const BlogPage = () => {
       date: "October 1, 2023",
       author: "John Smith",
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...",
+      image: "bocau.jpg",
+      url: "/blog-content",
     },
     {
       id: 2,
@@ -16,6 +18,8 @@ const BlogPage = () => {
       date: "September 15, 2023",
       author: "Jane Doe",
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...",
+      image: "bocau.jpg",
+      url: "/blog-content",
     },
     // Add more blogs here
   ];
@@ -24,19 +28,18 @@ const BlogPage = () => {
     <div className="blog-page">
       <div className="blog-list">
         {blogs.map((blog) => (
-          <div key={blog.id} className="blog-item">
+          <a href={blog.url} key={blog.id} className="blog-item">
             <div className="blog-item-image">
-              <img src="bocau.jpg" alt="blog-image" />
+              <img src={blog.image} alt="blog-image" />
             </div>
             <div className="blog-item-information">
               <h3 className="blog-title">{blog.title}</h3>
               <p className="blog-meta">
-                <span className="blog-date">{blog.date}</span> | <span className="blog-author">{blog.author}</span>
+              <span className="blog-date">{blog.date}</span> . <span className="blog-author">bởi {blog.author}</span>
               </p>
-              <p className="blog-content">{blog.content}</p>
+              <p className="blog-description">{blog.content}</p>
             </div>
-
-          </div>
+          </a>
         ))}
       </div>
     </div>

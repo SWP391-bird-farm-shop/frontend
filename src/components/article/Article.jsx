@@ -2,12 +2,39 @@ import React from 'react';
 import './Article.css'
 
 const Article = () => {
-    // Dummy data for suggested articles
     const suggestedArticles = [
-        { title: 'Article 1', url: 'https://example.com/article1', image: '/bocau.jpg' },
-        { title: 'Article 2', url: 'https://example.com/article2', image: '/chaomao.png' },
-        { title: 'Article 3', url: 'https://example.com/article3', image: '/cu.jpg' },
-        { title: 'Article 4', url: 'https://example.com/article3', image: '/hoami.png' },
+        {
+            id: 1,
+            title: 'Article 1',
+            date: "October 1, 2023",
+            author: "John Smith",
+            url: '/blog-content',
+            image: '/bocau.jpg'
+        },
+        {
+            id: 2,
+            title: 'Article 2',
+            date: "October 1, 2023",
+            author: "John Smith",
+            url: '/blog-content',
+            image: '/chaomao.png'
+        },
+        {
+            id: 3,
+            title: 'Article 3',
+            date: "October 1, 2023",
+            author: "John Smith",
+            url: '/blog-content',
+            image: '/cu.jpg'
+        },
+        {
+            id: 4,
+            title: 'Article 4',
+            date: "October 1, 2023",
+            author: "John Smith",
+            url: '/blog-content',
+            image: '/hoami.png'
+        },
     ];
 
     return (
@@ -21,7 +48,10 @@ const Article = () => {
                                 <img src={article.image} alt={article.title} />
                             </div>
                             <h4 className='article-title'>{article.title}</h4>
-                            <p>Xem chi tiết &raquo;</p>
+                            <p className="article-meta">
+                                <span className="article-date">{article.date}</span> . <span className="article-author">bởi {article.author}</span>
+                            </p>
+                            <p className='blog-container-link'>Xem chi tiết &raquo;</p>
                         </a>
                     </div>
                 ))}

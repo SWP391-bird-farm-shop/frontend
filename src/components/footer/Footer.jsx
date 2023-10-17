@@ -15,7 +15,7 @@ const Footer = () => {
 
                 <div className="footer-about-section">
                     <h2 className="footer-heading">Tìm hiểu</h2>
-                    <p>Giới thiệu</p>
+                    <a href="/about-us" className="footer-link">Giới thiệu</a>
                     <p>Liên hệ</p>
                     <p>Chính sách dữ liệu</p>
                     <p>Chính sách vận chuyển</p>
@@ -23,9 +23,9 @@ const Footer = () => {
 
                 <div className="footer-products-section">
                     <h2 className="footer-heading">Sản phẩm</h2>
-                    <p>Tất cả sản phẩm</p>
-                    <p>Loài chim</p>
-                    <p>Lồng chim</p>
+                    <a href="/products/cages" className="footer-link">Lồng chim</a>
+                    <a href="/products/food" className="footer-link">Thức ăn cho chim</a>
+                    <a href="/products/accessories-toys" className="footer-link">Phụ kiện - Đồ chơi</a>
                 </div>
             </div>
 
