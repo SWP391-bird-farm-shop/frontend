@@ -43,6 +43,19 @@
     margin: 10px 0;
 }
 
+.quantity-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.quantity-name,
+.quantity-inventory {
+    color: black;
+    font-size: 17px;
+}
+
+
 .add-to-cart {
     width: 40%;
     font-size: 16px;

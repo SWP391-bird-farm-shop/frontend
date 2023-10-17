@@ -31,6 +31,13 @@
     padding-left: 10px;
 }
 
+.footer-link {
+    color: rgba(255, 255, 255, 0.87);
+    display: block;
+    text-decoration: none;
+    margin: 16px 0;
+}
+
 .copyright {
     margin: 0;
     padding: 30px;

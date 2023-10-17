@@ -5,6 +5,7 @@ import CagePage from './page/productpage/CagePage'
 import FoodPage from './page/productpage/FoodPage'
 import AccessoriesToysPage from './page/productpage/AccessoriesToysPage'
 import BlogPage from './page/BlogPage'
+import BlogContentPage from './page/BlogContentPage'
 import SpeciesPage from './page/SpeciesPage'
 import ItemInformation from './page/ItemInformationPage'
 import AboutPage from './page/AboutPage'
@@ -29,6 +30,7 @@ const App = () => {
             <Route path='/products/food' element={<FoodPage />} />
             <Route path='/products/accessories-toys' element={<AccessoriesToysPage />} />
             <Route path="/blogs" element={<BlogPage />}/>
+            <Route path="/blog-content" element={<BlogContentPage />}/>
             <Route path='/parrot' element={<SpeciesPage />} />
             <Route path='/item-info' element={<ItemInformation />} />
             <Route path='/about-us' element={<AboutPage />} />
