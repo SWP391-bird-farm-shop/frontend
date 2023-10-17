@@ -5,13 +5,15 @@ import CagePage from './page/productpage/CagePage'
 import FoodPage from './page/productpage/FoodPage'
 import AccessoriesToysPage from './page/productpage/AccessoriesToysPage'
 import BlogPage from './page/BlogPage'
-import LogInPage from './page/LogInPage'
-import SignUpPage from './page/SignUpPage'
 import SpeciesPage from './page/SpeciesPage'
 import ItemInformation from './page/ItemInformationPage'
 import AboutPage from './page/AboutPage'
 import CartPage from './page/CartPage'
-import UpdateInformationPage from './page/UpdateInformationPage'
+import LogInPage from './page/authenticationpage/LogInPage'
+import QuestionPage from './page/authenticationpage/forgotpasswordpage/QuestionPage'
+import ResetPasswordPage from './page/authenticationpage/forgotpasswordpage/ResetPasswordPage'
+import SignUpPage from './page/authenticationpage/SignUpPage'
+import UpdateInformationPage from './page/authenticationpage/UpdateInformationPage'
 import './App.css'
 
 
@@ -32,8 +34,10 @@ const App = () => {
             <Route path='/about-us' element={<AboutPage />} />
             <Route path='/cart' element={<CartPage />} />
           </Route>
-          <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/log-in" element={<LogInPage />} />
+          <Route path="/question" element={<QuestionPage />} />
+          <Route path='/reset-password' element={<ResetPasswordPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/update-info" element={<UpdateInformationPage />} />
         </Routes>
       </BrowserRouter>
