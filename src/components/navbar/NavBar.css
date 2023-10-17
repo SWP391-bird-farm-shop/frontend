@@ -1,0 +1,48 @@
+#navbar {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100vw;
+}
+
+#logo {
+    position: absolute;
+    left: 5%;
+}
+
+#logo img {
+    height: 100%;
+    width: 70px;
+}
+
+.first-section,
+.second-section,
+.third-section {
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon {
+    display: flex;
+    color: black;
+}
+
+.search {
+    margin: 0 20px;
+}
+
+.first-section .first-section-component {
+    margin: 0 1.8vw;
+    padding: 16.5px;
+}
+
+.first-section-component h3 {
+    color: #1B8600;
+    border-bottom: 2px solid #1B8600;
+    padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: 650;
+}
+
+.second-section {
+    line-height: 55px;
+}

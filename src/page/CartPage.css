@@ -1,0 +1,306 @@
+/* CartPage.css */
+.Order {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+
+
+
+
+
+/* CartPage.css */
+
+/* Keyframes animation for the gradient background */
+@keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Apply the gradient animation to both .Order-Total and .Order-Payment */
+  .Order-Total, .Order-Payment {
+      flex: 1;
+      margin: 10px;
+      padding: 20px;
+      background: linear-gradient(-45deg, #b3ffcc, #000);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      border-radius: 8px;
+      color: white; /* Text color for the sections */
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add text shadow for better visibility */
+  }
+  
+  .Order-Total p, .Order-Payment p {
+      margin: 0;
+  }
+  
+  /* Rest of your CSS remains the same */
+  
+  
+#cart {
+    padding: 20px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+}
+
+th {
+    background-color: #0074cc;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+}
+
+button {
+    background-color: #61CE70;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #005ea3;
+}
+
+.Payment-Option {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* CartPage.css */
+
+/* Style for the Momo button */
+#momo-button {
+    background-color: #FF1493; /* Pink background color for Momo button */
+    color: white; /* Text color for Momo button */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; 
+    width: 20%;
+}
+
+/* Add hover effect for Momo button */
+#momo-button:hover {
+    background-color: #FF0066; /* Change background color on hover */
+}
+
+
+/* Style for the VNPAY button */
+#vnpay-button {
+    background-color: #FF7700; /* Background color for VNPAY button */
+    color: white; /* Text color for VNPAY button */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; 
+    width: 20%;
+
+}
+
+/* Add hover effect for VNPAY button */
+#vnpay-button:hover {
+    background-color: #CC5500; /* Change background color on hover */
+}
+
+/* Style for the Tien Mat button */
+#tienmat-button {
+    background-color: #009900; 
+    color: white; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; 
+    width: 20%;
+}
+
+/* Add hover effect for Tien Mat button */
+#tienmat-button:hover {
+    background-color: #007700; /* Change background color on hover */
+}
+
+/* Style for payment logos */
+/* CartPage.css */
+
+/* Style for the payment logos with round borders */
+.payment-logo {
+    width: 30px; 
+    height: 30px; 
+    margin-right: 10px; 
+    border: 1px solid #000; 
+    border-radius: 50%; 
+}
+
+.button-container {
+    display: flex; 
+    justify-content: center;
+    width: 90%;
+    
+}
+
+
+
+
+.order-payment {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.customer-info {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.customer-info p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.customer-info strong {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#totalAmount {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.cart-item {
+    border: 1px solid #e4e4e4;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, color 0.2s;
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333; /* Text color */
+}
+
+.cart-item:hover {
+    background-color: #f7f7f7; /* Slightly darker background on hover */
+    transform: scale(1.02);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    color: #555; /* Slightly darker text color on hover */
+}
+
+
+
+
+
+
+.item-image {
+    width: 100px; /* Set the width of the image container */
+    height: 100px; /* Set the height of the image container */
+    overflow: hidden; /* Hide overflowing content */
+    border: 1px solid #ccc; /* Add a border to the image container */
+    border-radius: 30%; /* Create a circular shape by setting border-radius to 30% */
+    margin-right: 20px; /* Adjust the right margin to create space between the image and item details */
+    transition: transform 0.2s; /* Add a transition for the scaling effect */
+}
+
+
+.item-image:hover {
+    transform: scale(1.1); 
+}
+
+
+.item-image img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+/* CartPage.css */
+
+/* Styling for the total box */
+/* CartPage.css */
+
+/* Styling for the total box */
+#total-box {
+    display: flex;
+    justify-content: space-around; /* Use space-around for a more balanced spacing */
+    padding: 8px 10px; /* Adjust the padding as needed */
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0; /* Adjust the margin as needed */
+}
+
+#total-box p {
+    margin: 0;
+    color: white;
+}
+
+#cart-total {
+    color: white;
+}
+
+
+
+
