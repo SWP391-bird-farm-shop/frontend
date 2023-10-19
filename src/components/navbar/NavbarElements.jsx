@@ -16,7 +16,7 @@ export const SubNav = styled.div`
   display: none;
   position: absolute;
   width: 250px;
-  top: 100%;
+  top: 80%;
   left: -30px;
   background: white;
   z-index: 10;
@@ -29,7 +29,7 @@ export const SubNavItem = styled(Link)`
   color: black;
   text-decoration: none;
   list-style-type: none;
-  padding: 1rem 2.5rem;
+  padding: 1rem 2rem;
   &:hover {
     background-color: rgba(125, 125, 125, 0.3);
   }
@@ -42,6 +42,7 @@ export const NavLink = styled(Link)`
   color: black;
   position: relative;
   display: flex;
+  height: 100%;
   align-items: center;
   text-decoration: none;
   padding: 0 1rem;
