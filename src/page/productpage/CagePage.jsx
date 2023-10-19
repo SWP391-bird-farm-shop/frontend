@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Img1 from '/demo.jpg'
 import './ProductPage.css';
 
@@ -23,7 +24,7 @@ const CagePage = () => {
         </select>
       </div>
       <div className="product-items-section">
-        <a href='/item-info' className="product-item" >
+        <Link to="/item-info" className="product-item">
           <div className="product-image">
             <img src={Img1} alt="Food" />
           </div>
@@ -31,7 +32,7 @@ const CagePage = () => {
             <h4 className="product-title">Cage Title</h4>
             <p className="product-price">$99.99</p>
           </div>
-        </a>
+        </Link>
       </div>
     </div>
   );

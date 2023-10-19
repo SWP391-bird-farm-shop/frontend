@@ -1,11 +1,9 @@
-import React, { Fragment } from "react";
-import "./HomePage.css";
-import Slider from "../components/slider/Slider.jsx";
-import Carousel from "../components/carousel/Carousel";
-import Article from "../components/article/Article";
+import React, { Fragment } from 'react'
+import Carousel from '../components/carousel/Carousel'
+import Article from '../components/article/Article'
+import Slider from '../components/slider/Slider'
 
-
-const HomePage = () => {
+function UserPage() {
     return (
         <Fragment>
             <Slider />
@@ -22,4 +20,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage;
+export default UserPage
