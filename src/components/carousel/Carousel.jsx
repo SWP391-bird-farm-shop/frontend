@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../../components/utils/requestAPI';
+import axios from 'axios'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -12,12 +13,14 @@ const Carousel = ({ className }) => {
         useEffect(() => {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get('https://localhost:7116/api/Bird/get-for-sort', {
+                    await api.get('/api/Bird/get-for-sort', {
                         headers: {
                             'accept': '*/*'
                         }
+                    }).then(response => {
+                        console.log(response)
+                        setBirdData(response.data);
                     });
-                    setBirdData(response.data.data);
                 } catch (error) {
                     console.error(error);
                 }
@@ -57,12 +60,14 @@ const Carousel = ({ className }) => {
         useEffect(() => {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get('https://localhost:7116/api/Product/get-for-customer', {
+                    await api.get('/api/Product/get-for-customer', {
                         headers: {
                             'accept': '*/*'
                         }
+                    }).then(response => {
+                        console.log(response)
+                        setProductData(response.data);
                     });
-                    setProductData(response.data.data);
                 } catch (error) {
                     console.error(error);
                 }
@@ -97,12 +102,14 @@ const Carousel = ({ className }) => {
         useEffect(() => {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get('https://localhost:7116/api/Product/get-by-category?categoryId=Catef5d6d', {
+                    await api.get('/api/Product/get-by-category?categoryId=Catef5d6d', {
                         headers: {
                             'accept': '*/*'
                         }
+                    }).then(response => {
+                        console.log(response)
+                        setToyData(response.data);
                     });
-                    setToyData(response.data.data);
                 } catch (error) {
                     console.error(error);
                 }

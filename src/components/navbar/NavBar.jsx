@@ -15,6 +15,10 @@ const Navbar = ({ className }) => {
 
   const { auth } = useAuth();
   if (auth.user) {
+    const Logout = () => {
+      localStorage.clear();
+      auth.user = null;
+    }
     return (
       <nav className={`navbar ${className}`}>
         <Nav id='navbar'>
@@ -52,17 +56,18 @@ const Navbar = ({ className }) => {
             </NavLink>
           </NavMenu>
           <NavMenu className='third-section'>
-            <p className='navbar-user-name'>Tên đăng nhập</p>
+            <p className='navbar-user-name'>Xin chào {auth.user.fullName}</p>
             <NavLink>
               <img src='/chaomao.png' alt='' className='navbar-user-img' onClick={handleImgClick} />
 
               {showSubNav && (
                 <div className='navbar-user-img-subnav'>
                   <SubNavItem to='/update-info' className='navbar-user-img-subnav-link'>
-                    <FaUserEdit /> Cập nhật thông tin
+                    <FaUserEdit /> Chỉnh sửa thông tin
                   </SubNavItem>
-                  <SubNavItem to='/home' className='navbar-user-img-subnav-link'>
-                    <FaSignOutAlt /> Đăng xuất
+                  <SubNavItem to='/home' className='navbar-user-img-subnav-link' onClick={Logout}>
+                    <FaSignOutAlt />
+                    Đăng xuất
                   </SubNavItem>
                 </div>
               )}
@@ -72,6 +77,8 @@ const Navbar = ({ className }) => {
       </nav>
     );
   }
+
+
   else {
     return (
       <nav className={`navbar ${className}`}>
