@@ -16,7 +16,11 @@ const ItemInformation = () => {
           <h2 className="product-information-title">Cage Title</h2>
           <p className="product-information-price">$99.99</p>
           <p className="product-information-description">Cage description goes here.</p>
-          <QuantityButton />
+          <div className="quantity-section">
+            <p className="quantity-name">Số lượng</p>
+            <QuantityButton />
+            <p className="quantity-inventory"> sản phẩm có sẵn</p>
+          </div>
           <button className="add-to-cart">Thêm vào giỏ hàng</button>
         </div>
       </div>
@@ -27,7 +31,10 @@ const ItemInformation = () => {
       </div>
 
       <Feedback />
-      <Carousel />
+      <div className="different-products-carousel">
+        <h3 className='different-products-carousel-heading'>Các sản phẩm tương tự</h3>
+        <Carousel />
+      </div>
     </div>
   );
 };

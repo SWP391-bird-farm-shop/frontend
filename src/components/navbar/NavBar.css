@@ -46,3 +46,31 @@
 .second-section {
     line-height: 55px;
 }
+
+.navbar-user-name {
+    color: black;
+    padding: 0 1rem;
+}
+
+.navbar-user-img {
+    height: 80%;
+    width: 50px;
+    border-radius: 50%;
+}
+
+/* NavBar.css */
+
+.navbar-user-img-subnav {
+    position: absolute;
+    top: 100%;
+    left: -130px;
+    width: 220px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-user-img-subnav-link {
+    text-align: left;
+}
