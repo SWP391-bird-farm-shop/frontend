@@ -32,6 +32,7 @@ const App = () => {
         <Route path='/products/food' element={<FoodPage />} />
         <Route path='/products/accessories-toys' element={<AccessoriesToysPage />} />
         <Route path="/blogs" element={<BlogPage />} />
+        <Route path='/blog-content' element={<BlogContentPage />} />
         <Route path='/parrot' element={<SpeciesPage />} />
         <Route path='/item-info' element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
@@ -55,8 +56,10 @@ const App = () => {
         </Route>
       </Route>
 
-      <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/log-in" element={<LogInPage />} />
+      <Route path="/question" element={<QuestionPage />} />
+      <Route path="/reset-pass" element={<ResetPasswordPage />} />
+      <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
     </Routes>
   );

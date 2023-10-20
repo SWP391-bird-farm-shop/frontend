@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Nav, NavLink, Bars, NavMenu, SubNav, SubNavItem } from './NavbarElements.jsx';
 import "./NavBar.css"
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaSignOutAlt, FaUserEdit } from 'react-icons/fa';
 import SearchBar from '../search/SearchBar.jsx';
 import useAuth from '../../hooks/useAuth.jsx';
 
 const Navbar = ({ className }) => {
+
+  const [showSubNav, setShowSubNav] = useState(false);
+
+  const handleImgClick = () => {
+    setShowSubNav(!showSubNav);
+  };
 
   const { auth } = useAuth();
   if (auth.user) {
@@ -46,7 +52,21 @@ const Navbar = ({ className }) => {
             </NavLink>
           </NavMenu>
           <NavMenu className='third-section'>
-            <h1>user</h1>
+            <p className='navbar-user-name'>Tên đăng nhập</p>
+            <NavLink>
+              <img src='/chaomao.png' alt='' className='navbar-user-img' onClick={handleImgClick} />
+
+              {showSubNav && (
+                <div className='navbar-user-img-subnav'>
+                  <SubNavItem to='/update-info' className='navbar-user-img-subnav-link'>
+                    <FaUserEdit /> Cập nhật thông tin
+                  </SubNavItem>
+                  <SubNavItem to='/home' className='navbar-user-img-subnav-link'>
+                    <FaSignOutAlt /> Đăng xuất
+                  </SubNavItem>
+                </div>
+              )}
+            </NavLink>
           </NavMenu>
         </Nav>
       </nav>
