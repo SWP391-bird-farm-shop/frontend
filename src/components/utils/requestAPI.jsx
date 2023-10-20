@@ -1,20 +1,28 @@
 import axios from 'axios';
 
+const api = axios.create({
+    baseURL: 'https://bcsswp.azurewebsites.net',
+});
+
+const authen = localStorage.getItem('authen');
+
 // Request interceptor
-axios.interceptors.request.use(
-    function (config) {
-        // Modify the request config here
-        config.headers.Authorization = 'Bearer your_token';
-        return config;
-    },
-    function (error) {
-        // Handle request error here
-        return Promise.reject(error);
-    }
-);
+if (authen != null) {
+    api.interceptors.request.use(
+        function (config) {
+            // Modify the request config here
+            config.headers.Authorization = 'Bearer ' + authen;
+            return config;
+        },
+        function (error) {
+            // Handle request error here
+            return Promise.reject(error);
+        }
+    );
+}
 
 // Response interceptor
-axios.interceptors.response.use(
+api.interceptors.response.use(
     function (response) {
         // Modify the response data here
         response.data = response.data.data;
@@ -26,4 +34,4 @@ axios.interceptors.response.use(
     }
 );
 
-export default axios;
+export default api;
