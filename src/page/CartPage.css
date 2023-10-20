@@ -1,4 +1,4 @@
-/* CartPage.css */
+
 .Order {
     display: flex;
     justify-content: space-between;
@@ -10,39 +10,42 @@
 
 
 
-/* CartPage.css */
 
-/* Keyframes animation for the gradient background */
-@keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+.Order-Total {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background: #FFFFFF;
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    border-radius: 8px;
+    color: #180B0B;
+    border: 1px solid #ccc; 
   }
   
-  /* Apply the gradient animation to both .Order-Total and .Order-Payment */
-  .Order-Total, .Order-Payment {
-      flex: 1;
-      margin: 10px;
-      padding: 20px;
-      background: linear-gradient(-45deg, #b3ffcc, #000);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-      border-radius: 8px;
-      color: white; /* Text color for the sections */
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add text shadow for better visibility */
+  .Order-Total p {
+    margin: 0;
   }
   
-  .Order-Total p, .Order-Payment p {
-      margin: 0;
+  
+  .Order-Payment {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background: #FFFFFF;
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    border-radius: 8px;
+    color: #180B0B;
+    border: 1px solid #ccc; 
   }
   
-  /* Rest of your CSS remains the same */
+  .Order-Payment p {
+    margin: 0;
+  }
+  
+  
+  
   
   
 #cart {
@@ -93,18 +96,167 @@ button:hover {
     background-color: #005ea3;
 }
 
-.Payment-Option {
+
+
+.Order-Info {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
+    flex-direction: column;
+   
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+
+  }
+  
+  /* CartPage.css */
 
 /* CartPage.css */
 
-/* Style for the Momo button */
+.customer-info {
+    
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .name-phone {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  
+  .name-phone p {
+    margin: 5px 0;
+  }
+  
+  .customer-info p {
+    margin: 5px 0;
+    color:#180B0B; 
+  }
+  
+  
+  /* CartPage.css */
+
+/* Styling for Voucher Info section (Custom Select Box) */
+.Voucher-Info {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+  }
+  
+  /* Style the label within the Voucher Info section */
+  .Voucher-Info label {
+    margin-right: 5px;
+    color: #000000; /* Set the text color to black */
+  }
+  
+  /* Style the custom select container */
+  .custom-select {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Style the select element within the custom select container */
+  .custom-select select {
+    display: none; /* Hide the default select element */
+  }
+  
+  /* Style the custom select to appear as a button */
+  .custom-select::before {
+    content: '▼'; /* Unicode down arrow character */
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    background-color: #ccc;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  
+  /* Show the selected option text */
+  .custom-select::after {
+    content: attr(data-selected);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 20px; /* Adjust to accommodate the arrow */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  
+  .custom-select ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    background-color: #fff;
+  }
+  
+  
+  .custom-select ul li {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  
+  .custom-select.active ul {
+    display: block;
+  }
+  
+  .Payment-Method {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .Payment-Method button {
+    background-color: #f2f2f2;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .payment-logo {
+    max-width: 50px;
+    max-height: 30px;
+  }
+  
+  .Total-Info {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .Confirm-Order {
+    text-align: center;
+  }
+  
+  #confirm-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
 #momo-button {
-    background-color: #FF1493; /* Pink background color for Momo button */
-    color: white; /* Text color for Momo button */
+    background-color: #FF1493; 
+    color: white; 
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -115,16 +267,13 @@ button:hover {
     width: 20%;
 }
 
-/* Add hover effect for Momo button */
-#momo-button:hover {
-    background-color: #FF0066; /* Change background color on hover */
-}
 
 
-/* Style for the VNPAY button */
+
+
 #vnpay-button {
-    background-color: #FF7700; /* Background color for VNPAY button */
-    color: white; /* Text color for VNPAY button */
+    background-color: #FF7700; 
+    color: white; 
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
@@ -136,12 +285,7 @@ button:hover {
 
 }
 
-/* Add hover effect for VNPAY button */
-#vnpay-button:hover {
-    background-color: #CC5500; /* Change background color on hover */
-}
 
-/* Style for the Tien Mat button */
 #tienmat-button {
     background-color: #009900; 
     color: white; 
@@ -155,15 +299,8 @@ button:hover {
     width: 20%;
 }
 
-/* Add hover effect for Tien Mat button */
-#tienmat-button:hover {
-    background-color: #007700; /* Change background color on hover */
-}
 
-/* Style for payment logos */
-/* CartPage.css */
 
-/* Style for the payment logos with round borders */
 .payment-logo {
     width: 30px; 
     height: 30px; 
@@ -172,12 +309,6 @@ button:hover {
     border-radius: 50%; 
 }
 
-.button-container {
-    display: flex; 
-    justify-content: center;
-    width: 90%;
-    
-}
 
 
 
@@ -236,16 +367,16 @@ h2 {
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, color 0.2s;
-    background-color: #f9f9f9; /* Light background color */
+    background-color: #f9f9f9; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #333; /* Text color */
+    color: #333; 
 }
 
 .cart-item:hover {
-    background-color: #f7f7f7; /* Slightly darker background on hover */
+    background-color: #f7f7f7; 
     transform: scale(1.02);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    color: #555; /* Slightly darker text color on hover */
+    color: #555; 
 }
 
 
@@ -254,13 +385,13 @@ h2 {
 
 
 .item-image {
-    width: 100px; /* Set the width of the image container */
-    height: 100px; /* Set the height of the image container */
-    overflow: hidden; /* Hide overflowing content */
-    border: 1px solid #ccc; /* Add a border to the image container */
-    border-radius: 30%; /* Create a circular shape by setting border-radius to 30% */
-    margin-right: 20px; /* Adjust the right margin to create space between the image and item details */
-    transition: transform 0.2s; /* Add a transition for the scaling effect */
+    width: 100px; 
+    height: 100px; 
+    overflow: hidden; 
+    border: 1px solid #ccc; 
+    border-radius: 30%; 
+    margin-right: 20px; 
+    transition: transform 0.2s; 
 }
 
 
@@ -274,22 +405,17 @@ h2 {
     height: 100%; 
     object-fit: cover; 
 }
-/* CartPage.css */
 
-/* Styling for the total box */
-/* CartPage.css */
-
-/* Styling for the total box */
 #total-box {
     display: flex;
-    justify-content: space-around; /* Use space-around for a more balanced spacing */
-    padding: 8px 10px; /* Adjust the padding as needed */
+    justify-content: space-around; 
+    padding: 8px 10px; 
     background-color: black;
     border: 1px solid white;
     border-radius: 5px;
     font-weight: bold;
     font-size: 16px;
-    margin: 10px 0; /* Adjust the margin as needed */
+    margin: 10px 0; 
 }
 
 #total-box p {
@@ -300,6 +426,72 @@ h2 {
 #cart-total {
     color: white;
 }
+/* CartPage.css */
+
+/* Container for Total-Info */
+.Total-Info {
+    background: #FFFFFF; /* Set the background color to white */
+    padding: 10px;
+    border: 1px solid #ccc; /* Add a border with a color of your choice */
+    border-radius: 8px;
+    color: #000000; /* Set the text color to black */
+  }
+  
+  .Total-Info p {
+    margin: 0;
+  }
+  /* CartPage.css */
+
+/* Container for Order-Payment and its child sections */
+.Order-Payment {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF; /* White background */
+    border: 1px solid #ccc; /* Border with a color of your choice */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    color: #000000; /* Text color for the sections */
+  }
+  
+  
+  .Order-Payment .customer-info {
+    flex: 3; 
+    margin: 10px 0;
+  }
+  
+  
+  .Order-Payment .Voucher-Info {
+    flex: 3; 
+  }
+  
+  
+  .Order-Payment .Payment-Method {
+    flex: 1; 
+    margin: 10px 0;
+  }
+  
+  
+  .Order-Payment .Total-Info {
+    flex: 0.5S; 
+    margin: 10px 0;
+  }
+  
+  
+
+#confirm-button {
+    background-color:  #61CE70;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+  }
+  
+  #confirm-button:hover {
+    background-color: #18653e; 
+  }
 
 
 
