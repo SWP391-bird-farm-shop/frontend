@@ -58,7 +58,7 @@ const Navbar = ({ className }) => {
 
               {showSubNav && (
                 <div className='navbar-user-img-subnav'>
-                  <SubNavItem to='/update-info' className='navbar-user-img-subnav-link'>
+                  <SubNavItem to='/info-setting' className='navbar-user-img-subnav-link'>
                     <FaUserEdit /> Cập nhật thông tin
                   </SubNavItem>
                   <SubNavItem to='/home' className='navbar-user-img-subnav-link'>

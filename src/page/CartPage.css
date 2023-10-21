@@ -1,469 +1,463 @@
 .Order {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-  }
-  
-  .Order-Total,
-  .Order-Payment {
-    flex: 1;
-    margin: 10px;
-    padding: 20px;
-    background: #FFFFFF;
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    border-radius: 8px;
-    color: #180B0B;
-    border: 1px solid #ccc;
-  }
-  
-  .Order-Total p,
-  .Order-Payment p {
-    margin: 0;
-  }
-  
-  #cart {
-    padding: 20px;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-    margin: 0;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    text-align: center;
-    padding: 10px;
-  }
-  
-  th {
-    background-color: #0074cc;
-    color: white;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #f7f7f7;
-  }
-  
-  .payment-logo img {
-    max-width: 100px;
-    height: auto;
-  }
-  
-  button {
-    background-color: #61CE70;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #005ea3;
-  }
-  
-  .voucher-box {
-    padding-top: 30%;
-    background-color: white;
-    padding-left: 20px;
-  }
-  
-  .voucher-box-test {
-    color: #e4e4e4;
-    background-color: #333;
-    padding: 20px;
-    margin-right: 10px;
-    margin-left: 0px;
-  }
-  
-  .Order-Info {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #FFFFFF;
-  }
-  
-  .customer-info {
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .customer-info p {
-    margin: 5px 0;
-    color: #180B0B;
-    text-align: left;
-    padding-left: 30%;
-  }
-  
-  .Voucher-Info {
-    position: relative;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 5px;
-  }
-  
-  .Voucher-Info label {
-    margin-right: 5px;
-    color: #000000;
-  }
-  
-  .custom-select {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .custom-select select {
-    display: none;
-  }
-  
-  .custom-select::before {
-    content: '▼';
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px;
-    background-color: #ccc;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-  }
-  
-  .custom-select::after {
-    content: attr(data-selected);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 20px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-    background-color: #fff;
-    cursor: pointer;
-  }
-  
-  .custom-select ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    display: none;
-    border: 1px solid #ccc;
-    border-top: none;
-    border-radius: 0 0 4px 4px;
-    background-color: #fff;
-  }
-  
-  .custom-select ul li {
-    padding: 5px;
-    cursor: pointer;
-  }
-  
-  .custom-select.active ul {
-    display: block;
-  }
-  
-  .Payment-Method {
-    display: flex;
-    justify-content: space-around;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .Payment-Method button {
-    background-color: #f2f2f2;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .payment-logo {
-    max-width: 50px;
-    max-height: 30px;
-  }
-  
-  .Total-Info {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .Confirm-Order {
-    text-align: center;
-  }
-  
-  #confirm-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  #momo-button,
-  #vnpay-button,
-  #tienmat-button {
-    background-color: #FF1493;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    width: 20%;
-  }
-  
-  #vnpay-button {
-    background-color: #FF7700;
-  }
-  
-  #tienmat-button {
-    background-color: #009900;
-  }
-  
-  .payment-logo {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    border: 1px solid #000;
-    border-radius: 50%;
-  }
-  
-  .order-payment {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
-  }
-  
-  .customer-info {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-  }
-  
-  .customer-info p {
-    margin: 5px;
-    font-size: 16px;
-  }
-  
-  .customer-info strong {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  #totalAmount {
-    font-size: 20px;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .cart-item {
-    border: 1px solid #e4e4e4;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space between;
-    align-items: center;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, color 0.2s;
-   
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #333;
-  }
-  
-  .cart-item:hover {
-    background-color: #f7f7f7;
-    transform: scale(1.02);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    color: #555;
-  }
-  
-  .item-image {
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    border-radius: 30%;
-    margin-right: 20px;
-    transition: transform 0.2s;
-  }
-  
-  .item-image:hover {
-    transform: scale(1.1);
-  }
-  
-  .item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  #total-box {
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 10px;
-    background-color: black;
-    border: 1px solid white;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 16px;
-    margin: 10px 0;
-  }
-  
-  #total-box p {
-    margin: 0;
-    color: white;
-  }
-  
-  #cart-total {
-    color: white;
-  }
-  
-  .Total-Info {
-    background: #FFFFFF;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    color: #000000;
-  }
-  
-  .Total-Info p {
-    margin: 0;
-  }
-  
-  .Order-Payment {
-    display: flex;
-    flex-direction: column;
-    background: #FFFFFF;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px;
-    color: #000000;
-  }
-  
-  .voucher-test {
-    font-weight: bold;
-    font-size: larger;
-    color: #000;
-  }
-  
-  .Order-Payment .customer-info {
-    flex: 3;
-    margin: 10px 0;
-  }
-  
-  .Order-Payment .Voucher-Info {
-    flex: 2;
-  }
-  
-  .Order-Payment .Payment-Method {
-    flex: 1;
-    margin: 10px 0;
-  }
-  
-  .Order-Payment .Total-Info {
-    flex: 0.5;
-    margin: 10px 0;
-  }
-  
-  #confirm-button {
-    background-color: #61CE70;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  #confirm-button:hover {
-    background-color: #18653e;
-  }
-  
-  .Voucher-Info {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .voucher-combobox {
-    display: flex;
-    background-color: aliceblue;
-    color: black;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
-  }
-  
-  #voucher {
-    flex: 1;
-    margin: 0;
-    padding: 15px;
-    margin-right: 15px;
-  }
-  
-  label {
-    margin-bottom: 5px;
-    color: #333333;
-  }
-  
-  .button-container {
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-  }
-  
-  .remove-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
-    margin-left: 10px; 
-  }
-  
-  .remove-button:hover {
-    background-color: #45a049;
-  }
-  
-  
-  
-  
-  
-  
-  
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.Order-Total,
+.Order-Payment {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  background: #FFFFFF;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-radius: 8px;
+  color: #180B0B;
+  border: 1px solid #ccc;
+}
+
+.Order-Total p,
+.Order-Payment p {
+  margin: 0;
+}
+
+#cart {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+th {
+  background-color: #0074cc;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.payment-logo img {
+  max-width: 100px;
+  height: auto;
+}
+
+button {
+  background-color: #61CE70;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #005ea3;
+}
+
+.voucher-box {
+  padding-top: 30%;
+  background-color: white;
+  padding-left: 20px;
+}
+
+.voucher-box-test {
+  color: #e4e4e4;
+  background-color: #333;
+  padding: 20px;
+  margin-right: 10px;
+  margin-left: 0px;
+}
+
+.Order-Info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #FFFFFF;
+}
+
+.customer-info {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.customer-info p {
+  margin: 5px 0;
+  color: #180B0B;
+  text-align: left;
+  padding-left: 30%;
+}
+
+.Voucher-Info {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.Voucher-Info label {
+  margin-right: 5px;
+  color: #000000;
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select select {
+  display: none;
+}
+
+.custom-select::before {
+  content: '▼';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  background-color: #ccc;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.custom-select::after {
+  content: attr(data-selected);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 20px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.custom-select ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  background-color: #fff;
+}
+
+.custom-select ul li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.custom-select.active ul {
+  display: block;
+}
+
+.Payment-Method {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.Payment-Method button {
+  background-color: #f2f2f2;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.payment-logo {
+  max-width: 50px;
+  max-height: 30px;
+}
+
+.Total-Info {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.Confirm-Order {
+  text-align: center;
+}
+
+#confirm-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#momo-button,
+#vnpay-button,
+#tienmat-button {
+  background-color: #FF1493;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+
+#vnpay-button {
+  background-color: #FF7700;
+}
+
+#tienmat-button {
+  background-color: #009900;
+}
+
+.payment-logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+
+.order-payment {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.customer-info {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.customer-info p {
+  margin: 5px;
+  font-size: 16px;
+}
+
+.customer-info strong {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#totalAmount {
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.cart-item {
+  border: 1px solid #e4e4e4;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space between;
+  align-items: center;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, color 0.2s;
+
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.cart-item:hover {
+  background-color: #f7f7f7;
+  transform: scale(1.02);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  color: #555;
+}
+
+.item-image {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 30%;
+  margin-right: 20px;
+  transition: transform 0.2s;
+}
+
+.item-image:hover {
+  transform: scale(1.1);
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#total-box {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 10px;
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+#total-box p {
+  margin: 0;
+  color: white;
+}
+
+#cart-total {
+  color: white;
+}
+
+.Total-Info {
+  background: #FFFFFF;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: #000000;
+}
+
+.Total-Info p {
+  margin: 0;
+}
+
+.Order-Payment {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  color: #000000;
+}
+
+.voucher-test {
+  font-weight: bold;
+  font-size: larger;
+  color: #000;
+}
+
+.Order-Payment .customer-info {
+  flex: 3;
+  margin: 10px 0;
+}
+
+.Order-Payment .Voucher-Info {
+  flex: 2;
+}
+
+.Order-Payment .Payment-Method {
+  flex: 1;
+  margin: 10px 0;
+}
+
+.Order-Payment .Total-Info {
+  flex: 0.5;
+  margin: 10px 0;
+}
+
+#confirm-button {
+  background-color: #61CE70;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#confirm-button:hover {
+  background-color: #18653e;
+}
+
+.Voucher-Info {
+  display: flex;
+  flex-direction: column;
+}
+
+.voucher-combobox {
+  display: flex;
+  background-color: aliceblue;
+  color: black;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+#voucher {
+  flex: 1;
+  margin: 0;
+  padding: 15px;
+  margin-right: 15px;
+}
+
+label {
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.remove-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.remove-button:hover {
+  background-color: #45a049;
+}
