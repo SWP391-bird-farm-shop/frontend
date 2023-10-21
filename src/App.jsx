@@ -18,6 +18,7 @@ import SignUpPage from './page/authenticationpage/SignUpPage'
 import UpdateInformationPage from './page/authenticationpage/UpdateInformationPage'
 import './App.css'
 import UserPage from './page/UserPage'
+import SettingInformationPage from './page/SettingInformationPage'
 
 
 
@@ -61,6 +62,7 @@ const App = () => {
       <Route path="/reset-pass" element={<ResetPasswordPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
+      <Route path='/info-setting' element={<SettingInformationPage />} />
     </Routes>
   );
 }
