@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../page/LogInPage.css';
+import './LogInPage.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import jwtDecode from 'jwt-decode';
 import useAuth from '../../hooks/useAuth';

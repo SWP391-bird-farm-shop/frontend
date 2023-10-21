@@ -3,17 +3,20 @@ import './AuthenticationPage.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import api from '../../components/utils/requestAPI';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {
 
   const { setAuth } = useAuth();
 
+  const [user, setUser] = useState();
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirm, setConfirm] = useState();
 
-  const [user, setUser] = useState();
+
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -49,6 +52,7 @@ const SignUpPage = () => {
         var authen = response.data;
         setAuth({ user, authen });
         console.log(authen);
+        navigate('/update-info');
       } catch (error) {
         console.error(error);
       }
