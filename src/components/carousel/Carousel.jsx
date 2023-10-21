@@ -8,9 +8,13 @@ import './Carousel.css'
 
 const Carousel = ({ className }) => {
 
-    if (className === 'Bird') {
-        const [birdData, setBirdData] = useState();
-        useEffect(() => {
+    const [birdData, setBirdData] = useState();
+    const [productData, setProductData] = useState();
+    const [toyData, setToyData] = useState();
+
+
+    useEffect(() => {
+        if (className === 'Bird') {
             const fetchData = async () => {
                 try {
                     await api.get('/api/Bird/get-for-sort', {
@@ -27,37 +31,8 @@ const Carousel = ({ className }) => {
             };
 
             fetchData();
-        }, []);
-
-
-        const options = {
-            items: 5, // Number of items to display
-            autoplay: true, // Autoplay enabled
-            autoplayTimeout: 2000, // Autoplay interval in milliseconds
-            autoplayHoverPause: true, // Pause autoplay on hover
-            loop: true, // Enable infinite loop
-            nav: true, // Show navigation arrows
-            dots: false,
-            navClass: ["switch-icon-prev", "switch-icon-next"]
-        };
-
-        return (
-            <OwlCarousel className={className} {...options}>
-                {birdData?.map(bird => (
-                    <a href={`/bird/${bird.birdId}`} className="bird-carousel-item" key={bird.birdId}>
-                        {bird.image.map(image => (
-                            <img src={image.imageUrl} alt={bird.birdName} key={image.imageId} />
-                        ))}
-                        <h4>{bird.birdName}</h4>
-                    </a>
-                ))}
-            </OwlCarousel>
-
-        );
-    }
-    if (className === 'Product') {
-        const [productData, setProductData] = useState();
-        useEffect(() => {
+        }
+        if (className === 'Product') {
             const fetchData = async () => {
                 try {
                     await api.get('/api/Product/get-for-customer', {
@@ -73,33 +48,8 @@ const Carousel = ({ className }) => {
                 }
             };
             fetchData();
-        }, []);
-        const options = {
-            items: 5, // Number of items to display
-            autoplay: true, // Autoplay enabled
-            autoplayTimeout: 2000, // Autoplay interval in milliseconds
-            autoplayHoverPause: true, // Pause autoplay on hover
-            loop: true, // Enable infinite loop
-            nav: true, // Show navigation arrows
-            dots: false,
-            navClass: ["switch-icon-prev", "switch-icon-next"]
-        };
-        return (
-            <OwlCarousel className={className} {...options}>
-                {productData?.map(product => (
-                    <a href={`/bird/${product.productId}`} className="product-carousel-item" key={product.productId}>
-                        {product.image.map(image => (
-                            <img src={image.imageUrl} alt={product.productName} key={image.imageId} />
-                        ))}
-                        <h4>{product.productName}</h4>
-                    </a>
-                ))}
-            </OwlCarousel>
-        );
-    }
-    if (className === 'Toy') {
-        const [toyData, setToyData] = useState();
-        useEffect(() => {
+        }
+        if (className === 'Toy') {
             const fetchData = async () => {
                 try {
                     await api.get('/api/Product/get-by-category?categoryId=Catef5d6d', {
@@ -115,17 +65,47 @@ const Carousel = ({ className }) => {
                 }
             };
             fetchData();
-        }, []);
-        const options = {
-            items: 5, // Number of items to display
-            autoplay: true, // Autoplay enabled
-            autoplayTimeout: 2000, // Autoplay interval in milliseconds
-            autoplayHoverPause: true, // Pause autoplay on hover
-            loop: true, // Enable infinite loop
-            nav: true, // Show navigation arrows
-            dots: false,
-            navClass: ["switch-icon-prev", "switch-icon-next"]
-        };
+        }
+    }, [])
+    const options = {
+        items: 5, // Number of items to display
+        autoplay: true, // Autoplay enabled
+        autoplayTimeout: 2000, // Autoplay interval in milliseconds
+        autoplayHoverPause: true, // Pause autoplay on hover
+        loop: true, // Enable infinite loop
+        nav: true, // Show navigation arrows
+        dots: false,
+        navClass: ["switch-icon-prev", "switch-icon-next"]
+    };
+    if (className === 'Bird') {
+        return (
+            <OwlCarousel className={className} {...options}>
+                {birdData?.map(bird => (
+                    <a href={`/bird/${bird.birdId}`} className="bird-carousel-item" key={bird.birdId}>
+                        {bird.image.map(image => (
+                            <img src={image.imageUrl} alt={bird.birdName} key={image.imageId} />
+                        ))}
+                        <h4>{bird.birdName}</h4>
+                    </a>
+                ))}
+            </OwlCarousel>
+        );
+    }
+    if (className === 'Product') {
+        return (
+            <OwlCarousel className={className} {...options}>
+                {productData?.map(product => (
+                    <a href={`/bird/${product.productId}`} className="product-carousel-item" key={product.productId}>
+                        {product.image.map(image => (
+                            <img src={image.imageUrl} alt={product.productName} key={image.imageId} />
+                        ))}
+                        <h4>{product.productName}</h4>
+                    </a>
+                ))}
+            </OwlCarousel>
+        );
+    }
+    if (className === 'Toy') {
         return (
             <OwlCarousel className={className} {...options}>
                 {toyData?.map(toy => (
