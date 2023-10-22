@@ -43,6 +43,7 @@
   background-color: #f7f7f7;
   transform: scale(1.02);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+
   .remove-button {
     background-color: #f7f7f7;
   }
@@ -180,6 +181,11 @@
   padding: 0;
   outline: none;
   cursor: pointer;
+}
+
+.payment-section-button:checked {
+  background-color: black;
+  border: 2px solid #ccc;
 }
 
 .payment-logo {
