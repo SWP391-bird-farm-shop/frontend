@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-import './SpeciesPage.css'; // Import the CSS file
 import About from '../components/about/About';
 import Carousel from '../components/carousel/Carousel';
 import BirdList from '../components/bird-list/BirdList';
+import './SpeciesPage.css';
 
 const SpeciesPage = () => {
     return (

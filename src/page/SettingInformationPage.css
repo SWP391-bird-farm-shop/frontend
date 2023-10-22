@@ -1,37 +1,48 @@
-.update-info-section {
-    height: 100vh;
+.setting-homepage-link-bar {
+    background-color: white;
+    position: fixed;
     width: 100vw;
+    top: 0;
+    border-bottom: 2px solid #ccc;
+}
+
+.setting-homepage-link {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    float: left;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 8px 50px;
+    margin-bottom: 10px;
+}
+
+.setting-homepage-link:hover {
+    opacity: 0.8;
+}
+
+.setting-homepage-link::before {
+    content: '\2190';
+    font-size: 24px;
+}
+
+.update-info-page {
+    height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.update-info-section .homepage-link {
-    position: absolute;
-    display: block;
-    right: 2%;
-    top: 4.7%;
-    color: rgb(0, 0, 0);
-    opacity: 0.3;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.update-info-section .homepage-link:hover {
-    opacity: 0.8;
-}
-
-.update-info-section .homepage-link::before {
-    content: '\2190';
-    font-size: 24px;
-}
-
 .update-info-container {
     background-color: rgba(225, 225, 225, 0.2);
-    width: 27vw;
+    width: 70vw;
     padding: 50px;
     border-radius: 5px;
+}
+
+.update-info-container-title {
+    font-size: 22px;
+    margin: 20px 0;
 }
 
 .update-info-container h2 {
@@ -39,6 +50,50 @@
     text-align: center;
 }
 
+.update-info-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.update-info-of-img,
+.update-info-of-profile {
+    flex: 1;
+    margin: 30px;
+    padding: 20px 40px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.update-info-of-img h2,
+.update-info-of-profile h2 {
+    margin: 0;
+}
+
+.update-info-of-img {
+    height: 341px;
+}
+
+.avatar {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.custom-file-upload {
+    color: grey;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    color: black;
+}
+  
 .update-info-input-container {
     margin-bottom: 10px;
 }
@@ -66,10 +121,10 @@
 
 .update-info-input::-webkit-inner-spin-button,
 .update-info-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-  display: none;
-  padding: 0;
+    -webkit-appearance: none;
+    margin: 0;
+    display: none;
+    padding: 0;
 }
 
 .update-info-check-container {
@@ -85,7 +140,7 @@
     border-radius: 50%;
     width: 12px;
     height: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     background-color: #fff;
     padding: 0;
     outline: none;
@@ -121,7 +176,7 @@
 }
 
 .update-info-button {
-    width: 100%;
+    width: 40%;
     font-size: 16px;
     padding: 10px;
     background-color: #4CAF50;
@@ -134,62 +189,4 @@
 
 .update-info-button:hover {
     background-color: #45a049;
-}
-
-.update-info-container p {
-    color: black;
-}
-
-.update-info-container a {
-    color: #4CAF50;
-}
-
-.forgot-password-link {
-    float: left;
-    padding: 0 15px;
-}
-
-.log-in-password-toggle-button,
-.sign-up-password-toggle-button,
-.confirm-password-toggle-button,
-.reset-password-toggle-button,
-.confirm-reset-password-toggle-button {
-    position: absolute;
-    background-color: aliceblue;
-    color: gray;
-    font-size: 18px;
-    width: 34px;
-    height: 34px;
-    padding-top: 5px;
-    border-radius: 50%;
-    border: none;
-    margin-left: 11.2vw;
-}
-
-.update-info-input-container .log-in-password-toggle-button {
-    top: 47.2vh;
-}
-
-.update-info-input-container .sign-up-password-toggle-button {
-    top: 48.8vh;
-}
-
-.update-info-input-container .confirm-password-toggle-button {
-    top: 60vh;
-}
-
-.update-info-input-container .reset-password-toggle-button {
-    top: 42vh;
-}
-
-.update-info-input-container .confirm-reset-password-toggle-button {
-    top: 52.7vh;
-}
-
-.log-in-password-toggle-button:hover,
-.sign-up-password-toggle-button:hover,
-.confirm-password-toggle-button:hover,
-.reset-password-toggle-button:hover,
-.confirm-reset-password-toggle-button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
 }
