@@ -17,10 +17,22 @@ const QuantityButton = ({ initialQuantity, onQuantityChange }) => {
         onQuantityChange(quantity + 1);
     };
 
+    const handleInputChange = (event) => {
+        const value = event.target.value.trim();
+        if (value === null || (value >= 1 && !isNaN(value))) {
+            setQuantity(value === null ? 0 : parseInt(value));
+        }
+        if (value == 0) {
+            setQuantity(null)
+        } else if (value === null) {
+            setQuantity(1)
+        }
+    };
+
     return (
         <div className="quantity">
             <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
-            <input className="quantity-number" type="number" value={quantity} readOnly />
+            <input className="quantity-number" type="number" value={quantity} onChange={handleInputChange} />
             <button className="quantity-button right" onClick={incrementQuantity}><FaPlus className="quantity-icon" /></button>
         </div>
     );
