@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/blogs" element={<BlogPage />} />
         <Route path='/blog-content' element={<BlogContentPage />} />
         <Route path='/parrot' element={<SpeciesPage />} />
-        <Route path='/item-info' element={<ItemInformation />} />
+        <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
       </Route>
@@ -51,7 +51,7 @@ const App = () => {
           <Route path='/products/accessories-toys' element={<AccessoriesToysPage />} />
           <Route path="/blogs" element={<BlogPage />} />
           <Route path='/parrot' element={<SpeciesPage />} />
-          <Route path='/item-info' element={<ItemInformation />} />
+          <Route path="/item-info/:productId" element={<ItemInformation />} />
           <Route path='/about-us' element={<AboutPage />} />
           <Route path='/cart' element={<CartPage />} />
         </Route>

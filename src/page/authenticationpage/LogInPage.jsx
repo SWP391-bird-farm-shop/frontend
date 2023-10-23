@@ -29,8 +29,8 @@ const LogInPage = () => {
         try {
             const response = await api.post(url, data);
             console.log(response.data)
-            setAuthen(response.data);
-            localStorage.setItem('Authen', authen);
+            localStorage.setItem('Authen', response.data);
+            setAuthen(response.data)
             // Xử lý dữ liệu response ở đây
         } catch (error) {
             console.error(error);

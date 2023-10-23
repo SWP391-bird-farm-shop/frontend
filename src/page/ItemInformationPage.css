@@ -41,6 +41,7 @@
     color: black;
     text-align: justify;
     margin: 10px 0;
+    white-space: pre-line;
 }
 
 .quantity-section {
@@ -54,7 +55,6 @@
     color: black;
     font-size: 17px;
 }
-
 
 .add-to-cart {
     width: 40%;

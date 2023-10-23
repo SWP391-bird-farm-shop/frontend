@@ -5,6 +5,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './Carousel.css'
+import { Link } from 'react-router-dom';
 
 const Carousel = ({ className }) => {
 
@@ -81,12 +82,12 @@ const Carousel = ({ className }) => {
         return (
             <OwlCarousel className={className} {...options}>
                 {birdData?.map(bird => (
-                    <a href={`/bird/${bird.birdId}`} className="bird-carousel-item" key={bird.birdId}>
+                    <Link href={`/bird/${bird.birdId}`} className="bird-carousel-item" key={bird.birdId}>
                         {bird.image.map(image => (
                             <img src={image.imageUrl} alt={bird.birdName} key={image.imageId} />
                         ))}
                         <h4>{bird.birdName}</h4>
-                    </a>
+                    </Link>
                 ))}
             </OwlCarousel>
         );
@@ -95,12 +96,12 @@ const Carousel = ({ className }) => {
         return (
             <OwlCarousel className={className} {...options}>
                 {productData?.map(product => (
-                    <a href={`/bird/${product.productId}`} className="product-carousel-item" key={product.productId}>
+                    <Link href={`/cage/${product.productId}`} className="product-carousel-item" key={product.productId}>
                         {product.image.map(image => (
                             <img src={image.imageUrl} alt={product.productName} key={image.imageId} />
                         ))}
                         <h4>{product.productName}</h4>
-                    </a>
+                    </Link>
                 ))}
             </OwlCarousel>
         );
@@ -109,12 +110,12 @@ const Carousel = ({ className }) => {
         return (
             <OwlCarousel className={className} {...options}>
                 {toyData?.map(toy => (
-                    <a href={`/bird/${toy.productId}`} className="product-carousel-item" key={toy.productId}>
+                    <Link href={`/bird/${toy.productId}`} className="product-carousel-item" key={toy.productId}>
                         {toy.image.map(image => (
                             <img src={image.imageUrl} alt={toy.productName} key={image.imageId} />
                         ))}
                         <h4>{toy.productName}</h4>
-                    </a>
+                    </Link>
                 ))}
             </OwlCarousel>
         );
