@@ -25,6 +25,11 @@
 
 .product-items-section {
     margin-top: 8vh;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
 }
 
 .product-item {

@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Img1 from '/demo.jpg'
 import './ProductPage.css';
+import api from '../../components/utils/requestAPI';
 
 const CagePage = () => {
   const [selected, setSelected] = useState('');
+
+  const [cage, setCage] = useState();
 
   const options = [
     'Tăng dần',
     'Giảm dần',
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await api.get('/api/Product/get-for-customer', {
+          headers: {
+            'accept': '*/*'
+          }
+        }).then(response => {
+          console.log(response)
+          setCage(response.data);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [])
 
   return (
     <div className="product-page">
@@ -23,17 +44,23 @@ const CagePage = () => {
           ))}
         </select>
       </div>
+
       <div className="product-items-section">
-        <Link to="/item-info" className="product-item">
-          <div className="product-image">
-            <img src={Img1} alt="Food" />
-          </div>
-          <div className="product-details">
-            <h4 className="product-title">Cage Title</h4>
-            <p className="product-price">$99.99</p>
-          </div>
-        </Link>
+        {cage?.map(product => (
+          <Link to={`/item-info/${product.productId}`} className="product-item">
+            <div className="product-image">
+              {product.image.map(image => (
+                <img src={image.imageURL} alt="Food" key={image.imageId} />
+              ))}
+            </div>
+            <div className="product-details">
+              <h4 className="product-title">{product.productName}</h4>
+              <p className="product-price">{product.price}</p>
+            </div>
+          </Link>
+        ))}
       </div>
+
     </div>
   );
 };
