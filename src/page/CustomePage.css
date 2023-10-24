@@ -1,0 +1,144 @@
+/* Styling the custom page container */
+.custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+/* Styling the title */
+.custom-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Styling the options list */
+.custom-option ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.custom-option li {
+  margin: 0 20px;
+  /* Increased margin for spacing */
+}
+
+.custom-option a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s;
+  /* Smooth color transition on hover */
+}
+
+.custom-option a:hover {
+  color: #26bf32;
+}
+
+/* Styling the detail items */
+.custom-option-detail {
+  display: flex;
+  flex-wrap: wrap;
+  /* Items wrap to the next row if space is insufficient */
+  justify-content: space-around;
+  /* Distribute items evenly */
+}
+
+.custom-option-detail-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px 0;
+  /* Increased margin for spacing */
+}
+
+.detail-item {
+  margin: 20px;
+  text-align: center;
+  max-width: 300px;
+  /* Control the max width of detail items */
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add a subtle shadow */
+}
+
+.detail-item h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.detail-item img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a752;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+  /* Smooth background color transition on hover */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Styling the bill section */
+.custom-bill {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.custom-bill-detail {
+  flex: 2;
+  margin-left: 5px;
+  margin-bottom: 50px;
+  padding: 30px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-bill-detail h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.custom-bill-detail strong {
+  font-weight: bold;
+}
+
+.custom-cancel button {
+  background-color: #dc3545;
+  color: #fff;
+  margin-top: 50vh;
+
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.custom-cancel button:hover {
+  background-color: #a51a2e;
+}

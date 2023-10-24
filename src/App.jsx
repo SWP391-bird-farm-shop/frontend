@@ -19,6 +19,7 @@ import UpdateInformationPage from './page/authenticationpage/UpdateInformationPa
 import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
+import CustomePage from './page/CustomePage'
 
 
 
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
+        <Route path='/custom-products' element={<CustomePage />} />
       </Route>
 
 
@@ -54,6 +56,7 @@ const App = () => {
           <Route path="/item-info/:productId" element={<ItemInformation />} />
           <Route path='/about-us' element={<AboutPage />} />
           <Route path='/cart' element={<CartPage />} />
+
         </Route>
       </Route>
 
