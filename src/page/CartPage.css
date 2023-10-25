@@ -17,7 +17,7 @@
 
 .cart-items {
   background-color: white;
-  max-height: 650px;
+  max-height: 645px;
   overflow-y: auto;
   scrollbar-width: thin;
 }

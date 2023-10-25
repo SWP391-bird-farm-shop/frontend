@@ -56,7 +56,7 @@ const Navbar = ({ className }) => {
             </NavLink>
           </NavMenu>
           <NavMenu className='third-section'>
-            <p className='navbar-user-name'>Xin chào {auth.user.fullName}</p>
+            <p className='navbar-user-name'>{auth.user.fullName}</p>
             <NavLink>
               <img src='/chaomao.png' alt='' className='navbar-user-img' onClick={handleImgClick} />
 
@@ -107,8 +107,6 @@ const Navbar = ({ className }) => {
             <NavLink to='/about-us' className='first-section-component'>
               Giới thiệu
             </NavLink>
-            {/* Second Nav */}
-            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
           </NavMenu>
 
           <NavMenu className='second-section'>
