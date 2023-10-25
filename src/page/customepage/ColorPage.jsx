@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import './ColorPage.css';
 
-
 const ColorPage = () => {
-
   const handleButtonClick = () => {
     window.location.href = "/custom-products-material";
   };
 
   return (
     <div className="custom">
-
 
       <div>
         <h1 className="custom-title">Thiết Kế Lồng</h1>
@@ -41,59 +38,47 @@ const ColorPage = () => {
           </li>
         </ul>
       </div>
+      <div className="container-color">
 
-      <div className="custom-option-detail">
-        <div className="">
-          <h2>Chọn Màu Sắc Lồng Của Bạn </h2>
+
+        <div className="custom-color-option-detail">
+          <div className="custom-color">
+            <h2>Chọn Màu Sắc Lồng Của Bạn </h2>
+          </div>
+          <div className="custom-color-option-detail-list">
+            <div className="custom-color-detail-item">
+              <h2>Màu  Đen </h2>
+              <p> <img src="" alt="Chim" className="custom-color-product-image" /> </p>
+              <button onClick={handleButtonClick}>Chọn</button>
+            </div>
+            <div className="custom-color-detail-item">
+              <h2>Màu Trắng </h2>
+              <p> <img src="" alt="Chim" className="custom-color-product-image" /> </p>
+              <button onClick={handleButtonClick}>Chọn</button>
+            </div>
+            <div className="custom-color-detail-item">
+              <h2> Màu Gỗ </h2>
+              <p> <img src="" alt="Chim" className="custom-color-product-image" /> </p>
+              <button onClick={handleButtonClick}>Chọn</button>
+            </div>
+          </div>
+
+          <div className="custom-color-bill">
+            <div className="custom-color-bill-detail">
+              <h2>Đơn Hàng Của Bạn</h2><br />
+              <strong>Loại chim:</strong>Chim Chích Chòe  <br />
+              <strong>Kích thước:</strong>100x50"    <br /><br />
+              <h4>Giá Hiện Tại: 5000$</h4>
+            </div>
+
+            <div className="custom-color-cancel">
+              <button type="submit">Thiết Lập Lại Đơn Hàng</button>
+            </div>
+          </div>
         </div>
-        <div className="custom-option-detail-list">
-          <div className="detail-item">
-            <h2>Màu  Đen </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
-
-            <button onClick={handleButtonClick}>Chọn</button>
-          </div>
-          <div className="detail-item">
-            <h2>Màu Trắng </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
-
-            <button onClick={handleButtonClick}>Chọn</button>
-          </div>
-          <div className="detail-item">
-            <h2> Màu Gỗ </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
-
-            <button onClick={handleButtonClick}>Chọn</button>
-          </div>
-
-        </div>
-
-
-        <div className="custom-bill">
-
-          <div className="custom-bill-detail">
-            <h2>Đơn Hàng Của Bạn</h2><br />
-            <strong>Loại chim:</strong>Chim Chích Chòe  <br />
-            <strong>Kích thước:</strong>100x50"    <br /><br />
-            <h4>Giá Hiện Tại: 5000$</h4>
-          </div>
-
-          <div className="custom-cancel">
-
-            <button type="submit">Thiết Lập Lại Đơn Hàng</button>
-
-          </div>
-
-        </div>
-
-
       </div>
-
-    </div >
-
-
+    </div>
   );
 }
-
 
 export default ColorPage;

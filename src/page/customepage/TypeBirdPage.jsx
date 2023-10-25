@@ -6,6 +6,9 @@ const TypeBirdPage = () => {
   const handleButtonClick = () => {
     window.location.href = "/custom-products-shape";
   };
+
+
+
   return (
     <div className="custom">
       <div>
@@ -68,7 +71,6 @@ const TypeBirdPage = () => {
             </div>
             {/* Add more product items as needed */}
           </div>
-          <div className="button-save">SAVE & CONTINUE</div>
         </div>
 
         <div className="custom-bill">

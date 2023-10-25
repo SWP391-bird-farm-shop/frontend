@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import './SizePage.css';
 
-
 const SizePage = () => {
-
   const handleButtonClick = () => {
     window.location.href = "/custom-products-color";
   };
 
   return (
     <div className="custom">
-
 
       <div>
         <h1 className="custom-title">Thiết Kế Lồng</h1>
@@ -42,14 +39,14 @@ const SizePage = () => {
         </ul>
       </div>
 
-      <div className="custom-option-detail">
-        <div className="">
+      <div className="custom-size-option-detail">
+        <div>
           <h2>Chọn Kích Thuớc Lồng Của Bạn </h2>
         </div>
-        <div className="custom-option-detail-list">
-          <div className="detail-item">
+        <div className="custom-size-option-detail-list">
+          <div className="custom-size-detail-item">
             <h2> Thanh Đan: 5 </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
+            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -59,11 +56,11 @@ const SizePage = () => {
               <option value="5">48"</option>
               <option value="6">60"</option>
             </select>
-            <button onClick={handleButtonClick}>Chọn</button>
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
-          <div className="detail-item">
+          <div className="custom-size-detail-item">
             <h2> Thanh Đan: 6 </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
+            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -73,11 +70,11 @@ const SizePage = () => {
               <option value="5">48"</option>
               <option value="6">60"</option>
             </select>
-            <button onClick={handleButtonClick}>Chọn</button>
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
-          <div className="detail-item">
+          <div className="custom-size-detail-item">
             <h2> Thanh Đan: 8 </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
+            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -87,11 +84,11 @@ const SizePage = () => {
               <option value="5">48"</option>
               <option value="6">60"</option>
             </select>
-            <button onClick={handleButtonClick}>Chọn</button>
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
-          <div className="detail-item">
+          <div className="custom-size-detail-item">
             <h2> Thanh Đan: 10 </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
+            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -101,11 +98,11 @@ const SizePage = () => {
               <option value="5">48"</option>
               <option value="6">60"</option>
             </select>
-            <button onClick={handleButtonClick}>Chọn</button>
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
-          <div className="detail-item">
+          <div className="custom-size-detail-item">
             <h2> Thanh Đan: 12 </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
+            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -115,11 +112,11 @@ const SizePage = () => {
               <option value="5">48"</option>
               <option value="6">60"</option>
             </select>
-            <button onClick={handleButtonClick}>Chọn</button>
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
-          <div className="detail-item">
+          <div className="custom-size-detail-item">
             <h2> Thanh Đan: 16 </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
+            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -129,36 +126,25 @@ const SizePage = () => {
               <option value="5">48"</option>
               <option value="6">60"</option>
             </select>
-            <button onClick={handleButtonClick}>Chọn</button>
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
         </div>
 
-
-        <div className="custom-bill">
-
-          <div className="custom-bill-detail">
+        <div className="custom-bill-size">
+          <div className="custom-bill-detail-size">
             <h2>Đơn Hàng Của Bạn</h2><br />
-            <strong>Loại chim:</strong>Chim Chích Chòe  <br />
-            <strong>Kích thước:</strong>100x50"    <br /><br />
+            <strong>Loại chim:</strong> Chim Chích Chòe  <br />
+            <strong>Kích thước:</strong> 100x50"    <br /><br />
             <h4>Giá Hiện Tại: 5000$</h4>
           </div>
 
-          <div className="custom-cancel">
-
+          <div className="custom-cancel-size">
             <button type="submit">Thiết Lập Lại Đơn Hàng</button>
-
           </div>
-
         </div>
-
-
       </div>
-
-    </div >
-
-
+    </div>
   );
 }
-
 
 export default SizePage;

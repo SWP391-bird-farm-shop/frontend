@@ -1,97 +1,163 @@
 /* ColorPage.css */
+
 .custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
   font-family: Arial, sans-serif;
-  margin: 20px;
+  min-height: 100vh;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .custom-title {
-  font-size: 24px;
+  font-size: 28px;
+  margin: 10px 0;
   text-align: center;
-  margin-bottom: 20px;
-}
-
-.custom-option ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.custom-option li {
-  margin: 10px;
-}
-
-.custom-option a {
-  text-decoration: none;
   color: #333;
 }
 
-.custom-option-detail {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 10px;
+.custom-option {
+  margin: 20px 0;
 }
 
-.custom-subtitle {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.custom-option-detail-list {
+.custom-option ul {
+  list-style-type: none;
+  padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
-.detail-item {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 10px;
-  text-align: center;
-  width: 220px;
+.custom-option ul li {
+  margin-bottom: 10px;
 }
 
-.detail-item h2 {
+.custom-option ul li a {
+  text-decoration: none;
   font-size: 18px;
+  color: #333;
+  display: block;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fff;
 }
 
-.detail-item img {
-  max-width: 100px;
-  height: auto;
+
+.custom-color-option-detail {
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+
+.custom-color-detail-item {
+  width: calc(33.33% - 20px);
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.custom-color-detail-item h2 {
+  font-size: 20px;
   margin: 10px 0;
 }
 
-.detail-item button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
+.custom-color-product-image {
+  max-width: 100%;
+  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.custom-bill {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 10px;
+.custom-color-detail-item p {
+  margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  /* Customize the height as needed */
 }
 
-.custom-bill-detail h2 {
+.custom-color-detail-item button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.custom-color-detail-item button:hover {
+  background-color: #218838;
+}
+
+.custom-color-bill {
+
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.custom-color-bill-detail {
+  text-align: center;
+}
+
+.custom-color-bill-detail h2 {
   font-size: 18px;
 }
 
-.custom-cancel button {
-  background-color: #dc3545;
+.custom-color-bill-detail strong {
+  font-weight: bold;
+}
+
+.custom-color-bill-detail h4 {
+  margin-top: 10px;
+}
+
+.custom-color-cancel button {
+  background-color: #ff0000;
   color: #fff;
   border: none;
   padding: 10px 20px;
-  cursor: pointer;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.custom-color-cancel button:hover {
+  background-color: #cc0000;
+}
+
+.custom-color-bill {
+  display: flex;
+}
+
+.custom-color-option-detail {
+  display: flex;
+}
+
+.container-color {
+  width: 100%;
+}
+
+.custom-color-option-detail-list {
+  display: flex;
 }

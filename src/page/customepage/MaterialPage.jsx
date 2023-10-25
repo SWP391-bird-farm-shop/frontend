@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import './MaterialPage.css';
 
-
 const MaterialPage = () => {
-
   const handleButtonClick = () => {
     window.location.href = "/custom-products-end";
   };
+
 
   return (
     <div className="custom">
@@ -39,54 +38,53 @@ const MaterialPage = () => {
           </li>
         </ul>
       </div>
+      <div className="m-container">
+        <div className="m-custom-option-detail">
+          <div className="">
+            <h2>Chọn Chất Liệu Lồng Của Bạn </h2>
+          </div>
+          <div className="m-custom-option-detail-list">
+            <div className="m-detail-item">
+              <h2> Tre </h2>
 
-      <div className="custom-option-detail">
-        <div className="">
-          <h2>Chọn Chất Liệu Lồng Của Bạn </h2>
+              <div className="m-image-frame">
+                <p> <img src="" alt="Chim" className="m-image" /> </p>
+              </div>
+
+              <button onClick={handleButtonClick} className="btn">Chọn</button>
+            </div>
+            <div className="m-detail-item">
+              <h2> Gỗ </h2>
+              <div className="m-image-frame">
+                <p> <img src="" alt="Chim" className="m-image" /> </p>
+              </div>
+              <button onClick={handleButtonClick} className="btn">Chọn</button>
+            </div>
+            <div className="m-detail-item">
+              <h2> Sắt </h2>
+              <div className="m-image-frame">
+                <p> <img src="" alt="Chim" className="m-image" /> </p>
+              </div>
+              <button onClick={handleButtonClick} className="btn">Chọn</button>
+            </div>
+          </div>
+
+          <div className="m-custom-bill">
+            <div className="m-custom-bill-detail">
+              <h2>Đơn Hàng Của Bạn</h2><br />
+              <strong>Loại chim:</strong>Chim Chích Chòe  <br />
+              <strong>Kích thước:</strong>100x50"    <br /><br />
+              <h4>Giá Hiện Tại: 5000$</h4>
+            </div>
+
+            <div className="m-custom-cancel">
+              <button type="submit">Thiết Lập Lại Đơn Hàng</button>
+            </div>
+          </div>
         </div>
-        <div className="custom-option-detail-list">
-          <div className="detail-item">
-            <h2> Tre </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
-            <button onClick={handleButtonClick}>Chọn</button>
-          </div>
-          <div className="detail-item">
-            <h2> Gỗ </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
-            <button onClick={handleButtonClick}>Chọn</button>
-          </div>
-          <div className="detail-item">
-            <h2> Sắt </h2>
-            <p> <img src="" alt="Chim" className="" /> </p>
-            <button onClick={handleButtonClick}>Chọn</button>
-          </div>
-        </div>
-
-        <div className="custom-bill">
-
-          <div className="custom-bill-detail">
-            <h2>Đơn Hàng Của Bạn</h2><br />
-            <strong>Loại chim:</strong>Chim Chích Chòe  <br />
-            <strong>Kích thước:</strong>100x50"    <br /><br />
-            <h4>Giá Hiện Tại: 5000$</h4>
-          </div>
-
-          <div className="custom-cancel">
-
-            <button type="submit">Thiết Lập Lại Đơn Hàng</button>
-
-          </div>
-
-        </div>
-
-
       </div>
-
     </div >
-
-
   );
 }
-
 
 export default MaterialPage;
