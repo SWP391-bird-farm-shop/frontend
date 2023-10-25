@@ -9,6 +9,32 @@
 }
 
 .blog-item {
+    text-decoration: none;
+}
+
+.blog-item-edit {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.update-button {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    padding: 9px 13px;
+    padding-right: 9px;
+    padding-bottom: 7px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.update-button:hover {
+    background-color: rgba(225, 225, 225, 0.5);
+}
+
+.blog-item-detail {
     display: flex;
     width: 100%;
     border-bottom: 1px solid #ccc;

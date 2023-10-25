@@ -19,12 +19,12 @@ import UpdateInformationPage from './page/authenticationpage/UpdateInformationPa
 import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
-import TypeBirdPage from './page/customepage/TypeBirdPage'
-import ShapePage from './page/customepage/ShapePage'
-import SizePage from './page/customepage/SizePage'
-import MaterialPage from './page/customepage/MaterialPage'
-import ColorPage from './page/customepage/ColorPage'
-import TotalPage from './page/customepage/TotalPage'
+import TypeBirdPage from './page/custompage/TypeBirdPage'
+import ShapePage from './page/custompage/ShapePage'
+import SizePage from './page/custompage/SizePage'
+import MaterialPage from './page/custompage/MaterialPage'
+import ColorPage from './page/custompage/ColorPage'
+import TotalPage from './page/custompage/TotalPage'
 import RoleLayout from './components/layout/RoleLayout'
 import StaffPage from './page/rolepage/StaffPage'
 import ManagerPage from './page/rolepage/ManagerPage'
@@ -87,7 +87,7 @@ const App = () => {
       <Route path="/manager-page" element={<ManagerPage />} />
       <Route path="/admin-page" element={<AdminPage />} />
       <Route element={<RoleLayout />}>
-
+        <Route path='/blogs' element={<BlogPage />} />
         <Route path='/blog-content' element={<BlogContentPage />} />
       </Route>
     </Routes>
