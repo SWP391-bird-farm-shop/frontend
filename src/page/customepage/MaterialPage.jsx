@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import './CustomePage.css';
+import './MaterialPage.css';
 
 
+const MaterialPage = () => {
 
-const CustomePage = () => {
+  const handleButtonClick = () => {
+    window.location.href = "/custom-products-end";
+  };
 
   return (
     <div className="custom">
-
-
       <div>
         <h1 className="custom-title">Thiết Kế Lồng</h1>
       </div>
@@ -16,51 +17,50 @@ const CustomePage = () => {
       <div className="custom-option">
         <ul>
           <li>
-            <a href=""> Loại chim  </a>
+            <a href="/custom-products-typebirds"> Loại chim  </a>
           </li>
           <li>
-            <a href=""> Hình Dáng  </a>
+            <a href="/custom-products-shape"> Hình Dáng  </a>
           </li>
           <li>
-            <a href=""> Chiều Cao </a>
+            <a href="/custom-products-size"> Kích Thước </a>
           </li>
           <li>
-            <a href="">Màu Sắc  </a>
+            <a href="/custom-products-color">Màu Sắc  </a>
           </li>
           <li>
-            <a href=""> Chất Liệu  </a>
+            <a href="/custom-products-material"> Chất Liệu  </a>
           </li>
           <li>
             <a href=""> Phụ kiện </a>
           </li>
           <li>
-            <a href="">Tổng Thể </a>
+            <a href="/custom-products-end">Tổng Thể </a>
           </li>
         </ul>
       </div>
 
       <div className="custom-option-detail">
         <div className="">
-          <h2>Chọn Loại Chim</h2>
+          <h2>Chọn Chất Liệu Lồng Của Bạn </h2>
         </div>
         <div className="custom-option-detail-list">
           <div className="detail-item">
-            <h2> Chim Bồ Câu </h2>
+            <h2> Tre </h2>
             <p> <img src="" alt="Chim" className="" /> </p>
-            <button> Chọn </button>
+            <button onClick={handleButtonClick}>Chọn</button>
           </div>
           <div className="detail-item">
-            <h2> Chim Chích Chòe </h2>
+            <h2> Gỗ </h2>
             <p> <img src="" alt="Chim" className="" /> </p>
-            <button> Chọn </button>
+            <button onClick={handleButtonClick}>Chọn</button>
           </div>
           <div className="detail-item">
-            <h2> Chim Chào Mào </h2>
+            <h2> Sắt </h2>
             <p> <img src="" alt="Chim" className="" /> </p>
-            <button> Chọn </button>
+            <button onClick={handleButtonClick}>Chọn</button>
           </div>
         </div>
-
 
         <div className="custom-bill">
 
@@ -88,4 +88,5 @@ const CustomePage = () => {
   );
 }
 
-export default CustomePage;
+
+export default MaterialPage;

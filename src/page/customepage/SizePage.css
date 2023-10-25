@@ -1,0 +1,98 @@
+/* SizePage.css */
+.custom {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.custom-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.custom-option ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-option li {
+  margin: 10px;
+}
+
+.custom-option a {
+  text-decoration: none;
+  color: #333;
+}
+
+.custom-option-detail {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.custom-subtitle {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.custom-option-detail-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.detail-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  width: 220px;
+}
+
+.detail-item h2 {
+  font-size: 18px;
+}
+
+.detail-item select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+
+.detail-item button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.custom-bill {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-bill-detail h2 {
+  font-size: 18px;
+}
+
+.custom-cancel button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
