@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './TotalPage.css';
+import './CustomPage.css';
 
 
 const TotalPage = () => {

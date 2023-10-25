@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './MaterialPage.css';
+import './CustomPage.css';
 
 
 const MaterialPage = () => {

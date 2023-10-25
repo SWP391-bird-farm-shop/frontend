@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './ColorPage.css';
+import './CustomPage.css';
 
 
 const ColorPage = () => {

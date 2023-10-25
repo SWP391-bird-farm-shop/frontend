@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './TypeBirdPage.css';
+import './CustomPage.css';
 
 const TypeBirdPage = () => {
 
@@ -8,10 +8,7 @@ const TypeBirdPage = () => {
   };
   return (
     <div className="custom">
-      <div>
         <h1 className="custom-title">Thiết Kế Lồng</h1>
-      </div>
-
       <div className="custom-option">
         <ul>
           <li>
@@ -29,16 +26,14 @@ const TypeBirdPage = () => {
           <li>
             <a href="/custom-products-material"> Chất Liệu  </a>
           </li>
-          <li>
-            <a href=""> Phụ kiện </a>
-          </li>
+          
           <li>
             <a href="/custom-products-end">Tổng Thể </a>
           </li>
         </ul>
       </div>
 
-      <div className="container">
+      <div className="custom-option-detail-container">
         <div className="custom-option-detail">
           <div className="custom-text">
             <h2>Chọn Loại Chim</h2>
@@ -50,21 +45,21 @@ const TypeBirdPage = () => {
               <div className="image-frame">
                 <img src="bocau.jpg" alt="Chim" className="product-image" />
               </div>
-              <button onClick={handleButtonClick}>Chọn</button>
+              <button className="item-detail-button" onClick={handleButtonClick}>Chọn</button>
             </div>
             <div className="detail-item">
               <h2> Chim Chích Chòe </h2>
               <div className="image-frame">
                 <img src="chichchoe.webp" alt="Chim" className="product-image" />
               </div>
-              <button onClick={handleButtonClick}>Chọn</button>
+              <button className="item-detail-button" onClick={handleButtonClick}>Chọn</button>
             </div>
             <div className="detail-item">
               <h2> Chim Chào Mào </h2>
               <div className="image-frame">
                 <img src="chaomao.png" alt="Chim" className="product-image" />
               </div>
-              <button onClick={handleButtonClick}>Chọn</button>
+              <button className="item-detail-button" onClick={handleButtonClick}>Chọn</button>
             </div>
             {/* Add more product items as needed */}
           </div>

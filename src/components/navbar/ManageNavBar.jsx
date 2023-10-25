@@ -88,7 +88,7 @@ const ManageNavbar = ({ className }) => {
                         </a>
                     </div>
                     {/* staff */}
-                    <NavMenu className='first-section'>
+                    <NavMenu className='first-role-section'>
                         <NavLink to='/home' className='first-section-component-staff'>
                             Quản lí bài viết
                         </NavLink>
@@ -101,7 +101,7 @@ const ManageNavbar = ({ className }) => {
                     </NavMenu>
 
                     {/* manager */}
-                    {/* <NavMenu className='first-section'>
+                    {/* <NavMenu className='first-role-section'>
                         <NavLink to='/home' className='first-section-component-manager'>
                             Quản lí sản phẩm
                         </NavLink>
@@ -111,13 +111,13 @@ const ManageNavbar = ({ className }) => {
                     </NavMenu> */}
 
                     {/* admin */}
-                    {/* <NavMenu className='first-section'>
+                    {/* <NavMenu className='first-role-section'>
                         <NavLink to='/home' className='first-section-component-admin'>
                             Quản lí tài khoản
                         </NavLink>
                     </NavMenu> */}
 
-                    <div className='second-section'>
+                    <div className='second-role-section'>
                         <p className='manage-navbar-user-name'>Xin chao</p>
                         <NavLink>
                             <img src='/chaomao.png' alt='' className='manage-navbar-user-img' onClick={handleImgClick} />

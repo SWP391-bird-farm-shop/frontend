@@ -15,37 +15,29 @@
     width: 70px;
 }
 
-.first-section {
+.first-role-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.second-section {
+.second-role-section {
     margin-right: 20vw;
 }
 
-.first-section .first-section-component-staff {
+.first-section-component-staff {
     margin: 0 5vw;
     padding: 16.5px;
 }
 
-.first-section .first-section-component-manager {
+.first-section-component-manager {
     margin: 0 10vw;
     padding: 16.5px;
 }
 
-.first-section .first-section-component-admin {
+.first-section-component-admin {
     margin: 0 25vw;
     padding: 16.5px;
-}
-
-.first-section-component h3 {
-    color: #1B8600;
-    border-bottom: 2px solid #1B8600;
-    padding-bottom: 5px;
-    font-size: 20px;
-    font-weight: 650;
 }
 
 .manage-navbar-user-name {

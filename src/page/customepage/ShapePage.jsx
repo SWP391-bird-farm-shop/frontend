@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './ShapePage.css';
+import './CustomPage.css';
 
 
 const ShapePage = () => {
