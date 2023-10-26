@@ -1,41 +1,46 @@
 .custom {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+  background-color: white;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .custom-title {
-  font-size: 28px;
-  margin: 10px 0;
-  text-align: center;
-}
-
-.custom-option {
+  font-size: 50px;
+  font-weight: bold;
   margin: 20px 0;
+  color: #333;
+  text-align: center;
 }
 
 .custom-option ul {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
 }
 
-.custom-option ul li {
-  margin-bottom: 10px;
+.custom-option li {
+  margin: 0 20px;
 }
 
-.custom-option ul li a {
+.custom-option a {
   text-decoration: none;
-  font-size: 18px;
   color: #333;
-  display: block;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: center;
-  background-color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.custom-option a:hover {
+  color: green;
 }
 
 
