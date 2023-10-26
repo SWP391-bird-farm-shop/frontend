@@ -1,15 +1,13 @@
-// ShapePage.js
-
 import React from "react";
-import './ShapePage.css';
+import './SizePage.css';
 
-const ShapePage = () => {
+const SizePage = () => {
   const handleButtonClick = () => {
     window.location.href = "/custom-products-size";
   };
 
   return (
-    <div className="custom ">
+    <div className="custom">
 
       <div>
         <h1 className="custom-title">Thiết Kế Lồng</h1>
@@ -17,9 +15,7 @@ const ShapePage = () => {
 
       <div className="custom-option">
         <ul>
-          <li>
-            <a href="/custom-products-typebirds"> Loại chim  </a>
-          </li>
+
           <li>
             <a href="/custom-products-shape"> Hình Dáng  </a>
           </li>
@@ -33,57 +29,47 @@ const ShapePage = () => {
             <a href="/custom-products-material"> Chất Liệu  </a>
           </li>
           <li>
-            <a href="" className="shape-accessory"> Phụ kiện </a>
-          </li>
-          <li>
-            <a href="/custom-products-end shape-end">Tổng Thể </a>
+            <a href="/custom-products-end">Tổng Thể </a>
           </li>
         </ul>
       </div>
 
-      <div className=" shape-container">
-        <div className=" shape-option-detail">
-          <div className=" shape-text">
-            <h2>Hình Dáng Lồng</h2>
-          </div>
+      <div className="custom-size-option-detail">
+        <div>
+          <h2>Chọn Hình Dáng Lồng Của Bạn </h2>
+        </div>
+        <div className="custom-size-option-detail-list">
+          <div className="custom-size-detail-item">
+            <h2> Thanh Đan: 5 </h2>
+            <p> <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-size-product-image" /> </p>
 
-          <div className=" shape-product-grid">
-            <div className="shape-detail">
-              <h2> Lồng Dáng Vuông </h2>
-              <div className=" shape-image-frame">
-                <img src="bocau.jpg" alt="Chim" className=" shape-product-image" />
-              </div>
-              <button onClick={handleButtonClick} className="shape-button">Chọn</button>
-            </div>
-            <div className=" shape-detail">
-              <h2>Lồng Dáng Trụ  </h2>
-              <div className="shape-image-frame">
-                <img src="chichchoe.webp" alt="Chim" className=" shape-product-image" />
-              </div>
-              <button onClick={handleButtonClick} className="shape-button">Chọn</button>
-            </div>
-            <div className=" shape-detail">
-              <h2>Lồng Dáng Tròn </h2>
-              <div className=" shape-image-frame">
-                <img src="chaomao.png" alt="Chim" className=" shape-product-image" />
-              </div>
-              <button onClick={handleButtonClick} className="shape-button">Chọn</button>
-            </div>
-            {/* Add more product items as needed */}
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
+          </div>
+          <div className="custom-size-detail-item">
+            <h2> Thanh Đan: 6 </h2>
+            <p> <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-size-product-image" /> </p>
+
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
+          </div>
+          <div className="custom-size-detail-item">
+            <h2> Thanh Đan: 8 </h2>
+            <p> <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-size-product-image" /> </p>
+
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
 
         </div>
 
-
-        <div className=" shape-bill">
-          <div className="shape-bill-detail">
+        <div className="custom-bill-size">
+          <div className="custom-bill-detail-size">
             <h2>Đơn Hàng Của Bạn</h2><br />
-            <strong>Loại chim:</strong> Chim Chích Chòe<br />
-            <strong>Kích thước:</strong> 100x50"<br /><br />
-            <h4 className="shape-price">Giá Hiện Tại: 5000$</h4>
-            <div className=" shape-cancel">
-              <button type="submit" className="shape-reset-button">Thiết Lập Lại Đơn Hàng</button>
-            </div>
+            <strong>Loại chim:</strong> Chim Chích Chòe  <br />
+            <strong>Kích thước:</strong> 100x50"    <br /><br />
+            <h4>Giá Hiện Tại: 5000$</h4>
+          </div>
+
+          <div className="custom-cancel-size">
+            <button type="submit">Thiết Lập Lại Đơn Hàng</button>
           </div>
         </div>
       </div>
@@ -91,4 +77,4 @@ const ShapePage = () => {
   );
 }
 
-export default ShapePage;
+export default SizePage;

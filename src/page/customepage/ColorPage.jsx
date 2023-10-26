@@ -1,9 +1,9 @@
 import React from "react";
-import './ColorPage.css';
+import './SizePage.css';
 
-const ColorPage = () => {
+const SizePage = () => {
   const handleButtonClick = () => {
-    window.location.href = "/custom-products-material";
+    window.location.href = "/custom-products-size";
   };
 
   return (
@@ -15,9 +15,7 @@ const ColorPage = () => {
 
       <div className="custom-option">
         <ul>
-          <li>
-            <a href="/custom-products-typebirds"> Loại chim  </a>
-          </li>
+
           <li>
             <a href="/custom-products-shape"> Hình Dáng  </a>
           </li>
@@ -31,49 +29,47 @@ const ColorPage = () => {
             <a href="/custom-products-material"> Chất Liệu  </a>
           </li>
           <li>
-            <a href=""> Phụ kiện </a>
-          </li>
-          <li>
             <a href="/custom-products-end">Tổng Thể </a>
           </li>
         </ul>
       </div>
-      <div className="container-color">
 
+      <div className="custom-size-option-detail">
+        <div>
+          <h2>Chọn Màu Sắc Lồng Của Bạn </h2>
+        </div>
+        <div className="custom-size-option-detail-list">
+          <div className="custom-size-detail-item">
+            <h2> Màu Đen </h2>
+            <p> <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-size-product-image" /> </p>
 
-        <div className="custom-color-option-detail">
-          <div className="custom-color">
-            <h2>Chọn Màu Sắc Lồng Của Bạn </h2>
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
-          <div className="custom-color-option-detail-list">
-            <div className="custom-color-detail-item">
-              <h2>Màu  Đen </h2>
-              <p> <img src="" alt="Chim" className="custom-color-product-image" /> </p>
-              <button onClick={handleButtonClick}>Chọn</button>
-            </div>
-            <div className="custom-color-detail-item">
-              <h2>Màu Trắng </h2>
-              <p> <img src="" alt="Chim" className="custom-color-product-image" /> </p>
-              <button onClick={handleButtonClick}>Chọn</button>
-            </div>
-            <div className="custom-color-detail-item">
-              <h2> Màu Gỗ </h2>
-              <p> <img src="" alt="Chim" className="custom-color-product-image" /> </p>
-              <button onClick={handleButtonClick}>Chọn</button>
-            </div>
+          <div className="custom-size-detail-item">
+            <h2> Màu Gỗ </h2>
+            <p> <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-size-product-image" /> </p>
+
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
+          </div>
+          <div className="custom-size-detail-item">
+            <h2> Màu Trắng </h2>
+            <p> <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-size-product-image" /> </p>
+
+            <button onClick={handleButtonClick} className="size-button">Chọn</button>
           </div>
 
-          <div className="custom-color-bill">
-            <div className="custom-color-bill-detail">
-              <h2>Đơn Hàng Của Bạn</h2><br />
-              <strong>Loại chim:</strong>Chim Chích Chòe  <br />
-              <strong>Kích thước:</strong>100x50"    <br /><br />
-              <h4>Giá Hiện Tại: 5000$</h4>
-            </div>
+        </div>
 
-            <div className="custom-color-cancel">
-              <button type="submit">Thiết Lập Lại Đơn Hàng</button>
-            </div>
+        <div className="custom-bill-size">
+          <div className="custom-bill-detail-size">
+            <h2>Đơn Hàng Của Bạn</h2><br />
+            <strong>Loại chim:</strong> Chim Chích Chòe  <br />
+            <strong>Kích thước:</strong> 100x50"    <br /><br />
+            <h4>Giá Hiện Tại: 5000$</h4>
+          </div>
+
+          <div className="custom-cancel-size">
+            <button type="submit">Thiết Lập Lại Đơn Hàng</button>
           </div>
         </div>
       </div>
@@ -81,4 +77,4 @@ const ColorPage = () => {
   );
 }
 
-export default ColorPage;
+export default SizePage;

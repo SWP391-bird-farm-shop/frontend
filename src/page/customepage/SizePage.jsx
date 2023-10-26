@@ -15,9 +15,7 @@ const SizePage = () => {
 
       <div className="custom-option">
         <ul>
-          <li>
-            <a href="/custom-products-typebirds"> Loại chim  </a>
-          </li>
+
           <li>
             <a href="/custom-products-shape"> Hình Dáng  </a>
           </li>
@@ -29,9 +27,6 @@ const SizePage = () => {
           </li>
           <li>
             <a href="/custom-products-material"> Chất Liệu  </a>
-          </li>
-          <li>
-            <a href=""> Phụ kiện </a>
           </li>
           <li>
             <a href="/custom-products-end">Tổng Thể </a>
@@ -46,7 +41,7 @@ const SizePage = () => {
         <div className="custom-size-option-detail-list">
           <div className="custom-size-detail-item">
             <h2> Thanh Đan: 5 </h2>
-            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
+            <p> <img src="public\Panel\5.jpg" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -60,7 +55,7 @@ const SizePage = () => {
           </div>
           <div className="custom-size-detail-item">
             <h2> Thanh Đan: 6 </h2>
-            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
+            <p> <img src="public\Panel\6.jpg" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -74,7 +69,7 @@ const SizePage = () => {
           </div>
           <div className="custom-size-detail-item">
             <h2> Thanh Đan: 8 </h2>
-            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
+            <p> <img src="public\Panel\8.jpg" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -88,7 +83,7 @@ const SizePage = () => {
           </div>
           <div className="custom-size-detail-item">
             <h2> Thanh Đan: 10 </h2>
-            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
+            <p> <img src="public\Panel\10.jpg" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -102,7 +97,7 @@ const SizePage = () => {
           </div>
           <div className="custom-size-detail-item">
             <h2> Thanh Đan: 12 </h2>
-            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
+            <p> <img src="public\Panel\12.jpg" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
@@ -116,7 +111,7 @@ const SizePage = () => {
           </div>
           <div className="custom-size-detail-item">
             <h2> Thanh Đan: 16 </h2>
-            <p> <img src="" alt="Chim" className="custom-size-product-image" /> </p>
+            <p> <img src="public\Panel\16.jpg" alt="Chim" className="custom-size-product-image" /> </p>
             <select>
               <option value="0">Chọn kích thước</option>
               <option value="1">24"</option>
