@@ -88,7 +88,7 @@ const ManageNavbar = ({ className }) => {
                         </a>
                     </div>
                     {/* staff */}
-                    <NavMenu className='first-role-section'>
+                    {/* <NavMenu className='first-role-section'>
                         <NavLink to='/blogs' className='first-section-component-staff'>
                             Quản lí bài viết
                         </NavLink>
@@ -98,17 +98,17 @@ const ManageNavbar = ({ className }) => {
                         <NavLink to='/order' className='first-section-component-staff'>
                             Quản lí đơn hàng
                         </NavLink>
-                    </NavMenu>
+                    </NavMenu> */}
 
                     {/* manager */}
-                    {/* <NavMenu className='first-role-section'>
-                        <NavLink to='/home' className='first-section-component-manager'>
+                    <NavMenu className='first-role-section'>
+                        <NavLink to='/product' className='first-section-component-manager'>
                             Quản lí sản phẩm
                         </NavLink>
-                        <NavLink to='/home' className='first-section-component-manager'>
+                        <NavLink to='/voucher' className='first-section-component-manager'>
                             Quản lí voucher
                         </NavLink>
-                    </NavMenu> */}
+                    </NavMenu>
 
                     {/* admin */}
                     {/* <NavMenu className='first-role-section'>

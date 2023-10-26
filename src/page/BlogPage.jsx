@@ -82,7 +82,7 @@ const BlogPage = () => {
     //   <div className="blog-list">
     //     {blogs.map((blog) => (
     //       <div className="blog-item">
-    //         <div className="blog-item-edit">
+    //         <div className="role-page-edit-button">
     //           <button onClick={handleButtonClick} className="update-button"><FaRegEdit /></button>
     //           <button onClick={() => removeBlog(blog.id)} className="remove-button"><FaTrashAlt /></button>
     //         </div>

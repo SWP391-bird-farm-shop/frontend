@@ -32,6 +32,8 @@ import AdminPage from './page/rolepage/adminpage/AdminPage'
 import ViewOrderPage from './page/rolepage/staffpage/ViewOrderPage'
 import AnnounceOrderPage from './page/rolepage/staffpage/AnnounceOrderPage'
 import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
+import ProductPage from './page/rolepage/managerpage/ProductPage'
+import VoucherPage from './page/rolepage/managerpage/VoucherPage'
 
 
 
@@ -95,6 +97,9 @@ const App = () => {
         <Route path='/feedback' element={<FeedbackPage />} />
         <Route path='/order' element={<ViewOrderPage />} />
         <Route path='/announce-order' element={<AnnounceOrderPage />} />
+        <Route path='/product' element={<ProductPage />} />
+        <Route path='/voucher' element={<VoucherPage />} />
+
         
       </Route>
     </Routes>

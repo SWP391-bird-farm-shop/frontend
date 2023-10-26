@@ -3,16 +3,10 @@ import { Link } from 'react-router-dom';
 import Img1 from '/demo.jpg'
 import './ProductPage.css';
 import api from '../../components/utils/requestAPI';
+import ComboBox from '../../components/combobox/ComboBox';
 
 const CagePage = () => {
-  const [selected, setSelected] = useState('');
-
   const [cage, setCage] = useState();
-
-  const options = [
-    'Tăng dần',
-    'Giảm dần',
-  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,16 +28,7 @@ const CagePage = () => {
 
   return (
     <div className="product-page">
-      <div className="combo-box">
-        <select value={selected} onChange={e => setSelected(e.target.value)}>
-          <option value="">Sắp xếp theo giá</option>
-          {options.map(option => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
+      <ComboBox />
 
       <div className="product-items-section">
         {cage?.map(product => (

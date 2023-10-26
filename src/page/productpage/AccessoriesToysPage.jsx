@@ -1,27 +1,13 @@
 import React, {useState} from 'react';
 import Img1 from '/demo.jpg'
 import './ProductPage.css';
+import ComboBox from '../../components/combobox/ComboBox';
 
 const AccessoriesToysPage = () => {
-  const [selected, setSelected] = useState('');
-
-  const options = [
-    'Tăng dần',
-    'Giảm dần',
-  ];
 
   return (
     <div className="product-page">
-      <div className="combo-box">
-        <select value={selected} onChange={e => setSelected(e.target.value)}>
-          <option value="">Sắp xếp theo giá</option>
-          {options.map(option => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
+      <ComboBox />
       <div className="product-items-section">
         <a href='/item-info' className="product-item" >
           <div className="product-image">

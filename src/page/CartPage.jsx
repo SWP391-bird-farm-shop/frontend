@@ -42,6 +42,35 @@ const CartPage = () => {
         },
     ]);
 
+    const [phoneNumber, setPhoneNumber] = useState('(555) 123-4567');
+    const [address, setAddress] = useState('123 Main St');
+    const [isEditingPhoneNumber, setIsEditingPhoneNumber] = useState(false);
+    const [isEditingAddress, setIsEditingAddress] = useState(false);
+
+    const handlePhoneNumberChange = (event) => {
+        setPhoneNumber(event.target.value);
+    };
+
+    const handleAddressChange = (event) => {
+        setAddress(event.target.value);
+    };
+
+    const handlePhoneNumberEdit = () => {
+        setIsEditingPhoneNumber(true);
+    };
+
+    const handleAddressEdit = () => {
+        setIsEditingAddress(true);
+    };
+
+    const handlePhoneNumberSave = () => {
+        setIsEditingPhoneNumber(false);
+    };
+
+    const handleAddressSave = () => {
+        setIsEditingAddress(false);
+    };
+
     const removeItem = (itemId) => {
         const updatedCart = cartItems.filter(item => item.id !== itemId);
         setCartItems(updatedCart);
@@ -91,8 +120,48 @@ const CartPage = () => {
                 <h2 className="cart-and-payment-heading">Hóa đơn</h2>
                 <div className="customer-info-section">
                     <p>Tên khách hàng: John Doe</p>
-                    <p>Số điện thoại: (555) 123-4567</p>
-                    <p>Địa chỉ: 123 Main St</p>
+                    {isEditingPhoneNumber ? (
+                        <div className="flex">
+                            <p>
+                            Số điện thoại:
+                            <input
+                                type="number"
+                                value={phoneNumber}
+                                onChange={handlePhoneNumberChange}
+                                className="customer-info-section-input" minLength={10} maxLength={11}
+                            />
+                            </p>
+                            <button onClick={handlePhoneNumberSave} className="customer-info-section-button">Lưu</button>
+                        </div>
+                    ) : (
+                        <p className="flex">
+                            Số điện thoại: {phoneNumber}{' '}
+                            <span className="change-info" onClick={handlePhoneNumberEdit}>
+                                Thay đổi
+                            </span>
+                        </p>
+                    )}
+                    {isEditingAddress ? (
+                        <div className="flex">
+                            <p>
+                            Địa chỉ:
+                            <input
+                                type="text"
+                                value={address}
+                                onChange={handleAddressChange}
+                                className="customer-info-section-input"
+                            />
+                            </p>
+                            <button onClick={handleAddressSave} className="customer-info-section-button">Lưu</button>
+                        </div>
+                    ) : (
+                        <p className="flex">
+                            Địa chỉ: {address}{' '}
+                            <span className="change-info" onClick={handleAddressEdit}>
+                                Thay đổi
+                            </span>
+                        </p>
+                    )}
                 </div>
 
                 <div className="voucher-section">
@@ -112,12 +181,12 @@ const CartPage = () => {
 
                 <div className="payment-section">
                     <div className="payment-method">
-                        <input type="radio" name="payment" value="vnpay" id="vnpay-button" className="payment-section-button"/>
+                        <input type="radio" name="payment" value="vnpay" id="vnpay-button" className="payment-section-button" />
                         <img src="bocau.jpg" alt="vnpay" className="payment-logo" />
                         <p>VnPay</p>
                     </div>
                     <div className="payment-method">
-                        <input type="radio" name="payment" value="cash" id="cash-button" className="payment-section-button"/>
+                        <input type="radio" name="payment" value="cash" id="cash-button" className="payment-section-button" />
                         <img src="tienmat.jpg" alt="cash" className="payment-logo" />
                         <p>Tiền Mặt</p>
                     </div>
