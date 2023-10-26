@@ -89,13 +89,13 @@ const ManageNavbar = ({ className }) => {
                     </div>
                     {/* staff */}
                     <NavMenu className='first-role-section'>
-                        <NavLink to='/home' className='first-section-component-staff'>
+                        <NavLink to='/blogs' className='first-section-component-staff'>
                             Quản lí bài viết
                         </NavLink>
-                        <NavLink to='/home' className='first-section-component-staff'>
+                        <NavLink to='/feedback' className='first-section-component-staff'>
                             Quản lí feedback
                         </NavLink>
-                        <NavLink to='/home' className='first-section-component-staff'>
+                        <NavLink to='/order' className='first-section-component-staff'>
                             Quản lí đơn hàng
                         </NavLink>
                     </NavMenu>

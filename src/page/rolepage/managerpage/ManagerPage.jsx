@@ -1,5 +1,5 @@
 import React from "react";
-import "./RolePage.css";
+import "../RolePage.css";
 import { Link } from "react-router-dom";
 
 const ManagerPage = () => {

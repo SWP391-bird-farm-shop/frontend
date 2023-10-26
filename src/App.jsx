@@ -19,16 +19,19 @@ import UpdateInformationPage from './page/authenticationpage/UpdateInformationPa
 import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
-import TypeBirdPage from './page/custompage/TypeBirdPage'
-import ShapePage from './page/custompage/ShapePage'
-import SizePage from './page/custompage/SizePage'
-import MaterialPage from './page/custompage/MaterialPage'
-import ColorPage from './page/custompage/ColorPage'
-import TotalPage from './page/custompage/TotalPage'
+// import TypeBirdPage from './page/custompage/TypeBirdPage'
+// import ShapePage from './page/custompage/ShapePage'
+// import SizePage from './page/custompage/SizePage'
+// import MaterialPage from './page/custompage/MaterialPage'
+// import ColorPage from './page/custompage/ColorPage'
+// import TotalPage from './page/custompage/TotalPage'
 import RoleLayout from './components/layout/RoleLayout'
-import StaffPage from './page/rolepage/StaffPage'
-import ManagerPage from './page/rolepage/ManagerPage'
-import AdminPage from './page/rolepage/AdminPage'
+import StaffPage from './page/rolepage/staffpage/StaffPage'
+import ManagerPage from './page/rolepage/managerpage/ManagerPage'
+import AdminPage from './page/rolepage/adminpage/AdminPage'
+import ViewOrderPage from './page/rolepage/staffpage/ViewOrderPage'
+import AnnounceOrderPage from './page/rolepage/staffpage/AnnounceOrderPage'
+import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
 
 
 
@@ -49,12 +52,12 @@ const App = () => {
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
 
-        <Route path='/custom-products-typebirds' element={<TypeBirdPage />} />
+        {/* <Route path='/custom-products-typebirds' element={<TypeBirdPage />} />
         <Route path='/custom-products-shape' element={<ShapePage />} />
         <Route path='/custom-products-size' element={<SizePage />} />
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
-        <Route path='/custom-products-end' element={<TotalPage />} />
+        <Route path='/custom-products-end' element={<TotalPage />} /> */}
 
       </Route>
 
@@ -89,6 +92,10 @@ const App = () => {
       <Route element={<RoleLayout />}>
         <Route path='/blogs' element={<BlogPage />} />
         <Route path='/blog-content' element={<BlogContentPage />} />
+        <Route path='/feedback' element={<FeedbackPage />} />
+        <Route path='/order' element={<ViewOrderPage />} />
+        <Route path='/announce-order' element={<AnnounceOrderPage />} />
+        
       </Route>
     </Routes>
   );

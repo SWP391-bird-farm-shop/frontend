@@ -7,17 +7,17 @@ const SideNav = () => {
     return (
         // staff
         // quản lí bài viết
-        <div className="side-navbar">
-            <Link to="/services" className='side-navbar-link'>
-                <FaBookOpen className='side-navbar-link-icon'/> Xem bài viết
-            </Link>
-            <Link to="/" className='side-navbar-link'>
-                <FaRegEdit className='side-navbar-link-icon'/> Tạo bài viết
-            </Link>
-            <Link to="/about" className='side-navbar-link'>
-                <FaEdit className='side-navbar-link-icon'/> Chỉnh sửa bài viết
-            </Link>
-        </div>
+        // <div className="side-navbar">
+        //     <Link to="/services" className='side-navbar-link'>
+        //         <FaBookOpen className='side-navbar-link-icon'/> Xem bài viết
+        //     </Link>
+        //     <Link to="/" className='side-navbar-link'>
+        //         <FaRegEdit className='side-navbar-link-icon'/> Tạo bài viết
+        //     </Link>
+        //     <Link to="/about" className='side-navbar-link'>
+        //         <FaEdit className='side-navbar-link-icon'/> Chỉnh sửa bài viết
+        //     </Link>
+        // </div>
 
         // quản lí feedback
         // <div className="side-navbar">
@@ -30,14 +30,14 @@ const SideNav = () => {
         // </div>
 
         //quản lí đơn hàng
-        // <div className="side-navbar">
-        //     <Link to="/services" className='side-navbar-link'>
-        //         <FaRegListAlt className='side-navbar-link-icon'/> Xem đơn hàng
-        //     </Link>
-        //     <Link to="/about" className='side-navbar-link'>
-        //         <FaBullhorn className='side-navbar-link-icon'/> Thông báo đơn hàng
-        //     </Link>
-        // </div>
+        <div className="side-navbar">
+            <Link to="/order" className='side-navbar-link'>
+                <FaRegListAlt className='side-navbar-link-icon'/> Xem đơn hàng
+            </Link>
+            <Link to="/announce-order" className='side-navbar-link'>
+                <FaBullhorn className='side-navbar-link-icon'/> Thông báo đơn hàng
+            </Link>
+        </div>
 
         //manager
         //quản lí sản phẩm
@@ -66,6 +66,9 @@ const SideNav = () => {
         // <div className="side-navbar">
         //     <Link to="/services" className='side-navbar-link'>
         //         <FaRegMoneyBillAlt className='side-navbar-link-icon' /> Xem voucher
+        //     </Link>
+        //     <Link to="/about" className='side-navbar-link'>
+        //         <FaRegEdit className='side-navbar-link-icon' /> Tạo voucher
         //     </Link>
         //     <Link to="/about" className='side-navbar-link'>
         //         <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa voucher
