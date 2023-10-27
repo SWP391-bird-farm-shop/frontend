@@ -154,3 +154,48 @@
 .size-button:hover {
   background-color: #218838;
 }
+
+.custom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.custom-title {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #333;
+  text-align: center;
+}
+
+.custom-option ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.custom-option li {
+  margin: 0 20px;
+}
+
+.custom-option a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.custom-option a:hover {
+  color: green;
+}
