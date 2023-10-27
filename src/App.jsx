@@ -1,6 +1,6 @@
 import { Navigate, Routes, Route } from 'react-router-dom'
 import RequireAuth from './components/ReqAuth/RequireAuth'
-import Layout from './components/layout/Layout'
+import Layout from './components/layout/layout'
 import HomePage from './page/HomePage'
 import CagePage from './page/productpage/CagePage'
 import FoodPage from './page/productpage/FoodPage'
@@ -19,6 +19,15 @@ import UpdateInformationPage from './page/authenticationpage/UpdateInformationPa
 import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
+import ShapePage from './page/customepage/ShapePage'
+import SizePage from './page/customepage/SizePage'
+import MaterialPage from './page/customepage/MaterialPage'
+import ColorPage from './page/customepage/ColorPage'
+import TotalPage from './page/customepage/TotalPage'
+import RoleLayout from './components/layout/RoleLayout'
+import StaffPage from './page/rolepage/StaffPage'
+import ManagerPage from './page/rolepage/ManagerPage'
+import AdminPage from './page/rolepage/AdminPage'
 
 
 
@@ -38,6 +47,13 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
+
+        <Route path='/custom-products-shape' element={<ShapePage />} />
+        <Route path='/custom-products-size' element={<SizePage />} />
+        <Route path='/custom-products-material' element={<MaterialPage />} />
+        <Route path='/custom-products-color' element={<ColorPage />} />
+        <Route path='/custom-products-end' element={<TotalPage />} />
+
       </Route>
 
 
@@ -54,6 +70,7 @@ const App = () => {
           <Route path="/item-info/:productId" element={<ItemInformation />} />
           <Route path='/about-us' element={<AboutPage />} />
           <Route path='/cart' element={<CartPage />} />
+
         </Route>
       </Route>
 
@@ -63,6 +80,14 @@ const App = () => {
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
       <Route path='/info-setting' element={<SettingInformationPage />} />
+
+      <Route path="/staff-page" element={<StaffPage />} />
+      <Route path="/manager-page" element={<ManagerPage />} />
+      <Route path="/admin-page" element={<AdminPage />} />
+      <Route element={<RoleLayout />}>
+
+        <Route path='/blog-content' element={<BlogContentPage />} />
+      </Route>
     </Routes>
   );
 }

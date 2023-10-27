@@ -46,7 +46,7 @@ const Slider = () => {
 
                 </div>
                 <div className="custom-product-box-section">
-                    <a href="/custom-products" className="custom-product-box">
+                    <a href="/custom-products-shape" className="custom-product-box">
                         <img className="custom-product-box-image" src="/demo.jpg" alt="custom-product" />
                         <h3 className="custom-product-box-heading">Custom Products</h3>
                     </a>
