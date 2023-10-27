@@ -50,7 +50,7 @@ const CagePage = () => {
           <Link to={`/item-info/${product.productId}`} className="product-item">
             <div className="product-image">
               {product.image.map(image => (
-                <img src={image.imageURL} alt="Food" key={image.imageId} />
+                <img src={image.imageUrl} alt="Food" key={image.imageId} />
               ))}
             </div>
             <div className="product-details">
