@@ -19,20 +19,11 @@ import UpdateInformationPage from './page/authenticationpage/UpdateInformationPa
 import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
-
-// import TypeBirdPage from './page/custompage/TypeBirdPage'
-// import ShapePage from './page/custompage/ShapePage'
-// import SizePage from './page/custompage/SizePage'
-// import MaterialPage from './page/custompage/MaterialPage'
-// import ColorPage from './page/custompage/ColorPage'
-// import TotalPage from './page/custompage/TotalPage'
-
-import ShapePage from './page/customepage/ShapePage'
-import SizePage from './page/customepage/SizePage'
-import MaterialPage from './page/customepage/MaterialPage'
-import ColorPage from './page/customepage/ColorPage'
-import TotalPage from './page/customepage/TotalPage'
-
+import ShapePage from './page/custompage/ShapePage'
+import SizePage from './page/custompage/SizePage'
+import MaterialPage from './page/custompage/MaterialPage'
+import ColorPage from './page/custompage/ColorPage'
+import TotalPage from './page/custompage/TotalPage'
 import RoleLayout from './components/layout/RoleLayout'
 import StaffPage from './page/rolepage/staffpage/StaffPage'
 import ManagerPage from './page/rolepage/managerpage/ManagerPage'
@@ -62,14 +53,11 @@ const App = () => {
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
 
-        {/* <Route path='/custom-products-typebirds' element={<TypeBirdPage />} />
-
-
         <Route path='/custom-products-shape' element={<ShapePage />} />
         <Route path='/custom-products-size' element={<SizePage />} />
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
-        <Route path='/custom-products-end' element={<TotalPage />} /> */}
+        <Route path='/custom-products-end' element={<TotalPage />} />
 
       </Route>
 
