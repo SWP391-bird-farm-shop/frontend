@@ -32,7 +32,7 @@ const BirdList = () => {
             </a>
             <a href='/home' className="item">
                 <img src="sao.jpg" alt="Item 7" />
-                <h4>Item 1</h4>
+                <h4>Item 12</h4>
             </a>
             {/* <a className="item">
                     <img src="sao.jpg" alt="Item 8" />
