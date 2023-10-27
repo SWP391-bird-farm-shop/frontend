@@ -88,36 +88,36 @@ const ManageNavbar = ({ className }) => {
                         </a>
                     </div>
                     {/* staff */}
-                    <NavMenu className='first-section'>
-                        <NavLink to='/home' className='first-section-component-staff'>
+                    {/* <NavMenu className='first-role-section'>
+                        <NavLink to='/blogs' className='first-section-component-staff'>
                             Quản lí bài viết
                         </NavLink>
-                        <NavLink to='/home' className='first-section-component-staff'>
+                        <NavLink to='/feedback' className='first-section-component-staff'>
                             Quản lí feedback
                         </NavLink>
-                        <NavLink to='/home' className='first-section-component-staff'>
+                        <NavLink to='/order' className='first-section-component-staff'>
                             Quản lí đơn hàng
-                        </NavLink>
-                    </NavMenu>
-
-                    {/* manager */}
-                    {/* <NavMenu className='first-section'>
-                        <NavLink to='/home' className='first-section-component-manager'>
-                            Quản lí sản phẩm
-                        </NavLink>
-                        <NavLink to='/home' className='first-section-component-manager'>
-                            Quản lí voucher
                         </NavLink>
                     </NavMenu> */}
 
+                    {/* manager */}
+                    <NavMenu className='first-role-section'>
+                        <NavLink to='/product' className='first-section-component-manager'>
+                            Quản lí sản phẩm
+                        </NavLink>
+                        <NavLink to='/voucher' className='first-section-component-manager'>
+                            Quản lí voucher
+                        </NavLink>
+                    </NavMenu>
+
                     {/* admin */}
-                    {/* <NavMenu className='first-section'>
+                    {/* <NavMenu className='first-role-section'>
                         <NavLink to='/home' className='first-section-component-admin'>
                             Quản lí tài khoản
                         </NavLink>
                     </NavMenu> */}
 
-                    <div className='second-section'>
+                    <div className='second-role-section'>
                         <p className='manage-navbar-user-name'>Xin chao</p>
                         <NavLink>
                             <img src='/chaomao.png' alt='' className='manage-navbar-user-img' onClick={handleImgClick} />

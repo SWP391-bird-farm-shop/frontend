@@ -208,9 +208,49 @@ const CartPage = () => {
             <div className="payment-container">
                 <h2 className="cart-and-payment-heading">Hóa đơn</h2>
                 <div className="customer-info-section">
-                    <p>Tên khách hàng: {name}</p>
-                    <p>Số điện thoại: {phoneNumber}</p>
-                    <p>Địa chỉ: {address}</p>
+                    <p>Tên khách hàng: John Doe</p>
+                    {isEditingPhoneNumber ? (
+                        <div className="flex">
+                            <p>
+                                Số điện thoại:
+                                <input
+                                    type="number"
+                                    value={phoneNumber}
+                                    onChange={handlePhoneNumberChange}
+                                    className="customer-info-section-input" minLength={10} maxLength={11}
+                                />
+                            </p>
+                            <button onClick={handlePhoneNumberSave} className="customer-info-section-button">Lưu</button>
+                        </div>
+                    ) : (
+                        <p className="flex">
+                            Số điện thoại: {phoneNumber}{' '}
+                            <span className="change-info" onClick={handlePhoneNumberEdit}>
+                                Thay đổi
+                            </span>
+                        </p>
+                    )}
+                    {isEditingAddress ? (
+                        <div className="flex">
+                            <p>
+                                Địa chỉ:
+                                <input
+                                    type="text"
+                                    value={address}
+                                    onChange={handleAddressChange}
+                                    className="customer-info-section-input"
+                                />
+                            </p>
+                            <button onClick={handleAddressSave} className="customer-info-section-button">Lưu</button>
+                        </div>
+                    ) : (
+                        <p className="flex">
+                            Địa chỉ: {address}{' '}
+                            <span className="change-info" onClick={handleAddressEdit}>
+                                Thay đổi
+                            </span>
+                        </p>
+                    )}
                 </div>
 
                 <div className="voucher-section">

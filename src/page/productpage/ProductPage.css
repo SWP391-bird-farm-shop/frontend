@@ -4,25 +4,6 @@
     margin-left: 3%;
 }
 
-.combo-box {
-    float: right;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 30px;
-}
-
-.combo-box select {
-    background-color: aliceblue;
-    color: black;
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    box-sizing: border-box;
-    outline: none;
-}
-
 .product-items-section {
     margin-top: 8vh;
     display: flex;
