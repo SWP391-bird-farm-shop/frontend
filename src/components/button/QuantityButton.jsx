@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import './QuantityButton.css'
 
 const QuantityButton = ({ initialQuantity, onQuantityChange }) => {
     const [quantity, setQuantity] = useState(initialQuantity);
+
+    useEffect(() => {
+        setQuantity(initialQuantity);
+    }, [initialQuantity]);
 
     const decrementQuantity = () => {
         if (quantity > 1) {

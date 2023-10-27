@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const api = axios.create({
     // sever
-    baseURL: 'https://bcsswp.azurewebsites.net',
+    //baseURL: 'https://bcsswp.azurewebsites.net',
     // local
-    // baseURL: 'https://localhost:7116',
+    baseURL: 'https://localhost:7116',
 });
 
 const authen = localStorage.getItem('Authen');

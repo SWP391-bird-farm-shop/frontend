@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import "./HomePage.css";
 import Slider from "../components/slider/Slider.jsx";
 import Carousel from "../components/carousel/Carousel";
@@ -6,8 +6,21 @@ import Article from "../components/article/Article";
 
 
 const HomePage = () => {
+    const fetchData = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+
+        if (status === 'success') {
+            window.prompt('Payment Successful!');
+        } else if (status === 'failure') {
+            window.prompt('Payment Failed!');
+        }
+    }
+    useEffect(() => {
+        fetchData();
+    })
     return (
-        <Fragment>
+        < Fragment >
             <Slider />
             <div className="home-page-carousel-section">
                 <h3>Loài chim</h3>
@@ -18,7 +31,7 @@ const HomePage = () => {
                 <Carousel className="Toy" />
             </div>
             <Article />
-        </Fragment>
+        </Fragment >
     )
 }
 

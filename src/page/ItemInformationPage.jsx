@@ -21,16 +21,19 @@ const ItemInformation = () => {
   const [quantity, setQuantity] = useState(1);
   const current = new Date();
   const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
+
+  const navigate = useNavigate();
+
   const decrementQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
+
   const incrementQuantity = () => {
     setQuantity(quantity + 1);
   };
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,10 +56,71 @@ const ItemInformation = () => {
     }
   }, [product]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const userid = auth.user.userId;
+      const url = '/api/Order/get-not-paid';
+      const data = {
+        userID: userid,
+      };
+      try {
+        const response = await api.post(url, data);
+        setOrder(response.data);
+        console.log(order);
+        console.log(response.data)
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, [auth])
+
   const handleSubmit = async () => {
-    if (order === null) {
-      const url = '/api/Order/create-new';
-      const userid = auth.user.useriId;
+    const userid = auth.user.userId;
+    //if user have order
+    if (typeof order[0]?.orderId !== 'undefined') {
+      console.log('ys')
+      const urlOrderDetail = '/api/OrderDetail/create-new';
+      const data = {
+        orderId: order[0].orderId,
+        productId: productId,
+        feedbackId: null,
+        quantity: quantity
+      }
+      console.log(data);
+      try {
+        const response = await api.post(urlOrderDetail, data);
+        console.log(response.data)
+
+        if (response) {
+          const urlUpdate = '/api/Order/update-order-to-add-product';
+          let total = order[0].total;
+          total += response.data.price * response.data.quantity;
+          const data =
+          {
+            orderId: order[0].orderId,
+            userId: userid,
+            note: "string",
+            price: total
+          }
+          try {
+            const responseUpdate = await api.put(urlUpdate, data);
+            console.log(responseUpdate.data);
+            window.prompt("Add Success");
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    //If user do not have any order
+    else {
+      const urlOrder = '/api/Order/create-new';
+      const userid = auth.user.userId;
       const data = {
         userID: userid,
         note: "string",
@@ -64,51 +128,73 @@ const ItemInformation = () => {
         total: 0
       };
       try {
-        const response = await api.post(url, data);
-        console.log(response)
-      } catch (error) {
-        console.error(error);
+        const response = await api.post(urlOrder, data);
+        console.log(response.data)
+        if (response) {
+          const urlOrderDetail = '/api/OrderDetail/create-new';
+          const data = {
+            orderId: response.data.orderId,
+            productId: productId,
+            feedbackId: null,
+            quantity: quantity
+          }
+          console.log(data);
+          try {
+            const responseOrderDetail = await api.post(urlOrderDetail, data);
+            console.log(responseOrderDetail.data)
+            if (responseOrderDetail) {
+              const urlUpdate = '/api/Order/update-order-to-add-product';
+              let total = 0;
+              total += responseOrderDetail.data.price * responseOrderDetail.data.quantity;
+              const data =
+              {
+                orderId: response.data.orderId,
+                userId: userid,
+                note: "string",
+                price: total
+              }
+              try {
+                const responseUpdate = await api.put(urlUpdate, data);
+                console.log(responseUpdate.data);
+                window.prompt("Add Success");
+              } catch (error) {
+                console.error(error);
+              }
+            };
+          }
+          catch (error) {
+            console.error(error);
+          }
+        }
       }
-    } else {
-      console.log(order);
-      const url = '/api/OrderDetail/create-new';
-      const data = {
-        orderId: order[0].orderId,
-        productId: productId,
-        feedbackId: null,
-        quantity: quantity
-      }
-      try {
-        const response = await api.post(url, data);
-        console.log(response)
-      } catch (error) {
+      catch (error) {
         console.error(error);
       }
     }
   }
 
-  useEffect(() => {
-    const fecthData = async () => {
-      if (auth.user) {
-        const userid = auth.user.userId;
-        console.log(userid);
-        console.log(date)
-        const url = '/api/Order/get-not-paid';
-        const data = {
-          userID: userid,
-        };
-        try {
-          const response = await api.post(url, data);
-          setOrder(response.data);
-        } catch (error) {
-          console.error(error);
-        }
+  const handleAuth = async () => {
+    if (auth.user) {
+      const userid = auth.user.userId;
+      console.log(userid);
+      console.log(date)
+      const url = '/api/Order/get-not-paid';
+      const data = {
+        userID: userid,
+      };
+      try {
+        const response = await api.post(url, data);
+        setOrder(response.data);
+        console.log(response.data);
+        console.log(order)
+        handleSubmit();
+      } catch (error) {
+        console.error(error);
       }
-      else
-        navigate('/log-in')
+    } else {
+      navigate('/log-in')
     }
-    fecthData();
-  }, [])
+  }
 
   return (
     <div className="product-information-layout">
@@ -128,7 +214,7 @@ const ItemInformation = () => {
             </div>
             <p className="quantity-inventory">{message}</p>
           </div>
-          <button className="add-to-cart" onClick={handleSubmit}>Thêm vào giỏ hàng</button>
+          <button className="add-to-cart" onClick={handleAuth}>Thêm vào giỏ hàng</button>
         </div>
       </div>
 
