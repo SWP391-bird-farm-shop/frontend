@@ -52,9 +52,9 @@
   height: auto;
 }
 
-.product-box-section,
 .custom-product-box-section {
   display: inline-block;
+  height: 380px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   margin: 5%;
@@ -75,7 +75,7 @@
 .product-box-section img,
 .custom-product-box-section img {
   object-fit: cover;
-  width: 40%;
+  width: 100%;
   height: auto;
 }
 

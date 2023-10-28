@@ -13,6 +13,19 @@
 }
 
 .voucher-name,
-.voucher-des {
+.voucher-des,
+.voucher-discount,
+.voucher-date {
+    color: black;
     margin: 0;
+}
+
+.voucher-des-title,
+.voucher-discount-title {
+    color: #4CAF50;
+    margin: 0;
+}
+
+.voucher-date {
+    text-align: justify;
 }

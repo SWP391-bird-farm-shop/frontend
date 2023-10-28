@@ -38,21 +38,13 @@ const Slider = () => {
                 <button className="slider-button slider-button-right" onClick={nextImage}><FaAngleRight className="angle-right" /></button>
             </div>
             <div className="product-section">
-                <div className="product-box-section">
-                    <a href="/products" className="product-box">
-                        <img className="product-box-image" src="/demo.jpg" alt="product" />
-                        <h3 className="product-box-heading">Products</h3>
-                    </a>
-
-                </div>
                 <div className="custom-product-box-section">
                     <a href="/custom-products-shape" className="custom-product-box">
                         <img className="custom-product-box-image" src="/demo.jpg" alt="custom-product" />
-                        <h3 className="custom-product-box-heading">Custom Products</h3>
+                        <h3 className="custom-product-box-heading">Thiết kế lồng chim</h3>
+                        <h3 className="custom-product-box-heading">theo sở thích của bạn</h3>
                     </a>
-
                 </div>
-
             </div>
         </div>
     )
