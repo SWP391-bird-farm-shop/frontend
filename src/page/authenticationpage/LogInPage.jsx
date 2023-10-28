@@ -27,6 +27,7 @@ const LogInPage = () => {
         };
 
         try {
+            console.log(data);
             const response = await api.post(url, data);
             console.log(response.data)
             localStorage.setItem('Authen', response.data);
@@ -75,14 +76,14 @@ const LogInPage = () => {
             <a href='/home' className='homepage-link'> Về trang chủ</a>
             <div className="authentication-container">
                 <h2>Đăng nhập</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="authentication-input-container">
                         <label htmlFor="email" className='authentication-input-container-label'>Email</label>
-                        <input type="email" id="email" name="email" className='authentication-input' required/>
+                        <input type="text" id="email" name="email" className='authentication-input' required onChange={(event) => setUsername(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
                         <label htmlFor="password" className='authentication-input-container-label'>Mật khẩu</label>
-                        <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required/>
+                        <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required onChange={(event) => setPassword(event.target.value)} />
                         <button type="button" className="log-in-password-toggle-button" onClick={togglePasswordVisibility}>
                             {showPassword ? <FaEyeSlash /> : <FaEye />}
                         </button>

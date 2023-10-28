@@ -9,11 +9,79 @@ import { useNavigate } from "react-router-dom";
 const CartPage = () => {
     const { auth } = useAuth();
     const [cartItems, setCartItems] = useState(null);
-    const [name, setName] = useState();
-    const [address, setAddress] = useState()
-    const [phoneNumber, setPhoneNumber] = useState();
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('');
+
+    const [editName, setEditName] = useState('');
+    const [editPhonenumber, setEditPhonenumber] = useState('');
+    const [editAddress, setEditAddress] = useState('');
 
     const navigate = useNavigate();
+
+    const [isEditing, setEditing] = useState(false);
+    const [isEditingName, setIsEditingName] = useState(false);
+    const [isEditingPhoneNumber, setIsEditingPhoneNumber] = useState(false);
+    const [isEditingAddress, setIsEditingAddress] = useState(false);
+
+    const [isNameChange, setIsNameChange] = useState(false);
+    const [isPhoneNumChange, setIsPhoneNumChange] = useState(false);
+    const [isAddressChange, setIsAddressChange] = useState(false);
+
+    const handleCustomerEdit = () => {
+        setEditing(true);
+        setIsEditingName(true);
+        setIsEditingAddress(true);
+        setIsEditingPhoneNumber(true);
+    }
+
+    const handleCustomerCancel = () => {
+        setEditing(false)
+        setIsEditingName(false);
+        setIsEditingAddress(false);
+        setIsEditingPhoneNumber(false);
+
+    }
+
+    const handleSave = async () => {
+        setEditing(false);
+        setIsEditingName(false);
+        setIsEditingAddress(false);
+        setIsEditingPhoneNumber(false);
+
+        if (editName && editName !== name) {
+            setIsNameChange(true)
+        }
+        if (editPhonenumber && editPhonenumber !== phoneNumber) {
+            setIsPhoneNumChange(true);
+        }
+        if (editAddress && editAddress !== address) {
+            setIsAddressChange(true);
+        }
+        if (isNameChange && isPhoneNumChange && isAddressChange) {
+            setName(editName);
+            setPhoneNumber(editPhonenumber);
+            setAddress(editAddress);
+
+            const url = '/api/Order/update-order-to-add-product';
+            const total = cartItems[0].total;
+            let note = editName + " " + editPhonenumber + " " + editAddress;
+            note.toString();
+            const data = {
+                orderId: cartItems[0].orderId,
+                userId: auth.user.userId,
+                note: note,
+                price: total
+            }
+            console.log('y')
+            try {
+                const response = await api.put(url, data);
+                console.log(response.data)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    }
 
     const fetchData = async () => {
         const url = '/api/Order/get-not-paid';
@@ -137,7 +205,7 @@ const CartPage = () => {
         }
         else
             navigate('/log-in')
-    }, [auth, updateQuantity, removeItem])
+    }, [])
 
     // Calculate cart total
     const calculateTotal = () => {
@@ -157,11 +225,13 @@ const CartPage = () => {
             window.prompt("Please payment options");
         }
         if (method === 'vnpay') {
+            //create new payment
             const url = `/api/Payment/create-payment?OrderId=${cartItems[0].orderId}`
             try {
                 const response = await api.post(url);
                 console.log(response.data)
                 if (response) {
+                    //call to get vnpay url
                     const paymentUrl = `/api/VNPay?PaymentID=${response.data.paymentId}`;
                     try {
                         const response = await api.get(paymentUrl);
@@ -172,6 +242,34 @@ const CartPage = () => {
                 }
             } catch (error) {
                 console.error(error)
+            }
+        } else if (method === "cash") {
+            //create new payment
+            const url = `/api/Payment/create-payment?OrderId=${cartItems[0].orderId}`;
+            try {
+                const response = await api.post(url);
+                console.log(response.data)
+                //setting order true
+                if (response) {
+                    const orderFinishurl = `/api/Order/paid?OrderID=${cartItems[0].orderId}`;
+                    try {
+                        const orderFinishResponse = await api.post(orderFinishurl);
+                        console.log(orderFinishResponse.data)
+                        //setting payment true
+                        if (orderFinishResponse) {
+                            const paymentFinish = `/api/Payment/paid?paymentId=${response.data.paymentId}`
+                            const responsePayment = await api.post(paymentFinish);
+                            console.log(responsePayment.data)
+                            if (responsePayment) {
+                                navigate('/home?status=success')
+                            }
+                        }
+                    } catch (error) {
+                        console.error(error)
+                    }
+                }
+            } catch (error) {
+                console.error(error);
             }
         }
     }
@@ -208,49 +306,77 @@ const CartPage = () => {
             <div className="payment-container">
                 <h2 className="cart-and-payment-heading">Hóa đơn</h2>
                 <div className="customer-info-section">
-                    <p>Tên khách hàng: John Doe</p>
+                    {isEditingName ? (
+                        <div className="flex">
+                            <p>
+                                Tên khách hàng:
+                                <input
+                                    type="text"
+                                    onChange={(event) => setEditName(event.target.value)}
+                                    className="customer-info-section-input"
+                                    placeholder={name}
+                                    required
+                                />
+                            </p>
+                        </div>
+                    ) : (
+                        <p>Tên khách hàng: {name}</p>
+                    )}
+
                     {isEditingPhoneNumber ? (
                         <div className="flex">
                             <p>
                                 Số điện thoại:
                                 <input
                                     type="number"
-                                    value={phoneNumber}
-                                    onChange={handlePhoneNumberChange}
+                                    onChange={(event) => setEditPhonenumber(event.target.value)}
                                     className="customer-info-section-input" minLength={10} maxLength={11}
+                                    placeholder={phoneNumber}
+                                    required
                                 />
                             </p>
-                            <button onClick={handlePhoneNumberSave} className="customer-info-section-button">Lưu</button>
                         </div>
                     ) : (
                         <p className="flex">
                             Số điện thoại: {phoneNumber}{' '}
-                            <span className="change-info" onClick={handlePhoneNumberEdit}>
-                                Thay đổi
-                            </span>
                         </p>
                     )}
+
                     {isEditingAddress ? (
                         <div className="flex">
                             <p>
                                 Địa chỉ:
                                 <input
                                     type="text"
-                                    value={address}
-                                    onChange={handleAddressChange}
+                                    onChange={(event) => setEditAddress(event.target.value)}
                                     className="customer-info-section-input"
+                                    placeholder={address}
+                                    required
                                 />
                             </p>
-                            <button onClick={handleAddressSave} className="customer-info-section-button">Lưu</button>
                         </div>
                     ) : (
                         <p className="flex">
                             Địa chỉ: {address}{' '}
-                            <span className="change-info" onClick={handleAddressEdit}>
-                                Thay đổi
-                            </span>
                         </p>
                     )}
+
+                    <div className="editting-information">
+                        {isEditing ? (
+                            <><button onClick={handleSave} className="customer-info-section-button">Lưu</button><p>
+                                <span className="change-info change-customer-info" onClick={handleCustomerCancel}>
+                                    Hủy
+                                </span>
+                            </p></>
+                        ) : (
+                            <p>
+                                <span className="change-info change-customer-info" onClick={handleCustomerEdit}>
+                                    Thay đổi
+                                </span>
+                            </p>
+
+                        )}
+                    </div>
                 </div>
 
                 <div className="voucher-section">
