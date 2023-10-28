@@ -31,10 +31,8 @@ const LogInPage = () => {
             console.log(response.data)
             localStorage.setItem('Authen', response.data);
             setAuthen(response.data)
-            // Xử lý dữ liệu response ở đây
         } catch (error) {
             console.error(error);
-            // Xử lý lỗi ở đây
         }
     }
 
