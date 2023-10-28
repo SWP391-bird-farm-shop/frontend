@@ -28,6 +28,7 @@ import RoleLayout from './components/layout/RoleLayout'
 import StaffPage from './page/rolepage/StaffPage'
 import ManagerPage from './page/rolepage/ManagerPage'
 import AdminPage from './page/rolepage/AdminPage'
+import CVoucherPage from './page/CVoucherPage'
 
 
 
@@ -53,7 +54,8 @@ const App = () => {
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
-
+        
+       
       </Route>
 
 
@@ -84,6 +86,7 @@ const App = () => {
       <Route path="/staff-page" element={<StaffPage />} />
       <Route path="/manager-page" element={<ManagerPage />} />
       <Route path="/admin-page" element={<AdminPage />} />
+      <Route path='/cvoucherpage' element={<CVoucherPage />} />
       <Route element={<RoleLayout />}>
 
         <Route path='/blog-content' element={<BlogContentPage />} />
