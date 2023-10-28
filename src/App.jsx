@@ -33,6 +33,7 @@ import AnnounceOrderPage from './page/rolepage/staffpage/AnnounceOrderPage'
 import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
 import ProductPage from './page/rolepage/managerpage/ProductPage'
 import VoucherPage from './page/rolepage/managerpage/VoucherPage'
+import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 
 
 
@@ -53,11 +54,15 @@ const App = () => {
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
 
+
         <Route path='/custom-products-shape' element={<ShapePage />} />
         <Route path='/custom-products-size' element={<SizePage />} />
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
+
+
+        <Route path='/manage-account' element={<ManageAccount />} />
 
       </Route>
 
