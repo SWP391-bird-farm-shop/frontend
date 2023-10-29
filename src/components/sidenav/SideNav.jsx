@@ -41,36 +41,36 @@ const SideNav = () => {
 
         //manager
         //quản lí sản phẩm
-        // <div className="side-navbar">
-        //     <Link to="/product" className='side-navbar-link'>
-        //         <FaBoxes className='side-navbar-link-icon' /> Xem toàn bộ sản phẩm
-        //     </Link>
-        //     <Link to="/services" className='side-navbar-link'>
-        //         <FaDove className='side-navbar-link-icon' /> Thêm lồng chim
-        //     </Link>
-        //     <Link to="/services" className='side-navbar-link'>
-        //         <FaBreadSlice className='side-navbar-link-icon' /> Thêm thức ăn cho chim
-        //     </Link>
-        //     <Link to="/services" className='side-navbar-link'>
-        //         <FaGift className='side-navbar-link-icon' /> Thêm phụ kiện - đồ chơi
-        //     </Link>
-        //     <Link to="/product" className='side-navbar-link'>
-        //         <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa toàn bộ sản phẩm
-        //     </Link>
-        // </div>
-
-        //quản lí voucher
         <div className="side-navbar">
-            <Link to="/voucher" className='side-navbar-link'>
-                <FaRegMoneyBillAlt className='side-navbar-link-icon' /> Xem voucher
+            <Link to="/product" className='side-navbar-link'>
+                <FaBoxes className='side-navbar-link-icon' /> Xem toàn bộ sản phẩm
             </Link>
-            <Link to="/about" className='side-navbar-link'>
-                <FaRegEdit className='side-navbar-link-icon' /> Tạo voucher
+            <Link to="/add-product" className='side-navbar-link'>
+                <FaDove className='side-navbar-link-icon' /> Thêm lồng chim
             </Link>
-            <Link to="/voucher" className='side-navbar-link'>
-                <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa voucher
+            <Link to="/add-product" className='side-navbar-link'>
+                <FaBreadSlice className='side-navbar-link-icon' /> Thêm thức ăn cho chim
+            </Link>
+            <Link to="/add-product" className='side-navbar-link'>
+                <FaGift className='side-navbar-link-icon' /> Thêm phụ kiện - đồ chơi
+            </Link>
+            <Link to="/product" className='side-navbar-link'>
+                <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa toàn bộ sản phẩm
             </Link>
         </div>
+
+        //quản lí voucher
+        // <div className="side-navbar">
+        //     <Link to="/voucher" className='side-navbar-link'>
+        //         <FaRegMoneyBillAlt className='side-navbar-link-icon' /> Xem voucher
+        //     </Link>
+        //     <Link to="/about" className='side-navbar-link'>
+        //         <FaRegEdit className='side-navbar-link-icon' /> Tạo voucher
+        //     </Link>
+        //     <Link to="/voucher" className='side-navbar-link'>
+        //         <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa voucher
+        //     </Link>
+        // </div>
 
         //admin
         //quản lí account

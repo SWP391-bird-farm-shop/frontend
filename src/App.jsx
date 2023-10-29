@@ -35,6 +35,7 @@ import AnnounceOrderPage from './page/rolepage/staffpage/AnnounceOrderPage'
 import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
 import ProductPage from './page/rolepage/managerpage/ProductPage'
 import VoucherPage from './page/rolepage/managerpage/VoucherPage'
+import AddProductPage from './page/rolepage/managerpage/AddProductPage'
 import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 
 
@@ -97,6 +98,14 @@ const App = () => {
       <Route element={<RoleLayout />}>
 
         <Route path='/blog-content' element={<BlogContentPage />} />
+        <Route path='/feedback' element={<FeedbackPage />} />
+        <Route path='/order' element={<ViewOrderPage />} />
+        <Route path='/announce-order' element={<AnnounceOrderPage />} />
+        <Route path='/product' element={<ProductPage />} />
+        <Route path='/add-product' element={<AddProductPage />} />
+        <Route path='/voucher' element={<VoucherPage />} />
+
+
       </Route>
     </Routes>
   );
