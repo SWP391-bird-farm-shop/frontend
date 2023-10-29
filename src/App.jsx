@@ -19,6 +19,8 @@ import UpdateInformationPage from './page/authenticationpage/UpdateInformationPa
 import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
+
+import CVoucherPage from './page/CVoucherPage'
 import ShapePage from './page/custompage/ShapePage'
 import SizePage from './page/custompage/SizePage'
 import MaterialPage from './page/custompage/MaterialPage'
@@ -34,6 +36,7 @@ import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
 import ProductPage from './page/rolepage/managerpage/ProductPage'
 import VoucherPage from './page/rolepage/managerpage/VoucherPage'
 import AddProductPage from './page/rolepage/managerpage/AddProductPage'
+import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 
 
 
@@ -48,7 +51,7 @@ const App = () => {
         <Route path='/products/food' element={<FoodPage />} />
         <Route path='/products/accessories-toys' element={<AccessoriesToysPage />} />
         <Route path="/blogs" element={<BlogPage />} />
-        <Route path='/blog-content' element={<BlogContentPage />} />
+        <Route path='/blog-content/:blogId' element={<BlogContentPage />} />
         <Route path='/parrot' element={<SpeciesPage />} />
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
@@ -59,6 +62,7 @@ const App = () => {
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
+        <Route path='/manage-account' element={<ManageAccount />} />
 
       </Route>
 
@@ -90,8 +94,9 @@ const App = () => {
       <Route path="/staff-page" element={<StaffPage />} />
       <Route path="/manager-page" element={<ManagerPage />} />
       <Route path="/admin-page" element={<AdminPage />} />
+      <Route path='/cvoucherpage' element={<CVoucherPage />} />
       <Route element={<RoleLayout />}>
-        <Route path='/blogs' element={<BlogPage />} />
+
         <Route path='/blog-content' element={<BlogContentPage />} />
         <Route path='/feedback' element={<FeedbackPage />} />
         <Route path='/order' element={<ViewOrderPage />} />

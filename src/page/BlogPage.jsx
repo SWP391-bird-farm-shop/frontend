@@ -1,77 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./BlogPage.css";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import api from "../components/utils/requestAPI";
+import { Link } from "react-router-dom";
 
 const BlogPage = () => {
-  const handleButtonClick = () => {
-    window.location.href = "/home";
-  };
 
-  const blogs = [
-    {
-      id: 1,
-      title: "The Importance of Proper Bird Cage Size",
-      date: "October 1, 2023",
-      author: "John Smith",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...",
-      image: "bocau.jpg",
-      url: "/blog-content",
-    },
-    {
-      id: 2,
-      title: "Tips for Choosing the Right Bird Toys",
-      date: "September 15, 2023",
-      author: "Jane Doe",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...",
-      image: "bocau.jpg",
-      url: "/blog-content",
-    },
-    {
-      id: 3,
-      title: "Tips for Choosing the Right Bird Toys",
-      date: "September 15, 2023",
-      author: "Jane Doe",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...",
-      image: "bocau.jpg",
-      url: "/blog-content",
-    },
-    {
-      id: 4,
-      title: "Tips for Choosing the Right Bird Toys",
-      date: "September 15, 2023",
-      author: "Jane Doe",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...",
-      image: "bocau.jpg",
-      url: "/blog-content",
-    },
-    // Add more blogs here
-  ];
+  const [blogItem, setBlogItem] = useState(null);
 
-  const [blogItem, setBlogItem] = useState(blogs);
+  const fetchData = async () => {
+    const url = '/api/Blog/get-for-customer';
+    try {
+      const response = await api.get(url);
+      console.log(response.data)
+      setBlogItem(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
 
   const removeBlog = (blogId) => {
     const removeBlogItem = blogItem.filter(blog => blog.id !== blogId);
     setBlogItem(removeBlogItem);
   }
 
+  const handleButtonClick = () => {
+    window.location.href = "/home";
+  };
+
   return (
     <div className="blog-page">
       <div className="blog-list">
-        {blogs.map((blog) => (
-          <a href={blog.url} key={blog.id} className="blog-item">
+        {blogItem?.map((blog) => (
+          <Link to={`/blog-content/${blog.blogId}`} key={blog.blogId} className="blog-item">
             <div className="blog-item-detail">
               <div className="blog-item-image">
-                <img src={blog.image} alt="blog-image" />
+                {blog.image.map(image => (
+                  <img src={image?.imageUrl} alt="blog-image" />
+                ))}
               </div>
               <div className="blog-item-information">
-                <h3 className="blog-title">{blog.title}</h3>
+                <h3 className="blog-title">{blog.blogTitle}</h3>
                 <p className="blog-meta">
-                  <span className="blog-date">{blog.date}</span> . <span className="blog-author">bởi {blog.author}</span>
+                  <span className="blog-date">{blog.createAt}</span> . <span className="blog-author">bởi {blog.user.fullName}</span>
                 </p>
-                <p className="blog-description">{blog.content}</p>
+                <p className="blog-description">{blog.blogSummary}</p>
               </div>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </div>
