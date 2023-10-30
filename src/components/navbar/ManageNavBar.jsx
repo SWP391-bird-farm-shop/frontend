@@ -17,7 +17,7 @@ const ManageNavbar = ({ className }) => {
     const { auth } = useAuth();
 
 
-    if (auth.user.roleId === '1') {
+    if (auth?.user?.roleId === '1') {
         return (
             <nav className={`manage-navbar ${className}`}>
                 <Nav id='manage-navbar'>

@@ -8,17 +8,17 @@ const SideNav = () => {
     const { auth } = useAuth();
     const { action } = useParams();
     // for admin
-    if (auth.user.roleId === '1') {
+    if (auth?.user?.roleId === '1') {
         return (
             <div className="side-navbar">
                 <Link to="/manage-account" className='side-navbar-link'>
                     <FaUserAlt className='side-navbar-link-icon' /> Xem toàn bộ tài khoản
                 </Link>
-                <Link to="/info-setting" className='side-navbar-link'>
-                    <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa tài khoản
-                </Link>
                 <Link to="/create-user" className='side-navbar-link'>
                     <FaUser className='side-navbar-link-icon' /> Tạo tài khoản
+                </Link>
+                <Link to="/info-setting" className='side-navbar-link'>
+                    <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa tài khoản
                 </Link>
             </div>
         )
@@ -99,25 +99,25 @@ const SideNav = () => {
             //     </Link>
             // </div>
 
-            //manager
-            //quản lí sản phẩm
-            <div className="side-navbar">
-                <Link to="/product" className='side-navbar-link'>
-                    <FaBoxes className='side-navbar-link-icon' /> Xem toàn bộ sản phẩm
-                </Link>
-                <Link to="/add-product" className='side-navbar-link'>
-                    <FaDove className='side-navbar-link-icon' /> Thêm lồng chim
-                </Link>
-                <Link to="/add-product" className='side-navbar-link'>
-                    <FaBreadSlice className='side-navbar-link-icon' /> Thêm thức ăn cho chim
-                </Link>
-                <Link to="/add-product" className='side-navbar-link'>
-                    <FaGift className='side-navbar-link-icon' /> Thêm phụ kiện - đồ chơi
-                </Link>
-                <Link to="/product" className='side-navbar-link'>
-                    <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa toàn bộ sản phẩm
-                </Link>
-            </div>
+        //manager
+        //quản lí sản phẩm
+        // <div className="side-navbar">
+        //     <Link to="/product" className='side-navbar-link'>
+        //         <FaBoxes className='side-navbar-link-icon' /> Xem toàn bộ sản phẩm
+        //     </Link>
+        //     <Link to="/add-product" className='side-navbar-link'>
+        //         <FaDove className='side-navbar-link-icon' /> Thêm lồng chim
+        //     </Link>
+        //     <Link to="/add-product" className='side-navbar-link'>
+        //         <FaBreadSlice className='side-navbar-link-icon' /> Thêm thức ăn cho chim
+        //     </Link>
+        //     <Link to="/add-product" className='side-navbar-link'>
+        //         <FaGift className='side-navbar-link-icon' /> Thêm phụ kiện - đồ chơi
+        //     </Link>
+        //     <Link to="/product" className='side-navbar-link'>
+        //         <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa toàn bộ sản phẩm
+        //     </Link>
+        // </div>
 
             //quản lí voucher
             // <div className="side-navbar">
@@ -134,15 +134,20 @@ const SideNav = () => {
 
             //admin
             //quản lí account
-            // <div className="side-navbar">
-            //     <Link to="/services" className='side-navbar-link'>
-            //         <FaUserAlt className='side-navbar-link-icon' /> Xem toàn bộ tài khoản
-            //     </Link>
-            //     <Link to="/about" className='side-navbar-link'>
-            //         <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa tài khoản
-            //     </Link>
-            // </div>
+            <div className="side-navbar">
+                <Link to="/manage-account" className='side-navbar-link'>
+                    <FaUserAlt className='side-navbar-link-icon' /> Xem toàn bộ tài khoản
+                </Link>
+                <Link to="/create-user" className='side-navbar-link'>
+                    <FaRegEdit className='side-navbar-link-icon' /> Tạo tài khoản
+                </Link>
+                <Link to="/info-setting" className='side-navbar-link'>
+                    <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa tài khoản
+                </Link>
+            </div>
         );
     };
+
+
 }
 export default SideNav;
