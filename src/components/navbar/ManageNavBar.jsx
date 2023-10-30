@@ -54,7 +54,7 @@ const ManageNavbar = ({ className }) => {
         )
     }
 
-    if (auth.user.roleId === '2') {
+    if (auth?.user?.roleId === '2') {
         return (
             <nav className={`manage-navbar ${className}`}>
                 <Nav id='manage-navbar'>

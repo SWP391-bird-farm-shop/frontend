@@ -39,7 +39,7 @@ const BlogForm = () => {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <div className='create-blog-input-container'>
-                                <label htmlFor="blogTitle">Tiêu đề:</label>
+                                <label htmlFor="blogTitle">Tiêu đề</label>
                                 <input
                                     className='create-blog-input'
                                     type="text"
@@ -49,60 +49,52 @@ const BlogForm = () => {
                                 />
                             </div>
                             <div className='create-blog-input-container'>
-                                <label htmlFor="blogSummary">Tóm tắt:</label>
+                                <label htmlFor="blogSummary">Tóm tắt</label>
                                 <textarea
-                                    className='create-blog-input'
+                                    className='create-blog-input create-blog-textarea'
                                     id="blogSummary"
                                     value={blogSummary}
                                     onChange={(e) => setBlogSummary(e.target.value)}
                                 ></textarea>
                             </div>
                             <div className='create-blog-input-container'>
-                                <label htmlFor="blogContent">Nội dung:</label>
+                                <label htmlFor="blogContent">Nội dung</label>
                                 <textarea
-                                    className='create-blog-input'
+                                    className='create-blog-input create-blog-textarea'
                                     id="blogContent"
                                     value={blogContent}
                                     onChange={(e) => setBlogContent(e.target.value)}
                                 ></textarea>
                             </div>
+                            
                             <div className='create-blog-input-container'>
-                                <label htmlFor="blogType">Loại blog:</label>
+                                <label htmlFor="createdAt">Ngày tạo</label>
                                 <input
                                     className='create-blog-input'
-                                    type="text"
-                                    id="blogType"
-                                    value={blogType}
-                                    onChange={(e) => setBlogType(e.target.value)}
-                                />
-                            </div>
-                            <div className='create-blog-input-container'>
-                                <label htmlFor="createdAt">Ngày tạo:</label>
-                                <input
-                                    className='create-blog-input'
-                                    type="text"
+                                    type="date"
                                     id="createdAt"
                                     value={createdAt}
                                     onChange={(e) => setCreatedAt(e.target.value)}
                                 />
                             </div>
                             <div className='create-blog-input-container'>
-                                <label htmlFor="imageUpload">Thêm hình ảnh:</label>
+                                <label htmlFor="imageUpload" className='mutiple-img-upload'>Thêm hình ảnh</label>
                                 <input
-                                    className='create-blog-input'
+                                    // className='create-blog-input'
                                     type="file"
                                     id="imageUpload"
                                     accept="image/*"
                                     multiple
                                     onChange={handleImageUpload}
+                                    style={{display: 'none'}}
                                 />
                             </div>
-                            <div className='create-blog-input-container blog-add-image'>
+                            <div className='blog-add-image'>
                                 {imageUrls.map((imageUrl, index) => (
                                     <img key={index} src={imageUrl} alt={`Image ${index}`} />
                                 ))}
                             </div>
-                            <button type="submit">Đăng bài</button>
+                            <button type="submit" className='create-blog-post'>Đăng bài</button>
                         </div>
                     </form>
                 </div>

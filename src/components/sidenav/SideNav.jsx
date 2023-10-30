@@ -24,7 +24,7 @@ const SideNav = () => {
         )
     }
     // manager
-    if (auth.user.roleId === '2') {
+    if (auth?.user?.roleId === '2') {
         if (action === 'manage-voucher' || action === 'view-voucher'
             || action === 'edit-voucher') {
             console.log(action);

@@ -95,7 +95,7 @@ const App = () => {
 
       <Route path="/staff-page" element={<StaffPage />} />
 
-      <Route path='/create-blog' element={<BlogForm />} />
+
 
       {/* admin routes */}
       <Route element={<RequireAuth allowedRoles={['1']} />}>
@@ -128,7 +128,7 @@ const App = () => {
       </Route>
 
       <Route element={<RoleLayout />}>
-
+        <Route path='/create-blog' element={<BlogForm />} />
         <Route path='/blog-content' element={<BlogContentPage />} />
         <Route path='/feedback' element={<FeedbackPage />} />
         <Route path='/order' element={<ViewOrderPage />} />
