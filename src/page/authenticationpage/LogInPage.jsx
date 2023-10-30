@@ -62,10 +62,11 @@ const LogInPage = () => {
                     console.log('ys');
                     navigate('/user-page');
                 }
-                // Xử lý dữ liệu response ở đây
+                if (user.roleId === '1') {
+                    navigate('/admin-page');
+                }
             } catch (error) {
                 console.error(error);
-                // Xử lý lỗi ở đây
             }
         }
         fetchUserData();

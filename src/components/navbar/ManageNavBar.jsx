@@ -4,6 +4,7 @@ import "./ManageNavBar.css"
 import { FaShoppingCart, FaSignOutAlt, FaUserEdit } from 'react-icons/fa';
 import SearchBar from '../search/SearchBar.jsx';
 import useAuth from '../../hooks/useAuth.jsx';
+import { Link } from 'react-router-dom';
 
 const ManageNavbar = ({ className }) => {
 
@@ -14,68 +15,104 @@ const ManageNavbar = ({ className }) => {
     };
 
     const { auth } = useAuth();
-    if (auth.user) {
-        const Logout = () => {
-            localStorage.clear();
-            auth.user = null;
-        }
+    // if (auth.user) {
+    // const Logout = () => {
+    // localStorage.clear();
+    // auth.user = null;
+    // }
+    // return (
+    // <nav className={`manage-navbar ${className}`}>
+    {/* <Nav id='manage-navbar'> */ }
+    {/* <Bars /> */ }
+    {/* <div id="logo"> */ }
+    {/* <a href='/home'> */ }
+    {/* <img src="/bcs-icon.png" alt="bcs-logo" /> */ }
+    {/* </a> */ }
+    {/* </div> */ }
+    {/* <NavMenu className='first-section'> */ }
+    {/* <NavLink to='/home' className='first-section-component'> */ }
+    {/* Trang chủ */ }
+    {/* </NavLink> */ }
+    {/* <NavLink className='first-section-component'> */ }
+    {/* Sản phẩm */ }
+    {/* <SubNav> */ }
+    {/* <SubNavItem to="/products/cages">Lồng chim</SubNavItem> */ }
+    {/* <SubNavItem to="/products/food">Thức ăn cho chim</SubNavItem> */ }
+    {/* <SubNavItem to="/products/accessories-toys">Phụ kiện - Đồ chơi</SubNavItem> */ }
+    {/* </SubNav> */ }
+    {/* </NavLink> */ }
+    {/* <NavLink to='/blogs' className='first-section-component'> */ }
+    {/* Bài viết */ }
+    {/* </NavLink> */ }
+    {/* <NavLink to='/about-us' className='first-section-component'> */ }
+    {/* Giới thiệu */ }
+    {/* </NavLink> */ }
+    {/* </NavMenu> */ }
+    {/* <NavMenu className='second-section'> */ }
+    {/* <SearchBar className='search' /> */ }
+    {/* <NavLink to='/cart'> */ }
+    {/* <FaShoppingCart className='cart-icon' /> */ }
+    {/* </NavLink> */ }
+    {/* </NavMenu> */ }
+    {/* <NavMenu className='third-section'> */ }
+    {/* <p className='manage-navbar-user-name'>{auth.user.fullName}</p> */ }
+    {/* <NavLink> */ }
+    {/* <img src='/chaomao.png' alt='' className='manage-navbar-user-img' onClick={handleImgClick} /> */ }
+
+    {/* {showSubNav && ( */ }
+    // <div className='manage-navbar-user-img-subnav'>
+    {/* <SubNavItem to='/update-info' className='manage-navbar-user-img-subnav-link'> */ }
+    {/* <FaUserEdit /> Chỉnh sửa thông tin */ }
+    {/* </SubNavItem> */ }
+    {/* <SubNavItem to='/home' className='manage-navbar-user-img-subnav-link' onClick={Logout}> */ }
+    {/* <FaSignOutAlt /> */ }
+    {/* Đăng xuất */ }
+    {/* </SubNavItem> */ }
+    {/* </div> */ }
+    // )}
+    {/* </NavLink> */ }
+    {/* </NavMenu> */ }
+    {/* </Nav> */ }
+    {/* </nav> */ }
+    // );
+    // }
+
+    if (auth.user.roleId === '1') {
         return (
             <nav className={`manage-navbar ${className}`}>
                 <Nav id='manage-navbar'>
                     <Bars />
                     <div id="logo">
-                        <a href='/home'>
+                        <Link to='/admin-page'>
                             <img src="/bcs-icon.png" alt="bcs-logo" />
-                        </a>
+                        </Link>
                     </div>
-                    <NavMenu className='first-section'>
-                        <NavLink to='/home' className='first-section-component'>
-                            Trang chủ
-                        </NavLink>
-                        <NavLink className='first-section-component'>
-                            Sản phẩm
-                            <SubNav>
-                                <SubNavItem to="/products/cages">Lồng chim</SubNavItem>
-                                <SubNavItem to="/products/food">Thức ăn cho chim</SubNavItem>
-                                <SubNavItem to="/products/accessories-toys">Phụ kiện - Đồ chơi</SubNavItem>
-                            </SubNav>
-                        </NavLink>
-                        <NavLink to='/blogs' className='first-section-component'>
-                            Bài viết
-                        </NavLink>
-                        <NavLink to='/about-us' className='first-section-component'>
-                            Giới thiệu
+                    {/* admin */}
+                    <NavMenu className='first-role-section'>
+                        <NavLink to='/manage-account' className='first-section-component-admin'>
+                            Quản lí tài khoản
                         </NavLink>
                     </NavMenu>
-                    <NavMenu className='second-section'>
-                        <SearchBar className='search' />
-                        <NavLink to='/cart'>
-                            <FaShoppingCart className='cart-icon' />
-                        </NavLink>
-                    </NavMenu>
-                    <NavMenu className='third-section'>
-                        <p className='manage-navbar-user-name'>{auth.user.fullName}</p>
+                    <div className='second-role-section'>
+                        <p className='manage-navbar-user-name'>Xin chao</p>
                         <NavLink>
                             <img src='/chaomao.png' alt='' className='manage-navbar-user-img' onClick={handleImgClick} />
-
                             {showSubNav && (
                                 <div className='manage-navbar-user-img-subnav'>
                                     <SubNavItem to='/update-info' className='manage-navbar-user-img-subnav-link'>
                                         <FaUserEdit /> Chỉnh sửa thông tin
                                     </SubNavItem>
                                     <SubNavItem to='/home' className='manage-navbar-user-img-subnav-link' onClick={Logout}>
-                                        <FaSignOutAlt />
-                                        Đăng xuất
+                                        <FaSignOutAlt /> Đăng xuất
                                     </SubNavItem>
                                 </div>
                             )}
                         </NavLink>
-                    </NavMenu>
+                    </div>
                 </Nav>
             </nav>
-        );
+        )
     }
-
 
     else {
         return (

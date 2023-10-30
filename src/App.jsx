@@ -35,9 +35,9 @@ import AnnounceOrderPage from './page/rolepage/staffpage/AnnounceOrderPage'
 import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
 import ProductPage from './page/rolepage/managerpage/ProductPage'
 import VoucherPage from './page/rolepage/managerpage/VoucherPage'
-import AddProductPage from './page/rolepage/managerpage/AddProductPage'
 import ManageAccount from './page/rolepage/adminpage/ManageAccount'
-
+import CreateUser from './page/rolepage/adminpage/CreateUser'
+import AddProductPage from './page/rolepage/managerpage/AddProductPage'
 
 
 const App = () => {
@@ -56,14 +56,6 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
-
-        <Route path='/custom-products-shape' element={<ShapePage />} />
-        <Route path='/custom-products-size' element={<SizePage />} />
-        <Route path='/custom-products-material' element={<MaterialPage />} />
-        <Route path='/custom-products-color' element={<ColorPage />} />
-        <Route path='/custom-products-end' element={<TotalPage />} />
-        <Route path='/manage-account' element={<ManageAccount />} />
-
       </Route>
 
 
@@ -81,6 +73,11 @@ const App = () => {
           <Route path='/about-us' element={<AboutPage />} />
           <Route path='/cart' element={<CartPage />} />
 
+          <Route path='/custom-products-shape' element={<ShapePage />} />
+          <Route path='/custom-products-size' element={<SizePage />} />
+          <Route path='/custom-products-material' element={<MaterialPage />} />
+          <Route path='/custom-products-color' element={<ColorPage />} />
+          <Route path='/custom-products-end' element={<TotalPage />} />
         </Route>
       </Route>
 
@@ -89,11 +86,19 @@ const App = () => {
       <Route path="/reset-pass" element={<ResetPasswordPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
-      <Route path='/info-setting' element={<SettingInformationPage />} />
 
       <Route path="/staff-page" element={<StaffPage />} />
       <Route path="/manager-page" element={<ManagerPage />} />
-      <Route path="/admin-page" element={<AdminPage />} />
+
+      <Route element={<RequireAuth allowedRoles={['1']} />}>
+        <Route element={<RoleLayout />}>
+          <Route path="/admin-page" element={<AdminPage />} />
+          <Route path='/manage-account' element={<ManageAccount />} />
+          <Route path='/info-setting' element={<SettingInformationPage />} />
+          <Route path='/create-user' element={<CreateUser />} />
+        </Route>
+      </Route>
+
       <Route path='/cvoucherpage' element={<CVoucherPage />} />
       <Route element={<RoleLayout />}>
 
@@ -104,8 +109,6 @@ const App = () => {
         <Route path='/product' element={<ProductPage />} />
         <Route path='/add-product' element={<AddProductPage />} />
         <Route path='/voucher' element={<VoucherPage />} />
-
-
       </Route>
     </Routes>
   );

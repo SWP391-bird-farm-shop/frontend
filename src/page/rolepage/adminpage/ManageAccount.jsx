@@ -1,6 +1,8 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import './ManageAccount.css';
 import "../RolePage.css";
+import api from "../../../components/utils/requestAPI";
 
 // Sample user account data (replace with your data)
 const userAccounts = [
@@ -88,6 +90,23 @@ const ManageAccount = () => {
   const handleButtonClick = () => {
     window.location.href = "/";
   };
+
+  const [listUser, setListUser] = useState(null);
+
+  const fetchData = async () => {
+    const url = '/api/User/get-all';
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setListUser(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <div className="manage">
