@@ -36,7 +36,7 @@ const SizePage = () => {
 
       <div className="custom-size-option-detail">
         <div>
-          <h2>Chọn Màu Sắc Lồng Của Bạn </h2>
+          <h2>Chọn Chất Liệu Lồng Của Bạn </h2>
         </div>
         <div className="custom-size-option-detail-list">
           <div className="custom-size-detail-item">

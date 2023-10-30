@@ -1,4 +1,4 @@
-.combo-box {
+.combo-box-price {
     float: right;
     width: 300px;
     border: 1px solid #ccc;
@@ -6,13 +6,27 @@
     margin-bottom: 30px;
 }
 
-.combo-box select {
+.combo-box-price select,
+.combo-box-size select {
     background-color: aliceblue;
     color: black;
     width: 100%;
-    padding: 8px;
+    padding: 11px 25px;
+    padding-left: 11px;
     border: none;
     border-radius: 5px;
     box-sizing: border-box;
     outline: none;
+}
+
+.combo-box-size {
+    width: 101.5%;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 10px 0;
+    margin-top: 0;
+}
+
+.combo-box-size select {
+    border-radius: 15px;
 }

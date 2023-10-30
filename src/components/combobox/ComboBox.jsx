@@ -4,17 +4,37 @@ import "./ComboBox.css"
 const ComboBox = () => {
     const [selected, setSelected] = useState('');
 
-    const options = [
+    const priceOptions = [
         'Tăng dần',
         'Giảm dần',
     ];
+
+    const sizeOptions = [
+        '24"',
+        '30"',
+        '36"',
+        '42"',
+        '48"',
+        '60"'
+    ]
     return (
-        <div className="combo-box">
+        // <div className="combo-box-price">
+        //     <select value={selected} onChange={e => setSelected(e.target.value)}>
+        //         <option value="" disabled hidden selected>Sắp xếp theo giá</option>
+        //         {priceOptions.map(priceOption => (
+        //             <option key={priceOption} value={priceOption}>
+        //                 {priceOption}
+        //             </option>
+        //         ))}
+        //     </select>
+        // </div>
+
+        <div className="combo-box-size">
             <select value={selected} onChange={e => setSelected(e.target.value)}>
-                <option value="" disabled hidden selected>Sắp xếp theo giá</option>
-                {options.map(option => (
-                    <option key={option} value={option}>
-                        {option}
+                <option value="" disabled hidden selected>Chọn kích thước lồng</option>
+                {sizeOptions.map(sizeOption => (
+                    <option key={sizeOption} value={sizeOption}>
+                        {sizeOption}
                     </option>
                 ))}
             </select>

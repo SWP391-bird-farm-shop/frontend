@@ -20,19 +20,12 @@ import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
 
-// import TypeBirdPage from './page/custompage/TypeBirdPage'
-// import ShapePage from './page/custompage/ShapePage'
-// import SizePage from './page/custompage/SizePage'
-// import MaterialPage from './page/custompage/MaterialPage'
-// import ColorPage from './page/custompage/ColorPage'
-// import TotalPage from './page/custompage/TotalPage'
-
-import ShapePage from './page/customepage/ShapePage'
-import SizePage from './page/customepage/SizePage'
-import MaterialPage from './page/customepage/MaterialPage'
-import ColorPage from './page/customepage/ColorPage'
-import TotalPage from './page/customepage/TotalPage'
-
+import CVoucherPage from './page/CVoucherPage'
+import ShapePage from './page/custompage/ShapePage'
+import SizePage from './page/custompage/SizePage'
+import MaterialPage from './page/custompage/MaterialPage'
+import ColorPage from './page/custompage/ColorPage'
+import TotalPage from './page/custompage/TotalPage'
 import RoleLayout from './components/layout/RoleLayout'
 import StaffPage from './page/rolepage/staffpage/StaffPage'
 import ManagerPage from './page/rolepage/managerpage/ManagerPage'
@@ -42,12 +35,10 @@ import AnnounceOrderPage from './page/rolepage/staffpage/AnnounceOrderPage'
 import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
 import ProductPage from './page/rolepage/managerpage/ProductPage'
 import VoucherPage from './page/rolepage/managerpage/VoucherPage'
-<<<<<<< Updated upstream
-=======
 import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 import CreateUser from './page/rolepage/adminpage/CreateUser'
->>>>>>> Stashed changes
-
+import AddProductPage from './page/rolepage/managerpage/AddProductPage'
+import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 
 
 const App = () => {
@@ -67,19 +58,11 @@ const App = () => {
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
 
-        {/* <Route path='/custom-products-typebirds' element={<TypeBirdPage />} />
-
-
         <Route path='/custom-products-shape' element={<ShapePage />} />
         <Route path='/custom-products-size' element={<SizePage />} />
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
-<<<<<<< Updated upstream
         <Route path='/custom-products-end' element={<TotalPage />} /> */}
-
-=======
-        <Route path='/custom-products-end' element={<TotalPage />} />
->>>>>>> Stashed changes
       </Route>
 
 
@@ -109,7 +92,6 @@ const App = () => {
       <Route path="/staff-page" element={<StaffPage />} />
       <Route path="/manager-page" element={<ManagerPage />} />
       <Route path="/admin-page" element={<AdminPage />} />
-
       <Route element={<RequireAuth allowedRoles={['1']} />}>
         <Route element={<RoleLayout />}>
           <Route path="/admin-page" element={<AdminPage />} />
@@ -119,13 +101,15 @@ const App = () => {
         </Route>
       </Route>
 
+      <Route path='/cvoucherpage' element={<CVoucherPage />} />
       <Route element={<RoleLayout />}>
-        <Route path='/blogs' element={<BlogPage />} />
+
         <Route path='/blog-content' element={<BlogContentPage />} />
         <Route path='/feedback' element={<FeedbackPage />} />
         <Route path='/order' element={<ViewOrderPage />} />
         <Route path='/announce-order' element={<AnnounceOrderPage />} />
         <Route path='/product' element={<ProductPage />} />
+        <Route path='/add-product' element={<AddProductPage />} />
         <Route path='/voucher' element={<VoucherPage />} />
       </Route>
     </Routes>
