@@ -20,7 +20,7 @@ import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
 
-import CVoucherPage from './page/CVoucherPage'
+import CreateVoucherPage from './page/rolepage/managerpage/CreateVoucherPage'
 import ShapePage from './page/custompage/ShapePage'
 import SizePage from './page/custompage/SizePage'
 import MaterialPage from './page/custompage/MaterialPage'
@@ -38,6 +38,7 @@ import VoucherPage from './page/rolepage/managerpage/VoucherPage'
 import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 import CreateUser from './page/rolepage/adminpage/CreateUser'
 import AddProductPage from './page/rolepage/managerpage/AddProductPage'
+import BlogForm from './page/rolepage/staffpage/CreateBlog'
 
 
 const App = () => {
@@ -61,7 +62,13 @@ const App = () => {
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
       </Route>
-      <Route path='/create-user' element={<CreateUser />} />
+
+      <Route element={<RoleLayout />}>
+        <Route path='/create-voucher' element={<CreateVoucherPage />} />
+
+      </Route>
+
+
 
 
       {/* user routes */}
@@ -87,27 +94,45 @@ const App = () => {
       <Route path="/update-info" element={<UpdateInformationPage />} />
 
       <Route path="/staff-page" element={<StaffPage />} />
-      <Route path="/manager-page" element={<ManagerPage />} />
 
+      <Route path='/create-blog' element={<BlogForm />} />
+
+      {/* admin routes */}
       <Route element={<RequireAuth allowedRoles={['1']} />}>
+        <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
-          <Route path="/admin-page" element={<AdminPage />} />
           <Route path='/manage-account' element={<ManageAccount />} />
           <Route path='/info-setting' element={<SettingInformationPage />} />
           <Route path='/create-user' element={<CreateUser />} />
         </Route>
       </Route>
 
-      <Route path='/cvoucherpage' element={<CVoucherPage />} />
+      {/* manager routes */}
+      <Route element={<RequireAuth allowedRoles={['2']} />}>
+        <Route path="/manager-page" element={<ManagerPage />} />
+        <Route element={<RoleLayout />}>
+          <Route path='/add-product/:action' element={<AddProductPage />} />
+          <Route path='/product/:action' element={<ProductPage />} />
+          <Route path='/voucher/:action' element={<VoucherPage />} />
+        </Route>
+      </Route>
+
+      {/* manager routes */}
+      <Route element={<RequireAuth allowedRoles={['2']} />}>
+        <Route path="/manager-page" element={<ManagerPage />} />
+        <Route element={<RoleLayout />}>
+          <Route path='/add-product/:action' element={<AddProductPage />} />
+          <Route path='/product/:action' element={<ProductPage />} />
+          <Route path='/voucher/:action' element={<VoucherPage />} />
+        </Route>
+      </Route>
+
       <Route element={<RoleLayout />}>
 
         <Route path='/blog-content' element={<BlogContentPage />} />
         <Route path='/feedback' element={<FeedbackPage />} />
         <Route path='/order' element={<ViewOrderPage />} />
         <Route path='/announce-order' element={<AnnounceOrderPage />} />
-        <Route path='/product' element={<ProductPage />} />
-        <Route path='/add-product' element={<AddProductPage />} />
-        <Route path='/voucher' element={<VoucherPage />} />
       </Route>
     </Routes>
   );

@@ -9,7 +9,7 @@ const SpeciesPage = () => {
         <Fragment>
             <About />
             <div className="bird-of-species-section">
-                <h3>Chim thuộc Bộ Vẹt</h3>
+                <h3>Lồng phù hợp với chim</h3>
                 <BirdList />
             </div>
             <div className="different-species-carousel">
