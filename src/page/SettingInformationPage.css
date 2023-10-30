@@ -59,6 +59,7 @@
 .update-info-of-img,
 .update-info-of-profile {
     flex: 1;
+    height: 371px;
     margin: 30px;
     padding: 20px 40px;
     background-color: white;
@@ -71,13 +72,9 @@
     margin: 0;
 }
 
-.update-info-of-img {
-    height: 341px;
-}
-
 .avatar {
-    width: 230px;
-    height: 230px;
+    width: 325px;
+    height: 270px;
     border-radius: 50%;
     margin: 20px;
 }
