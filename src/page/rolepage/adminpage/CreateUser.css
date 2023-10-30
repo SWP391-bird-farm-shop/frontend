@@ -1,0 +1,65 @@
+/* CreateUser.css */
+
+.create-user-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.create-user-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: rgb(7, 34, 8);
+}
+
+.create-user-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.create-user-label {
+  display: block;
+  margin-bottom: 8px;
+  text-align: left;
+  font-weight: bold;
+  color: #086f18;
+}
+
+.create-user-radio-label {
+  margin-right: 20px;
+  font-weight: normal;
+  color: #086f18;
+}
+
+.create-user-input {
+  width: 100%;
+  padding: 10px;
+  padding-right: 0px;
+  margin-bottom: 16px;
+  border: 1px solid #898c89;
+  border-radius: 5px;
+}
+
+.create-user-radio-label {
+  margin-right: 20px;
+  font-weight: normal;
+}
+
+.create-user-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #0cb525;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-user-button:hover {
+  background-color: #086f18;
+}
