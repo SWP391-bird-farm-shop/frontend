@@ -55,7 +55,11 @@ const App = () => {
         <Route path='/parrot' element={<SpeciesPage />} />
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
-        <Route path='/cart' element={<CartPage />} />
+        <Route path='/custom-products-shape' element={<ShapePage />} />
+        <Route path='/custom-products-size' element={<SizePage />} />
+        <Route path='/custom-products-material' element={<MaterialPage />} />
+        <Route path='/custom-products-color' element={<ColorPage />} />
+        <Route path='/custom-products-end' element={<TotalPage />} />
       </Route>
 
 
@@ -73,11 +77,6 @@ const App = () => {
           <Route path='/about-us' element={<AboutPage />} />
           <Route path='/cart' element={<CartPage />} />
 
-          <Route path='/custom-products-shape' element={<ShapePage />} />
-          <Route path='/custom-products-size' element={<SizePage />} />
-          <Route path='/custom-products-material' element={<MaterialPage />} />
-          <Route path='/custom-products-color' element={<ColorPage />} />
-          <Route path='/custom-products-end' element={<TotalPage />} />
         </Route>
       </Route>
 
