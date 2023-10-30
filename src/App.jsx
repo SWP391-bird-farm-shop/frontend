@@ -38,7 +38,6 @@ import VoucherPage from './page/rolepage/managerpage/VoucherPage'
 import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 import CreateUser from './page/rolepage/adminpage/CreateUser'
 import AddProductPage from './page/rolepage/managerpage/AddProductPage'
-import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 
 
 const App = () => {
@@ -57,12 +56,6 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/cart' element={<CartPage />} />
-
-        <Route path='/custom-products-shape' element={<ShapePage />} />
-        <Route path='/custom-products-size' element={<SizePage />} />
-        <Route path='/custom-products-material' element={<MaterialPage />} />
-        <Route path='/custom-products-color' element={<ColorPage />} />
-        <Route path='/custom-products-end' element={<TotalPage />} /> */}
       </Route>
 
 
@@ -80,6 +73,11 @@ const App = () => {
           <Route path='/about-us' element={<AboutPage />} />
           <Route path='/cart' element={<CartPage />} />
 
+          <Route path='/custom-products-shape' element={<ShapePage />} />
+          <Route path='/custom-products-size' element={<SizePage />} />
+          <Route path='/custom-products-material' element={<MaterialPage />} />
+          <Route path='/custom-products-color' element={<ColorPage />} />
+          <Route path='/custom-products-end' element={<TotalPage />} />
         </Route>
       </Route>
 
@@ -91,7 +89,7 @@ const App = () => {
 
       <Route path="/staff-page" element={<StaffPage />} />
       <Route path="/manager-page" element={<ManagerPage />} />
-      <Route path="/admin-page" element={<AdminPage />} />
+
       <Route element={<RequireAuth allowedRoles={['1']} />}>
         <Route element={<RoleLayout />}>
           <Route path="/admin-page" element={<AdminPage />} />
