@@ -18,6 +18,7 @@ const ComboBox = () => {
         '60"'
     ]
     return (
+        //product
         // <div className="combo-box-price">
         //     <select value={selected} onChange={e => setSelected(e.target.value)}>
         //         <option value="" disabled hidden selected>Sắp xếp theo giá</option>
@@ -29,6 +30,7 @@ const ComboBox = () => {
         //     </select>
         // </div>
 
+        //custom
         <div className="combo-box-size">
             <select value={selected} onChange={e => setSelected(e.target.value)}>
                 <option value="" disabled hidden selected>Chọn kích thước lồng</option>

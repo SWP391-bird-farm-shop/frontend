@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaBookOpen, FaBreadSlice, FaBullhorn, FaDove, FaEdit, FaRegEdit, FaRegCommentAlt, FaRegListAlt, FaGift, FaRegMoneyBillAlt, FaUserAlt, FaBoxes, FaCreativeCommonsSa } from 'react-icons/fa';
+import { Link, useParams } from 'react-router-dom';
+import { FaBookOpen, FaBreadSlice, FaBullhorn, FaDove, FaEdit, FaRegEdit, FaRegCommentAlt, FaRegListAlt, FaGift, FaRegMoneyBillAlt, FaUserAlt, FaBoxes, FaCreativeCommonsSa, FaUser } from 'react-icons/fa';
 import "./SideNav.css"
 import useAuth from '../../hooks/useAuth';
 
 const SideNav = () => {
     const { auth } = useAuth();
+    const { action } = useParams();
     // for admin
     if (auth.user.roleId === '1') {
         return (
@@ -17,10 +18,50 @@ const SideNav = () => {
                     <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa tài khoản
                 </Link>
                 <Link to="/create-user" className='side-navbar-link'>
-                    <FaAdd className='side-navbar-link-icon' /> Tạo tài khoản
+                    <FaUser className='side-navbar-link-icon' /> Tạo tài khoản
                 </Link>
             </div>
         )
+    }
+    // manager
+    if (auth.user.roleId === '2') {
+        if (action === 'manage-voucher' || action === 'view-voucher'
+            || action === 'edit-voucher') {
+            console.log(action);
+            return (
+                <div className="side-navbar">
+                    <Link to="/voucher/view-voucher" className='side-navbar-link'>
+                        <FaRegMoneyBillAlt className='side-navbar-link-icon' /> Xem voucher
+                    </Link>
+                    <Link to="/about" className='side-navbar-link'>
+                        <FaRegEdit className='side-navbar-link-icon' /> Tạo voucher
+                    </Link>
+                    <Link to="/voucher/edit-voucher" className='side-navbar-link'>
+                        <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa voucher
+                    </Link>
+                </div>
+            )
+        } else {
+            return (
+                <div className="side-navbar">
+                    <Link to="/product/view-product" className='side-navbar-link'>
+                        <FaBoxes className='side-navbar-link-icon' /> Xem toàn bộ sản phẩm
+                    </Link>
+                    <Link to="/add-product/add-cage" className='side-navbar-link'>
+                        <FaDove className='side-navbar-link-icon' /> Thêm lồng chim
+                    </Link>
+                    <Link to="/add-product/add-food" className='side-navbar-link'>
+                        <FaBreadSlice className='side-navbar-link-icon' /> Thêm thức ăn cho chim
+                    </Link>
+                    <Link to="/add-product/add-toy" className='side-navbar-link'>
+                        <FaGift className='side-navbar-link-icon' /> Thêm phụ kiện - đồ chơi
+                    </Link>
+                    <Link to="/product/edit-product" className='side-navbar-link'>
+                        <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa toàn bộ sản phẩm
+                    </Link>
+                </div>
+            )
+        }
     }
     else {
         return (
