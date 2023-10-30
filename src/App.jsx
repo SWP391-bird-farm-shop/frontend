@@ -61,7 +61,7 @@ const App = () => {
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
       </Route>
-
+      <Route path='/create-user' element={<CreateUser />} />
 
 
       {/* user routes */}
