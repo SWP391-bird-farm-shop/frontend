@@ -20,7 +20,7 @@ import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
 
-import CVoucherPage from './page/CVoucherPage'
+import CreateVoucherPage from './page/rolepage/managerpage/CreateVoucherPage'
 import ShapePage from './page/custompage/ShapePage'
 import SizePage from './page/custompage/SizePage'
 import MaterialPage from './page/custompage/MaterialPage'
@@ -62,6 +62,12 @@ const App = () => {
         <Route path='/custom-products-end' element={<TotalPage />} />
       </Route>
 
+      <Route element={<RoleLayout />}>
+      <Route path='/create-voucher' element={<CreateVoucherPage />} />
+
+        </Route>
+      
+      
 
 
       {/* user routes */}
@@ -98,7 +104,6 @@ const App = () => {
         </Route>
       </Route>
 
-      <Route path='/cvoucherpage' element={<CVoucherPage />} />
       <Route element={<RoleLayout />}>
 
         <Route path='/blog-content' element={<BlogContentPage />} />
