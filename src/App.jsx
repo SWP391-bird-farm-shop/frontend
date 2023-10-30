@@ -42,6 +42,11 @@ import AnnounceOrderPage from './page/rolepage/staffpage/AnnounceOrderPage'
 import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
 import ProductPage from './page/rolepage/managerpage/ProductPage'
 import VoucherPage from './page/rolepage/managerpage/VoucherPage'
+<<<<<<< Updated upstream
+=======
+import ManageAccount from './page/rolepage/adminpage/ManageAccount'
+import CreateUser from './page/rolepage/adminpage/CreateUser'
+>>>>>>> Stashed changes
 
 
 
@@ -69,8 +74,12 @@ const App = () => {
         <Route path='/custom-products-size' element={<SizePage />} />
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
+<<<<<<< Updated upstream
         <Route path='/custom-products-end' element={<TotalPage />} /> */}
 
+=======
+        <Route path='/custom-products-end' element={<TotalPage />} />
+>>>>>>> Stashed changes
       </Route>
 
 
@@ -96,11 +105,20 @@ const App = () => {
       <Route path="/reset-pass" element={<ResetPasswordPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
-      <Route path='/info-setting' element={<SettingInformationPage />} />
 
       <Route path="/staff-page" element={<StaffPage />} />
       <Route path="/manager-page" element={<ManagerPage />} />
       <Route path="/admin-page" element={<AdminPage />} />
+
+      <Route element={<RequireAuth allowedRoles={['1']} />}>
+        <Route element={<RoleLayout />}>
+          <Route path="/admin-page" element={<AdminPage />} />
+          <Route path='/manage-account' element={<ManageAccount />} />
+          <Route path='/info-setting' element={<SettingInformationPage />} />
+          <Route path='/create-user' element={<CreateUser />} />
+        </Route>
+      </Route>
+
       <Route element={<RoleLayout />}>
         <Route path='/blogs' element={<BlogPage />} />
         <Route path='/blog-content' element={<BlogContentPage />} />
@@ -109,8 +127,6 @@ const App = () => {
         <Route path='/announce-order' element={<AnnounceOrderPage />} />
         <Route path='/product' element={<ProductPage />} />
         <Route path='/voucher' element={<VoucherPage />} />
-
-
       </Route>
     </Routes>
   );
