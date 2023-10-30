@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth';
 const SideNav = () => {
     const { auth } = useAuth();
     // for admin
-    if (auth.user.roleId === '1') {
+    if (auth?.user?.roleId === '1') {
         return (
             <div className="side-navbar">
                 <Link to="/manage-account" className='side-navbar-link'>
@@ -98,7 +98,7 @@ const SideNav = () => {
                     <FaUserAlt className='side-navbar-link-icon' /> Xem toàn bộ tài khoản
                 </Link>
                 <Link to="/create-user" className='side-navbar-link'>
-                    <FaAdd className='side-navbar-link-icon' /> Tạo tài khoản
+                    <FaRegEdit className='side-navbar-link-icon' /> Tạo tài khoản
                 </Link>
                 <Link to="/info-setting" className='side-navbar-link'>
                     <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa tài khoản
