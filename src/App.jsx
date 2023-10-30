@@ -38,6 +38,7 @@ import VoucherPage from './page/rolepage/managerpage/VoucherPage'
 import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 import CreateUser from './page/rolepage/adminpage/CreateUser'
 import AddProductPage from './page/rolepage/managerpage/AddProductPage'
+import BlogForm from './page/rolepage/staffpage/CreateBlog'
 
 
 const App = () => {
@@ -93,6 +94,8 @@ const App = () => {
       <Route path="/update-info" element={<UpdateInformationPage />} />
 
       <Route path="/staff-page" element={<StaffPage />} />
+
+      <Route path='/create-blog' element={<BlogForm />} />
 
       {/* admin routes */}
       <Route element={<RequireAuth allowedRoles={['1']} />}>
