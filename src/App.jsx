@@ -64,9 +64,7 @@ const App = () => {
       </Route>
 
       <Route element={<RoleLayout />}>
-      <Route path='/add-product' element={<AddProductPage />} />
-
-
+      <Route path='/voucher' element={<VoucherPage />} />
       </Route>
 
 
@@ -112,21 +110,13 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={['2']} />}>
         <Route path="/manager-page" element={<ManagerPage />} />
         <Route element={<RoleLayout />}>
+          <Route path='/create-voucer/:action' element={<CreateVoucherPage />} />
           <Route path='/add-product/:action' element={<AddProductPage />} />
           <Route path='/product/:action' element={<ProductPage />} />
           <Route path='/voucher/:action' element={<VoucherPage />} />
         </Route>
       </Route>
 
-      {/* manager routes */}
-      <Route element={<RequireAuth allowedRoles={['2']} />}>
-        <Route path="/manager-page" element={<ManagerPage />} />
-        <Route element={<RoleLayout />}>
-          <Route path='/add-product/:action' element={<AddProductPage />} />
-          <Route path='/product/:action' element={<ProductPage />} />
-          <Route path='/voucher/:action' element={<VoucherPage />} />
-        </Route>
-      </Route>
 
       <Route element={<RoleLayout />}>
         <Route path='/create-blog' element={<BlogForm />} />
