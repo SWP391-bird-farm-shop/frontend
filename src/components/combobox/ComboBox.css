@@ -7,7 +7,7 @@
 }
 
 .combo-box-price select,
-.combo-box-size select {
+.combo-box-product select {
     background-color: aliceblue;
     color: black;
     width: 100%;
@@ -19,7 +19,7 @@
     outline: none;
 }
 
-.combo-box-size {
+.combo-box-product {
     width: 101.5%;
     border: 1px solid #ccc;
     border-radius: 15px;
@@ -27,6 +27,6 @@
     margin-top: 0;
 }
 
-.combo-box-size select {
+.combo-box-product select {
     border-radius: 15px;
 }
