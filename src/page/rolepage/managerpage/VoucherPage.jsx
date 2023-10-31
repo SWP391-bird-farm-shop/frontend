@@ -35,11 +35,13 @@ const VoucherPage = () => {
         fetchData()
     }, [])
 
+
     if (action === 'view-voucher') {
         return (
             <div className="voucher-page">
-                <div className="voucher-page-info">
-                    {listVoucher?.map(voucher => (
+                {listVoucher?.map(voucher => (
+                    <div className="voucher-page-info">
+
                         <div className="voucher-info-section">
                             <h3 className="voucher-name">{voucher.voucherName}</h3>
                             <div className="voucher-page-info-des">
@@ -55,20 +57,31 @@ const VoucherPage = () => {
                                 <p className="voucher-date">Ngày hết hạn: {moment(voucher.endDate).format('DD-MM-YYYY')}</p>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
         )
     } else {
         return (
-            // xóa voucher
+            //xóa voucher
             <div className="voucher-page">
                 {listVoucher?.map(voucher => (
-                    <div>
+                    <div className="voucher-page-info">
                         <button className="remove-button" onClick={() => handleDelete(voucher.voucherId)}><FaTrashAlt /></button>
-                        <div className="voucher-page-info">
+                        <div className="voucher-info-section">
                             <h3 className="voucher-name">{voucher.voucherName}</h3>
-                            <p className="voucher-des">{voucher.description}</p>
+                            <div className="voucher-page-info-des">
+                                <h4 className="voucher-des-title">Mô tả</h4>
+                                <p className="voucher-des">{voucher.description}</p>
+                            </div>
+                            <div className="voucher-page-info-discount">
+                                <h4 className="voucher-discount-title">Giá trị giảm</h4>
+                                <p className="voucher-discount">{voucher.discount}</p>
+                            </div>
+                            <div className="voucher-page-info-date">
+                                <p className="voucher-date">Ngày tạo: {moment(voucher.startDate).format('DD-MM-YYYY')}</p>
+                                <p className="voucher-date">Ngày hết hạn: {moment(voucher.endDate).format('DD-MM-YYYY')}</p>
+                            </div>
                         </div>
                     </div>
                 ))}
