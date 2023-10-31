@@ -64,7 +64,8 @@ const App = () => {
       </Route>
 
       <Route element={<RoleLayout />}>
-      <Route path='/create-user' element={<CreateUser />} />
+      <Route path='/add-product' element={<AddProductPage />} />
+
 
       </Route>
 
