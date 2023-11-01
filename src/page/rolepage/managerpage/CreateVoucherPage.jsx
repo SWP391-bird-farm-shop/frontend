@@ -45,6 +45,10 @@ function CreateVoucherPage() {
           <input className="create-voucher-input-field" type="number" id="discount" name="discount" value={voucher.discount} onChange={handleInputChange} required />
         </div>
         <div className="create-voucher-input-container">
+          <label className="create-voucher-input-label" htmlFor="expiry">Ngày bắt đầu</label>
+          <input className="create-voucher-input-field" type="date" id="expiry" name="expiry" value={voucher.expiry} onChange={handleInputChange} required />
+        </div>
+        <div className="create-voucher-input-container">
           <label className="create-voucher-input-label" htmlFor="expiry">Ngày hết hạn</label>
           <input className="create-voucher-input-field" type="date" id="expiry" name="expiry" value={voucher.expiry} onChange={handleInputChange} required />
         </div>
