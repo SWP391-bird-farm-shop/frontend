@@ -184,3 +184,15 @@
 .add-product-button:hover {
     background-color: #45a049;
 }
+
+.add-product-style-input-container {
+    display: flex;
+    margin-left: 2vw;
+}
+
+.add-product-style-input {
+    margin: 0 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

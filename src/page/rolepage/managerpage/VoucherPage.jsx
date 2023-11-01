@@ -33,7 +33,7 @@ const VoucherPage = () => {
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [handleDelete])
 
     if (action === 'view-voucher') {
         return (

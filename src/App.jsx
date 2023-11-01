@@ -64,7 +64,7 @@ const App = () => {
       </Route>
 
       <Route element={<RoleLayout />}>
-      <Route path='/voucher' element={<VoucherPage />} />
+        <Route path='/voucher' element={<VoucherPage />} />
       </Route>
 
 
