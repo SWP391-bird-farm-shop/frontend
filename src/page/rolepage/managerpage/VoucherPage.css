@@ -36,3 +36,7 @@
 .voucher-date {
     text-align: justify;
 }
+
+.voucher-info-section {
+    display: flex;
+}

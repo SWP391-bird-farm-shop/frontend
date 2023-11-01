@@ -35,13 +35,11 @@ const VoucherPage = () => {
         fetchData()
     }, [])
 
-
     if (action === 'view-voucher') {
         return (
             <div className="voucher-page">
                 {listVoucher?.map(voucher => (
                     <div className="voucher-page-info">
-
                         <div className="voucher-info-section">
                             <h3 className="voucher-name">{voucher.voucherName}</h3>
                             <div className="voucher-page-info-des">
