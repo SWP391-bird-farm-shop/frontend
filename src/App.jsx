@@ -39,6 +39,7 @@ import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 import CreateUser from './page/rolepage/adminpage/CreateUser'
 import AddProductPage from './page/rolepage/managerpage/AddProductPage'
 import BlogForm from './page/rolepage/staffpage/CreateBlog'
+import TermsAndConditionsPage from './page/TermsAndConditionsPage'
 
 
 const App = () => {
@@ -63,12 +64,7 @@ const App = () => {
         <Route path='/custom-products-end' element={<TotalPage />} />
       </Route>
 
-      <Route element={<RoleLayout />}>
-      <Route path='/voucher' element={<VoucherPage />} />
-      </Route>
-
-
-
+      <Route path='/term-condition' element={<TermsAndConditionsPage />} />
 
       {/* user routes */}
       <Route element={<RequireAuth allowedRoles={['4']} />}>
