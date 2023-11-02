@@ -65,6 +65,12 @@ const App = () => {
       </Route>
 
       <Route path='/term-condition' element={<TermsAndConditionsPage />} />
+      <Route element={<RoleLayout />}>
+        <Route path='/voucher' element={<VoucherPage />} />
+      </Route>
+
+
+
 
       {/* user routes */}
       <Route element={<RequireAuth allowedRoles={['4']} />}>

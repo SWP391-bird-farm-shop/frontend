@@ -83,7 +83,7 @@ const ProductPage = () => {
             sortByToy();
         }
     }, [listProduct]);
-
+    //listProduct
     if (action === 'view-product') {
         return (
             <div className="product-manager-page">

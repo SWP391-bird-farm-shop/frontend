@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const CartPage = () => {
     const { auth } = useAuth();
     const [cartItems, setCartItems] = useState(null);
+    const [voucherList, setVoucherList] = useState(null);
     const [name, setName] = useState('');
     const [address, setAddress] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -27,6 +28,8 @@ const CartPage = () => {
     const [isNameChange, setIsNameChange] = useState(false);
     const [isPhoneNumChange, setIsPhoneNumChange] = useState(false);
     const [isAddressChange, setIsAddressChange] = useState(false);
+
+    const [selectVoucher, setSelectVoucher] = useState('');
 
     const handleCustomerEdit = () => {
         setEditing(true);
@@ -64,11 +67,12 @@ const CartPage = () => {
             setAddress(editAddress);
 
             const url = '/api/Order/update-order-to-add-product';
-            const total = cartItems[0].total;
+            const total = cartItems[0]?.total;
             let note = editName + " " + editPhonenumber + " " + editAddress;
             note.toString();
+            console.log(note);
             const data = {
-                orderId: cartItems[0].orderId,
+                orderId: cartItems[0]?.orderId,
                 userId: auth.user.userId,
                 note: note,
                 price: total
@@ -83,6 +87,7 @@ const CartPage = () => {
         }
     }
 
+    //fetch for order
     const fetchData = async () => {
         const url = '/api/Order/get-not-paid';
         const data = {
@@ -93,16 +98,27 @@ const CartPage = () => {
             setCartItems(response.data);
             console.log(response.data)
             if (response) {
-                const paymentUrl = `/api/Payment/get-payment?OrderId=${cartItems[0].orderId}`
+                const paymentUrl = `/api/Payment/get-payment?OrderId=${cartItems[0]?.orderId}`
                 const responsePayment = await api.get(paymentUrl);
                 if (responsePayment.data.status) {
-                    const finshPaymentUrl = `/api/Order/paid?OrderID=${cartItems[0].orderId}`;
+                    const finshPaymentUrl = `/api/Order/paid?OrderID=${cartItems[0]?.orderId}`;
                     const responseFinish = await api.post(finshPaymentUrl);
                     console.log(responseFinish);
                 }
             }
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    const fetchDataVoucher = async () => {
+        const url = '/api/Voucher/get-for-user'
+        try {
+            const response = await api.get(url);
+            console.log(response.data)
+            setVoucherList(response.data)
+        } catch (error) {
+            console.error(error)
         }
     }
 
@@ -133,7 +149,7 @@ const CartPage = () => {
             if (response) {
                 const decreaseTotal = response.data.price;
                 const decreaseQuantity = response.data.quantity;
-                const total = cartItems[0].total - (decreaseTotal * decreaseQuantity);
+                const total = cartItems[0]?.total - (decreaseTotal * decreaseQuantity);
                 const urlUpdate = '/api/Order/update-order-to-add-product';
                 const dataUpdate = {
                     orderId: response.data.orderId,
@@ -195,18 +211,6 @@ const CartPage = () => {
         });
     }
 
-    // Fetch User Cart
-    useEffect(() => {
-        if (auth.user) {
-            fetchData();
-            setName(auth.user.fullName);
-            setAddress(auth.user.address);
-            setPhoneNumber(auth.user.phoneNumber);
-        }
-        else
-            navigate('/log-in')
-    }, [])
-
     // Calculate cart total
     const calculateTotal = () => {
         return cartItems?.reduce((total, item) => total + (item.total), 0);
@@ -221,12 +225,13 @@ const CartPage = () => {
                 console.log(method);
             }
         })
+        console.log(method)
         if (method === null) {
             window.prompt("Please payment options");
         }
         if (method === 'vnpay') {
             //create new payment
-            const url = `/api/Payment/create-payment?OrderId=${cartItems[0].orderId}`
+            const url = `/api/Payment/create-payment?OrderId=${cartItems[0]?.orderId}`
             try {
                 const response = await api.post(url);
                 console.log(response.data)
@@ -245,13 +250,13 @@ const CartPage = () => {
             }
         } else if (method === "cash") {
             //create new payment
-            const url = `/api/Payment/create-payment?OrderId=${cartItems[0].orderId}`;
+            const url = `/api/Payment/create-payment?OrderId=${cartItems[0]?.orderId}`;
             try {
                 const response = await api.post(url);
                 console.log(response.data)
                 //setting order true
                 if (response) {
-                    const orderFinishurl = `/api/Order/paid?OrderID=${cartItems[0].orderId}`;
+                    const orderFinishurl = `/api/Order/paid?OrderID=${cartItems[0]?.orderId}`;
                     try {
                         const orderFinishResponse = await api.post(orderFinishurl);
                         console.log(orderFinishResponse.data)
@@ -274,6 +279,22 @@ const CartPage = () => {
         }
     }
 
+    // Fetch User Cart
+    useEffect(() => {
+        if (auth.user) {
+            fetchData();
+            fetchDataVoucher();
+            setName(auth.user.fullName);
+            setEditName(auth.user.fullName);
+            setAddress(auth.user.address);
+            setEditAddress(auth.user.address);
+            setPhoneNumber(auth.user.phoneNumber);
+            setEditPhonenumber(auth.user.phoneNumber);
+        }
+        else
+            navigate('/log-in')
+    }, [])
+    //updateQuantity, paymentSubmit, auth
 
     return (
         <div className="cart-and-payment">
@@ -320,7 +341,7 @@ const CartPage = () => {
                             </p>
                         </div>
                     ) : (
-                        <p>Tên khách hàng: {name}</p>
+                        <p>Tên khách hàng: {editName}</p>
                     )}
 
                     {isEditingPhoneNumber ? (
@@ -338,7 +359,7 @@ const CartPage = () => {
                         </div>
                     ) : (
                         <p className="flex">
-                            Số điện thoại: {phoneNumber}{' '}
+                            Số điện thoại: {editPhonenumber}{' '}
                         </p>
                     )}
 
@@ -357,7 +378,7 @@ const CartPage = () => {
                         </div>
                     ) : (
                         <p className="flex">
-                            Địa chỉ: {address}{' '}
+                            Địa chỉ: {editAddress}{' '}
                         </p>
                     )}
 
@@ -381,11 +402,14 @@ const CartPage = () => {
 
                 <div className="voucher-section">
                     <div className="voucher-section-combobox">
-                        <select name="voucher" id="voucher" className="voucher-combobox">
-                            <option value="voucher1">Voucher 1</option>
-                            <option value="voucher2">Voucher 2</option>
-                            <option value="voucher3">Voucher 3</option>
-                            <option value="voucher4">Voucher 4</option>
+                        <select name="voucher" id="voucher" className="voucher-combobox"
+                            onChange={(event) => setSelectVoucher(event.target.value)}>
+                            <option value="" disabled hidden selected>Chọn Voucher</option>
+                            {voucherList?.map(voucher => (
+                                <option key={voucher.voucherId} value={voucher.discount}>
+                                    {voucher.voucherName}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <div className="voucher-info">
@@ -408,9 +432,9 @@ const CartPage = () => {
                 </div>
 
                 <div className="order-summary-section">
-                    <p className="order-summary-title">Tổng tiền hàng: <span className="order-summary-price">${calculateTotal()}</span></p>
+                    <p className="order-summary-title">Tổng tiền hàng: <span className="order-summary-price">${cartItems[0]?.total}</span></p>
                     <p className="order-summary-title">Tổng tiền phí vận chuyển: <span className="order-summary-price">$0</span></p>
-                    <p className="order-summary-title">Tổng cộng Voucher giảm giá: <span className="order-summary-price">$0</span></p>
+                    <p className="order-summary-title">Tổng cộng Voucher giảm giá: <span className="order-summary-price">${parseFloat(selectVoucher) / 100 * cartItems[0]?.total}</span></p>
                 </div>
 
                 <div className="total-section">

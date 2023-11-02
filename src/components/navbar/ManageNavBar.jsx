@@ -16,6 +16,10 @@ const ManageNavbar = ({ className }) => {
 
     const { auth } = useAuth();
 
+    const Logout = () => {
+        localStorage.clear();
+        auth.user = null;
+    }
 
     if (auth?.user?.roleId === '1') {
         return (
