@@ -66,6 +66,8 @@ const LogInPage = () => {
                     navigate('/admin-page');
                 } if (user.roleId === '2')
                     navigate('/manager-page');
+                if (user.roleId === '3')
+                    navigate('/staff-page')
             } catch (error) {
                 console.error(error);
             }

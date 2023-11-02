@@ -42,6 +42,9 @@ import BlogForm from './page/rolepage/staffpage/CreateBlog'
 
 
 const App = () => {
+
+
+
   return (
     <Routes>
       {/* public routes */}
@@ -92,7 +95,6 @@ const App = () => {
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
 
-      <Route path="/staff-page" element={<StaffPage />} />
 
 
 
@@ -118,13 +120,20 @@ const App = () => {
       </Route>
 
 
-      <Route element={<RoleLayout />}>
-        <Route path='/create-blog' element={<BlogForm />} />
-        <Route path='/blog-content' element={<BlogContentPage />} />
-        <Route path='/feedback' element={<FeedbackPage />} />
-        <Route path='/order' element={<ViewOrderPage />} />
-        <Route path='/announce-order' element={<AnnounceOrderPage />} />
+      {/* staff routes */}
+      <Route element={<RequireAuth allowedRoles={['3']} />}>
+        <Route path="/staff-page" element={<StaffPage />} />
+        <Route element={<RoleLayout />}>
+          <Route path='/create-blog' element={<BlogForm />} />
+          <Route path='/blog-content' element={<BlogContentPage />} />
+          <Route path='/feedback' element={<FeedbackPage />} />
+          <Route path='/order' element={<ViewOrderPage />} />
+          <Route path='/announce-order' element={<AnnounceOrderPage />} />
+
+        </Route>
       </Route>
+
+
     </Routes>
   );
 }

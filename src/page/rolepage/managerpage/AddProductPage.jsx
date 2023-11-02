@@ -3,6 +3,8 @@ import './AddProductPage.css';
 import ComboBox from '../../../components/combobox/ComboBox';
 import { useParams } from 'react-router-dom';
 import api from '../../../components/utils/requestAPI';
+import { storage } from '../../../components/utils/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 const AddProductPage = () => {
 
@@ -18,11 +20,26 @@ const AddProductPage = () => {
     const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState(0);
 
+    const [imageU, setImageU] = useState('');
+
     const { action } = useParams();
 
-    const handleAvatarChange = (event) => {
+    const handleAvatarChange = async (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
+
+        const data = await event.target.files[0].arrayBuffer();
+        const metadata = {
+            contentType: 'image/png',
+        }
+        const storageRef = ref(storage, `/lama/${event.target.value}`)
+        await uploadBytes(storageRef, data, metadata)
+
+        const imageUrl = await getDownloadURL(storageRef);
+
+        console.log(imageUrl);
+
+        setImageU(imageUrl);
 
         reader.onload = () => {
             setAvatarUrl(reader.result);
@@ -32,6 +49,7 @@ const AddProductPage = () => {
             reader.readAsDataURL(file);
         }
     };
+
 
     const fetchDataStyle = async () => {
         const urlStyle = '/api/Style/get-all'
@@ -81,7 +99,60 @@ const AddProductPage = () => {
                 {
                     materialID: selectMaterial
                 }
-            ]
+            ],
+            imageUrl: imageU
+        }
+        try {
+            const response = await api.post(url, data);
+            console.log(response.data)
+            if (response) {
+                window.prompt('add success');
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const handleToySubmit = async () => {
+        const priceDouble = parseFloat(price);
+        const quantityNum = parseInt(quantity);
+        const url = '/api/Product/create';
+        const data = {
+            productName: name,
+            productDescription: des,
+            quantity: quantityNum,
+            price: priceDouble,
+            discountPrice: 0,
+            category: {
+                categoryID: "Catef5d6d"
+            },
+            imageUrl: imageU
+        }
+        try {
+            const response = await api.post(url, data);
+            console.log(response.data)
+            if (response) {
+                window.prompt('add success');
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const handleFoodSubmit = async () => {
+        const priceDouble = parseFloat(price);
+        const quantityNum = parseInt(quantity);
+        const url = '/api/Product/create';
+        const data = {
+            productName: name,
+            productDescription: des,
+            quantity: quantityNum,
+            price: priceDouble,
+            discountPrice: 0,
+            category: {
+                categoryID: "Cate7646a"
+            },
+            imageUrl: imageU
         }
         try {
             const response = await api.post(url, data);
@@ -162,7 +233,7 @@ const AddProductPage = () => {
             </div>
         )
     }
-    else {
+    if (action === 'add-food') {
         return (
             //food a&t
             <div className='add-product-page'>
@@ -180,24 +251,63 @@ const AddProductPage = () => {
                             <form>
                                 <div className="add-product-input-container">
                                     <label htmlFor="name" className='add-product-input-container-label'>Tên sản phẩm</label>
-                                    <input type="text" id="name" name="name" className='add-product-input' required />
+                                    <input type="text" id="name" name="name" className='add-product-input' required onChange={(event) => setName(event.target.value)} />
                                 </div>
                                 <div className="add-product-input-container">
                                     <label htmlFor="description" className='add-product-input-container-label'>Mô tả</label>
-                                    <textarea id="description" name="description" className='add-product-input des-textarea' required />
+                                    <textarea id="description" name="description" className='add-product-input des-textarea' required onChange={(event) => setDes(event.target.value)} />
                                 </div>
                                 <div className="add-product-input-container">
                                     <label htmlFor="price" className='add-product-input-container-label'>Giá tiền (&#8363;)</label>
-                                    <input type="number" id="price" name="price" className='add-product-input' required />
+                                    <input type="number" id="price" name="price" className='add-product-input' required onChange={(event) => setPrice(event.target.value)} />
                                 </div>
                                 <div className="add-product-input-container">
                                     <label htmlFor="inventory" className='add-product-input-container-label'>Số lượng hàng trong kho</label>
-                                    <input type="number" id="inventory" name="inventory" className='add-product-input' required />
+                                    <input type="number" id="inventory" name="inventory" className='add-product-input' required onChange={(event) => setQuantity(event.target.value)} />
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <button type="submit" className='add-product-button'>Lưu sản phẩm</button>
+                    <button type="submit" className='add-product-button' onClick={handleFoodSubmit}>Lưu sản phẩm</button>
+                </div>
+            </div>
+        )
+    }
+    if (action === 'add-toy') {
+        return (
+            <div className='add-product-page'>
+                <div className="add-product-container">
+                    <h2 className='add-product-container-title'>Thông tin</h2>
+                    <div className="add-product-section">
+                        <div className="add-product-food-at-of-img">
+                            <h2>Ảnh sản phẩm</h2>
+                            <img src={avatarUrl} alt="Product A" className="product-food-at-img" />
+                            <label htmlFor="imageInput" className="custom-file-upload">Thêm ảnh sản phẩm</label>
+                            <input type="file" id="imageInput" accept="image/*" onChange={handleAvatarChange} style={{ display: 'none' }} />
+                        </div>
+                        <div className="add-product-food-at-of-profile">
+                            <h2>Hồ sơ</h2>
+                            <form>
+                                <div className="add-product-input-container">
+                                    <label htmlFor="name" className='add-product-input-container-label'>Tên sản phẩm</label>
+                                    <input type="text" id="name" name="name" className='add-product-input' required onChange={(event) => setName(event.target.value)} />
+                                </div>
+                                <div className="add-product-input-container">
+                                    <label htmlFor="description" className='add-product-input-container-label'>Mô tả</label>
+                                    <textarea id="description" name="description" className='add-product-input des-textarea' required onChange={(event) => setDes(event.target.value)} />
+                                </div>
+                                <div className="add-product-input-container">
+                                    <label htmlFor="price" className='add-product-input-container-label'>Giá tiền (&#8363;)</label>
+                                    <input type="number" id="price" name="price" className='add-product-input' required onChange={(event) => setPrice(event.target.value)} />
+                                </div>
+                                <div className="add-product-input-container">
+                                    <label htmlFor="inventory" className='add-product-input-container-label'>Số lượng hàng trong kho</label>
+                                    <input type="number" id="inventory" name="inventory" className='add-product-input' required onChange={(event) => setQuantity(event.target.value)} />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button type="submit" className='add-product-button' onClick={handleToySubmit}>Lưu sản phẩm</button>
                 </div>
             </div>
         )
