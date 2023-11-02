@@ -3,15 +3,21 @@ import "./HomePage.css";
 import Slider from "../components/slider/Slider.jsx";
 import Carousel from "../components/carousel/Carousel";
 import Article from "../components/article/Article";
+import useAuth from "../hooks/useAuth.jsx";
 
 
 const HomePage = () => {
+
+    const { auth } = useAuth();
+
     const fetchData = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const status = urlParams.get('status');
 
         if (status === 'success') {
             window.prompt('Payment Successful!');
+            localStorage.clear();
+            auth.user = null;
         } else if (status === 'failure') {
             window.prompt('Payment Failed!');
         }

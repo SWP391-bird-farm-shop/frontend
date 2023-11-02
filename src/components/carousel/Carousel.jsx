@@ -36,7 +36,7 @@ const Carousel = ({ className }) => {
         if (className === 'Product') {
             const fetchData = async () => {
                 try {
-                    await api.get('/api/Product/get-for-customer', {
+                    await api.get('api/Product/get-by-category?categoryId=Cate90fb2', {
                         headers: {
                             'accept': '*/*'
                         }

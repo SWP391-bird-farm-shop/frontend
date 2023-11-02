@@ -24,7 +24,7 @@ const CagePage = () => {
       }
     };
     fetchData();
-  }, [cage])
+  }, [])
 
   return (
     <div className="product-page">

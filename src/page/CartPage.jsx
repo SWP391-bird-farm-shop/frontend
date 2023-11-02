@@ -31,6 +31,8 @@ const CartPage = () => {
 
     const [selectVoucher, setSelectVoucher] = useState('');
 
+    const [totalPrice, setTotalPrice] = useState(0);
+
     const handleCustomerEdit = () => {
         setEditing(true);
         setIsEditingName(true);
@@ -217,6 +219,24 @@ const CartPage = () => {
     }
 
     const paymentSubmit = async () => {
+        //update product total lastime to payment
+
+        const urlUpdate = '/api/Order/update-order-to-add-product';
+        let note = editName + " " + editPhonenumber + " " + editAddress;
+        const dataUpdate = {
+            orderId: cartItems[0].orderId,
+            userId: auth.user.userId,
+            note: note,
+            price: totalPrice
+        }
+        try {
+            const updateResponse = await api.put(urlUpdate, dataUpdate);
+            console.log(updateResponse.data);
+        } catch (error) {
+            console.error(error)
+        }
+
+        //select method
         let method = '';
         const radioButtons = document.querySelectorAll('.payment-section input[type="radio"]');
         radioButtons.forEach(radioButton => {
@@ -226,7 +246,7 @@ const CartPage = () => {
             }
         })
         console.log(method)
-        if (method === null) {
+        if (method === "") {
             window.prompt("Please payment options");
         }
         if (method === 'vnpay') {
@@ -240,7 +260,7 @@ const CartPage = () => {
                     const paymentUrl = `/api/VNPay?PaymentID=${response.data.paymentId}`;
                     try {
                         const response = await api.get(paymentUrl);
-                        window.location.href = response.data
+                        window.open(response.data)
                     } catch (error) {
                         console.error(error)
                     }
@@ -293,161 +313,199 @@ const CartPage = () => {
         }
         else
             navigate('/log-in')
-    }, [])
+    }, [updateQuantity, paymentSubmit, auth])
     //updateQuantity, paymentSubmit, auth
 
-    return (
-        <div className="cart-and-payment">
-            <div className="cart-container">
-                <h2 className="cart-and-payment-heading">Giỏ hàng</h2>
-                <div className="cart-items">
-                    {cartItems?.map(orderDetail => (
-                        orderDetail?.orderDetail?.map(product => (
-                            <div key={product.productId} className="cart-item">
-                                <button onClick={() => removeItem(product.productId)} className="remove-button"><FaTrashAlt /></button>
-                                <div className="cart-item-info">
-                                    <div className="cart-item-image">
-                                        <img src={product.product.image[0].imageUrl} alt={product.product.productName} />
-                                    </div>
-                                    <div className="cart-item-details">
-                                        <h3 className="cart-item-details-name">{product.product.productName}</h3>
-                                        <p>Giá tiền: ${product.price}</p>
-                                        <QuantityButton
-                                            initialQuantity={product.quantity}
-                                            onQuantityChange={(newQuantity) => updateQuantity(product.productId, newQuantity)}
-                                        />
-                                        <p>Thành tiền: ${(product.price * product.quantity)}</p>
+
+    if (cartItems) {
+
+        //handle select voucher and decrese total payment
+        const handleSelectVoucher = (e) => {
+            e.preventDefault();
+            const selectedVoucher = e.target.value;
+            const total = cartItems[0]?.total - parseFloat(selectedVoucher) / 100 * cartItems[0]?.total;
+            console.log(total);
+            setSelectVoucher(selectedVoucher);
+            setTotalPrice(total);
+        }
+
+        return (
+            <div className="cart-and-payment">
+                <div className="cart-container">
+                    <h2 className="cart-and-payment-heading">Giỏ hàng</h2>
+                    <div className="cart-items">
+                        {cartItems?.map(orderDetail => (
+                            orderDetail?.orderDetail?.map(product => (
+                                <div key={product.productId} className="cart-item">
+                                    <button onClick={() => removeItem(product.productId)} className="remove-button"><FaTrashAlt /></button>
+                                    <div className="cart-item-info">
+                                        <div className="cart-item-image">
+                                            <img src={product.product.image[0].imageUrl} alt={product.product.productName} />
+                                        </div>
+                                        <div className="cart-item-details">
+                                            <h3 className="cart-item-details-name">{product.product.productName}</h3>
+                                            <p>Giá tiền: ${product.price}</p>
+                                            <QuantityButton
+                                                initialQuantity={product.quantity}
+                                                onQuantityChange={(newQuantity) => updateQuantity(product.productId, newQuantity)}
+                                            />
+                                            <p>Thành tiền: ${(product.price * product.quantity)}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))
-                    ))}
+                            ))
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <div className="payment-container">
-                <h2 className="cart-and-payment-heading">Hóa đơn</h2>
-                <div className="customer-info-section">
-                    {isEditingName ? (
-                        <div className="flex">
-                            <p>
-                                Tên khách hàng:
-                                <input
-                                    type="text"
-                                    onChange={(event) => setEditName(event.target.value)}
-                                    className="customer-info-section-input"
-                                    placeholder={name}
-                                    required
-                                />
-                            </p>
-                        </div>
-                    ) : (
-                        <p>Tên khách hàng: {editName}</p>
-                    )}
-
-                    {isEditingPhoneNumber ? (
-                        <div className="flex">
-                            <p>
-                                Số điện thoại:
-                                <input
-                                    type="number"
-                                    onChange={(event) => setEditPhonenumber(event.target.value)}
-                                    className="customer-info-section-input" minLength={10} maxLength={11}
-                                    placeholder={phoneNumber}
-                                    required
-                                />
-                            </p>
-                        </div>
-                    ) : (
-                        <p className="flex">
-                            Số điện thoại: {editPhonenumber}{' '}
-                        </p>
-                    )}
-
-                    {isEditingAddress ? (
-                        <div className="flex">
-                            <p>
-                                Địa chỉ:
-                                <input
-                                    type="text"
-                                    onChange={(event) => setEditAddress(event.target.value)}
-                                    className="customer-info-section-input"
-                                    placeholder={address}
-                                    required
-                                />
-                            </p>
-                        </div>
-                    ) : (
-                        <p className="flex">
-                            Địa chỉ: {editAddress}{' '}
-                        </p>
-                    )}
-
-                    <div className="editting-information">
-                        {isEditing ? (
-                            <><button onClick={handleSave} className="customer-info-section-button">Lưu</button><p>
-                                <span className="change-info change-customer-info" onClick={handleCustomerCancel}>
-                                    Hủy
-                                </span>
-                            </p></>
+                <div className="payment-container">
+                    <h2 className="cart-and-payment-heading">Hóa đơn</h2>
+                    <div className="customer-info-section">
+                        {isEditingName ? (
+                            <div className="flex">
+                                <p>
+                                    Tên khách hàng:
+                                    <input
+                                        type="text"
+                                        onChange={(event) => setEditName(event.target.value)}
+                                        className="customer-info-section-input"
+                                        placeholder={name}
+                                        required
+                                    />
+                                </p>
+                            </div>
                         ) : (
-                            <p>
-                                <span className="change-info change-customer-info" onClick={handleCustomerEdit}>
-                                    Thay đổi
-                                </span>
+                            <p>Tên khách hàng: {editName}</p>
+                        )}
+
+                        {isEditingPhoneNumber ? (
+                            <div className="flex">
+                                <p>
+                                    Số điện thoại:
+                                    <input
+                                        type="number"
+                                        onChange={(event) => setEditPhonenumber(event.target.value)}
+                                        className="customer-info-section-input" minLength={10} maxLength={11}
+                                        placeholder={phoneNumber}
+                                        required
+                                    />
+                                </p>
+                            </div>
+                        ) : (
+                            <p className="flex">
+                                Số điện thoại: {editPhonenumber}{' '}
                             </p>
+                        )}
+
+                        {isEditingAddress ? (
+                            <div className="flex">
+                                <p>
+                                    Địa chỉ:
+                                    <input
+                                        type="text"
+                                        onChange={(event) => setEditAddress(event.target.value)}
+                                        className="customer-info-section-input"
+                                        placeholder={address}
+                                        required
+                                    />
+                                </p>
+                            </div>
+                        ) : (
+                            <p className="flex">
+                                Địa chỉ: {editAddress}{' '}
+                            </p>
+                        )}
+
+                        <div className="editting-information">
+                            {isEditing ? (
+                                <><button onClick={handleSave} className="customer-info-section-button">Lưu</button><p>
+                                    <span className="change-info change-customer-info" onClick={handleCustomerCancel}>
+                                        Hủy
+                                    </span>
+                                </p></>
+                            ) : (
+                                <p>
+                                    <span className="change-info change-customer-info" onClick={handleCustomerEdit}>
+                                        Thay đổi
+                                    </span>
+                                </p>
+
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="voucher-section">
+                        <div className="voucher-section-combobox">
+                            <select name="voucher" id="voucher" className="voucher-combobox"
+                                onChange={handleSelectVoucher}>
+                                <option value="" disabled hidden selected>Chọn Voucher</option>
+                                {voucherList?.map(voucher => (
+                                    <option key={voucher.voucherId} value={voucher.discount}>
+                                        {voucher.voucherName}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="voucher-info">
+                            <h3 className="voucher-info-title">Voucher 1</h3>
+                            <p className="voucher-info-description">Giảm 10% tổng giá sản phẩm</p>
+                        </div>
+                    </div>
+
+                    <div className="payment-section">
+                        <div className="payment-method">
+                            <input type="radio" name="payment" value="vnpay" id="vnpay-button" className="payment-section-button" />
+                            <img src="bocau.jpg" alt="vnpay" className="payment-logo" />
+                            <p>VnPay</p>
+                        </div>
+                        <div className="payment-method">
+                            <input type="radio" name="payment" value="cash" id="cash-button" className="payment-section-button" />
+                            <img src="tienmat.jpg" alt="cash" className="payment-logo" />
+                            <p>Tiền Mặt</p>
+                        </div>
+                    </div>
+
+                    <div className="order-summary-section">
+                        <p className="order-summary-title">Tổng tiền hàng: <span className="order-summary-price">${cartItems[0]?.total}</span></p>
+                        <p className="order-summary-title">Tổng tiền phí vận chuyển: <span className="order-summary-price">$0</span></p>
+                        {selectVoucher ? (
+
+                            <p className="order-summary-title">Tổng cộng Voucher giảm giá: <span className="order-summary-price">${parseFloat(selectVoucher) / 100 * cartItems[0]?.total}</span></p>
+
+                        ) : (
+
+                            <p className="order-summary-title">Tổng cộng Voucher giảm giá: <span className="order-summary-price">$0</span></p>
 
                         )}
                     </div>
-                </div>
 
-                <div className="voucher-section">
-                    <div className="voucher-section-combobox">
-                        <select name="voucher" id="voucher" className="voucher-combobox"
-                            onChange={(event) => setSelectVoucher(event.target.value)}>
-                            <option value="" disabled hidden selected>Chọn Voucher</option>
-                            {voucherList?.map(voucher => (
-                                <option key={voucher.voucherId} value={voucher.discount}>
-                                    {voucher.voucherName}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="voucher-info">
-                        <h3 className="voucher-info-title">Voucher 1</h3>
-                        <p className="voucher-info-description">Giảm 10% tổng giá sản phẩm</p>
-                    </div>
-                </div>
+                    <div className="total-section">
+                        <h3>Tổng thanh toán</h3>
+                        {selectVoucher === '' ? (
 
-                <div className="payment-section">
-                    <div className="payment-method">
-                        <input type="radio" name="payment" value="vnpay" id="vnpay-button" className="payment-section-button" />
-                        <img src="bocau.jpg" alt="vnpay" className="payment-logo" />
-                        <p>VnPay</p>
+                            <p>${cartItems[0]?.total}</p>
+
+                        ) : (
+
+                            <p>${totalPrice}</p>
+
+                        )}
                     </div>
-                    <div className="payment-method">
-                        <input type="radio" name="payment" value="cash" id="cash-button" className="payment-section-button" />
-                        <img src="tienmat.jpg" alt="cash" className="payment-logo" />
-                        <p>Tiền Mặt</p>
+
+                    <div className="confirm-order">
+                        <button type="submit" onClick={paymentSubmit} className="confirm-button">Thanh toán</button>
                     </div>
                 </div>
-
-                <div className="order-summary-section">
-                    <p className="order-summary-title">Tổng tiền hàng: <span className="order-summary-price">${cartItems[0]?.total}</span></p>
-                    <p className="order-summary-title">Tổng tiền phí vận chuyển: <span className="order-summary-price">$0</span></p>
-                    <p className="order-summary-title">Tổng cộng Voucher giảm giá: <span className="order-summary-price">${parseFloat(selectVoucher) / 100 * cartItems[0]?.total}</span></p>
+            </div >
+        );
+    } else {
+        return (
+            <>
+                <div>
+                    bạn chưa add sản phẩm
                 </div>
-
-                <div className="total-section">
-                    <h3>Tổng thanh toán</h3>
-                    <p>${calculateTotal()}</p>
-                </div>
-
-                <div className="confirm-order">
-                    <button type="submit" onClick={paymentSubmit} className="confirm-button">Thanh toán</button>
-                </div>
-            </div>
-        </div >
-    );
+            </>
+        )
+    }
 }
 
 export default CartPage;
