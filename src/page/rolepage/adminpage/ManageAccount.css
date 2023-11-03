@@ -1,69 +1,76 @@
-/* ManageAccount.css */
-
-/* Container */
 .manage {
   text-align: center;
-  margin: 20px;
+  margin: 50px 3%;
+  margin-top: 0;
 }
 
-/* Page Title */
 .page-title {
   font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
+  color: black;
+  margin-bottom: 40px;
 }
 
-/* User Table */
 .user-table {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 75vw;
+  margin: 0;
   border-collapse: collapse;
-  font-family: Arial, sans-serif;
 }
 
 .user-table th,
 .user-table td {
-  padding: 10px;
-  text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid black;
 }
 
 .user-table th {
   text-align: center;
-  background-color: #333;
-  color: white;
+  background-color: #45d04a;
+  color: black;
+  font-size: 14px;
+  padding: 20px 10px;
 }
 
-.content-info td {
-  text-align: center;
-}
-
-.user-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.user-table tr:hover {
-  background-color: #e0e0e0;
+.user-table td {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  font-size: 16px;
 }
 
 .user-table img {
   max-width: 100px;
   height: auto;
+  object-fit: cover;
 }
 
-/* Back Button */
-.back-button {
-  background-color: rgb(26, 169, 26);
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  text-transform: uppercase;
+.overflow {
+  overflow-x: auto;
+  max-width: 140px;
+  white-space: nowrap;
 }
 
-.back-button:hover {
-  background-color: rgb(20, 107, 20);
+.overflow-edit {
+  overflow-x: auto;
+  max-width: 109px;
+  white-space: nowrap;
+}
+
+.overflow-scroll::-webkit-scrollbar {
+  height: 3px;
+}
+
+.overflow-scroll::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.overflow-scroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.overflow-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.short {
+  width: 120px;
 }
