@@ -39,6 +39,8 @@ import ManageAccount from "./page/rolepage/adminpage/ManageAccount";
 import CreateUser from "./page/rolepage/adminpage/CreateUser";
 import AddProductPage from "./page/rolepage/managerpage/AddProductPage";
 import BlogForm from "./page/rolepage/staffpage/CreateBlog";
+import ConfirmPage from "./page/ConfirmPage";
+import WaitingOrderPage from "./page/WaitingOrderPage";
 
 const App = () => {
   return (
@@ -63,6 +65,9 @@ const App = () => {
         <Route path="/custom-products-material" element={<MaterialPage />} />
         <Route path="/custom-products-color" element={<ColorPage />} />
         <Route path="/custom-products-end" element={<TotalPage />} />
+        <Route path="/order-confirm" element={<ConfirmPage />} />
+        <Route path="/order-waiting" element={<WaitingOrderPage />} />
+        
       </Route>
 
       <Route element={<RoleLayout />}>
