@@ -1,69 +1,105 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { FaBookOpen, FaBreadSlice, FaBullhorn, FaDove, FaEdit, FaRegEdit, FaRegCommentAlt, FaRegListAlt, FaGift, FaRegMoneyBillAlt, FaUserAlt, FaBoxes, FaCreativeCommonsSa, FaUser } from 'react-icons/fa';
-import "./SideNav.css"
-import useAuth from '../../hooks/useAuth';
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+import {
+    FaBookOpen,
+    FaBreadSlice,
+    FaBullhorn,
+    FaDove,
+    FaEdit,
+    FaRegEdit,
+    FaRegCommentAlt,
+    FaRegListAlt,
+    FaGift,
+    FaRegMoneyBillAlt,
+    FaUserAlt,
+    FaBoxes,
+    FaCreativeCommonsSa,
+    FaUser,
+} from "react-icons/fa";
+import "./SideNav.css";
+import useAuth from "../../hooks/useAuth";
 
 const SideNav = () => {
     const { auth } = useAuth();
     const { action } = useParams();
     // for admin
-    if (auth?.user?.roleId === '1') {
+    if (auth?.user?.roleId === "1") {
         return (
             <div className="side-navbar">
-                <Link to="/manage-account" className='side-navbar-link'>
-                    <FaUserAlt className='side-navbar-link-icon' /> Xem toàn bộ tài khoản
+                <Link to="/manage-account" className="side-navbar-link">
+                    <FaUserAlt className="side-navbar-link-icon" /> Xem toàn bộ tài khoản
                 </Link>
-                <Link to="/create-user" className='side-navbar-link'>
-                    <FaUser className='side-navbar-link-icon' /> Tạo tài khoản
+                <Link to="/create-user" className="side-navbar-link">
+                    <FaUser className="side-navbar-link-icon" /> Tạo tài khoản
                 </Link>
-                <Link to="/info-setting" className='side-navbar-link'>
-                    <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa tài khoản
+                <Link to="/info-setting" className="side-navbar-link">
+                    <FaEdit className="side-navbar-link-icon" /> Chỉnh sửa tài khoản
                 </Link>
             </div>
-        )
+        );
     }
     // manager
-    if (auth?.user?.roleId === '2') {
-        if (action === 'manage-voucher' || action === 'view-voucher'
-            || action === 'edit-voucher' || action === 'create') {
+    if (auth?.user?.roleId === "2") {
+        if (
+            action === "manage-voucher" ||
+            action === "view-voucher" ||
+            action === "edit-voucher" ||
+            action === "create"
+        ) {
             console.log(action);
             return (
                 <div className="side-navbar">
-                    <Link to="/voucher/view-voucher" className='side-navbar-link'>
-                        <FaRegMoneyBillAlt className='side-navbar-link-icon' /> Xem voucher
+                    <Link to="/voucher/view-voucher" className="side-navbar-link">
+                        <FaRegMoneyBillAlt className="side-navbar-link-icon" /> Xem voucher
                     </Link>
-                    <Link to="/create-voucer/create" className='side-navbar-link'>
-                        <FaRegEdit className='side-navbar-link-icon' /> Tạo voucher
+                    <Link to="/create-voucer/create" className="side-navbar-link">
+                        <FaRegEdit className="side-navbar-link-icon" /> Tạo voucher
                     </Link>
-                    <Link to="/voucher/edit-voucher" className='side-navbar-link'>
-                        <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa voucher
+                    <Link to="/voucher/edit-voucher" className="side-navbar-link">
+                        <FaEdit className="side-navbar-link-icon" /> Chỉnh sửa voucher
                     </Link>
                 </div>
-            )
+            );
         } else {
             return (
                 <div className="side-navbar">
-                    <Link to="/product/view-product" className='side-navbar-link'>
-                        <FaBoxes className='side-navbar-link-icon' /> Xem toàn bộ sản phẩm
+                    <Link to="/product/view-product" className="side-navbar-link">
+                        <FaBoxes className="side-navbar-link-icon" /> Xem toàn bộ sản phẩm
                     </Link>
-                    <Link to="/add-product/add-cage" className='side-navbar-link'>
-                        <FaDove className='side-navbar-link-icon' /> Thêm lồng chim
+                    <Link to="/add-product/add-cage" className="side-navbar-link">
+                        <FaDove className="side-navbar-link-icon" /> Thêm lồng chim
                     </Link>
-                    <Link to="/add-product/add-food" className='side-navbar-link'>
-                        <FaBreadSlice className='side-navbar-link-icon' /> Thêm thức ăn cho chim
+                    <Link to="/add-product/add-food" className="side-navbar-link">
+                        <FaBreadSlice className="side-navbar-link-icon" /> Thêm thức ăn cho
+                        chim
                     </Link>
-                    <Link to="/add-product/add-toy" className='side-navbar-link'>
-                        <FaGift className='side-navbar-link-icon' /> Thêm phụ kiện - đồ chơi
+                    <Link to="/add-product/add-toy" className="side-navbar-link">
+                        <FaGift className="side-navbar-link-icon" /> Thêm phụ kiện - đồ chơi
                     </Link>
-                    <Link to="/product/edit-product" className='side-navbar-link'>
-                        <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa toàn bộ sản phẩm
+                    <Link to="/product/edit-product" className="side-navbar-link">
+                        <FaEdit className="side-navbar-link-icon" /> Chỉnh sửa toàn bộ sản
+                        phẩm
                     </Link>
                 </div>
-            )
+            );
         }
     }
-    else {
+
+    if (auth?.user?.roleId === "3") {
+        return (
+            <div className="side-navbar">
+                <Link to="/manage-blogs/view" className="side-navbar-link">
+                    <FaBookOpen className="side-navbar-link-icon" /> Xem bài viết
+                </Link>
+                <Link to="/create-blog" className="side-navbar-link">
+                    <FaRegEdit className="side-navbar-link-icon" /> Tạo bài viết
+                </Link>
+                <Link to="/manage-blogs/update" className="side-navbar-link">
+                    <FaEdit className="side-navbar-link-icon" /> Chỉnh sửa bài viết
+                </Link>
+            </div>
+        );
+    } else {
         return (
             // staff
             // quản lí bài viết
@@ -119,19 +155,6 @@ const SideNav = () => {
             //     </Link>
             // </div>
 
-            //quản lí voucher
-            // <div className="side-navbar">
-            //     <Link to="/voucher" className='side-navbar-link'>
-            //         <FaRegMoneyBillAlt className='side-navbar-link-icon' /> Xem voucher
-            //     </Link>
-            //     <Link to="/about" className='side-navbar-link'>
-            //         <FaRegEdit className='side-navbar-link-icon' /> Tạo voucher
-            //     </Link>
-            //     <Link to="/voucher" className='side-navbar-link'>
-            //         <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa voucher
-            //     </Link>
-            // </div>
-
             //admin
             //quản lí account
             <div className="side-navbar">
@@ -147,7 +170,5 @@ const SideNav = () => {
             </div>
         );
     };
-
-
-}
+};
 export default SideNav;

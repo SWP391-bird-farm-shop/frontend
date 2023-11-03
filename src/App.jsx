@@ -41,7 +41,6 @@ import AddProductPage from './page/rolepage/managerpage/AddProductPage'
 import BlogForm from './page/rolepage/staffpage/CreateBlog'
 import TermsAndConditionsPage from './page/TermsAndConditionsPage'
 
-
 const App = () => {
   return (
     <Routes>
@@ -49,12 +48,15 @@ const App = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path='/products/cages' element={<CagePage />} />
-        <Route path='/products/food' element={<FoodPage />} />
-        <Route path='/products/accessories-toys' element={<AccessoriesToysPage />} />
+        <Route path="/products/cages" element={<CagePage />} />
+        <Route path="/products/food" element={<FoodPage />} />
+        <Route
+          path="/products/accessories-toys"
+          element={<AccessoriesToysPage />}
+        />
         <Route path="/blogs" element={<BlogPage />} />
-        <Route path='/blog-content/:blogId' element={<BlogContentPage />} />
-        <Route path='/parrot' element={<SpeciesPage />} />
+        <Route path="/blog-content/:blogId" element={<BlogContentPage />} />
+        <Route path="/parrot" element={<SpeciesPage />} />
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/custom-products-shape' element={<ShapePage />} />
@@ -71,26 +73,23 @@ const App = () => {
       <Route path='/manage-account' element={<ManageAccount />} />
       <Route path='/order' element={<ViewOrderPage />} />
 
-
-
       </Route>
 
-
-
-
       {/* user routes */}
-      <Route element={<RequireAuth allowedRoles={['4']} />}>
+      <Route element={<RequireAuth allowedRoles={["4"]} />}>
         <Route element={<Layout />}>
           <Route path="/user-page" element={<UserPage />} />
-          <Route path='/products/cages' element={<CagePage />} />
-          <Route path='/products/food' element={<FoodPage />} />
-          <Route path='/products/accessories-toys' element={<AccessoriesToysPage />} />
+          <Route path="/products/cages" element={<CagePage />} />
+          <Route path="/products/food" element={<FoodPage />} />
+          <Route
+            path="/products/accessories-toys"
+            element={<AccessoriesToysPage />}
+          />
           <Route path="/blogs" element={<BlogPage />} />
-          <Route path='/parrot' element={<SpeciesPage />} />
+          <Route path="/parrot" element={<SpeciesPage />} />
           <Route path="/item-info/:productId" element={<ItemInformation />} />
-          <Route path='/about-us' element={<AboutPage />} />
-          <Route path='/cart' element={<CartPage />} />
-
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Route>
       </Route>
 
@@ -100,41 +99,44 @@ const App = () => {
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
 
-      <Route path="/staff-page" element={<StaffPage />} />
-
-
-
       {/* admin routes */}
-      <Route element={<RequireAuth allowedRoles={['1']} />}>
+      <Route element={<RequireAuth allowedRoles={["1"]} />}>
         <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
-          <Route path='/manage-account' element={<ManageAccount />} />
-          <Route path='/info-setting' element={<SettingInformationPage />} />
-          <Route path='/create-user' element={<CreateUser />} />
+          <Route path="/manage-account" element={<ManageAccount />} />
+          <Route path="/info-setting" element={<SettingInformationPage />} />
+          <Route path="/create-user" element={<CreateUser />} />
         </Route>
       </Route>
 
       {/* manager routes */}
-      <Route element={<RequireAuth allowedRoles={['2']} />}>
+      <Route element={<RequireAuth allowedRoles={["2"]} />}>
         <Route path="/manager-page" element={<ManagerPage />} />
         <Route element={<RoleLayout />}>
-          <Route path='/create-voucer/:action' element={<CreateVoucherPage />} />
-          <Route path='/add-product/:action' element={<AddProductPage />} />
-          <Route path='/product/:action' element={<ProductPage />} />
-          <Route path='/voucher/:action' element={<VoucherPage />} />
+          <Route
+            path="/create-voucer/:action"
+            element={<CreateVoucherPage />}
+          />
+          <Route path="/add-product/:action" element={<AddProductPage />} />
+          <Route path="/product/:action" element={<ProductPage />} />
+          <Route path="/voucher/:action" element={<VoucherPage />} />
         </Route>
       </Route>
 
-
-      <Route element={<RoleLayout />}>
-        <Route path='/create-blog' element={<BlogForm />} />
-        <Route path='/blog-content' element={<BlogContentPage />} />
-        <Route path='/feedback' element={<FeedbackPage />} />
-        <Route path='/order' element={<ViewOrderPage />} />
-        <Route path='/announce-order' element={<AnnounceOrderPage />} />
+      {/* staff routes */}
+      <Route element={<RequireAuth allowedRoles={["3"]} />}>
+        <Route path="/staff-page" element={<StaffPage />} />
+        <Route element={<RoleLayout />}>
+          <Route path="/create-blog" element={<BlogForm />} />
+          <Route path="/manage-blogs/:action" element={<BlogPage />} />
+          <Route path="/blog-content/:blogId" element={<BlogContentPage />} />
+          <Route path="/feedback" element={<FeedbackPage />} />
+          <Route path="/order" element={<ViewOrderPage />} />
+          <Route path="/announce-order" element={<AnnounceOrderPage />} />
+        </Route>
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;
