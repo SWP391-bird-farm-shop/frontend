@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css"
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -17,8 +18,7 @@ const Footer = () => {
                     <h2 className="footer-heading">Tìm hiểu</h2>
                     <a href="/about-us" className="footer-link">Giới thiệu</a>
                     <p>Liên hệ</p>
-                    <p>Chính sách dữ liệu</p>
-                    <p>Chính sách vận chuyển</p>
+                    <a href="/term-condition" className="footer-link">Điều khoản và điều kiện</a>
                 </div>
 
                 <div className="footer-products-section">
