@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import './ManageAccount.css';
+import "./ManageAccount.css";
 import "../RolePage.css";
 import api from "../../../components/utils/requestAPI";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
-
 
 // Sample user account data (replace with your data)
 const userAccounts = [
@@ -18,7 +17,7 @@ const userAccounts = [
     DateOfBird: "2023-10-15",
     Address: "string",
     PhoneNumber: "192371928",
-    Email: "string@gmail.com"
+    Email: "string@gmail.com",
   },
   {
     UserID: 2,
@@ -31,7 +30,7 @@ const userAccounts = [
     DateOfBird: "2023-10-15",
     Address: "string",
     PhoneNumber: "192371928",
-    Email: "string@gmail.com"
+    Email: "string@gmail.com",
   },
   {
     UserID: 3,
@@ -44,7 +43,7 @@ const userAccounts = [
     DateOfBird: "2023-10-15",
     Address: "string",
     PhoneNumber: "192371928",
-    Email: "string@gmail.com"
+    Email: "string@gmail.com",
   },
   {
     UserID: 4,
@@ -57,7 +56,7 @@ const userAccounts = [
     DateOfBird: "2023-10-15",
     Address: "string",
     PhoneNumber: "192371928",
-    Email: "string@gmail.com"
+    Email: "string@gmail.com",
   },
   {
     UserID: 5,
@@ -70,7 +69,7 @@ const userAccounts = [
     DateOfBird: "2023-10-15",
     Address: "string",
     PhoneNumber: "192371928",
-    Email: "string@gmail.com"
+    Email: "string@gmail.com",
   },
   {
     UserID: 6,
@@ -83,8 +82,8 @@ const userAccounts = [
     DateOfBird: "2023-10-15",
     Address: "string@gmail.comg krrrrrrrrrrrrrrrrrrrrr",
     PhoneNumber: "19237192811",
-    Email: "string@gmail.com krrrrrrrrrrrrrrrrrrrrr"
-  }
+    Email: "string@gmail.com krrrrrrrrrrrrrrrrrrrrr",
+  },
 ];
 
 const ManageAccount = () => {
@@ -95,7 +94,7 @@ const ManageAccount = () => {
   const [listUser, setListUser] = useState(null);
 
   const fetchData = async () => {
-    const url = '/api/User/get-all';
+    const url = "/api/User/get-all";
     try {
       const response = await api.get(url);
       console.log(response.data);
@@ -105,11 +104,29 @@ const ManageAccount = () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
+
+  const handleDelete = async (id) => {
+    const url = `/api/User/remove`;
+    const data = {
+      userID: id,
+    };
+    try {
+      const response = await api.delete(url, {
+        headers: {
+          "Content-Type": "application/json-patch+json",
+        },
+        data: JSON.stringify(data),
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, [handleDelete]);
 
   return (
     // <div className="manage">
@@ -180,35 +197,50 @@ const ManageAccount = () => {
         <tbody className="content-info">
           {listUser?.map((user, index) => (
             <tr key={index}>
-              <td>{user.userID}</td>
-              <td>{user.roleID}</td>
+              <td>{user.userId}</td>
+              <td>{user.roleId}</td>
               <td>
                 <img src={user.imageURL} alt={`${user.userName}`} />
               </td>
-              <td className="overflow-edit overflow-scroll short">{user.userName}</td>
-              <td className="overflow-edit overflow-scroll short">{user.fullName}</td>
-              {
-                user.gender ? (
-                  // Nội dung khi user.gender là true
-                  <td>Nam</td>
-                ) : (
-                  // Nội dung khi user.gender là false
-                  <td>Nữ</td>
-                )
-              }
+              <td className="overflow-edit overflow-scroll short">
+                {user.userName}
+              </td>
+              <td className="overflow-edit overflow-scroll short">
+                {user.fullName}
+              </td>
+              {user.gender ? (
+                // Nội dung khi user.gender là true
+                <td>Nam</td>
+              ) : (
+                // Nội dung khi user.gender là false
+                <td>Nữ</td>
+              )}
 
               <td>{user.dateOfBird}</td>
-              <td className="overflow-edit overflow-scroll long">{user.address}</td>
+              <td className="overflow-edit overflow-scroll long">
+                {user.address}
+              </td>
               <td>{user.phoneNumber}</td>
-              <td className="overflow-edit overflow-scroll long">{user.email}</td>
-              <td><button className="update-button"><FaRegEdit /></button>
-                <button className="remove-button"><FaTrashAlt /></button></td>
+              <td className="overflow-edit overflow-scroll long">
+                {user.email}
+              </td>
+              <td>
+                <button className="update-button">
+                  <FaRegEdit />
+                </button>
+                <button
+                  className="remove-button"
+                  onClick={() => handleDelete(user.userId)}
+                >
+                  <FaTrashAlt />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-}
+};
 
 export default ManageAccount;
