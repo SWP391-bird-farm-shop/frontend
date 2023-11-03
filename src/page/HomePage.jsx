@@ -20,7 +20,7 @@ const HomePage = () => {
         fetchData();
     })
     return (
-        < Fragment >
+        <Fragment >
             <Slider />
             <div className="home-page-carousel-section">
                 <h3>Loài chim</h3>

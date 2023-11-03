@@ -62,11 +62,17 @@ const App = () => {
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
+        <Route path='/term-condition' element={<TermsAndConditionsPage />} />
       </Route>
 
-      <Route path='/term-condition' element={<TermsAndConditionsPage />} />
+
+
       <Route element={<RoleLayout />}>
-        <Route path='/voucher' element={<VoucherPage />} />
+      <Route path='/manage-account' element={<ManageAccount />} />
+      <Route path='/order' element={<ViewOrderPage />} />
+
+
+
       </Route>
 
 
