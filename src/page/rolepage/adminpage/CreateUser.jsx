@@ -19,6 +19,12 @@ const CreateUser = () => {
             && job && dob
             && address && phoneNumber
             && username && password) {
+            const currentDate = new Date();
+            const selectedDate = new Date(dob);
+            if (selectedDate > currentDate) {
+                window.prompt('Ngày sinh không hợp lệ');
+                return;
+            }
             const url = '/api/User/create-user'
             const data = {
                 username: username,
