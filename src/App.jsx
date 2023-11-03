@@ -39,6 +39,8 @@ import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 import CreateUser from './page/rolepage/adminpage/CreateUser'
 import AddProductPage from './page/rolepage/managerpage/AddProductPage'
 import BlogForm from './page/rolepage/staffpage/CreateBlog'
+import ConfirmPage from "./page/ConfirmPage";
+import WaitingOrderPage from "./page/WaitingOrderPage";
 import TermsAndConditionsPage from './page/TermsAndConditionsPage'
 
 const App = () => {
@@ -58,6 +60,7 @@ const App = () => {
         <Route path="/blog-content/:blogId" element={<BlogContentPage />} />
         <Route path="/parrot" element={<SpeciesPage />} />
         <Route path="/item-info/:productId" element={<ItemInformation />} />
+          
         <Route path='/about-us' element={<AboutPage />} />
         <Route path='/custom-products-shape' element={<ShapePage />} />
         <Route path='/custom-products-size' element={<SizePage />} />
@@ -65,6 +68,8 @@ const App = () => {
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
         <Route path='/term-condition' element={<TermsAndConditionsPage />} />
+          <Route path="/order-confirm" element={<ConfirmPage />} />
+        <Route path="/order-waiting" element={<WaitingOrderPage />} />
       </Route>
 
 
