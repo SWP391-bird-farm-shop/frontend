@@ -130,15 +130,15 @@ const ManageAccount = () => {
     //       </tr>
     //     </thead>
     //     <tbody className="content-info">
-    //       {userAccounts.map((user, index) => (
+    //       {listUser?.map((user, index) => (
     //         <tr key={index}>
-    //           <td>{user.UserID}</td>
-    //           <td>{user.RoleID}</td>
+    //           <td>{user.userID}</td>
+    //           <td>{user.roleID}</td>
     //           <td>
-    //             <img src={user.ImageURL} alt={`${user.userName}`} />
+    //             <img src={user.imageURL} alt={`${user.userName}`} />
     //           </td>
-    //           <td className="overflow overflow-scroll short">{user.UserName}</td>
-    //           <td className="overflow overflow-scroll short">{user.FullName}</td>
+    //           <td className="overflow overflow-scroll short">{user.userName}</td>
+    //           <td className="overflow overflow-scroll short">{user.fullName}</td>
     //           {
     //             user.gender ? (
     //               // Nội dung khi user.gender là true
@@ -149,10 +149,10 @@ const ManageAccount = () => {
     //             )
     //           }
 
-    //           <td>{user.DateOfBird}</td>
-    //           <td className="overflow overflow-scroll">{user.Address}</td>
-    //           <td>{user.PhoneNumber}</td>
-    //           <td className="overflow overflow-scroll">{user.Email}</td>
+    //           <td>{user.dateOfBird}</td>
+    //           <td className="overflow overflow-scroll">{user.address}</td>
+    //           <td>{user.phoneNumber}</td>
+    //           <td className="overflow overflow-scroll">{user.email}</td>
     //         </tr>
     //       ))}
     //     </tbody>
@@ -178,15 +178,15 @@ const ManageAccount = () => {
           </tr>
         </thead>
         <tbody className="content-info">
-          {userAccounts.map((user, index) => (
+          {listUser?.map((user, index) => (
             <tr key={index}>
-              <td>{user.UserID}</td>
-              <td>{user.RoleID}</td>
+              <td>{user.userID}</td>
+              <td>{user.roleID}</td>
               <td>
-                <img src={user.ImageURL} alt={`${user.userName}`} />
+                <img src={user.imageURL} alt={`${user.userName}`} />
               </td>
-              <td className="overflow-edit overflow-scroll short">{user.UserName}</td>
-              <td className="overflow-edit overflow-scroll short">{user.FullName}</td>
+              <td className="overflow-edit overflow-scroll short">{user.userName}</td>
+              <td className="overflow-edit overflow-scroll short">{user.fullName}</td>
               {
                 user.gender ? (
                   // Nội dung khi user.gender là true
@@ -197,10 +197,10 @@ const ManageAccount = () => {
                 )
               }
 
-              <td>{user.DateOfBird}</td>
-              <td className="overflow-edit overflow-scroll long">{user.Address}</td>
-              <td>{user.PhoneNumber}</td>
-              <td className="overflow-edit overflow-scroll long">{user.Email}</td>
+              <td>{user.dateOfBird}</td>
+              <td className="overflow-edit overflow-scroll long">{user.address}</td>
+              <td>{user.phoneNumber}</td>
+              <td className="overflow-edit overflow-scroll long">{user.email}</td>
               <td><button className="update-button"><FaRegEdit /></button>
                 <button className="remove-button"><FaTrashAlt /></button></td>
             </tr>
