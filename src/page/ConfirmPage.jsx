@@ -9,7 +9,7 @@ const ConfirmPage = () => {
       price: "$19.99",
       description: "Description of Confirmed Product 1",
       
-      status: "Confirmed", 
+      status: "Đã xác nhận", 
     },
     {
       id: 2,
@@ -17,7 +17,7 @@ const ConfirmPage = () => {
       price: "$29.99",
       description: "Description of Confirmed Product 2",
      
-      status: "Confirmed", 
+      status: "Đã xác nhận", 
     },
     {
       id: 3,
@@ -25,13 +25,13 @@ const ConfirmPage = () => {
       price: "$9.99",
       description: "Description of Waiting Product 1",
      
-      status: "Waiting", 
+      status: "Đang chờ xác nhận", 
     },
     
   ];
 
   
-  const confirmedProducts = products.filter((product) => product.status === "Confirmed");
+  const confirmedProducts = products.filter((product) => product.status === "Đã xác nhận");
 
   return (
     <div className="confirm-page">

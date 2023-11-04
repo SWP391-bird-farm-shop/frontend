@@ -9,7 +9,7 @@ const WaitingOrderPage = () => {
       price: "$19.99",
       description: "Description of Confirmed Product 1",
       
-      status: "Confirmed", 
+      status: "Đã xác nhận", 
     },
     {
       id: 2,
@@ -17,7 +17,7 @@ const WaitingOrderPage = () => {
       price: "$29.99",
       description: "Description of Confirmed Product 2",
      
-      status: "Confirmed", 
+      status: "Đã xác nhận", 
     },
     {
       id: 3,
@@ -25,17 +25,17 @@ const WaitingOrderPage = () => {
       price: "$9.99",
       description: "Description of Waiting Product 1",
      
-      status: "Waiting", 
+      status: "Đang chờ xác nhận", 
     },
     
   ];
 
   
-  const confirmedProducts = products.filter((product) => product.status === "Waiting");
+  const confirmedProducts = products.filter((product) => product.status === "Đang chờ xác nhận");
 
   return (
     <div className="confirm-page">
-      <h1 className="confirm-page-title">Danh sách đơn hàng đã xác nhận</h1>
+      <h1 className="confirm-page-title">Danh sách đơn hàng đang chờ xác nhận</h1>
       <div className="confirmed-products">
         {confirmedProducts.map((product) => (
           <div key={product.id} className="confirmed-product">
