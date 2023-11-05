@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "../RolePage.css";
 import { Link } from "react-router-dom";
 
+import {Modal} from 'react-bootstrap';
+
 const AdminPage = () => {
+    const [popup, serPopup] = useState(true);
+    
     return (
         <div className="role-page">
             <h1 className="role-page-welcome">Xin chào Tên của quản lí</h1>
@@ -13,6 +17,14 @@ const AdminPage = () => {
                     <img src="./vet.jpg" className="role-page-manage-task-img" />
                 </Link>
             </div>
+            <Modal show={popup} onHide={() => setPopup(false)}>
+                <div>
+                    <button onClick={() => setPopup(false)}>X</button>
+                    <h2>
+                        Wellcome to Admin Page, have a nice day in work.
+                    </h2>
+                </div>
+            </Modal>
         </div>
     );
 };

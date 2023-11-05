@@ -6,7 +6,15 @@ import useAuth from "../hooks/useAuth";
 import api from "../components/utils/requestAPI";
 import { useNavigate } from "react-router-dom";
 
+import { Modal } from "react-bootstrap";
+
+
 const CartPage = () => {
+
+  const [popup, setPopup] = useState(false);
+  const [popNo, setPopno] = useState(false);
+
+
   const { auth } = useAuth();
   const [cartItems, setCartItems] = useState(null);
   const [voucherList, setVoucherList] = useState(null);
@@ -157,6 +165,9 @@ const CartPage = () => {
           note: "string",
           price: total,
         };
+        if (cartItems?.orderDetail === null) {
+          dataUpdate.price = 0;
+        }
         try {
           const updateResponse = await api.put(urlUpdate, dataUpdate);
           console.log(updateResponse.data);
@@ -248,7 +259,8 @@ const CartPage = () => {
     });
     console.log(method);
     if (method === "") {
-      window.prompt("Please payment options");
+      // window.prompt("Please payment options");
+      setPopno(true);
     }
     if (method === "vnpay") {
       //create new payment
@@ -261,7 +273,8 @@ const CartPage = () => {
           const paymentUrl = `/api/VNPay?PaymentID=${response.data.paymentId}`;
           try {
             const response = await api.get(paymentUrl);
-            window.open(response.data);
+            // window.open(response.data);
+            if (response.data) setPopup(true);
           } catch (error) {
             console.error(error);
           }
@@ -312,7 +325,7 @@ const CartPage = () => {
       setPhoneNumber(auth.user.phoneNumber);
       setEditPhonenumber(auth.user.phoneNumber);
     } else navigate("/log-in");
-  }, [updateQuantity, paymentSubmit, auth]);
+  }, []);
   //updateQuantity, paymentSubmit, auth
 
   if (cartItems) {
@@ -545,6 +558,13 @@ const CartPage = () => {
           </div>
 
           <div className="confirm-order">
+            {/* <button
+              type="submit"
+              onClick={paymentSubmit}
+              className="confirm-button"
+            >
+              Thanh toán
+            </button> */}
             <button
               type="submit"
               onClick={paymentSubmit}
@@ -552,6 +572,31 @@ const CartPage = () => {
             >
               Thanh toán
             </button>
+            <Modal show={popNo} onHide={() => setPopno(false)}>
+              <div>
+                <button onClick={() => setPopno(false)}>X</button>
+                <h4>
+                  Please Choose You Payment Options Below!!!
+                </h4>
+                <button onClick={() => setPopno(false)}>Ok</button>
+
+              </div>
+            </Modal>
+            <Modal show={popup} onHide={() => setPopup(false)}>
+              <div>
+                <h1>
+                  Đã thanh toán .... cho đơn hàng của bạn.
+                </h1>
+                <button
+                  type="submit"
+                  onClick={() => setPopup(false)}
+                  className="confirm-button"
+                >
+                  Yes
+                </button>
+                <button onClick={() => setPopup(false)}> cancel</button>
+              </div>
+            </Modal>
           </div>
         </div>
       </div>

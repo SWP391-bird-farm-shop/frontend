@@ -1,7 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import './SettingInformationPage.css';
 
+import {Modal} from 'react-bootstrap';
+
+
 const SettingInformationPage = () => {
+
+    const [popup,setPopup] = useState(false);
 
     const [avatarUrl, setAvatarUrl] = useState('');
 
@@ -80,6 +85,15 @@ const SettingInformationPage = () => {
                         </div>
                     </div>
                     <button type="submit" className='update-info-button'>Lưu thay đổi</button>
+                    {/* <button onClick={() => setPopup(true)} className='update-info-button'>Lưu thay đổi</button>
+                    <Modal show={popup} onHide={() => setPopup(false)}>
+                        <div>
+                            <h2>Sure to Change your profile ?</h2>
+                            <button type="submit" className='update-info-button' onClick={() => setPopup(false)}>Lưu thay đổi</button>
+                            <button onClick={() => setPopup(false)}>Cancel</button>
+                        </div>
+                        
+                    </Modal> */}
                 </div>
             </div>
         </Fragment>

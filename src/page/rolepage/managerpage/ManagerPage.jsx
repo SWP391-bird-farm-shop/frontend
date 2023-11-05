@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "../RolePage.css";
 import { Link } from "react-router-dom";
 
-const ManagerPage = () => {
+import {Modal} from 'react-bootstrap';
 
+const ManagerPage = () => {
+    const [popup,setPopup] = useState(true);
     return (
 
         <div className="role-page">
@@ -19,6 +21,14 @@ const ManagerPage = () => {
                     <img src="./vet.jpg" className="role-page-manage-task-img" />
                 </Link>
             </div>
+            <Modal show={popup} onHide={() => setPopup(false)}>
+                <div>
+                    <button onClick={() => setPopup(false)}>X</button>
+                    <h2>
+                        Wellcome to Manage Page.
+                    </h2>
+                </div>
+            </Modal>
         </div>
     );
 };
