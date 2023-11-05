@@ -24,7 +24,7 @@ const QuestionPage = () => {
         // </div>
 
         <div className='authentication-section'>
-            <a href='/log-in' className='homepage-link'> Về trang đăng nhập</a>
+            <a href='/update-info' className='homepage-link'> Về trang nhập thông tin</a>
             <div className="authentication-container">
                 <h2>Câu hỏi xác thực</h2>
                 <form>
