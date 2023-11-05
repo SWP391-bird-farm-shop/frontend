@@ -68,3 +68,9 @@
   font-size: 17px;
   color: #28a745;
 }
+
+.waiting-order-status {
+  text-align: left;
+  font-size: 17px;
+  color: red;
+}

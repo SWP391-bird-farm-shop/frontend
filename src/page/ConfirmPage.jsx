@@ -1,7 +1,5 @@
 import React from "react";
-import "./ConfirmPage.css";
-import ProductFeedbackList from "../components/feedback/ProductFeedbackList";
-import Feedback from "../components/feedback/Feedback";
+import "./OrderStatusPage.css";
 
 const ConfirmPage = () => {
   // const products = [
@@ -62,7 +60,6 @@ const ConfirmPage = () => {
           </div>
         ))}
       </div>
-      <Feedback />
     </div>
   );
 };
