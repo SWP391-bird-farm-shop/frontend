@@ -156,7 +156,10 @@ const ManageNavbar = ({ className }) => {
             <NavLink to="/blogs" className="first-section-component-staff">
               Quản lí bài viết
             </NavLink>
-            <NavLink to="/feedback" className="first-section-component-staff">
+            <NavLink
+              to="/feedback/view"
+              className="first-section-component-staff"
+            >
               Quản lí feedback
             </NavLink>
             <NavLink to="/order" className="first-section-component-staff">

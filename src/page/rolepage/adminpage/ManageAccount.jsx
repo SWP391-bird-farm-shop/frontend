@@ -3,95 +3,17 @@ import "./ManageAccount.css";
 import "../RolePage.css";
 import api from "../../../components/utils/requestAPI";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 // Sample user account data (replace with your data)
-const userAccounts = [
-  {
-    UserID: 1,
-    RoleID: 1,
-    ImageURL: "user1.jpg",
-    UserName: "john_doe",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com",
-  },
-  {
-    UserID: 2,
-    RoleID: 2,
-    ImageURL: ":user2.jpg",
-    UserName: "j:ane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com",
-  },
-  {
-    UserID: 3,
-    RoleID: 3,
-    ImageURL: "user2.jpg",
-    UserName: "jane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com",
-  },
-  {
-    UserID: 4,
-    RoleID: 4,
-    ImageURL: "user2.jpg",
-    UserName: "jane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com",
-  },
-  {
-    UserID: 5,
-    RoleID: 4,
-    ImageURL: "user2.jpg",
-    UserName: "jane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com",
-  },
-  {
-    UserID: 6,
-    RoleID: 4,
-    ImageURL: "user2.jpg",
-    UserName: "jane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string@gmail.comg krrrrrrrrrrrrrrrrrrrrr",
-    PhoneNumber: "19237192811",
-    Email: "string@gmail.com krrrrrrrrrrrrrrrrrrrrr",
-  },
-];
-
 const ManageAccount = () => {
   const handleButtonClick = () => {
     window.location.href = "/";
   };
 
   const [listUser, setListUser] = useState(null);
+
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     const url = "/api/User/get-all";
@@ -122,6 +44,10 @@ const ManageAccount = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleUpdate = async (id) => {
+    navigate(`/info-setting/admin/${id}`);
   };
 
   useEffect(() => {
@@ -225,7 +151,10 @@ const ManageAccount = () => {
                 {user.email}
               </td>
               <td>
-                <button className="update-button">
+                <button
+                  className="update-button"
+                  onClick={() => handleUpdate(user.userId)}
+                >
                   <FaRegEdit />
                 </button>
                 <button
