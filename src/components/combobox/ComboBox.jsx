@@ -7,6 +7,7 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
   const [listSize, setListSize] = useState(null);
   const [listMaterial, setListMaterial] = useState(null);
   const [listColor, setListColor] = useState(null);
+  const [listStyle, setListStyle] = useState(null);
   const [defaultParam, setDefault] = useState("");
   const priceOptions = ["Tăng dần", "Giảm dần"];
 
@@ -21,6 +22,44 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
       console.log(defaultValue);
     }
   }, [defaultValue]);
+
+  if (classname === "style") {
+    const fetchDataStyle = async () => {
+      const urlStyle = "/api/Style/get-all";
+      try {
+        const responseStyle = await api.get(urlStyle);
+        console.log(responseStyle.data);
+        setListStyle(responseStyle.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    useEffect(() => {
+      fetchDataStyle();
+    }, []);
+
+    return (
+      <div className="combo-box-product">
+        <select value={selected} onChange={handleChangeSelect}>
+          {defaultParam ? (
+            <option value={defaultParam} hidden>
+              {defaultParam}
+            </option>
+          ) : (
+            <option value="" hidden>
+              Chọn kiểu lồng
+            </option>
+          )}
+          {listStyle?.map((style) => (
+            <option key={style?.sizeId} value={style?.sizeId}>
+              {style?.styleName}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
 
   if (classname === "size") {
     const fetchDataSize = async () => {
@@ -41,12 +80,12 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
     return (
       <div className="combo-box-product">
         <select value={selected} onChange={handleChangeSelect}>
-          {defaultParam !== "" ? (
-            <option value={defaultParam} disabled hidden selected>
+          {defaultParam ? (
+            <option value={defaultParam} hidden>
               {defaultParam}
             </option>
           ) : (
-            <option value="" disabled hidden selected>
+            <option value="" hidden>
               Chọn kích thước lồng
             </option>
           )}
@@ -79,12 +118,12 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
     return (
       <div className="combo-box-product">
         <select value={selected} onChange={handleChangeSelect}>
-          {defaultParam !== "" ? (
-            <option value={defaultParam} disabled hidden selected>
+          {defaultParam ? (
+            <option value={defaultParam} hidden>
               {defaultParam}
             </option>
           ) : (
-            <option value="" disabled hidden selected>
+            <option value="" hidden>
               Chọn chất liệu lồng
             </option>
           )}
@@ -116,12 +155,12 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
     return (
       <div className="combo-box-product">
         <select value={selected} onChange={handleChangeSelect}>
-          {defaultParam !== "" ? (
-            <option value={defaultParam} disabled hidden selected>
+          {defaultParam ? (
+            <option value={defaultParam} hidden>
               {defaultParam}
             </option>
           ) : (
-            <option value="" disabled hidden selected>
+            <option value="" hidden>
               Chọn màu lồng
             </option>
           )}

@@ -112,7 +112,7 @@ const CartPage = () => {
     }
   };
 
-  const fetchDataVoucher = async () => {
+  const fetchDataVoucherList = async () => {
     const url = "/api/Voucher/get-for-user";
     try {
       const response = await api.get(url);
@@ -219,7 +219,7 @@ const CartPage = () => {
 
   const paymentSubmit = async () => {
     //update product total lastime to payment
-
+    console.log(totalPrice);
     const urlUpdate = "/api/Order/update-order-to-add-product";
     let note = editName + " " + editPhonenumber + " " + editAddress;
     const dataUpdate = {
@@ -271,29 +271,11 @@ const CartPage = () => {
       }
     } else if (method === "cash") {
       //create new payment
-      const url = `/api/Payment/create-payment?OrderId=${cartItems[0]?.orderId}`;
+      const orderFinishurl = `/api/Order/paid?OrderID=${cartItems[0]?.orderId}`;
       try {
         const response = await api.post(url);
         console.log(response.data);
         //setting order true
-        if (response) {
-          const orderFinishurl = `/api/Order/paid?OrderID=${cartItems[0]?.orderId}`;
-          try {
-            const orderFinishResponse = await api.post(orderFinishurl);
-            console.log(orderFinishResponse.data);
-            //setting payment true
-            if (orderFinishResponse) {
-              const paymentFinish = `/api/Payment/paid?paymentId=${response.data.paymentId}`;
-              const responsePayment = await api.post(paymentFinish);
-              console.log(responsePayment.data);
-              if (responsePayment) {
-                navigate("/home?status=success");
-              }
-            }
-          } catch (error) {
-            console.error(error);
-          }
-        }
       } catch (error) {
         console.error(error);
       }
@@ -304,7 +286,7 @@ const CartPage = () => {
   useEffect(() => {
     if (auth.user) {
       fetchData();
-      fetchDataVoucher();
+      fetchDataVoucherList();
       setName(auth.user.fullName);
       setEditName(auth.user.fullName);
       setAddress(auth.user.address);
@@ -312,14 +294,29 @@ const CartPage = () => {
       setPhoneNumber(auth.user.phoneNumber);
       setEditPhonenumber(auth.user.phoneNumber);
     } else navigate("/log-in");
-  }, [updateQuantity, paymentSubmit, auth]);
+  }, []);
   //updateQuantity, paymentSubmit, auth
 
   if (cartItems) {
+    let fetch = null;
     //handle select voucher and decrese total payment
-    const handleSelectVoucher = (e) => {
+    const fetchVoucherData = async (id) => {
+      const url = `/api/Voucher/get-by-id?voucherId=${id}`;
+      try {
+        const response = await api.get(url);
+        if (response) {
+          console.log(response.data);
+          fetch = response.data;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const handleSelectVoucher = async (e) => {
       e.preventDefault();
-      const selectedVoucher = e.target.value;
+      await fetchVoucherData(e.target.value);
+      console.log(fetch);
+      const selectedVoucher = fetch.discount;
       const total =
         cartItems[0]?.total -
         (parseFloat(selectedVoucher) / 100) * cartItems[0]?.total;
@@ -468,17 +465,18 @@ const CartPage = () => {
                   Chọn Voucher
                 </option>
                 {voucherList?.map((voucher) => (
-                  <option key={voucher.voucherId} value={voucher.discount}>
+                  <option key={voucher.voucherId} value={voucher.voucherId}>
                     {voucher.voucherName}
                   </option>
                 ))}
               </select>
             </div>
-
             <div className="voucher-info">
-              <h3 className="voucher-info-title">Voucher 1</h3>
+              <h3 className="voucher-info-title">
+                {selectVoucher?.voucherName}
+              </h3>
               <p className="voucher-info-description">
-                Giảm 10% tổng giá sản phẩm
+                {selectVoucher?.description}
               </p>
             </div>
           </div>
@@ -513,24 +511,24 @@ const CartPage = () => {
             <p className="order-summary-title">
               Tổng tiền hàng:{" "}
               <span className="order-summary-price">
-                ${cartItems[0]?.total}
+                {cartItems[0]?.total} ₫
               </span>
             </p>
             <p className="order-summary-title">
               Tổng tiền phí vận chuyển:{" "}
-              <span className="order-summary-price">$0</span>
+              <span className="order-summary-price">0 ₫</span>
             </p>
             {selectVoucher ? (
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
                 <span className="order-summary-price">
-                  ${(parseFloat(selectVoucher) / 100) * cartItems[0]?.total}
+                  {(parseFloat(selectVoucher) / 100) * cartItems[0]?.total} ₫
                 </span>
               </p>
             ) : (
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
-                <span className="order-summary-price">$0</span>
+                <span className="order-summary-price">0 ₫</span>
               </p>
             )}
           </div>
@@ -538,9 +536,9 @@ const CartPage = () => {
           <div className="total-section">
             <h3>Tổng thanh toán</h3>
             {selectVoucher === "" ? (
-              <p>${cartItems[0]?.total}</p>
+              <p>{cartItems[0]?.total} ₫</p>
             ) : (
-              <p>${totalPrice}</p>
+              <p>${totalPrice} ₫</p>
             )}
           </div>
 

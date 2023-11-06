@@ -42,6 +42,14 @@ const ProductPage = () => {
     navigate(`/update-product/add-cage/${id}`);
   };
 
+  const handleUpdateFood = async (id) => {
+    navigate(`/update-product/add-food/${id}`);
+  };
+
+  const handleUpdateToy = async (id) => {
+    navigate(`/update-product/add-toy/${id}`);
+  };
+
   useEffect(() => {
     fetchData();
   }, [auth, handleDelete]);
@@ -250,7 +258,10 @@ const ProductPage = () => {
                   <div className="product-manager-page-section-header">
                     <h3 className="product-name">{food.productName}</h3>
                     <div className="role-page-edit-button">
-                      <button className="update-button">
+                      <button
+                        className="update-button"
+                        onClick={() => handleUpdateFood(food.productId)}
+                      >
                         <FaRegEdit />
                       </button>
                       <button
@@ -295,7 +306,10 @@ const ProductPage = () => {
                 <div className="product-manager-page-section-header">
                   <h3 className="product-name">{toy?.productName}</h3>
                   <div className="role-page-edit-button">
-                    <button className="update-button">
+                    <button
+                      className="update-button"
+                      onClick={() => handleUpdateToy(toy.productId)}
+                    >
                       <FaRegEdit />
                     </button>
                     <button

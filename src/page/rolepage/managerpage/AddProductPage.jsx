@@ -81,16 +81,23 @@ const AddProductPage = () => {
       const response = await api.get(url);
       console.log(response.data);
       setProductName(response.data.productName);
-      setProductStyle(response.data.styleProduct[0].style.styleName);
-      setProductSize(response.data.sizeProduct[0].size.size1);
-      setProductMaterial(
-        response.data.materialProduct[0].material.materialName
-      );
-      setProductColor(response.data.colorProduct[0].color.colorName);
       setProductDescription(response.data.description);
       setProductPrice(response.data.price);
       setProductQuantity(response.data.quantity);
       setImageU(response.data.image[0].imageUrl);
+      if (
+        response.data.styleProduct != [] &&
+        response.data.sizeProduct != [] &&
+        response.data.materialProduct != [] &&
+        response.data.colorProduct != []
+      ) {
+        setProductStyle(response.data.styleProduct[0].style.styleName);
+        setProductSize(response.data.sizeProduct[0].size.size1);
+        setProductMaterial(
+          response.data.materialProduct[0].material.materialName
+        );
+        setProductColor(response.data.colorProduct[0].color.colorName);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -201,6 +208,55 @@ const AddProductPage = () => {
 
   if (action === "add-cage") {
     if (productId) {
+      const handleCageUpdateSubmit = async () => {
+        const priceDouble = parseFloat(price);
+        const quantityNum = parseInt(quantity);
+        const url = "/api/Product/update";
+        if (style && selectMaterial && selectColor && selectSize) {
+          console.log(style);
+          setStyle(null);
+          setSelectSize(null);
+          setSelectMaterial(null);
+          setSelectColor(null);
+        }
+        const data = {
+          productID: productId,
+          productName: name,
+          quantity: quantityNum,
+          productDescription: des,
+          price: priceDouble,
+          discountPrice: 0,
+          status: true,
+          styles: [
+            {
+              styleID: style,
+            },
+          ],
+          sizes: [
+            {
+              sizeID: selectSize,
+            },
+          ],
+          colors: [
+            {
+              colorID: selectColor,
+            },
+          ],
+          materials: [
+            {
+              materialID: selectMaterial,
+            },
+          ],
+          imageUrl: imageU,
+        };
+        try {
+          const response = await api.put(url, data);
+          console.log(response.data);
+          if (response) window.prompt("Update Success");
+        } catch (error) {
+          console.error(error);
+        }
+      };
       return (
         // update lồng
         <div className="add-product-page">
@@ -245,31 +301,18 @@ const AddProductPage = () => {
                       required
                     />
                   </div>
-                  <div className="add-product-check-shape">
+                  <div className="add-product-combobox">
                     <label
                       htmlFor="shape"
                       className="add-product-input-container-label"
                     >
                       Hình dáng
                     </label>
-                    <div className="add-product-style-input-container">
-                      {listStyle?.map((style) => (
-                        <div className="add-product-style-input">
-                          <input
-                            type="radio"
-                            id="selectstyle"
-                            name="shape"
-                            value={style.styleId}
-                            className="add-product-check-shape-button"
-                            onChange={(event) => setStyle(event.target.value)}
-                          />
-
-                          <span className="button-title">
-                            {style.styleName}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                    <ComboBox
+                      classname={"style"}
+                      onChange={setStyle}
+                      defaultValue={productStyle}
+                    />
                   </div>
                   <div className="add-product-combobox">
                     <label
@@ -366,7 +409,7 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleSubmit}
+              onClick={handleCageUpdateSubmit}
             >
               Lưu sản phẩm
             </button>
@@ -413,6 +456,7 @@ const AddProductPage = () => {
                       id="name"
                       name="name"
                       className="add-product-input"
+                      placeholder="Nhập tên của sản phẩm"
                       onChange={(event) => setName(event.target.value)}
                       required
                     />
@@ -484,6 +528,7 @@ const AddProductPage = () => {
                       name="description"
                       className="add-product-input des-textarea"
                       required
+                      placeholder="Nhập mô tả của sản phẩm"
                       onChange={(event) => setDes(event.target.value)}
                     />
                   </div>
@@ -499,6 +544,7 @@ const AddProductPage = () => {
                       id="price"
                       name="price"
                       className="add-product-input"
+                      placeholder="Nhập giá tiền của sản phẩm"
                       onChange={(event) => setPrice(event.target.value)}
                       required
                     />
@@ -515,6 +561,7 @@ const AddProductPage = () => {
                       id="inventory"
                       name="inventory"
                       className="add-product-input"
+                      placeholder="Nhập số lượng sản phẩm"
                       onChange={(event) => setQuantity(event.target.value)}
                       required
                     />
@@ -535,213 +582,487 @@ const AddProductPage = () => {
     }
   }
   if (action === "add-food") {
-    return (
-      //food a&t
-      <div className="add-product-page">
-        <div className="add-product-container">
-          <h2 className="add-product-container-title">Thông tin</h2>
-          <div className="add-product-section">
-            <div className="add-product-food-at-of-img">
-              <h2>Ảnh sản phẩm</h2>
-              <img
-                src={avatarUrl}
-                alt="Product A"
-                className="product-food-at-img"
-              />
-              <label htmlFor="imageInput" className="custom-file-upload">
-                Thêm ảnh sản phẩm
-              </label>
-              <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-                onChange={handleAvatarChange}
-                style={{ display: "none" }}
-              />
+    if (productId) {
+      const handleFoodUpdateSubmit = async () => {
+        const priceDouble = parseFloat(price);
+        const quantityNum = parseInt(quantity);
+        const url = "/api/Product/update";
+        if (name === "" && des === "") {
+          console.log(style);
+          setName(null);
+          setDes(null);
+        }
+        const data = {
+          productID: productId,
+          productName: name,
+          quantity: quantityNum,
+          productDescription: des,
+          price: priceDouble,
+          discountPrice: 0,
+          status: true,
+          imageUrl: imageU,
+        };
+        try {
+          const response = await api.put(url, data);
+          console.log(response.data);
+          if (response) window.prompt("Update Success");
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      return (
+        //update
+        //food a&t
+        <div className="add-product-page">
+          <div className="add-product-container">
+            <h2 className="add-product-container-title">Thông tin</h2>
+            <div className="add-product-section">
+              <div className="add-product-food-at-of-img">
+                <h2>Ảnh sản phẩm</h2>
+                <img
+                  src={imageU}
+                  alt="Product A"
+                  className="product-food-at-img"
+                />
+                <label htmlFor="imageInput" className="custom-file-upload">
+                  Thêm ảnh sản phẩm
+                </label>
+                <input
+                  type="file"
+                  id="imageInput"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                  style={{ display: "none" }}
+                />
+              </div>
+              <div className="add-product-food-at-of-profile">
+                <h2>Hồ sơ</h2>
+                <form>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="name"
+                      className="add-product-input-container-label"
+                    >
+                      Tên sản phẩm
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="add-product-input"
+                      placeholder={productName}
+                      required
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="description"
+                      className="add-product-input-container-label"
+                    >
+                      Mô tả
+                    </label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      className="add-product-input des-textarea"
+                      placeholder={productDescription}
+                      required
+                      onChange={(event) => setDes(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="price"
+                      className="add-product-input-container-label"
+                    >
+                      Giá tiền (&#8363;)
+                    </label>
+                    <input
+                      type="number"
+                      id="price"
+                      name="price"
+                      className="add-product-input"
+                      placeholder={productPrice}
+                      required
+                      onChange={(event) => setPrice(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="inventory"
+                      className="add-product-input-container-label"
+                    >
+                      Số lượng hàng trong kho
+                    </label>
+                    <input
+                      type="number"
+                      id="inventory"
+                      name="inventory"
+                      className="add-product-input"
+                      placeholder={productQuantity}
+                      required
+                      onChange={(event) => setQuantity(event.target.value)}
+                    />
+                  </div>
+                </form>
+              </div>
             </div>
-            <div className="add-product-food-at-of-profile">
-              <h2>Hồ sơ</h2>
-              <form>
-                <div className="add-product-input-container">
-                  <label
-                    htmlFor="name"
-                    className="add-product-input-container-label"
-                  >
-                    Tên sản phẩm
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="add-product-input"
-                    required
-                    onChange={(event) => setName(event.target.value)}
-                  />
-                </div>
-                <div className="add-product-input-container">
-                  <label
-                    htmlFor="description"
-                    className="add-product-input-container-label"
-                  >
-                    Mô tả
-                  </label>
-                  <textarea
-                    id="description"
-                    name="description"
-                    className="add-product-input des-textarea"
-                    required
-                    onChange={(event) => setDes(event.target.value)}
-                  />
-                </div>
-                <div className="add-product-input-container">
-                  <label
-                    htmlFor="price"
-                    className="add-product-input-container-label"
-                  >
-                    Giá tiền (&#8363;)
-                  </label>
-                  <input
-                    type="number"
-                    id="price"
-                    name="price"
-                    className="add-product-input"
-                    required
-                    onChange={(event) => setPrice(event.target.value)}
-                  />
-                </div>
-                <div className="add-product-input-container">
-                  <label
-                    htmlFor="inventory"
-                    className="add-product-input-container-label"
-                  >
-                    Số lượng hàng trong kho
-                  </label>
-                  <input
-                    type="number"
-                    id="inventory"
-                    name="inventory"
-                    className="add-product-input"
-                    required
-                    onChange={(event) => setQuantity(event.target.value)}
-                  />
-                </div>
-              </form>
-            </div>
+            <button
+              type="submit"
+              className="add-product-button"
+              onClick={handleFoodUpdateSubmit}
+            >
+              Lưu sản phẩm
+            </button>
           </div>
-          <button
-            type="submit"
-            className="add-product-button"
-            onClick={handleFoodSubmit}
-          >
-            Lưu sản phẩm
-          </button>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        //food a&t
+        <div className="add-product-page">
+          <div className="add-product-container">
+            <h2 className="add-product-container-title">Thông tin</h2>
+            <div className="add-product-section">
+              <div className="add-product-food-at-of-img">
+                <h2>Ảnh sản phẩm</h2>
+                <img
+                  src={avatarUrl}
+                  alt="Product A"
+                  className="product-food-at-img"
+                />
+                <label htmlFor="imageInput" className="custom-file-upload">
+                  Thêm ảnh sản phẩm
+                </label>
+                <input
+                  type="file"
+                  id="imageInput"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                  style={{ display: "none" }}
+                />
+              </div>
+              <div className="add-product-food-at-of-profile">
+                <h2>Hồ sơ</h2>
+                <form>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="name"
+                      className="add-product-input-container-label"
+                    >
+                      Tên sản phẩm
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="add-product-input"
+                      required
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="description"
+                      className="add-product-input-container-label"
+                    >
+                      Mô tả
+                    </label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      className="add-product-input des-textarea"
+                      required
+                      onChange={(event) => setDes(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="price"
+                      className="add-product-input-container-label"
+                    >
+                      Giá tiền (&#8363;)
+                    </label>
+                    <input
+                      type="number"
+                      id="price"
+                      name="price"
+                      className="add-product-input"
+                      required
+                      onChange={(event) => setPrice(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="inventory"
+                      className="add-product-input-container-label"
+                    >
+                      Số lượng hàng trong kho
+                    </label>
+                    <input
+                      type="number"
+                      id="inventory"
+                      name="inventory"
+                      className="add-product-input"
+                      required
+                      onChange={(event) => setQuantity(event.target.value)}
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="add-product-button"
+              onClick={handleFoodSubmit}
+            >
+              Lưu sản phẩm
+            </button>
+          </div>
+        </div>
+      );
+    }
   }
   if (action === "add-toy") {
-    return (
-      <div className="add-product-page">
-        <div className="add-product-container">
-          <h2 className="add-product-container-title">Thông tin</h2>
-          <div className="add-product-section">
-            <div className="add-product-food-at-of-img">
-              <h2>Ảnh sản phẩm</h2>
-              <img
-                src={avatarUrl}
-                alt="Product A"
-                className="product-food-at-img"
-              />
-              <label htmlFor="imageInput" className="custom-file-upload">
-                Thêm ảnh sản phẩm
-              </label>
-              <input
-                type="file"
-                id="imageInput"
-                accept="image/*"
-                onChange={handleAvatarChange}
-                style={{ display: "none" }}
-              />
+    if (productId) {
+      const handleToyUpdateSubmit = async () => {
+        const priceDouble = parseFloat(price);
+        const quantityNum = parseInt(quantity);
+        const url = "/api/Product/update";
+        if (name === "" && des === "") {
+          console.log(style);
+          setName(null);
+          setDes(null);
+        }
+        const data = {
+          productID: productId,
+          productName: name,
+          quantity: quantityNum,
+          productDescription: des,
+          price: priceDouble,
+          discountPrice: 0,
+          status: true,
+          imageUrl: imageU,
+        };
+        try {
+          const response = await api.put(url, data);
+          console.log(response.data);
+          if (response) window.prompt("Update Success");
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      return (
+        <div className="add-product-page">
+          <div className="add-product-container">
+            <h2 className="add-product-container-title">Thông tin</h2>
+            <div className="add-product-section">
+              <div className="add-product-food-at-of-img">
+                <h2>Ảnh sản phẩm</h2>
+                <img
+                  src={imageU}
+                  alt="Product A"
+                  className="product-food-at-img"
+                />
+                <label htmlFor="imageInput" className="custom-file-upload">
+                  Thêm ảnh sản phẩm
+                </label>
+                <input
+                  type="file"
+                  id="imageInput"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                  style={{ display: "none" }}
+                />
+              </div>
+              <div className="add-product-food-at-of-profile">
+                <h2>Hồ sơ</h2>
+                <form>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="name"
+                      className="add-product-input-container-label"
+                    >
+                      Tên sản phẩm
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="add-product-input"
+                      placeholder={productName}
+                      required
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="description"
+                      className="add-product-input-container-label"
+                    >
+                      Mô tả
+                    </label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      className="add-product-input des-textarea"
+                      required
+                      placeholder={productDescription}
+                      onChange={(event) => setDes(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="price"
+                      className="add-product-input-container-label"
+                    >
+                      Giá tiền (&#8363;)
+                    </label>
+                    <input
+                      type="number"
+                      id="price"
+                      name="price"
+                      className="add-product-input"
+                      placeholder={productPrice}
+                      required
+                      onChange={(event) => setPrice(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="inventory"
+                      className="add-product-input-container-label"
+                    >
+                      Số lượng hàng trong kho
+                    </label>
+                    <input
+                      type="number"
+                      id="inventory"
+                      name="inventory"
+                      className="add-product-input"
+                      placeholder={productQuantity}
+                      required
+                      onChange={(event) => setQuantity(event.target.value)}
+                    />
+                  </div>
+                </form>
+              </div>
             </div>
-            <div className="add-product-food-at-of-profile">
-              <h2>Hồ sơ</h2>
-              <form>
-                <div className="add-product-input-container">
-                  <label
-                    htmlFor="name"
-                    className="add-product-input-container-label"
-                  >
-                    Tên sản phẩm
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="add-product-input"
-                    required
-                    onChange={(event) => setName(event.target.value)}
-                  />
-                </div>
-                <div className="add-product-input-container">
-                  <label
-                    htmlFor="description"
-                    className="add-product-input-container-label"
-                  >
-                    Mô tả
-                  </label>
-                  <textarea
-                    id="description"
-                    name="description"
-                    className="add-product-input des-textarea"
-                    required
-                    onChange={(event) => setDes(event.target.value)}
-                  />
-                </div>
-                <div className="add-product-input-container">
-                  <label
-                    htmlFor="price"
-                    className="add-product-input-container-label"
-                  >
-                    Giá tiền (&#8363;)
-                  </label>
-                  <input
-                    type="number"
-                    id="price"
-                    name="price"
-                    className="add-product-input"
-                    required
-                    onChange={(event) => setPrice(event.target.value)}
-                  />
-                </div>
-                <div className="add-product-input-container">
-                  <label
-                    htmlFor="inventory"
-                    className="add-product-input-container-label"
-                  >
-                    Số lượng hàng trong kho
-                  </label>
-                  <input
-                    type="number"
-                    id="inventory"
-                    name="inventory"
-                    className="add-product-input"
-                    required
-                    onChange={(event) => setQuantity(event.target.value)}
-                  />
-                </div>
-              </form>
-            </div>
+            <button
+              type="submit"
+              className="add-product-button"
+              onClick={handleToyUpdateSubmit}
+            >
+              Lưu sản phẩm
+            </button>
           </div>
-          <button
-            type="submit"
-            className="add-product-button"
-            onClick={handleToySubmit}
-          >
-            Lưu sản phẩm
-          </button>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="add-product-page">
+          <div className="add-product-container">
+            <h2 className="add-product-container-title">Thông tin</h2>
+            <div className="add-product-section">
+              <div className="add-product-food-at-of-img">
+                <h2>Ảnh sản phẩm</h2>
+                <img
+                  src={avatarUrl}
+                  alt="Product A"
+                  className="product-food-at-img"
+                />
+                <label htmlFor="imageInput" className="custom-file-upload">
+                  Thêm ảnh sản phẩm
+                </label>
+                <input
+                  type="file"
+                  id="imageInput"
+                  accept="image/*"
+                  onChange={handleAvatarChange}
+                  style={{ display: "none" }}
+                />
+              </div>
+              <div className="add-product-food-at-of-profile">
+                <h2>Hồ sơ</h2>
+                <form>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="name"
+                      className="add-product-input-container-label"
+                    >
+                      Tên sản phẩm
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="add-product-input"
+                      required
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="description"
+                      className="add-product-input-container-label"
+                    >
+                      Mô tả
+                    </label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      className="add-product-input des-textarea"
+                      required
+                      onChange={(event) => setDes(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="price"
+                      className="add-product-input-container-label"
+                    >
+                      Giá tiền (&#8363;)
+                    </label>
+                    <input
+                      type="number"
+                      id="price"
+                      name="price"
+                      className="add-product-input"
+                      required
+                      onChange={(event) => setPrice(event.target.value)}
+                    />
+                  </div>
+                  <div className="add-product-input-container">
+                    <label
+                      htmlFor="inventory"
+                      className="add-product-input-container-label"
+                    >
+                      Số lượng hàng trong kho
+                    </label>
+                    <input
+                      type="number"
+                      id="inventory"
+                      name="inventory"
+                      className="add-product-input"
+                      required
+                      onChange={(event) => setQuantity(event.target.value)}
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="add-product-button"
+              onClick={handleToySubmit}
+            >
+              Lưu sản phẩm
+            </button>
+          </div>
+        </div>
+      );
+    }
   }
 };
 export default AddProductPage;

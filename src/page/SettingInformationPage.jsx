@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./SettingInformationPage.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../components/utils/requestAPI";
+import useAuth from "../hooks/useAuth";
 
 const SettingInformationPage = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -10,8 +11,12 @@ const SettingInformationPage = () => {
 
   const [user, setUser] = useState(null);
   const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
   const [job, setJob] = useState("");
   const [birth, setBirth] = useState("");
+  const [address, setAddress] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [img, setImg] = useState("");
 
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
@@ -74,10 +79,10 @@ const SettingInformationPage = () => {
       return (
         <Fragment>
           <div className="setting-homepage-link-bar">
-            <a href="/home" className="setting-homepage-link">
+            <Link href="/home" className="setting-homepage-link">
               {" "}
               Về trang chủ
-            </a>
+            </Link>
           </div>
           <div className="update-info-page">
             <div className="update-info-container">
@@ -174,13 +179,51 @@ const SettingInformationPage = () => {
       );
     }
   } else {
+    const fetchData = async () => {
+      const url = "/api/User/get-user-information";
+      const data = {
+        userID: userId,
+      };
+      try {
+        const response = await api.post(url, data);
+        setUser(user);
+        //set fullname to display
+        setName(response.data.fullName);
+        //set roleId to display
+        setJob(response.data.roleId);
+        //set dob to display
+        const date = new Date(response.data.dateOfBird);
+        const formatted = `${date.getFullYear()}-${(date.getMonth() + 1)
+          .toString()
+          .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+        setBirth(formatted);
+        //set Gender
+        if (response.data.gender) {
+          setGender("M");
+        } else {
+          setGender("F");
+        }
+        //set Address
+        setAddress(response.data.address);
+        //set Phonenumber
+        setPhoneNum(response.data.phoneNumber);
+        //set img url
+        setImg(response.data.imageUrl);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    useEffect(() => {
+      fetchData();
+    }, [user]);
+
     return (
       <Fragment>
         <div className="setting-homepage-link-bar">
-          <a href="/home" className="setting-homepage-link">
+          <Link to={"/home"} className="setting-homepage-link">
             {" "}
             Về trang chủ
-          </a>
+          </Link>
         </div>
         <div className="update-info-page">
           <div className="update-info-container">
@@ -188,7 +231,7 @@ const SettingInformationPage = () => {
             <div className="update-info-section">
               <div className="update-info-of-img">
                 <h2>Ảnh đại diện</h2>
-                <img src={avatarUrl} alt="Avatar" className="avatar" />
+                <img src={img} alt="Avatar" className="avatar" />
                 <label htmlFor="avatarInput" className="custom-file-upload">
                   Thay đổi ảnh đại diện
                 </label>
@@ -215,6 +258,7 @@ const SettingInformationPage = () => {
                       id="name"
                       name="name"
                       className="update-info-input"
+                      placeholder={name}
                       required
                     />
                   </div>
@@ -271,6 +315,7 @@ const SettingInformationPage = () => {
                       id="address"
                       name="address"
                       className="update-info-input"
+                      placeholder={address}
                       required
                     />
                   </div>
@@ -286,6 +331,7 @@ const SettingInformationPage = () => {
                       id="phone-number"
                       name="phone-number"
                       className="update-info-input"
+                      placeholder={phoneNum}
                       required
                     />
                   </div>
