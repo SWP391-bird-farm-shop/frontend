@@ -23,10 +23,6 @@ const BlogPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const removeBlog = async (blogId) => {
     setRemove(blogId);
     const urlRemove = "/api/Blog/remove-blog";
@@ -45,6 +41,10 @@ const BlogPage = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [removeBlog]);
 
   const handleButtonClick = () => {
     window.location.href = "/home";

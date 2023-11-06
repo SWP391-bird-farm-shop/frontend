@@ -28,7 +28,9 @@
 }
 
 .create-blog-textarea {
-    height: 55px !important;
+    text-align: left;
+    overflow-y: scroll;
+    height: 50vh !important;
     padding: 5px 10px;
 }
 
