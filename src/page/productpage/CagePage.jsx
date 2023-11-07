@@ -22,9 +22,13 @@ const CagePage = () => {
     fetchData();
   }, []);
 
+  function formatCash(currency) {
+    return n?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  }
+
   return (
     <div className="product-page">
-      <ComboBox />
+      {/* <ComboBox /> */}
 
       <div className="product-items-section">
         {cage?.map((product) => (
@@ -36,7 +40,7 @@ const CagePage = () => {
             </div>
             <div className="product-details">
               <h4 className="product-title">{product.productName}</h4>
-              <p className="product-price">{product.price}</p>
+              <p className="product-price">₫{formatCash(product.price)}</p>
             </div>
           </Link>
         ))}

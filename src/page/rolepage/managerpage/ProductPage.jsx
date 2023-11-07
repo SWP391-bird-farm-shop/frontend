@@ -93,6 +93,11 @@ const ProductPage = () => {
       sortByToy();
     }
   }, [listProduct]);
+
+  function formatCash(n, currency) {
+    return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  }
+
   //listProduct
   if (action === "view-product") {
     return (
@@ -116,7 +121,7 @@ const ProductPage = () => {
                   </div>
                   <div className="quantity-and-price">
                     <p>Đang có {cage.quantity} sản phẩm</p>
-                    <p>Giá tiền ${cage.price}</p>
+                    <p>Giá tiền ₫{formatCash(cage.price)}</p>
                   </div>
                 </div>
               </div>
@@ -147,7 +152,7 @@ const ProductPage = () => {
                   </div>
                   <div className="quantity-and-price">
                     <p>Đang có {food.quantity} sản phẩm</p>
-                    <p>Giá tiền ${food.price}</p>
+                    <p>Giá tiền ₫{formatCash(food.price)}</p>
                   </div>
                 </div>
               </div>
@@ -175,7 +180,7 @@ const ProductPage = () => {
                   </div>
                   <div className="quantity-and-price">
                     <p>Đang có {toy.quantity} sản phẩm</p>
-                    <p>Giá tiền ${toy.price}</p>
+                    <p>Giá tiền ₫{formatCash(toy.price)}</p>
                   </div>
                 </div>
               </div>
@@ -232,7 +237,7 @@ const ProductPage = () => {
                     </div>
                     <div className="quantity-and-price">
                       <p>Đang có {cage.quantity} sản phẩm</p>
-                      <p>Giá tiền ${cage.price}</p>
+                      <p>Giá tiền ₫{formatCash(cage.price)}</p>
                     </div>
                   </div>
                 </div>
@@ -284,7 +289,7 @@ const ProductPage = () => {
                     </div>
                     <div className="quantity-and-price">
                       <p>Đang có {food.quantity} sản phẩm</p>
-                      <p>Giá tiền ${food.price}</p>
+                      <p>Giá tiền ₫{formatCash(food.price)}</p>
                     </div>
                   </div>
                 </div>
@@ -293,7 +298,7 @@ const ProductPage = () => {
           </div>
         ) : (
           <div>
-            <h2 className="product-manager-page-title">Lồng chim</h2>
+            <h2 className="product-manager-page-title">Thức ăn cho chim</h2>
             <h4>Không có sản phẩm</h4>
           </div>
         )}
@@ -330,7 +335,7 @@ const ProductPage = () => {
                   </div>
                   <div className="quantity-and-price">
                     <p>Đang có {toy.quantity} sản phẩm</p>
-                    <p>Giá tiền ${toy.price}</p>
+                    <p>Giá tiền ₫{formatCash(toy.price)}</p>
                   </div>
                 </div>
               </div>
@@ -338,7 +343,7 @@ const ProductPage = () => {
           </div>
         ) : (
           <div>
-            <h2 className="product-manager-page-title">Lồng chim</h2>
+            <h2 className="product-manager-page-title">Phụ kiện - Đồ chơi</h2>
             <h4>Không có sản phẩm</h4>
           </div>
         )}

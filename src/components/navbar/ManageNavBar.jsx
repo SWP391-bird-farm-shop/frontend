@@ -11,9 +11,11 @@ import "./ManageNavBar.css";
 import { FaShoppingCart, FaSignOutAlt, FaUserEdit } from "react-icons/fa";
 import SearchBar from "../search/SearchBar.jsx";
 import useAuth from "../../hooks/useAuth.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ManageNavbar = ({ className }) => {
+  const navigate = useNavigate();
+
   const [showSubNav, setShowSubNav] = useState(false);
 
   const handleImgClick = () => {
@@ -25,6 +27,8 @@ const ManageNavbar = ({ className }) => {
   const Logout = () => {
     localStorage.clear();
     auth.user = null;
+    () => window.location.reload(true);
+    navigate("/home");
   };
 
   {
@@ -156,15 +160,12 @@ const ManageNavbar = ({ className }) => {
             <NavLink to="/blogs" className="first-section-component-staff">
               Quản lí bài viết
             </NavLink>
-            <NavLink
-              to="/feedback/view"
-              className="first-section-component-staff"
-            >
-              Quản lí feedback
-            </NavLink>
-            <NavLink to="/order" className="first-section-component-staff">
-              Quản lí đơn hàng
-            </NavLink>
+            {/* <NavLink to="/feedback/view" className="first-section-component-staff"> */}
+            {/* Quản lí feedback */}
+            {/* </NavLink> */}
+            {/* <NavLink to="/order" className="first-section-component-staff"> */}
+            {/* Quản lí đơn hàng */}
+            {/* </NavLink> */}
           </NavMenu>
 
           <div className="second-role-section">

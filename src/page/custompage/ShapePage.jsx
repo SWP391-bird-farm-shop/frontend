@@ -1,8 +1,33 @@
-import React from "react";
-import './CustomPage.css';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import "./CustomPage.css";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import api from "../../components/utils/requestAPI";
 
 const SizePage = () => {
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+
+  const [listStyle, setListStyle] = useState(null);
+
+  const fetchData = async () => {
+    if (auth?.user === undefined) {
+      navigate("/log-in");
+    }
+    const url = "/api/Style/get-for-custom";
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setListStyle(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [auth]);
+
   const handleButtonClick = () => {
     window.location.href = "/custom-products-size";
   };
@@ -13,16 +38,16 @@ const SizePage = () => {
       <div className="custom-option">
         <ul>
           <li>
-            <Link to="/custom-products-shape"> Hình Dáng  </Link>
+            <Link to="/custom-products-shape"> Hình Dáng </Link>
           </li>
           <li>
             <Link to="/custom-products-size"> Kích Thước </Link>
           </li>
           <li>
-            <Link to="/custom-products-color">Màu Sắc  </Link>
+            <Link to="/custom-products-material"> Chất Liệu </Link>
           </li>
           <li>
-            <Link to="/custom-products-material"> Chất Liệu  </Link>
+            <Link to="/custom-products-color">Màu Sắc </Link>
           </li>
           <li>
             <Link to="/custom-products-end">Tổng Thể </Link>
@@ -31,33 +56,41 @@ const SizePage = () => {
       </div>
 
       <div className="custom-option-detail">
-        <h2 className="custom-option-detail-title">Chọn Hình Dáng Lồng Của Bạn </h2>
+        <h2 className="custom-option-detail-title">
+          Chọn Hình Dáng Lồng Của Bạn{" "}
+        </h2>
         <div className="custom-choose-and-detail">
           <div className="custom-option-detail-list">
-            <div className="custom-detail-item">
-              <h3> Thanh Đan: 5 </h3>
-              <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-product-image" />
-              <button onClick={handleButtonClick} className="choose-button">Chọn</button>
-            </div>
-            <div className="custom-detail-item">
-              <h3> Thanh Đan: 6 </h3>
-              <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-product-image" />
-              <button onClick={handleButtonClick} className="choose-button">Chọn</button>
-            </div>
-            <div className="custom-detail-item">
-              <h3> Thanh Đan: 8 </h3>
-              <img src="public\Longhinhtru.jpg" alt="Chim" className="custom-product-image" />
-              <button onClick={handleButtonClick} className="choose-button">Chọn</button>
-            </div>
+            {listStyle?.map((style) => (
+              <div className="custom-detail-item">
+                <h3> {style.styleName} </h3>
+                <img
+                  src="public\Longhinhtru.jpg"
+                  alt="Chim"
+                  className="custom-product-image"
+                />
+                <button onClick={handleButtonClick} className="choose-button">
+                  Chọn
+                </button>
+              </div>
+            ))}
           </div>
 
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
-              <p>Hình dáng: <span>Hình vuông</span></p> 
-              <p>Kích thước: <span>100x50"</span></p>
-              <p>Vật liệu: <span>Vàng</span></p>
-              <p>Màu sắc: <span>Đỏ</span></p>
+              <p>
+                Hình dáng: <span>Hình vuông</span>
+              </p>
+              <p>
+                Kích thước: <span>100x50"</span>
+              </p>
+              <p>
+                Vật liệu: <span>Vàng</span>
+              </p>
+              <p>
+                Màu sắc: <span>Đỏ</span>
+              </p>
 
               <h4>Giá Hiện Tại: 5000$</h4>
             </div>
@@ -70,6 +103,6 @@ const SizePage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SizePage;

@@ -138,7 +138,7 @@ const App = () => {
         <Route element={<RoleLayout />}>
           <Route path="/create-blog" element={<BlogForm />} />
           <Route path="/manage-blogs/:action" element={<BlogPage />} />
-          <Route path="/blog-content/:blogId" element={<BlogContentPage />} />
+          <Route path="/view-blog/:blogId" element={<BlogContentPage />} />
           <Route path="/feedback/:action" element={<FeedbackPage />} />
           <Route path="/order" element={<ViewOrderPage />} />
           <Route path="/announce-order" element={<AnnounceOrderPage />} />
