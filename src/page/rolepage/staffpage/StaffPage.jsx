@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../RolePage.css";
 import { Link } from "react-router-dom";
 
-import {Modal} from 'react-bootstrap';
 const StaffPage = () => {
   const [popup,setPopup] = useState(true);
 
