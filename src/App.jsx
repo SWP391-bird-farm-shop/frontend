@@ -42,6 +42,7 @@ import BlogForm from "./page/rolepage/staffpage/CreateBlog";
 import ConfirmPage from "./page/ConfirmPage";
 import WaitingOrderPage from "./page/WaitingOrderPage";
 import TermsAndConditionsPage from "./page/TermsAndConditionsPage";
+import CustomPage from "./page/custompage/CustomPage";
 
 const App = () => {
   return (
@@ -62,6 +63,7 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
 
         <Route path="/about-us" element={<AboutPage />} />
+        <Route path="/custom-cage" element={<CustomPage />} />
         <Route path="/custom-products-shape" element={<ShapePage />} />
         <Route path="/custom-products-size" element={<SizePage />} />
         <Route path="/custom-products-material" element={<MaterialPage />} />

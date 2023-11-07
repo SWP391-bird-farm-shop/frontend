@@ -182,7 +182,7 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
     );
   } else {
     return (
-      <></>
+      
       //product
       // <div className="combo-box-price">
       //     <select value={selected} onChange={e => setSelected(e.target.value)}>
