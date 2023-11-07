@@ -30,7 +30,6 @@ const ConfirmPage = () => {
   useEffect(() => {
     fetchData();
   }, [auth]);
-
   return (
     <div className="confirm-page">
       <h1 className="confirm-page-title">Danh sách đơn hàng đã xác nhận</h1>
