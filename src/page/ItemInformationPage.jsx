@@ -9,9 +9,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
 
-import 'bootstrap/dist/css/bootstrap.css';
-import {Modal} from 'react-bootstrap';
-
 
 const ItemInformation = () => {
 
