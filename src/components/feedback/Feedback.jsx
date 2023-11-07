@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ProductFeedbackList from './ProductFeedbackList'
 import './Feedback.css'
 
 const Feedback = () => {
@@ -50,7 +49,6 @@ const Feedback = () => {
           />
         ))}
       </div>
-      <ProductFeedbackList />
     </div>
   )
 }
