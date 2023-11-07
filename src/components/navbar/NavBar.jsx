@@ -24,6 +24,8 @@ const Navbar = ({ className }) => {
     const Logout = () => {
       localStorage.clear();
       auth.user = null;
+      () => window.location.reload(true);
+      navigate("/home");
     };
     return (
       <nav className={`navbar ${className}`}>
@@ -81,6 +83,15 @@ const Navbar = ({ className }) => {
                   >
                     <FaUserEdit /> Chỉnh sửa thông tin
                   </SubNavItem>
+                  <SubNavItem
+                    to="/order-confirm"
+                    className="navbar-user-img-subnav-link"
+                  >
+                    <FaUserEdit /> Đơn hàng đã xác nhận
+                  </SubNavItem>
+                  {/* <SubNavItem to="/order-waiting" className="navbar-user-img-subnav-link"> */}
+                  {/* <FaUserEdit /> Đơn hàng đang chờ xác nhận */}
+                  {/* </SubNavItem> */}
                   <SubNavItem
                     to="/home"
                     className="navbar-user-img-subnav-link"

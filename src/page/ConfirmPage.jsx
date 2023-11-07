@@ -1,51 +1,69 @@
-import React from "react";
-import "./ConfirmPage.css";
+import React, { useEffect, useState } from "react";
+import "./OrderStatusPage.css";
+import useAuth from "../hooks/useAuth";
+import api from "../components/utils/requestAPI";
 
 const ConfirmPage = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Chim Bồ Câu",
-      price: "$19.99",
-      description: "Description of Confirmed Product 1",
-      
-      status: "Confirmed", 
-    },
-    {
-      id: 2,
-      name: "Chim Họa Mi",
-      price: "$29.99",
-      description: "Description of Confirmed Product 2",
-     
-      status: "Confirmed", 
-    },
-    {
-      id: 3,
-      name: "Waiting Product 1",
-      price: "$9.99",
-      description: "Description of Waiting Product 1",
-     
-      status: "Waiting", 
-    },
-    
-  ];
+  const { auth } = useAuth();
+  // const products = [
+  //   'Lồng 1',
+  //   'Lồng 2',
+  //   'Lồng 3',
+  // ]
 
-  
-  const confirmedProducts = products.filter((product) => product.status === "Confirmed");
+  const [order, setOrder] = useState(null);
 
+  const fetchData = async () => {
+    const url = "/api/Order/get-paid";
+    const data = {
+      userID: auth?.user?.userId,
+    };
+    try {
+      const response = await api.post(url, data);
+      console.log(response.data.status);
+      setOrder(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [auth]);
   return (
     <div className="confirm-page">
       <h1 className="confirm-page-title">Danh sách đơn hàng đã xác nhận</h1>
-      <div className="confirmed-products">
-        {confirmedProducts.map((product) => (
-          <div key={product.id} className="confirmed-product">
-           
-            <div class="detail-product">
-            <h2 className="product-name">{product.name}</h2>
-            
-            <p className="product-description">{product.description}</p>
-            <p className="product-price">{product.price}</p>
-            <p className="product-status">Trạng thái: {product.status}</p>
+      <div className="confirmed-orders">
+        {order?.map((detail) => (
+          <div key={detail.orderId} className="confirmed-order">
+            <h3 className="confirmed-order-id">
+              Mã đơn hàng: {detail.orderId}
+            </h3>
+            <div className="confirmed-order-detail">
+              <div className="confirmed-order-customer-info-section">
+                <p>Tên khách hàng: John Doe</p>
+                <p>Số điện thoại: (555) 123-4567</p>
+                <p>Địa chỉ: 123 Main St</p>
+              </div>
+              <div className="confirmed-order-product">
+                {detail?.orderDetail?.map((item) => (
+                  <p className="confirmed-order-product-name">
+                    {item.product?.productName}
+                  </p>
+                ))}
+              </div>
+              <div className="confirmed-order-price-status">
+                <p className="confirmed-order-price">₫{detail.total}</p>
+                {detail.status ? (
+                  <p className="confirmed-order-status">
+                    Trạng thái: Đã xác nhận
+                  </p>
+                ) : (
+                  <p className="confirmed-order-status">
+                    Trạng thái: Chưa xác nhận
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         ))}

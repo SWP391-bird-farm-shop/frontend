@@ -103,11 +103,6 @@ const AddProductPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchDataStyle();
-    if (productId) fetchCageDataForUpdate();
-  }, []);
-
   const handleSubmit = async () => {
     const priceDouble = parseFloat(price);
     const quantityNum = parseInt(quantity);
@@ -153,6 +148,11 @@ const AddProductPage = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    fetchDataStyle();
+    if (productId) fetchCageDataForUpdate();
+  }, [handleSubmit]);
 
   const handleToySubmit = async () => {
     const priceDouble = parseFloat(price);
