@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../RolePage.css";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import {Modal} from 'react-bootstrap';
 
 const ManagerPage = () => {
   const { auth } = useAuth();
