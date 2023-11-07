@@ -9,7 +9,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
 
+import 'bootstrap/dist/css/bootstrap.css';
+import {Modal} from 'react-bootstrap';
+
+
 const ItemInformation = () => {
+
   const { auth } = useAuth();
 
   const { productId } = useParams();
@@ -18,6 +23,9 @@ const ItemInformation = () => {
   const [message, setMessage] = useState("");
 
   const [quantity, setQuantity] = useState(1);
+  
+  const [popup,setPopup] = useState(false);  
+  
   const current = new Date();
   const date = `${current.getFullYear()}-${
     current.getMonth() + 1
@@ -105,7 +113,7 @@ const ItemInformation = () => {
           try {
             const responseUpdate = await api.put(urlUpdate, data);
             console.log(responseUpdate.data);
-            window.prompt("Add Success");
+            // window.prompt("Add Success");
           } catch (error) {
             console.error(error);
           }
@@ -228,9 +236,15 @@ const ItemInformation = () => {
             </div>
             <p className="quantity-inventory">{message}</p>
           </div>
-          <button className="add-to-cart" onClick={handleAuth}>
-            Thêm vào giỏ hàng
-          </button>
+          {/* <button className="add-to-cart" onClick={handleAuth}>Thêm vào giỏ hàng</button> */}
+          <button className="add-to-cart" onClick={() => setPopup(true)}>Thêm vào giỏ hàng</button>
+          <Modal show ={popup} onHide = {() => setPopup(false)}>
+              <div>
+                Bạn đã thêm sản phẩm .... vào giỏ hàng thành công
+              </div>
+              <button className="add-to-cart" onClick={handleAuth} onClickCapture={() => setPopup(false)}> Ok </button>
+              <button onClick={() => setPopup(false)}> Cancel </button>
+          </Modal>
         </div>
       </div>
 

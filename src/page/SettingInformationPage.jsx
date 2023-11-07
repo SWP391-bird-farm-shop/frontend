@@ -4,8 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
 
+import {Modal} from 'react-bootstrap';
+
+
 const SettingInformationPage = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
+
+    const [popup,setPopup] = useState(false);
 
   const { action, userId } = useParams();
 

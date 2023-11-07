@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "../RolePage.css";
 import { Link } from "react-router-dom";
 
+import {Modal} from 'react-bootstrap';
 const StaffPage = () => {
+  const [popup,setPopup] = useState(true);
+
   const blogs = [
     {
       id: 1,
@@ -86,6 +89,12 @@ const StaffPage = () => {
           <img src="./vet.jpg" className="role-page-manage-task-img" />
         </Link>
       </div>
+      <Modal show={popup} onHide={() => setPopup(false)}>
+        <div>
+          <button onClick={() => setPopup(false)}>X</button>
+          <h1>Wellcome to Staff Page.</h1>
+        </div>
+      </Modal>
     </div>
   );
 };
