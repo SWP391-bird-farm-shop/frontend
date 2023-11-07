@@ -11,14 +11,6 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
   const [defaultParam, setDefault] = useState("");
   const priceOptions = ["Tăng dần", "Giảm dần"];
 
-  const questionOptions = [
-        'Câu hỏi 1',
-        'Câu hỏi 2',
-        'Câu hỏi 3',
-        'Câu hỏi 4',
-        'Câu hỏi 5',
-    ];
-  
   const handleChangeSelect = (e) => {
     setSelected(e.target.value);
     onChange(e.target.value);
@@ -159,7 +151,7 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
     useEffect(() => {
       fetchDataColor();
     }, []);
-    
+
     return (
       <div className="combo-box-product">
         <select value={selected} onChange={handleChangeSelect}>
@@ -230,17 +222,6 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
       //        ))}
       //    </select>
       //</div>
-      <div className="combo-box-question">
-               <select value={selected} onChange={e => setSelected(e.target.value)}>
-                   <option value="" disabled hidden selected>Chọn câu hỏi xác thực</option>
-                   {questionOptions.map(questionOption => (
-                       <option key={questionOption} value={questionOption}>
-                           {questionOption}
-                       </option>
-                   ))}
-               </select>
-            </div>
-
     );
   }
 };
