@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CustomPage.css";
-import { Link } from "react-router-dom";
 
 
 const CustomPage = () => {
+
+    const handleButtonClick = () => {
+        window.location.href = "/custom-products-shape";
+    };
 
     return (
         <div className="custom-page">
@@ -15,7 +18,7 @@ const CustomPage = () => {
                         <label htmlFor="name" className='custom-page-input-container-label' >Tên lồng chim</label>
                         <input type="text" id="name" name="name" className='custom-page-input' required />
                     </div>
-                    <button type="submit" className="choose-button">
+                    <button onClick={handleButtonClick} type="submit" className="choose-button">
                         Xác nhận
                     </button>
                 </form>
