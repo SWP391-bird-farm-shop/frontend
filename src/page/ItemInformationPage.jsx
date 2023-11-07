@@ -9,9 +9,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
 
-import 'bootstrap/dist/css/bootstrap.css';
-import {Modal} from 'react-bootstrap';
-
 
 const ItemInformation = () => {
 
@@ -201,6 +198,10 @@ const ItemInformation = () => {
     }
   };
 
+  function formatCash(n) {
+    return n?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  }
+
   return (
     <div className="product-information-layout">
       <div className="product-information-container">
@@ -209,7 +210,9 @@ const ItemInformation = () => {
         </div>
         <div className="product-information-summary">
           <h2 className="product-information-title">{product?.productName}</h2>
-          <p className="product-information-price">{product?.price} ₫</p>
+          <p className="product-information-price">
+            ₫{formatCash(product?.price)}
+          </p>
           <p className="product-information-description">
             {product?.description}
           </p>

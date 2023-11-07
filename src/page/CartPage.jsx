@@ -6,9 +6,6 @@ import useAuth from "../hooks/useAuth";
 import api from "../components/utils/requestAPI";
 import { useNavigate } from "react-router-dom";
 
-import { Modal } from "react-bootstrap";
-
-
 const CartPage = () => {
 
   const [popup, setPopup] = useState(false);
@@ -96,6 +93,10 @@ const CartPage = () => {
     }
   };
 
+  function formatCash(n) {
+    return n?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  }
+
   //fetch for order
   const fetchData = async () => {
     const url = "/api/Order/get-not-paid";
@@ -106,7 +107,7 @@ const CartPage = () => {
       const response = await api.post(url, data);
       setCartItems(response.data);
       console.log(response.data);
-      if (response) {
+      if (response.data.length != 0) {
         const paymentUrl = `/api/Payment/get-payment?OrderId=${cartItems[0]?.orderId}`;
         const responsePayment = await api.get(paymentUrl);
         if (responsePayment.data.status) {
@@ -307,7 +308,7 @@ const CartPage = () => {
       setPhoneNumber(auth.user.phoneNumber);
       setEditPhonenumber(auth.user.phoneNumber);
     } else navigate("/log-in");
-  }, []);
+  }, [updateQuantity, paymentSubmit, auth]);
   //updateQuantity, paymentSubmit, auth
 
   if (cartItems) {
@@ -363,14 +364,17 @@ const CartPage = () => {
                       <h3 className="cart-item-details-name">
                         {product.product.productName}
                       </h3>
-                      <p>Giá tiền: ${product.price}</p>
+                      <p>Giá tiền: ₫{formatCash(product.price)}</p>
                       <QuantityButton
                         initialQuantity={product.quantity}
                         onQuantityChange={(newQuantity) =>
                           updateQuantity(product.productId, newQuantity)
                         }
                       />
-                      <p>Thành tiền: ${product.price * product.quantity}</p>
+                      <p>
+                        Thành tiền: ₫
+                        {formatCash(product.price * product.quantity)}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -524,24 +528,27 @@ const CartPage = () => {
             <p className="order-summary-title">
               Tổng tiền hàng:{" "}
               <span className="order-summary-price">
-                {cartItems[0]?.total} ₫
+                ₫{formatCash(cartItems[0]?.total)}
               </span>
             </p>
             <p className="order-summary-title">
               Tổng tiền phí vận chuyển:{" "}
-              <span className="order-summary-price">0 ₫</span>
+              <span className="order-summary-price">₫0</span>
             </p>
             {selectVoucher ? (
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
                 <span className="order-summary-price">
-                  {(parseFloat(selectVoucher) / 100) * cartItems[0]?.total} ₫
+                  ₫
+                  {formatCash(
+                    (parseFloat(selectVoucher) / 100) * cartItems[0]?.total
+                  )}
                 </span>
               </p>
             ) : (
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
-                <span className="order-summary-price">0 ₫</span>
+                <span className="order-summary-price">₫0</span>
               </p>
             )}
           </div>
@@ -549,9 +556,9 @@ const CartPage = () => {
           <div className="total-section">
             <h3>Tổng thanh toán</h3>
             {selectVoucher === "" ? (
-              <p>{cartItems[0]?.total} ₫</p>
+              <p>₫{formatCash(cartItems[0]?.total)}</p>
             ) : (
-              <p>${totalPrice} ₫</p>
+              <p>₫{formatCash(totalPrice)}</p>
             )}
           </div>
 

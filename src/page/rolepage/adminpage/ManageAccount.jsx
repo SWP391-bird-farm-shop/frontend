@@ -4,9 +4,12 @@ import "../RolePage.css";
 import api from "../../../components/utils/requestAPI";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 // Sample user account data (replace with your data)
 const ManageAccount = () => {
+  const { auth } = useAuth();
+
   const handleButtonClick = () => {
     window.location.href = "/";
   };
@@ -52,7 +55,7 @@ const ManageAccount = () => {
 
   useEffect(() => {
     fetchData();
-  }, [handleDelete]);
+  }, [auth, handleDelete]);
 
   return (
     // <div className="manage">
@@ -107,8 +110,6 @@ const ManageAccount = () => {
       <table className="user-table">
         <thead>
           <tr>
-            <th>UserID</th>
-            <th>RoleID</th>
             <th>Ảnh đại diện</th>
             <th>Tên đăng nhập</th>
             <th>Họ và tên</th>
@@ -123,8 +124,6 @@ const ManageAccount = () => {
         <tbody className="content-info">
           {listUser?.map((user, index) => (
             <tr key={index}>
-              <td>{user.userId}</td>
-              <td>{user.roleId}</td>
               <td>
                 <img src={user.imageURL} alt={`${user.userName}`} />
               </td>

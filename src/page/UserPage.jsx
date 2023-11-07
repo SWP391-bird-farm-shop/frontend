@@ -3,8 +3,6 @@ import Carousel from '../components/carousel/Carousel'
 import Article from '../components/article/Article'
 import Slider from '../components/slider/Slider'
 
-import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 
 function UserPage() {

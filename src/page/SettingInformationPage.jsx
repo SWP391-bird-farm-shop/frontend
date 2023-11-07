@@ -4,9 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
 
-import {Modal} from 'react-bootstrap';
-
-
 const SettingInformationPage = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
 
@@ -38,8 +35,21 @@ const SettingInformationPage = () => {
 
   const [selectedDate, setSelectedDate] = useState("");
 
-  const handleDateChange = (event) => {
+  const handleDateChange = async (event) => {
     setSelectedDate(event.target.value);
+    const url = "/api/User/update";
+    const data = {
+      userID: userId,
+      fullName: name,
+      dateOfBird: selectedDate,
+      roleID: job,
+    };
+    try {
+      const response = await api.put(url, data);
+      if (response) window.prompt("Success");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const validateDateOfBirth = (event) => {
@@ -124,6 +134,7 @@ const SettingInformationPage = () => {
                         id="name"
                         name="name"
                         className="update-info-input"
+                        onChange={(event) => setName(event.target.value)}
                         placeholder={name}
                         required
                       />
@@ -161,7 +172,7 @@ const SettingInformationPage = () => {
                           type="date"
                           name="dob"
                           className="update-info-date"
-                          value={birth}
+                          placeholder={birth}
                           onChange={handleDateChange}
                           onBlur={validateDateOfBirth}
                           required

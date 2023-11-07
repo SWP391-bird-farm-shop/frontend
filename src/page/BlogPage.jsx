@@ -90,9 +90,6 @@ const BlogPage = () => {
             {blogItem?.map((blog) => (
               <div className="blog-item">
                 <div className="role-page-edit-button">
-                  <button onClick={handleButtonClick} className="update-button">
-                    <FaRegEdit />
-                  </button>
                   <button
                     onClick={() => removeBlog(blog.blogId)}
                     className="remove-button"
