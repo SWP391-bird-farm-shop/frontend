@@ -1,5 +1,6 @@
 import React from "react";
 import "./CustomPage.css";
+import PopupModal from "../../components/modal/PopupModal";
 
 
 const CustomPage = () => {
@@ -23,6 +24,7 @@ const CustomPage = () => {
                     </button>
                 </form>
             </div>
+            <PopupModal />
 
         </div>
     );

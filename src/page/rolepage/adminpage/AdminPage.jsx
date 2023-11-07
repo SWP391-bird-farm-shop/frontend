@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../RolePage.css";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import PopupModal from "../../../components/modal/PopupModal";
 
 const AdminPage = () => {
    const { auth } = useAuth();
@@ -18,14 +19,6 @@ const AdminPage = () => {
                     <img src="./vet.jpg" className="role-page-manage-task-img" />
                 </Link>
             </div>
-            <Modal show={popup} onHide={() => setPopup(false)}>
-                <div>
-                    <button onClick={() => setPopup(false)}>X</button>
-                    <h2>
-                        Wellcome to Admin Page, have a nice day in work.
-                    </h2>
-                </div>
-            </Modal>
         </div>
     );
 };
