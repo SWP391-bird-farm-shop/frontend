@@ -3,8 +3,6 @@ import "../RolePage.css";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 
-import {Modal} from 'react-bootstrap';
-
 const AdminPage = () => {
    const { auth } = useAuth();
     
