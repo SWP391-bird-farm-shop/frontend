@@ -32,9 +32,6 @@ const SideNav = () => {
         <Link to="/create-user" className="side-navbar-link">
           <FaUser className="side-navbar-link-icon" /> Tạo tài khoản
         </Link>
-        <Link to="/info-setting" className="side-navbar-link">
-          <FaEdit className="side-navbar-link-icon" /> Chỉnh sửa tài khoản
-        </Link>
       </div>
     );
   }
@@ -163,9 +160,6 @@ const SideNav = () => {
         </Link>
         <Link to="/create-user" className="side-navbar-link">
           <FaRegEdit className="side-navbar-link-icon" /> Tạo tài khoản
-        </Link>
-        <Link to="/info-setting" className="side-navbar-link">
-          <FaEdit className="side-navbar-link-icon" /> Chỉnh sửa tài khoản
         </Link>
       </div>
     );

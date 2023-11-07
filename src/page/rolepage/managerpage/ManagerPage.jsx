@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "../RolePage.css";
 import { Link } from "react-router-dom";
-
+import useAuth from "../../../hooks/useAuth";
 import {Modal} from 'react-bootstrap';
 
 const ManagerPage = () => {
+  const { auth } = useAuth();
     const [popup,setPopup] = useState(true);
     return (
 
         <div className="role-page">
-            <h1 className="role-page-welcome">Xin chào Tên của quản lí</h1>
+                 <h1 className="role-page-welcome">Xin chào {auth?.user?.fullName}</h1>
             <h2 className="role-page-manage-tasks-title">Mời bạn chọn các tác vụ dưới đây để quản lí</h2>
             <div className="role-page-manage-tasks">
                 <Link to={`/product/view-product`} className="role-page-manage-task">
