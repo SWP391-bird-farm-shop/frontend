@@ -4,6 +4,7 @@ import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import api from "../components/utils/requestAPI";
 import { Link, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import PopupModal from "../components/modal/PopupModal";
 
 const BlogPage = () => {
   const { auth } = useAuth();
@@ -90,12 +91,13 @@ const BlogPage = () => {
             {blogItem?.map((blog) => (
               <div className="blog-item">
                 <div className="role-page-edit-button">
-                  <button
+                  {/* <button
                     onClick={() => removeBlog(blog.blogId)}
                     className="remove-button"
                   >
                     <FaTrashAlt />
-                  </button>
+                  </button> */}
+                  <PopupModal />
                 </div>
                 <div className="blog-item-detail">
                   <div className="blog-item-image">

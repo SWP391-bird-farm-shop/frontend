@@ -6,9 +6,6 @@ import useAuth from "../hooks/useAuth";
 import api from "../components/utils/requestAPI";
 import { useNavigate } from "react-router-dom";
 
-import { Modal } from "react-bootstrap";
-
-
 const CartPage = () => {
 
   const [popup, setPopup] = useState(false);
@@ -612,7 +609,7 @@ const CartPage = () => {
   } else {
     return (
       <>
-        <div>bạn chưa add sản phẩm</div>
+        <div>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
       </>
     );
   }

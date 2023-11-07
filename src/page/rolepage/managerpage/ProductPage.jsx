@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../components/utils/requestAPI";
 import useAuth from "../../../hooks/useAuth";
 import { data } from "jquery";
+import PopupModal from "../../../components/modal/PopupModal";
 
 const ProductPage = () => {
   const { auth } = useAuth();
@@ -217,12 +218,13 @@ const ProductPage = () => {
                       >
                         <FaRegEdit />
                       </button>
-                      <button
+                      {/* <button
                         className="remove-button"
                         onClick={() => handleDelete(cage.productId)}
                       >
                         <FaTrashAlt />
-                      </button>
+                      </button> */}
+                      <PopupModal />
                     </div>
                   </div>
                   <div className="product-info">
