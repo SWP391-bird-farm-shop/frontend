@@ -5,6 +5,7 @@ import api from "../../../components/utils/requestAPI";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import PopupModal from "../../../components/modal/PopupModal";
 
 // Sample user account data (replace with your data)
 const ManageAccount = () => {
@@ -156,12 +157,13 @@ const ManageAccount = () => {
                 >
                   <FaRegEdit />
                 </button>
-                <button
+                {/* <button
                   className="remove-button"
                   onClick={() => handleDelete(user.userId)}
                 >
                   <FaTrashAlt />
-                </button>
+                </button> */}
+                <PopupModal />
               </td>
             </tr>
           ))}

@@ -4,6 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import api from "../../../components/utils/requestAPI";
 import moment from "moment";
+import PopupModal from "../../../components/modal/PopupModal";
 
 const VoucherPage = () => {
 
@@ -65,7 +66,8 @@ const VoucherPage = () => {
             <div className="voucher-page">
                 {listVoucher?.map(voucher => (
                     <div className="voucher-page-info">
-                        <button className="remove-button" onClick={() => handleDelete(voucher.voucherId)}><FaTrashAlt /></button>
+                        {/* <button className="remove-button" onClick={() => handleDelete(voucher.voucherId)}><FaTrashAlt /></button> */}
+                        <PopupModal />
                         <div className="voucher-info-section">
                             <h3 className="voucher-name">{voucher.voucherName}</h3>
                             <div className="voucher-page-info-des">

@@ -28,43 +28,23 @@ const Slider = () => {
     );
   };
 
-  return (
-    <div className="slider-section">
-      <div className="slider-container">
-        <button
-          className="slider-button slider-button-left"
-          onClick={previousImage}
-        >
-          <FaAngleLeft className="angle-left" />
-        </button>
-        <img
-          className="slider-image"
-          src={images[currentImageIndex]}
-          alt="Slider"
-        />
-        <button
-          className="slider-button slider-button-right"
-          onClick={nextImage}
-        >
-          <FaAngleRight className="angle-right" />
-        </button>
-      </div>
-      <div className="product-section">
-        <div className="custom-product-box-section">
-          <Link to="/custom-products-shape" className="custom-product-box">
-            <img
-              className="custom-product-box-image"
-              src="/demo.jpg"
-              alt="custom-product"
-            />
-            <h3 className="custom-product-box-heading">Thiết kế lồng chim</h3>
-            <h3 className="custom-product-box-heading">
-              theo sở thích của bạn
-            </h3>
-          </Link>
+    return (
+        <div className="slider-section">
+            <div className="slider-container">
+                <button className="slider-button slider-button-left" onClick={previousImage}><FaAngleLeft className="angle-left" /></button>
+                <img className="slider-image" src={images[currentImageIndex]} alt="Slider" />
+                <button className="slider-button slider-button-right" onClick={nextImage}><FaAngleRight className="angle-right" /></button>
+            </div>
+            <div className="product-section">
+                <div className="custom-product-box-section">
+                    <Link to="/custom-cage" className="custom-product-box">
+                        <img className="custom-product-box-image" src="/demo.jpg" alt="custom-product" />
+                        <h3 className="custom-product-box-heading">Thiết kế lồng chim</h3>
+                        <h3 className="custom-product-box-heading">theo sở thích của bạn</h3>
+                    </Link>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
   );
 };
 

@@ -5,6 +5,54 @@
   margin-bottom: 40px;
 }
 
+.custom-page-welcome {
+  color: black;
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+.custom-page-welcome-title {
+  color: black;
+  font-size: 30px;
+  margin: 30px;
+}
+
+.custom-page-input-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+}
+
+.custom-page-form {
+  width: 50%;
+}
+
+.custom-page-input-container {
+  margin-bottom: 10px;
+}
+
+.custom-page-input-container-label {
+  display: block;
+  color: #4CAF50;
+  text-align: left;
+  padding-left: 15px;
+  margin-bottom: 5px;
+}
+
+.custom-page-input {
+  background-color: aliceblue;
+    color: black;
+    width: 96%;
+    height: 18.4px;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 0;
+    outline: none;
+}
+
 .custom-title {
   color: black;
   font-size: 24px;
@@ -224,4 +272,3 @@
 .custom-summary-total-confirm:hover {
   background-color: #45a049;
 }
-
