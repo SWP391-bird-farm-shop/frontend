@@ -45,3 +45,35 @@
 .feedback {
     margin-bottom: 10px;
 }
+
+.product-feedback-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    text-align: justify;
+}
+
+.product-feedback-user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.product-feedback-detail {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.product-feedback-detail-username {
+    padding: 5px 0;
+    border-bottom: 1px solid black;
+    margin: 5px 15px;
+    margin-top: 0;
+}
+
+.product-feedback-detail-content {
+    margin: 10px 15px;
+}

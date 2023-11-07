@@ -609,7 +609,7 @@ const CartPage = () => {
   } else {
     return (
       <>
-        <div>bạn chưa add sản phẩm</div>
+        <div>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
       </>
     );
   }
