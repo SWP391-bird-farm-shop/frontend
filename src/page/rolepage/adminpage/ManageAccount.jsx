@@ -157,13 +157,12 @@ const ManageAccount = () => {
                 >
                   <FaRegEdit />
                 </button>
-                {/* <button
+                <button
                   className="remove-button"
                   onClick={() => handleDelete(user.userId)}
                 >
                   <FaTrashAlt />
-                </button> */}
-                <PopupModal />
+                </button>
               </td>
             </tr>
           ))}

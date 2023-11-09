@@ -16,6 +16,11 @@ const ProductPage = () => {
   const [listFood, setListFood] = useState(null);
   const [listToy, setListToy] = useState(null);
 
+  const [showPopup, setShowPopup] = useState("");
+  const [result, setResult] = useState(false);
+
+  const [id, setId] = useState("");
+
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -97,6 +102,20 @@ const ProductPage = () => {
 
   function formatCash(n, currency) {
     return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  }
+
+  const handlePopup = (id) => {
+    setShowPopup(true);
+    setId(id);
+  };
+
+  const handleClose = () => {
+    setShowPopup(false);
+  };
+
+  if (result) {
+    handleDelete(id);
+    setResult(false);
   }
 
   //listProduct
@@ -218,13 +237,12 @@ const ProductPage = () => {
                       >
                         <FaRegEdit />
                       </button>
-                      {/* <button
+                      <button
                         className="remove-button"
-                        onClick={() => handleDelete(cage.productId)}
+                        onClick={() => handlePopup(cage.productId)}
                       >
                         <FaTrashAlt />
-                      </button> */}
-                      <PopupModal />
+                      </button>
                     </div>
                   </div>
                   <div className="product-info">
@@ -348,6 +366,15 @@ const ProductPage = () => {
             <h2 className="product-manager-page-title">Phụ kiện - Đồ chơi</h2>
             <h4>Không có sản phẩm</h4>
           </div>
+        )}
+        {showPopup && (
+          <PopupModal
+            action={"remove"}
+            statusReturn={result}
+            setStatusReturn={setResult}
+            open={showPopup}
+            onClose={handleClose}
+          />
         )}
       </div>
     );

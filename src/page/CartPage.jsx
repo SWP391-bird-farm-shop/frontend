@@ -5,13 +5,9 @@ import { FaTrashAlt } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import api from "../components/utils/requestAPI";
 import { useNavigate } from "react-router-dom";
+import PopupModal from "../components/modal/PopupModal";
 
 const CartPage = () => {
-
-  const [popup, setPopup] = useState(false);
-  const [popNo, setPopno] = useState(false);
-
-
   const { auth } = useAuth();
   const [cartItems, setCartItems] = useState(null);
   const [voucherList, setVoucherList] = useState(null);
@@ -37,6 +33,10 @@ const CartPage = () => {
   const [selectVoucher, setSelectVoucher] = useState("");
 
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const [statusReturn, setStatusReturn] = useState(false);
 
   const handleCustomerEdit = () => {
     setEditing(true);
@@ -93,8 +93,9 @@ const CartPage = () => {
     }
   };
 
-  function formatCash(n) {
-    return n?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  //format money
+  function formatCash(currency) {
+    return currency?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
   }
 
   //fetch for order
@@ -107,7 +108,7 @@ const CartPage = () => {
       const response = await api.post(url, data);
       setCartItems(response.data);
       console.log(response.data);
-      if (response.data.length != 0) {
+      if (response) {
         const paymentUrl = `/api/Payment/get-payment?OrderId=${cartItems[0]?.orderId}`;
         const responsePayment = await api.get(paymentUrl);
         if (responsePayment.data.status) {
@@ -166,9 +167,6 @@ const CartPage = () => {
           note: "string",
           price: total,
         };
-        if (cartItems?.orderDetail === null) {
-          dataUpdate.price = 0;
-        }
         try {
           const updateResponse = await api.put(urlUpdate, dataUpdate);
           console.log(updateResponse.data);
@@ -231,6 +229,8 @@ const CartPage = () => {
 
   const paymentSubmit = async () => {
     //update product total lastime to payment
+    console.log(statusReturn);
+    if (statusReturn) console.log("hehe");
     console.log(totalPrice);
     const urlUpdate = "/api/Order/update-order-to-add-product";
     let note = editName + " " + editPhonenumber + " " + editAddress;
@@ -260,8 +260,7 @@ const CartPage = () => {
     });
     console.log(method);
     if (method === "") {
-      // window.prompt("Please payment options");
-      setPopno(true);
+      window.prompt("Please payment options");
     }
     if (method === "vnpay") {
       //create new payment
@@ -274,8 +273,7 @@ const CartPage = () => {
           const paymentUrl = `/api/VNPay?PaymentID=${response.data.paymentId}`;
           try {
             const response = await api.get(paymentUrl);
-            // window.open(response.data);
-            if (response.data) setPopup(true);
+            window.open(response.data);
           } catch (error) {
             console.error(error);
           }
@@ -308,10 +306,11 @@ const CartPage = () => {
       setPhoneNumber(auth.user.phoneNumber);
       setEditPhonenumber(auth.user.phoneNumber);
     } else navigate("/log-in");
-  }, [updateQuantity, paymentSubmit, auth]);
+  }, [updateQuantity]);
   //updateQuantity, paymentSubmit, auth
 
   if (cartItems) {
+    //to fetch Data voucher
     let fetch = null;
     //handle select voucher and decrese total payment
     const fetchVoucherData = async (id) => {
@@ -326,6 +325,8 @@ const CartPage = () => {
         console.log(error);
       }
     };
+
+    //handle voucher
     const handleSelectVoucher = async (e) => {
       e.preventDefault();
       await fetchVoucherData(e.target.value);
@@ -338,6 +339,17 @@ const CartPage = () => {
       setSelectVoucher(selectedVoucher);
       setTotalPrice(total);
     };
+
+    const handleClose = () => {
+      setShowPopup(false);
+    };
+
+    //handle showPopup
+    const handleShowPopup = async () => {
+      setShowPopup(true);
+    };
+
+    if (statusReturn) paymentSubmit();
 
     return (
       <div className="cart-and-payment">
@@ -364,7 +376,7 @@ const CartPage = () => {
                       <h3 className="cart-item-details-name">
                         {product.product.productName}
                       </h3>
-                      <p>Giá tiền: ₫{formatCash(product.price)}</p>
+                      <p>Giá tiền: ${product.price}</p>
                       <QuantityButton
                         initialQuantity={product.quantity}
                         onQuantityChange={(newQuantity) =>
@@ -372,7 +384,7 @@ const CartPage = () => {
                         }
                       />
                       <p>
-                        Thành tiền: ₫
+                        Thành tiền: $
                         {formatCash(product.price * product.quantity)}
                       </p>
                     </div>
@@ -528,27 +540,27 @@ const CartPage = () => {
             <p className="order-summary-title">
               Tổng tiền hàng:{" "}
               <span className="order-summary-price">
-                ₫{formatCash(cartItems[0]?.total)}
+                {formatCash(cartItems[0]?.total)} ₫
               </span>
             </p>
             <p className="order-summary-title">
               Tổng tiền phí vận chuyển:{" "}
-              <span className="order-summary-price">₫0</span>
+              <span className="order-summary-price">0 ₫</span>
             </p>
             {selectVoucher ? (
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
                 <span className="order-summary-price">
-                  ₫
                   {formatCash(
                     (parseFloat(selectVoucher) / 100) * cartItems[0]?.total
-                  )}
+                  )}{" "}
+                  ₫
                 </span>
               </p>
             ) : (
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
-                <span className="order-summary-price">₫0</span>
+                <span className="order-summary-price">0 ₫</span>
               </p>
             )}
           </div>
@@ -556,60 +568,38 @@ const CartPage = () => {
           <div className="total-section">
             <h3>Tổng thanh toán</h3>
             {selectVoucher === "" ? (
-              <p>₫{formatCash(cartItems[0]?.total)}</p>
+              <p>{formatCash(cartItems[0]?.total)} ₫</p>
             ) : (
-              <p>₫{formatCash(totalPrice)}</p>
+              <p>${formatCash(totalPrice)} ₫</p>
             )}
           </div>
 
           <div className="confirm-order">
-            {/* <button
-              type="submit"
-              onClick={paymentSubmit}
-              className="confirm-button"
-            >
-              Thanh toán
-            </button> */}
             <button
               type="submit"
-              onClick={paymentSubmit}
+              // onClick={paymentSubmit}
+              onClick={handleShowPopup}
               className="confirm-button"
             >
               Thanh toán
             </button>
-            <Modal show={popNo} onHide={() => setPopno(false)}>
-              <div>
-                <button onClick={() => setPopno(false)}>X</button>
-                <h4>
-                  Please Choose You Payment Options Below!!!
-                </h4>
-                <button onClick={() => setPopno(false)}>Ok</button>
-
-              </div>
-            </Modal>
-            <Modal show={popup} onHide={() => setPopup(false)}>
-              <div>
-                <h1>
-                  Đã thanh toán .... cho đơn hàng của bạn.
-                </h1>
-                <button
-                  type="submit"
-                  onClick={() => setPopup(false)}
-                  className="confirm-button"
-                >
-                  Yes
-                </button>
-                <button onClick={() => setPopup(false)}> cancel</button>
-              </div>
-            </Modal>
           </div>
         </div>
+        {showPopup && (
+          <PopupModal
+            action={"payment"}
+            statusReturn={statusReturn}
+            setStatusReturn={setStatusReturn}
+            open={true}
+            onClose={handleClose}
+          />
+        )}
       </div>
     );
   } else {
     return (
       <>
-        <div>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
+        <div>bạn chưa add sản phẩm</div>
       </>
     );
   }

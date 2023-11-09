@@ -1,15 +1,263 @@
-import React, { Fragment, useState } from 'react';
-import Button from '@mui/joy/Button';
-import Modal from '@mui/joy/Modal';
-import ModalClose from '@mui/joy/ModalClose';
-import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
-import { DialogActions, DialogContent, DialogTitle, Divider, ModalDialog } from '@mui/joy';
+import React, { Fragment, useState } from "react";
+import Button from "@mui/joy/Button";
+import Modal from "@mui/joy/Modal";
+import Typography from "@mui/joy/Typography";
+import Sheet from "@mui/joy/Sheet";
+import {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Divider,
+  ModalClose,
+  ModalDialog,
+} from "@mui/joy";
 import { VscWarning } from "react-icons/vsc";
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt } from "react-icons/fa";
 
-const PopupModal = () => {
-  const [open, setOpen] = useState(false);
+const PopupModal = ({
+  action,
+  statusReturn,
+  setStatusReturn,
+  open,
+  onClose,
+}) => {
+  const setupData = async (status) => {
+    if (status === true) setStatusReturn(true);
+    else setStatusReturn(false);
+    open = false;
+    onClose();
+  };
+
+  if (action === "success") {
+    return (
+      <Fragment>
+        <Modal open={open} onClose={onClose}>
+          <ModalDialog
+            variant="outlined"
+            role="alertdialog"
+            style={{ height: "28vh", width: "30vw" }}
+          >
+            <ModalClose />
+            <DialogTitle style={{ fontSize: "20px" }}>Thành công</DialogTitle>
+            <Divider />
+            <DialogContent sx={{ fontSize: "18px" }}>
+              Bạn có đã thêm thành công
+            </DialogContent>
+          </ModalDialog>
+        </Modal>
+      </Fragment>
+    );
+  }
+
+  if (action === "remove success") {
+    return (
+      <Fragment>
+        <Modal open={open} onClose={onClose}>
+          <ModalDialog
+            variant="outlined"
+            role="alertdialog"
+            style={{ height: "28vh", width: "30vw" }}
+          >
+            <ModalClose />
+            <DialogTitle style={{ fontSize: "20px" }}>Thành công</DialogTitle>
+            <Divider />
+            <DialogContent sx={{ fontSize: "18px" }}>
+              Bạn có đã xóa thành công
+            </DialogContent>
+          </ModalDialog>
+        </Modal>
+      </Fragment>
+    );
+  }
+
+  if (action === "filled") {
+    return (
+      <Fragment>
+        <Modal open={open} onClose={onClose}>
+          <ModalDialog
+            variant="outlined"
+            role="alertdialog"
+            style={{ height: "28vh", width: "30vw" }}
+          >
+            <ModalClose />
+            <DialogTitle style={{ fontSize: "20px" }}>
+              Thiếu thông tin
+            </DialogTitle>
+            <Divider />
+            <DialogContent sx={{ fontSize: "18px" }}>
+              Hãy nhập đầy đủ thông tin
+            </DialogContent>
+          </ModalDialog>
+        </Modal>
+      </Fragment>
+    );
+  }
+
+  if (action === "failed") {
+    return (
+      <Fragment>
+        <Modal open={open} onClose={onClose}>
+          <ModalDialog
+            variant="outlined"
+            role="alertdialog"
+            style={{ height: "28vh", width: "30vw" }}
+          >
+            <ModalClose />
+            <DialogTitle style={{ fontSize: "20px" }}>Thất bại</DialogTitle>
+            <Divider />
+            <DialogContent sx={{ fontSize: "18px" }}>
+              Thêm thất bại, hãy kiểm tra thông tin
+            </DialogContent>
+          </ModalDialog>
+        </Modal>
+      </Fragment>
+    );
+  }
+
+  if (action === "update success") {
+    return (
+      <Fragment>
+        <Modal open={open} onClose={onClose}>
+          <ModalDialog
+            variant="outlined"
+            role="alertdialog"
+            style={{ height: "28vh", width: "30vw" }}
+          >
+            <ModalClose />
+            <DialogTitle style={{ fontSize: "20px" }}>Thành công</DialogTitle>
+            <Divider />
+            <DialogContent sx={{ fontSize: "18px" }}>
+              Bạn có đã chỉnh sửa thành công
+            </DialogContent>
+          </ModalDialog>
+        </Modal>
+      </Fragment>
+    );
+  }
+
+  if (action === "update") {
+    return (
+      <Fragment>
+        <Modal open={open} onClose={onClose}>
+          <ModalDialog
+            variant="outlined"
+            role="alertdialog"
+            style={{ height: "28vh", width: "30vw" }}
+          >
+            <DialogTitle style={{ fontSize: "20px" }}>
+              Xác nhận chỉnh sửa
+            </DialogTitle>
+            <Divider />
+            <DialogContent sx={{ fontSize: "18px" }}>
+              Bạn có chắc chắn muốn chỉnh sửa không?
+            </DialogContent>
+            <DialogActions>
+              <Button
+                variant="solid"
+                color="primary"
+                onClick={() => setupData(true)}
+                style={{ fontSize: "20px" }}
+              >
+                Chỉnh sửa
+              </Button>
+              <Button
+                variant="plain"
+                color="neutral"
+                onClick={() => setupData(false)}
+                style={{ fontSize: "20px" }}
+              >
+                Không
+              </Button>
+            </DialogActions>
+          </ModalDialog>
+        </Modal>
+      </Fragment>
+    );
+  }
+
+  if (action === "payment") {
+    return (
+      <Fragment>
+        <Modal open={open} onClose={onClose}>
+          <ModalDialog
+            variant="outlined"
+            role="alertdialog"
+            style={{ height: "28vh", width: "30vw" }}
+          >
+            <DialogTitle style={{ fontSize: "20px" }}>
+              Xác nhận thanh toán
+            </DialogTitle>
+            <Divider />
+            <DialogContent sx={{ fontSize: "18px" }}>
+              Bạn có chắc chắn muốn thanh toán không?
+            </DialogContent>
+            <DialogActions>
+              <Button
+                variant="solid"
+                color="primary"
+                onClick={() => setupData(true)}
+                style={{ fontSize: "20px" }}
+              >
+                Thanh toán
+              </Button>
+              <Button
+                variant="plain"
+                color="neutral"
+                onClick={() => setupData(false)}
+                style={{ fontSize: "20px" }}
+              >
+                Không
+              </Button>
+            </DialogActions>
+          </ModalDialog>
+        </Modal>
+      </Fragment>
+    );
+  }
+
+  if (action === "remove") {
+    return (
+      <Fragment>
+        <Modal open={open} onClose={() => (open = false)}>
+          <ModalDialog
+            variant="outlined"
+            role="alertdialog"
+            style={{ height: "28vh", width: "30vw" }}
+          >
+            <DialogTitle style={{ fontSize: "20px" }}>
+              <VscWarning
+                style={{ paddingTop: "3px", height: "20px", width: "20px" }}
+              />{" "}
+              Xác nhận
+            </DialogTitle>
+            <Divider />
+            <DialogContent sx={{ fontSize: "18px" }}>
+              Bạn có chắc chắn xóa không?
+            </DialogContent>
+            <DialogActions>
+              <Button
+                variant="solid"
+                color="danger"
+                onClick={() => setupData(true)}
+                style={{ fontSize: "20px" }}
+              >
+                Xóa bỏ
+              </Button>
+              <Button
+                variant="plain"
+                color="neutral"
+                onClick={() => setupData(false)}
+                style={{ fontSize: "20px" }}
+              >
+                Không
+              </Button>
+            </DialogActions>
+          </ModalDialog>
+        </Modal>
+      </Fragment>
+    );
+  }
+
   return (
     // <Fragment>
     //   <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
@@ -51,26 +299,37 @@ const PopupModal = () => {
     // </Fragment>
 
     <Fragment>
-      <button
-        className="remove-button"
-        onClick={() => setOpen(true)}
-      >
-        <FaTrashAlt />
-      </button>
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <ModalDialog variant="outlined" role="alertdialog" style={{ height: '28vh', width: '30vw' }}>
-          <DialogTitle style={{ fontSize: '20px' }}>
-            <VscWarning style={{ paddingTop: '3px', height: '20px', width: '20px' }} /> Xác nhận
+      <Modal open={open} onClose={() => (open = false)}>
+        <ModalDialog
+          variant="outlined"
+          role="alertdialog"
+          style={{ height: "28vh", width: "30vw" }}
+        >
+          <DialogTitle style={{ fontSize: "20px" }}>
+            <VscWarning
+              style={{ paddingTop: "3px", height: "20px", width: "20px" }}
+            />{" "}
+            Xác nhận
           </DialogTitle>
           <Divider />
-          <DialogContent sx={{ fontSize: '18px' }}>
+          <DialogContent sx={{ fontSize: "18px" }}>
             Bạn có chắc chắn xóa không?
           </DialogContent>
           <DialogActions>
-            <Button variant="solid" color="danger" onClick={() => setOpen(false)} style={{ fontSize: '20px' }}>
+            <Button
+              variant="solid"
+              color="danger"
+              onClick={() => setupData(true)}
+              style={{ fontSize: "20px" }}
+            >
               Xóa bỏ
             </Button>
-            <Button variant="plain" color="neutral" onClick={() => setOpen(false)} style={{ fontSize: '20px' }}>
+            <Button
+              variant="plain"
+              color="neutral"
+              onClick={() => setupData(false)}
+              style={{ fontSize: "20px" }}
+            >
               Không
             </Button>
           </DialogActions>
@@ -78,6 +337,6 @@ const PopupModal = () => {
       </Modal>
     </Fragment>
   );
-}
+};
 
 export default PopupModal;
