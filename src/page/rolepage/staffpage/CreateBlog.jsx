@@ -11,11 +11,9 @@ const BlogForm = () => {
   const [img, setImg] = useState("");
 
   const [blogTitle, setBlogTitle] = useState("");
-  const [blogSummary, setBlogSummary] = useState("");
   const [blogContent, setBlogContent] = useState("");
-  const [blogType, setBlogType] = useState("");
   const [createdAt, setCreatedAt] = useState("");
-  const [imageUrls, setImageUrls] = useState([]);
+  const [imageUrls, setImageUrls] = useState("");
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -46,16 +44,19 @@ const BlogForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("y");
+
     const url = "/api/Blog/create-blog";
     const data = {
       title: blogTitle,
       content: blogContent,
-      type: blogType,
+      type: "post",
       usreID: auth?.user?.userId,
       createTime: createdAt,
       imageUrl: imageUrls,
     };
     try {
+      console.log(data);
       const response = await api.post(url, data);
       console.log(response.data);
     } catch (error) {

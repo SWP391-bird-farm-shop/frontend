@@ -3,7 +3,7 @@ import "../RolePage.css";
 import { Link } from "react-router-dom";
 
 const StaffPage = () => {
-  const [popup,setPopup] = useState(true);
+  const [popup, setPopup] = useState(true);
 
   const blogs = [
     {
@@ -88,12 +88,6 @@ const StaffPage = () => {
         {/* <img src="./vet.jpg" className="role-page-manage-task-img" /> */}
         {/* </Link> */}
       </div>
-      <Modal show={popup} onHide={() => setPopup(false)}>
-        <div>
-          <button onClick={() => setPopup(false)}>X</button>
-          <h1>Wellcome to Staff Page.</h1>
-        </div>
-      </Modal>
     </div>
   );
 };

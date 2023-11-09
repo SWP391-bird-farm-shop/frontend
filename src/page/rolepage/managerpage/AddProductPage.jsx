@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import api from "../../../components/utils/requestAPI";
 import { storage } from "../../../components/utils/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import PopupModal from "../../../components/modal/PopupModal";
 
 const AddProductPage = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -33,6 +34,11 @@ const AddProductPage = () => {
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productQuantity, setProductQuantity] = useState("");
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [result, setResult] = useState(false);
+
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleAvatarChange = async (event) => {
     const file = event.target.files[0];
@@ -142,7 +148,7 @@ const AddProductPage = () => {
       const response = await api.post(url, data);
       console.log(response.data);
       if (response) {
-        window.prompt("add success");
+        setShowPopup(true);
       }
     } catch (error) {
       console.error(error);
@@ -152,7 +158,7 @@ const AddProductPage = () => {
   useEffect(() => {
     fetchDataStyle();
     if (productId) fetchCageDataForUpdate();
-  }, [handleSubmit]);
+  }, []);
 
   const handleToySubmit = async () => {
     const priceDouble = parseFloat(price);
@@ -173,7 +179,7 @@ const AddProductPage = () => {
       const response = await api.post(url, data);
       console.log(response.data);
       if (response) {
-        window.prompt("add success");
+        setShowPopup(true);
       }
     } catch (error) {
       console.error(error);
@@ -199,11 +205,15 @@ const AddProductPage = () => {
       const response = await api.post(url, data);
       console.log(response.data);
       if (response) {
-        window.prompt("add success");
+        setShowPopup(true);
       }
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleClose = () => {
+    setShowPopup(false);
   };
 
   if (action === "add-cage") {
@@ -252,11 +262,27 @@ const AddProductPage = () => {
         try {
           const response = await api.put(url, data);
           console.log(response.data);
-          if (response) window.prompt("Update Success");
+          if (response) setShowSuccess(true);
         } catch (error) {
           console.error(error);
         }
       };
+
+      const handleShowUpdatePopup = () => {
+        setShowPopup(true);
+      };
+
+      const handleClose = () => {
+        setShowPopup(false);
+        setShowSuccess(false);
+        console.log(result);
+      };
+
+      if (result) {
+        handleCageUpdateSubmit();
+        setResult(false);
+      }
+
       return (
         // update lồng
         <div className="add-product-page">
@@ -409,11 +435,27 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleCageUpdateSubmit}
+              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
           </div>
+          {showPopup && (
+            <PopupModal
+              action={"update"}
+              statusReturn={result}
+              setStatusReturn={setResult}
+              open={showPopup}
+              onClose={handleClose}
+            />
+          )}
+          {showSuccess && (
+            <PopupModal
+              action={"update success"}
+              open={showSuccess}
+              onClose={handleClose}
+            />
+          )}
         </div>
       );
     } else {
@@ -577,6 +619,13 @@ const AddProductPage = () => {
               Lưu sản phẩm
             </button>
           </div>
+          {showPopup && (
+            <PopupModal
+              action={"success"}
+              open={showPopup}
+              onClose={handleClose}
+            />
+          )}
         </div>
       );
     }
@@ -605,11 +654,27 @@ const AddProductPage = () => {
         try {
           const response = await api.put(url, data);
           console.log(response.data);
-          if (response) window.prompt("Update Success");
+          if (response) setShowSuccess(true);
         } catch (error) {
           console.error(error);
         }
       };
+
+      const handleShowUpdatePopup = () => {
+        setShowPopup(true);
+      };
+
+      const handleClose = () => {
+        setShowPopup(false);
+        setShowSuccess(false);
+        console.log(result);
+      };
+
+      if (result) {
+        handleFoodUpdateSubmit();
+        setResult(false);
+      }
+
       return (
         //update
         //food a&t
@@ -711,11 +776,27 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleFoodUpdateSubmit}
+              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
           </div>
+          {showPopup && (
+            <PopupModal
+              action={"update"}
+              statusReturn={result}
+              setStatusReturn={setResult}
+              open={showPopup}
+              onClose={handleClose}
+            />
+          )}
+          {showSuccess && (
+            <PopupModal
+              action={"update success"}
+              open={showSuccess}
+              onClose={handleClose}
+            />
+          )}
         </div>
       );
     } else {
@@ -820,6 +901,13 @@ const AddProductPage = () => {
               Lưu sản phẩm
             </button>
           </div>
+          {showPopup && (
+            <PopupModal
+              action={"success"}
+              open={showPopup}
+              onClose={handleClose}
+            />
+          )}
         </div>
       );
     }
@@ -848,11 +936,27 @@ const AddProductPage = () => {
         try {
           const response = await api.put(url, data);
           console.log(response.data);
-          if (response) window.prompt("Update Success");
+          if (response) setShowSuccess(true);
         } catch (error) {
           console.error(error);
         }
       };
+
+      const handleShowUpdatePopup = () => {
+        setShowPopup(true);
+      };
+
+      const handleClose = () => {
+        setShowPopup(false);
+        setShowSuccess(false);
+        console.log(result);
+      };
+
+      if (result) {
+        handleToyUpdateSubmit();
+        setResult(false);
+      }
+
       return (
         <div className="add-product-page">
           <div className="add-product-container">
@@ -952,11 +1056,27 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleToyUpdateSubmit}
+              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
           </div>
+          {showPopup && (
+            <PopupModal
+              action={"update"}
+              statusReturn={result}
+              setStatusReturn={setResult}
+              open={showPopup}
+              onClose={handleClose}
+            />
+          )}
+          {showSuccess && (
+            <PopupModal
+              action={"update success"}
+              open={showSuccess}
+              onClose={handleClose}
+            />
+          )}
         </div>
       );
     } else {
@@ -1060,6 +1180,13 @@ const AddProductPage = () => {
               Lưu sản phẩm
             </button>
           </div>
+          {showPopup && (
+            <PopupModal
+              action={"success"}
+              open={showPopup}
+              onClose={handleClose}
+            />
+          )}
         </div>
       );
     }

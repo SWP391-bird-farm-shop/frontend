@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 const SettingInformationPage = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
 
-    const [popup,setPopup] = useState(false);
+  const [popup, setPopup] = useState(false);
 
   const { action, userId } = useParams();
 
@@ -37,6 +37,19 @@ const SettingInformationPage = () => {
 
   const handleDateChange = async (event) => {
     setSelectedDate(event.target.value);
+  };
+
+  const validateDateOfBirth = (event) => {
+    const selectedDate = new Date(event.target.value);
+    const today = new Date();
+
+    if (selectedDate >= today) {
+      alert("Please select a valid date of birth.");
+      event.target.value = "";
+    }
+  };
+
+  const handleUpdate = async () => {
     const url = "/api/User/update";
     const data = {
       userID: userId,
@@ -49,16 +62,6 @@ const SettingInformationPage = () => {
       if (response) window.prompt("Success");
     } catch (error) {
       console.error(error);
-    }
-  };
-
-  const validateDateOfBirth = (event) => {
-    const selectedDate = new Date(event.target.value);
-    const today = new Date();
-
-    if (selectedDate >= today) {
-      alert("Please select a valid date of birth.");
-      event.target.value = "";
     }
   };
 
@@ -93,12 +96,6 @@ const SettingInformationPage = () => {
     if (user !== "") {
       return (
         <Fragment>
-          <div className="setting-homepage-link-bar">
-            <Link href="/home" className="setting-homepage-link">
-              {" "}
-              Về trang chủ
-            </Link>
-          </div>
           <div className="update-info-page">
             <div className="update-info-container">
               <h2 className="update-info-container-title">
@@ -185,7 +182,7 @@ const SettingInformationPage = () => {
               <button
                 type="submit"
                 className="update-info-button"
-                onClick={handleDateChange}
+                onClick={handleUpdate}
               >
                 Lưu thay đổi
               </button>

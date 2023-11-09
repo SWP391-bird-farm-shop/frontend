@@ -11,7 +11,12 @@ const BlogPage = () => {
   const { action } = useParams();
 
   const [blogItem, setBlogItem] = useState(null);
-  const [remove, setRemove] = useState(null);
+  const [remove, setRemove] = useState("");
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [result, setResult] = useState(false);
+  const [id, setId] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const fetchData = async () => {
     const url = "/api/Blog/get-for-customer";
@@ -25,10 +30,10 @@ const BlogPage = () => {
   };
 
   const removeBlog = async (blogId) => {
-    setRemove(blogId);
+    console.log(blogId);
     const urlRemove = "/api/Blog/remove-blog";
     const data = {
-      blogID: remove,
+      blogID: blogId,
     };
     try {
       const response = await api.delete(urlRemove, {
@@ -37,7 +42,12 @@ const BlogPage = () => {
         },
         data: JSON.stringify(data),
       });
-      console.log(response.data);
+      if (response) {
+        console.log(response);
+        console.log("yay");
+        setSuccess(true);
+        setShowPopup(true);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -50,6 +60,25 @@ const BlogPage = () => {
   const handleButtonClick = () => {
     window.location.href = "/home";
   };
+
+  const handleShow = (id) => {
+    setShowPopup(true);
+    setId(id);
+  };
+
+  const handleClose = () => {
+    setShowPopup(false);
+    setShowPopup(false);
+    setSuccess(false);
+  };
+
+  if (result) {
+    console.log("huhu");
+    removeBlog(id);
+    setResult(false);
+    setShowPopup(false);
+    setSuccess(false);
+  }
 
   if (auth?.user?.roleId === "3") {
     if (action === "view") {
@@ -91,13 +120,12 @@ const BlogPage = () => {
             {blogItem?.map((blog) => (
               <div className="blog-item">
                 <div className="role-page-edit-button">
-                  {/* <button
-                    onClick={() => removeBlog(blog.blogId)}
+                  <button
+                    onClick={() => handleShow(blog.blogId)}
                     className="remove-button"
                   >
                     <FaTrashAlt />
-                  </button> */}
-                  <PopupModal />
+                  </button>
                 </div>
                 <div className="blog-item-detail">
                   <div className="blog-item-image">
@@ -119,6 +147,22 @@ const BlogPage = () => {
               </div>
             ))}
           </div>
+          {showPopup && (
+            <PopupModal
+              action={"remove"}
+              open={showPopup}
+              onClose={handleClose}
+              statusReturn={result}
+              setStatusReturn={setResult}
+            />
+          )}
+          {success && (
+            <PopupModal
+              action={"remove success"}
+              open={showPopup}
+              onClose={handleClose}
+            />
+          )}
         </div>
       );
     }
