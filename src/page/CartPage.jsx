@@ -95,7 +95,7 @@ const CartPage = () => {
 
   //format money
   function formatCash(currency) {
-    return currency?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    return currency?.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
   }
 
   //fetch for order
@@ -229,9 +229,7 @@ const CartPage = () => {
 
   const paymentSubmit = async () => {
     //update product total lastime to payment
-    console.log(statusReturn);
-    if (statusReturn) console.log("hehe");
-    console.log(totalPrice);
+    if (selectVoucher === "") setTotalPrice(cartItems[0]?.total);
     const urlUpdate = "/api/Order/update-order-to-add-product";
     let note = editName + " " + editPhonenumber + " " + editAddress;
     const dataUpdate = {
@@ -258,7 +256,7 @@ const CartPage = () => {
         console.log(method);
       }
     });
-    console.log(method);
+    console.log(cartItems[0]?.total);
     if (method === "") {
       window.prompt("Please payment options");
     }
@@ -267,12 +265,13 @@ const CartPage = () => {
       const url = `/api/Payment/create-payment?OrderId=${cartItems[0]?.orderId}`;
       try {
         const response = await api.post(url);
-        console.log(response.data);
         if (response) {
           //call to get vnpay url
+          console.log(response);
           const paymentUrl = `/api/VNPay?PaymentID=${response.data.paymentId}`;
           try {
             const response = await api.get(paymentUrl);
+            console.log(response);
             window.open(response.data);
           } catch (error) {
             console.error(error);
@@ -285,7 +284,7 @@ const CartPage = () => {
       //create new payment
       const orderFinishurl = `/api/Order/paid?OrderID=${cartItems[0]?.orderId}`;
       try {
-        const response = await api.post(url);
+        const response = await api.post(orderFinishurl);
         console.log(response.data);
         //setting order true
       } catch (error) {
@@ -349,7 +348,10 @@ const CartPage = () => {
       setShowPopup(true);
     };
 
-    if (statusReturn) paymentSubmit();
+    if (statusReturn) {
+      paymentSubmit();
+      setStatusReturn(false);
+    }
 
     return (
       <div className="cart-and-payment">
@@ -376,7 +378,7 @@ const CartPage = () => {
                       <h3 className="cart-item-details-name">
                         {product.product.productName}
                       </h3>
-                      <p>Giá tiền: ${product.price}</p>
+                      <p>Giá tiền: {formatCash(product.price)}</p>
                       <QuantityButton
                         initialQuantity={product.quantity}
                         onQuantityChange={(newQuantity) =>
@@ -384,7 +386,7 @@ const CartPage = () => {
                         }
                       />
                       <p>
-                        Thành tiền: $
+                        Thành tiền:
                         {formatCash(product.price * product.quantity)}
                       </p>
                     </div>
@@ -540,7 +542,7 @@ const CartPage = () => {
             <p className="order-summary-title">
               Tổng tiền hàng:{" "}
               <span className="order-summary-price">
-                {formatCash(cartItems[0]?.total)} ₫
+                {formatCash(cartItems[0]?.total) || 0} ₫
               </span>
             </p>
             <p className="order-summary-title">
@@ -568,9 +570,9 @@ const CartPage = () => {
           <div className="total-section">
             <h3>Tổng thanh toán</h3>
             {selectVoucher === "" ? (
-              <p>{formatCash(cartItems[0]?.total)} ₫</p>
+              <p>{formatCash(cartItems[0]?.total) || 0} ₫</p>
             ) : (
-              <p>${formatCash(totalPrice)} ₫</p>
+              <p>{formatCash(totalPrice)} ₫</p>
             )}
           </div>
 

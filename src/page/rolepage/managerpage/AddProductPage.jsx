@@ -112,47 +112,49 @@ const AddProductPage = () => {
   const handleSubmit = async () => {
     const priceDouble = parseFloat(price);
     const quantityNum = parseInt(quantity);
-    const url = "/api/Product/create";
-    const data = {
-      productName: name,
-      productDescription: des,
-      quantity: quantityNum,
-      price: priceDouble,
-      discountPrice: 0,
-      styles: [
-        {
-          styleID: style,
+    if (quantityNum > 0 && priceDouble > 0) {
+      const url = "/api/Product/create";
+      const data = {
+        productName: name,
+        productDescription: des,
+        quantity: quantityNum,
+        price: priceDouble,
+        discountPrice: 0,
+        styles: [
+          {
+            styleID: style,
+          },
+        ],
+        category: {
+          categoryID: "Cate90fb2",
         },
-      ],
-      category: {
-        categoryID: "Cate90fb2",
-      },
-      sizes: [
-        {
-          sizeID: selectSize,
-        },
-      ],
-      colors: [
-        {
-          colorID: selectColor,
-        },
-      ],
-      materials: [
-        {
-          materialID: selectMaterial,
-        },
-      ],
-      imageUrl: imageU,
-    };
-    try {
-      const response = await api.post(url, data);
-      console.log(response.data);
-      if (response) {
-        setShowPopup(true);
+        sizes: [
+          {
+            sizeID: selectSize,
+          },
+        ],
+        colors: [
+          {
+            colorID: selectColor,
+          },
+        ],
+        materials: [
+          {
+            materialID: selectMaterial,
+          },
+        ],
+        imageUrl: imageU,
+      };
+      try {
+        const response = await api.post(url, data);
+        console.log(response.data);
+        if (response) {
+          setShowPopup(true);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
+    } else alert("bro");
   };
 
   useEffect(() => {
@@ -163,53 +165,59 @@ const AddProductPage = () => {
   const handleToySubmit = async () => {
     const priceDouble = parseFloat(price);
     const quantityNum = parseInt(quantity);
-    const url = "/api/Product/create";
-    const data = {
-      productName: name,
-      productDescription: des,
-      quantity: quantityNum,
-      price: priceDouble,
-      discountPrice: 0,
-      category: {
-        categoryID: "Catef5d6d",
-      },
-      imageUrl: imageU,
-    };
-    try {
-      const response = await api.post(url, data);
-      console.log(response.data);
-      if (response) {
-        setShowPopup(true);
+    if (priceDouble > 0 && quantityNum > 0) {
+      const url = "/api/Product/create";
+      const data = {
+        productName: name,
+        productDescription: des,
+        quantity: quantityNum,
+        price: priceDouble,
+        discountPrice: 0,
+        category: {
+          categoryID: "Catef5d6d",
+        },
+        imageUrl: imageU,
+      };
+      try {
+        const response = await api.post(url, data);
+        console.log(response.data);
+        if (response) {
+          setShowPopup(true);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
+    } else {
+      alert("bro");
     }
   };
 
   const handleFoodSubmit = async () => {
     const priceDouble = parseFloat(price);
     const quantityNum = parseInt(quantity);
-    const url = "/api/Product/create";
-    const data = {
-      productName: name,
-      productDescription: des,
-      quantity: quantityNum,
-      price: priceDouble,
-      discountPrice: 0,
-      category: {
-        categoryID: "Cate7646a",
-      },
-      imageUrl: imageU,
-    };
-    try {
-      const response = await api.post(url, data);
-      console.log(response.data);
-      if (response) {
-        setShowPopup(true);
+    if (priceDouble > 0 && quantityNum > 0) {
+      const url = "/api/Product/create";
+      const data = {
+        productName: name,
+        productDescription: des,
+        quantity: quantityNum,
+        price: priceDouble,
+        discountPrice: 0,
+        category: {
+          categoryID: "Cate7646a",
+        },
+        imageUrl: imageU,
+      };
+      try {
+        const response = await api.post(url, data);
+        console.log(response.data);
+        if (response) {
+          setShowPopup(true);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
+    } else alert("bro");
   };
 
   const handleClose = () => {
@@ -221,51 +229,53 @@ const AddProductPage = () => {
       const handleCageUpdateSubmit = async () => {
         const priceDouble = parseFloat(price);
         const quantityNum = parseInt(quantity);
-        const url = "/api/Product/update";
-        if (style && selectMaterial && selectColor && selectSize) {
-          console.log(style);
-          setStyle(null);
-          setSelectSize(null);
-          setSelectMaterial(null);
-          setSelectColor(null);
-        }
-        const data = {
-          productID: productId,
-          productName: name,
-          quantity: quantityNum,
-          productDescription: des,
-          price: priceDouble,
-          discountPrice: 0,
-          status: true,
-          styles: [
-            {
-              styleID: style,
-            },
-          ],
-          sizes: [
-            {
-              sizeID: selectSize,
-            },
-          ],
-          colors: [
-            {
-              colorID: selectColor,
-            },
-          ],
-          materials: [
-            {
-              materialID: selectMaterial,
-            },
-          ],
-          imageUrl: imageU,
-        };
-        try {
-          const response = await api.put(url, data);
-          console.log(response.data);
-          if (response) setShowSuccess(true);
-        } catch (error) {
-          console.error(error);
-        }
+        if (quantityNum > 0 && priceDouble > 0) {
+          const url = "/api/Product/update";
+          if (style && selectMaterial && selectColor && selectSize) {
+            console.log(style);
+            setStyle(null);
+            setSelectSize(null);
+            setSelectMaterial(null);
+            setSelectColor(null);
+          }
+          const data = {
+            productID: productId,
+            productName: name,
+            quantity: quantityNum,
+            productDescription: des,
+            price: priceDouble,
+            discountPrice: 0,
+            status: true,
+            styles: [
+              {
+                styleID: style,
+              },
+            ],
+            sizes: [
+              {
+                sizeID: selectSize,
+              },
+            ],
+            colors: [
+              {
+                colorID: selectColor,
+              },
+            ],
+            materials: [
+              {
+                materialID: selectMaterial,
+              },
+            ],
+            imageUrl: imageU,
+          };
+          try {
+            const response = await api.put(url, data);
+            console.log(response.data);
+            if (response) setShowSuccess(true);
+          } catch (error) {
+            console.error(error);
+          }
+        } else alert("bro");
       };
 
       const handleShowUpdatePopup = () => {
@@ -635,29 +645,31 @@ const AddProductPage = () => {
       const handleFoodUpdateSubmit = async () => {
         const priceDouble = parseFloat(price);
         const quantityNum = parseInt(quantity);
-        const url = "/api/Product/update";
-        if (name === "" && des === "") {
-          console.log(style);
-          setName(null);
-          setDes(null);
-        }
-        const data = {
-          productID: productId,
-          productName: name,
-          quantity: quantityNum,
-          productDescription: des,
-          price: priceDouble,
-          discountPrice: 0,
-          status: true,
-          imageUrl: imageU,
-        };
-        try {
-          const response = await api.put(url, data);
-          console.log(response.data);
-          if (response) setShowSuccess(true);
-        } catch (error) {
-          console.error(error);
-        }
+        if (priceDouble > 0 && quantityNum > 0) {
+          const url = "/api/Product/update";
+          if (name === "" && des === "") {
+            console.log(style);
+            setName(null);
+            setDes(null);
+          }
+          const data = {
+            productID: productId,
+            productName: name,
+            quantity: quantityNum,
+            productDescription: des,
+            price: priceDouble,
+            discountPrice: 0,
+            status: true,
+            imageUrl: imageU,
+          };
+          try {
+            const response = await api.put(url, data);
+            console.log(response.data);
+            if (response) setShowSuccess(true);
+          } catch (error) {
+            console.error(error);
+          }
+        } else alert("bro");
       };
 
       const handleShowUpdatePopup = () => {
@@ -917,29 +929,31 @@ const AddProductPage = () => {
       const handleToyUpdateSubmit = async () => {
         const priceDouble = parseFloat(price);
         const quantityNum = parseInt(quantity);
-        const url = "/api/Product/update";
-        if (name === "" && des === "") {
-          console.log(style);
-          setName(null);
-          setDes(null);
-        }
-        const data = {
-          productID: productId,
-          productName: name,
-          quantity: quantityNum,
-          productDescription: des,
-          price: priceDouble,
-          discountPrice: 0,
-          status: true,
-          imageUrl: imageU,
-        };
-        try {
-          const response = await api.put(url, data);
-          console.log(response.data);
-          if (response) setShowSuccess(true);
-        } catch (error) {
-          console.error(error);
-        }
+        if (quantityNum > 0 && priceDouble > 0) {
+          const url = "/api/Product/update";
+          if (name === "" && des === "") {
+            console.log(style);
+            setName(null);
+            setDes(null);
+          }
+          const data = {
+            productID: productId,
+            productName: name,
+            quantity: quantityNum,
+            productDescription: des,
+            price: priceDouble,
+            discountPrice: 0,
+            status: true,
+            imageUrl: imageU,
+          };
+          try {
+            const response = await api.put(url, data);
+            console.log(response.data);
+            if (response) setShowSuccess(true);
+          } catch (error) {
+            console.error(error);
+          }
+        } else alert("bro");
       };
 
       const handleShowUpdatePopup = () => {

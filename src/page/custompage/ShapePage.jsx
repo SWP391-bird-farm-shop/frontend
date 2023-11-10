@@ -11,9 +11,6 @@ const SizePage = () => {
   const [listStyle, setListStyle] = useState(null);
 
   const fetchData = async () => {
-    if (auth?.user === undefined) {
-      navigate("/log-in");
-    }
     const url = "/api/Style/get-for-custom";
     try {
       const response = await api.get(url);

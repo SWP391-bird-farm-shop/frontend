@@ -26,7 +26,7 @@ function CreateVoucherPage() {
   const handleAddVoucher = async () => {
     if (
       voucher.name &&
-      voucher.value &&
+      parseInt(voucher.value) > 0 &&
       voucher.expiry &&
       voucher.begin &&
       voucher.description
