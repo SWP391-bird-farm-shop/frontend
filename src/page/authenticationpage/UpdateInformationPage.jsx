@@ -114,7 +114,6 @@ const UpdateInformationPage = () => {
               <input
                 type="radio"
                 name="sex"
-                checked={gender === true}
                 value={true}
                 className="authentication-check-sex-button"
                 onChange={(event) => setSex(event.target.value)}
@@ -123,7 +122,6 @@ const UpdateInformationPage = () => {
               <input
                 type="radio"
                 name="sex"
-                checked={gender === false}
                 value={false}
                 className="authentication-check-sex-button"
                 onChange={(event) => setSex(event.target.value)}

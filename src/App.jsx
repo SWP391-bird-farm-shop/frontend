@@ -21,6 +21,7 @@ import UserPage from "./page/UserPage";
 import SettingInformationPage from "./page/SettingInformationPage";
 
 import CreateVoucherPage from "./page/rolepage/managerpage/CreateVoucherPage";
+import CustomPage from "./page/custompage/CustomPage";
 import ShapePage from "./page/custompage/ShapePage";
 import SizePage from "./page/custompage/SizePage";
 import MaterialPage from "./page/custompage/MaterialPage";
@@ -51,6 +52,7 @@ const App = () => {
       <Route path="/question" element={<QuestionPage />} />
       <Route path="/reset-pass" element={<ResetPasswordPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
+      <Route path="/update-info" element={<UpdateInformationPage />} />
 
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/home" />} />
@@ -65,23 +67,10 @@ const App = () => {
         <Route path="/blog-content/:blogId" element={<BlogContentPage />} />
         <Route path="/parrot" element={<SpeciesPage />} />
         <Route path="/item-info/:productId" element={<ItemInformation />} />
-
         <Route path="/about-us" element={<AboutPage />} />
-        <Route path="/custom-products-shape" element={<ShapePage />} />
-        <Route path="/custom-products-size" element={<SizePage />} />
-        <Route path="/custom-products-material" element={<MaterialPage />} />
-        <Route path="/custom-products-color" element={<ColorPage />} />
-        <Route path="/custom-products-end" element={<TotalPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
         <Route path="/order-confirm" element={<ConfirmPage />} />
         <Route path="/order-waiting" element={<WaitingOrderPage />} />
-      </Route>
-
-      <Route path="/admin-page" element={<AdminPage />} />
-
-      <Route element={<RoleLayout />}>
-        <Route path="/manage-account" element={<ManageAccount />} />
-        <Route path="/order" element={<ViewOrderPage />} />
       </Route>
 
       {/* user routes */}
@@ -99,8 +88,13 @@ const App = () => {
           <Route path="/item-info/:productId" element={<ItemInformation />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/custom-cage" element={<CustomPage />} />v
+          <Route path="/custom-products-shape" element={<ShapePage />} />
+          <Route path="/custom-products-size" element={<SizePage />} />
+          <Route path="/custom-products-material" element={<MaterialPage />} />
+          <Route path="/custom-products-color" element={<ColorPage />} />
+          <Route path="/custom-products-end" element={<TotalPage />} />
         </Route>
-
         <Route
           path="/update-info/:userId"
           element={<SettingInformationPage />}
