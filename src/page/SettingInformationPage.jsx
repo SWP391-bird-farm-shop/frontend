@@ -3,6 +3,7 @@ import "./SettingInformationPage.css";
 import { Link, useParams } from "react-router-dom";
 import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
+import PopupModal from "../components/modal/PopupModal";
 
 const SettingInformationPage = () => {
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -19,6 +20,16 @@ const SettingInformationPage = () => {
   const [address, setAddress] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [img, setImg] = useState("");
+
+  const [validate, setValidate] = useState(false);
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [message, setMes] = useState(false);
+
+  const handleClose = () => {
+    setShowPopup(false);
+    setMes(false);
+  };
 
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
@@ -44,24 +55,29 @@ const SettingInformationPage = () => {
     const today = new Date();
 
     if (selectedDate >= today) {
-      alert("Please select a valid date of birth.");
+      setMes(true);
+      setValidate(false);
       event.target.value = "";
     }
+    setValidate(true);
   };
 
   const handleUpdate = async () => {
-    const url = "/api/User/update";
-    const data = {
-      userID: userId,
-      fullName: name,
-      dateOfBird: selectedDate,
-      roleID: job,
-    };
-    try {
-      const response = await api.put(url, data);
-      if (response) window.prompt("Success");
-    } catch (error) {
-      console.error(error);
+    if (validate) {
+      const url = "/api/User/update";
+      const data = {
+        userID: userId,
+        fullName: name,
+        dateOfBird: selectedDate,
+        roleID: job,
+      };
+      try {
+        const response = await api.put(url, data);
+        if (response) setShowPopup(true);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
     }
   };
 
@@ -187,7 +203,21 @@ const SettingInformationPage = () => {
                 Lưu thay đổi
               </button>
             </div>
+            {showPopup && (
+              <PopupModal
+                action={"update success"}
+                open={showPopup}
+                onClose={handleClose}
+              />
+            )}
           </div>
+          {message && (
+            <PopupModal
+              action={"filled"}
+              open={showPopup}
+              onClose={handleClose}
+            />
+          )}
         </Fragment>
       );
     }

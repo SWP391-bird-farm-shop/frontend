@@ -24,7 +24,7 @@ const Navbar = ({ className }) => {
     const Logout = () => {
       localStorage.clear();
       auth.user = null;
-      () => window.location.reload(true);
+      () => window.location.reload(false);
       navigate("/home");
     };
     return (
