@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CustomPage.css";
 import ComboBox from "../../components/combobox/ComboBox";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const SizePage = () => {
-  const handleButtonClick = () => {
-    window.location.href = "/custom-products-material";
+
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleButtonClick = async (event, name) => {
+    event.preventDefault();
+    const url = '';
+    const data = {
+      userId: auth?.user?.userId,
+      styleName: name,
+    };
+
+    setIsLoading(true);
+
+    try {
+      const response = await api.post(url, data);
+
+      if (response) {
+        setSelectedStyle(styleName);
+        navigate("/custom-products-material");
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+
+    if (isLoading) {
+      return;
+    }
   };
 
   return (
@@ -44,7 +75,7 @@ const SizePage = () => {
                 alt="Chim"
                 className="custom-product-image"
               />
-              <ComboBox />
+              <ComboBox classname="size" />
               <button onClick={handleButtonClick} className="choose-button">
                 Chọn
               </button>
@@ -56,7 +87,7 @@ const SizePage = () => {
                 alt="Chim"
                 className="custom-product-image"
               />
-              <ComboBox />
+              <ComboBox classname="size" />
               <button onClick={handleButtonClick} className="choose-button">
                 Chọn
               </button>
@@ -68,48 +99,12 @@ const SizePage = () => {
                 alt="Chim"
                 className="custom-product-image"
               />
-              <ComboBox />
+              <ComboBox classname="size" />
               <button onClick={handleButtonClick} className="choose-button">
                 Chọn
               </button>
             </div>
-            <div className="custom-detail-item">
-              <h3> Thanh Đan: 10 </h3>
-              <img
-                src="public\Panel\10.jpg"
-                alt="Chim"
-                className="custom-product-image"
-              />
-              <ComboBox />
-              <button onClick={handleButtonClick} className="choose-button">
-                Chọn
-              </button>
-            </div>
-            <div className="custom-detail-item">
-              <h3> Thanh Đan: 12 </h3>
-              <img
-                src="public\Panel\12.jpg"
-                alt="Chim"
-                className="custom-product-image"
-              />
-              <ComboBox />
-              <button onClick={handleButtonClick} className="choose-button">
-                Chọn
-              </button>
-            </div>
-            <div className="custom-detail-item">
-              <h3> Thanh Đan: 16 </h3>
-              <img
-                src="public\Panel\16.jpg"
-                alt="Chim"
-                className="custom-product-image"
-              />
-              <ComboBox />
-              <button onClick={handleButtonClick} className="choose-button">
-                Chọn
-              </button>
-            </div>
-          </div>
+          </div>  
 
           <div className="custom-summary">
             <div className="custom-summary-detail">
@@ -127,7 +122,7 @@ const SizePage = () => {
                 Màu sắc: <span>Đỏ</span>
               </p>
 
-              <h4>Giá Hiện Tại: 5000$</h4>
+              <h4>Giá Hiện Tại: ₫50000</h4>
             </div>
 
             <div className="custom-summary-reset">

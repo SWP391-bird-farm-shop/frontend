@@ -71,6 +71,8 @@ const App = () => {
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
         <Route path="/order-confirm" element={<ConfirmPage />} />
         <Route path="/order-waiting" element={<WaitingOrderPage />} />
+        <Route path="/custom-products-size" element={<SizePage />} />
+
       </Route>
 
       {/* user routes */}
@@ -88,7 +90,7 @@ const App = () => {
           <Route path="/item-info/:productId" element={<ItemInformation />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/custom-cage" element={<CustomPage />} />v
+          <Route path="/custom-cage" element={<CustomPage />} />
           <Route path="/custom-products-shape" element={<ShapePage />} />
           <Route path="/custom-products-size" element={<SizePage />} />
           <Route path="/custom-products-material" element={<MaterialPage />} />

@@ -378,7 +378,7 @@ const CartPage = () => {
                       <h3 className="cart-item-details-name">
                         {product.product.productName}
                       </h3>
-                      <p>Giá tiền: {formatCash(product.price)}</p>
+                      <p>Giá tiền: ₫{formatCash(product.price)}</p>
                       <QuantityButton
                         initialQuantity={product.quantity}
                         onQuantityChange={(newQuantity) =>
@@ -387,7 +387,7 @@ const CartPage = () => {
                       />
                       <p>
                         Thành tiền:
-                        {formatCash(product.price * product.quantity)}
+                        ₫{formatCash(product.price * product.quantity)}
                       </p>
                     </div>
                   </div>
@@ -542,27 +542,26 @@ const CartPage = () => {
             <p className="order-summary-title">
               Tổng tiền hàng:{" "}
               <span className="order-summary-price">
-                {formatCash(cartItems[0]?.total) || 0} ₫
+              ₫{formatCash(cartItems[0]?.total) || 0}
               </span>
             </p>
             <p className="order-summary-title">
               Tổng tiền phí vận chuyển:{" "}
-              <span className="order-summary-price">0 ₫</span>
+              <span className="order-summary-price">₫0</span>
             </p>
             {selectVoucher ? (
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
                 <span className="order-summary-price">
-                  {formatCash(
+                ₫{formatCash(
                     (parseFloat(selectVoucher) / 100) * cartItems[0]?.total
                   )}{" "}
-                  ₫
                 </span>
               </p>
             ) : (
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
-                <span className="order-summary-price">0 ₫</span>
+                <span className="order-summary-price">₫0</span>
               </p>
             )}
           </div>
@@ -570,9 +569,9 @@ const CartPage = () => {
           <div className="total-section">
             <h3>Tổng thanh toán</h3>
             {selectVoucher === "" ? (
-              <p>{formatCash(cartItems[0]?.total) || 0} ₫</p>
+              <p>₫{formatCash(cartItems[0]?.total) || 0}</p>
             ) : (
-              <p>{formatCash(totalPrice)} ₫</p>
+              <p>₫{formatCash(totalPrice)}</p>
             )}
           </div>
 
@@ -601,7 +600,7 @@ const CartPage = () => {
   } else {
     return (
       <>
-        <div>bạn chưa add sản phẩm</div>
+        <div>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
       </>
     );
   }

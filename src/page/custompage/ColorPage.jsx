@@ -1,11 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CustomPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
-const SizePage = () => {
-  const handleButtonClick = () => {
-    window.location.href = "/custom-products-end";
+const ColorPage = () => {
+
+  const { auth } = useAuth();
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleButtonClick = async (event, name) => {
+    event.preventDefault();
+    const url = '';
+    const data = {
+      userId: auth?.user?.userId,
+      styleName: name,
+    };
+
+    setIsLoading(true);
+
+    try {
+      const response = await api.post(url, data);
+
+      if (response) {
+        setSelectedStyle(styleName);
+        navigate("/custom-products-end");
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+
+    if (isLoading) {
+      return;
+    }
   };
+
+  const [listColor, setListColor] = useState(null);
+
+  const fetchData = async () => {
+    const url = "";
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setListColor(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [auth]);
 
   return (
     <div className="custom-page">
@@ -36,17 +84,20 @@ const SizePage = () => {
         </h2>
         <div className="custom-choose-and-detail">
           <div className="custom-option-detail-list">
-            <div className="custom-detail-item">
-              <h3> Màu Đen </h3>
-              <img
-                src="public\Longhinhtru.jpg"
-                alt="Chim"
-                className="custom-product-image"
-              />
-              <button onClick={handleButtonClick} className="choose-button">
-                Chọn
-              </button>
-            </div>
+            {listColor.map((color) => {
+              <div className="custom-detail-item">
+                <h3>{color.colorName}</h3>
+                <img
+                  src={color.imageUrl}
+                  alt="Chim"
+                  className="custom-product-image"
+                />
+                <button onClick={handleButtonClick} className="choose-button">
+                  Chọn
+                </button>
+              </div>
+            })}
+
             <div className="custom-detail-item">
               <h3> Màu Gỗ </h3>
               <img
@@ -87,7 +138,7 @@ const SizePage = () => {
                 Màu sắc: <span>Đỏ</span>
               </p>
 
-              <h4>Giá Hiện Tại: 5000$</h4>
+              <h4>Giá Hiện Tại: ₫50000</h4>
             </div>
 
             <div className="custom-summary-reset">
@@ -100,4 +151,4 @@ const SizePage = () => {
   );
 };
 
-export default SizePage;
+export default ColorPage;

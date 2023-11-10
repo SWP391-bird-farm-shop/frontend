@@ -3,10 +3,7 @@ import Carousel from "../components/carousel/Carousel";
 import Article from "../components/article/Article";
 import Slider from "../components/slider/Slider";
 
-import { useState } from "react";
-
 function UserPage() {
-  const [popup, setPopup] = useState(true);
 
   return (
     <Fragment>
