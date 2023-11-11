@@ -108,14 +108,14 @@ const CreateUser = () => {
             className="create-user-radio-button"
             onClick={(event) => setJob("2")}
           />{" "}
-          <span className="create-user-button-title">Manager</span>
+          <span className="create-user-button-title">Quản lí</span>
           <input
             type="radio"
             name="job"
             className="create-user-radio-button"
             onClick={(event) => setJob("3")}
           />{" "}
-          <span className="create-user-button-title">Staff</span>
+          <span className="create-user-button-title">Nhân viên</span>
         </div>
 
         <div className="create-user-input-container">

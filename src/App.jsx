@@ -107,7 +107,7 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["1"]} />}>
         <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
-          <Route path="/manage-account" element={<ManageAccount />} />
+          <Route path="/manage-account/:action" element={<ManageAccount />} />
           <Route
             path="/info-setting/:action/:userId"
             element={<SettingInformationPage />}
