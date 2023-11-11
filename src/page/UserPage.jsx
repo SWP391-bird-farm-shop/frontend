@@ -14,6 +14,8 @@ function UserPage() {
         <Carousel className="Bird" />
         <h3>Lồng chim</h3>
         <Carousel className="Product" />
+        <h3>Thức ăn cho chim</h3>
+        <Carousel className="Food" />
         <h3>Phụ kiện - Đồ chơi</h3>
         <Carousel className="Toy" />
       </div>

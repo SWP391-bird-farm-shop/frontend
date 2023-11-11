@@ -12,7 +12,7 @@ const CreateUser = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [action, setAction] = useState("");
 
@@ -30,7 +30,7 @@ const CreateUser = () => {
     ) {
       const currentDate = new Date();
       const selectedDate = new Date(dob);
-      if (selectedDate > currentDate) {
+      if (selectedDate >= currentDate) {
         window.prompt("Ngày sinh không hợp lệ");
         return;
       }
@@ -45,6 +45,8 @@ const CreateUser = () => {
         address: address,
         phonenumber: phoneNumber,
       };
+
+      setIsLoading(true);
       try {
         const response = await api.post(url, data);
         console.log(response.data);
@@ -55,8 +57,13 @@ const CreateUser = () => {
           setShowPopup(true);
           setAction("failed");
         }
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
+      }
+
+      if (isLoading) {
+        return;
       }
     } else {
       setShowPopup(true);

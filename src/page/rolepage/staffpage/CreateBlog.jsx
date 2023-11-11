@@ -14,6 +14,7 @@ const BlogForm = () => {
   const [blogContent, setBlogContent] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const [imageUrls, setImageUrls] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
@@ -55,12 +56,19 @@ const BlogForm = () => {
       createTime: createdAt,
       imageUrl: imageUrls,
     };
+
+    setIsLoading(true);
     try {
       console.log(data);
       const response = await api.post(url, data);
       console.log(response.data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+    }
+
+    if (isLoading) {
+      return;
     }
   };
 

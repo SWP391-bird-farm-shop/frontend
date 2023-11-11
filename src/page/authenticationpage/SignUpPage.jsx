@@ -14,7 +14,7 @@ const SignUpPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirm, setConfirm] = useState();
-
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,15 +28,23 @@ const SignUpPage = () => {
       password: password,
       email: email
     };
+
+    setIsLoading(true);
     try {
       if (password === confirm) {
         const response = await api.post(url, data);
         setUser(response.data)
         console.log(response.data)
       }
+
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
       // Xử lý lỗi ở đây
+    }
+
+    if (isLoading) {
+      return;
     }
   }
 
