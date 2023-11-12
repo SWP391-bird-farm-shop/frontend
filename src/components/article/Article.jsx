@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Article.css'
+import { Link } from 'react-router-dom';
 
 const Article = () => {
+
+    // const [suggestedArticles, setsuggestedArticles] = useState(null);
+
+    // const fetchData = async () => {
+    //     const url = "";
+    //     try {
+    //         const response = await api.get(url);
+    //         console.log(response.data);
+    //         setsuggestedArticles(response.data);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
+
     const suggestedArticles = [
         {
             id: 1,
@@ -43,7 +62,7 @@ const Article = () => {
             <div className='blogs-container'>
                 {suggestedArticles.map((article, index) => (
                     <div key={index} className='blog-container'>
-                        <a href={article.url}>
+                        <Link to={article.url}>
                             <div className="blog-container-img">
                                 <img src={article.image} alt={article.title} />
                             </div>
@@ -52,13 +71,13 @@ const Article = () => {
                                 <span className="article-date">{article.date}</span> . <span className="article-author">bởi {article.author}</span>
                             </p>
                             <p className='blog-container-link'>Xem chi tiết &raquo;</p>
-                        </a>
+                        </Link>
                     </div>
                 ))}
             </div>
-            <a href="/blogs">
+            <Link to="/blogs">
                 <button type="submit" className='blogs-section-link-button'>Xem thêm</button>
-            </a>
+            </Link>
         </div>
     );
 };

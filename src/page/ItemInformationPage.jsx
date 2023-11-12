@@ -255,7 +255,7 @@ const ItemInformation = () => {
         <h3 className="different-products-carousel-heading">
           Các sản phẩm tương tự
         </h3>
-        <Carousel />
+        <Carousel className='Product'/>
       </div>
     </div>
   );

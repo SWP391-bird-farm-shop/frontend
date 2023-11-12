@@ -1,13 +1,46 @@
 import React, { useState } from "react";
 import './CustomPage.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const TotalPage = () => {
 
-  const handleConfirmButtonClick = () => {
-    window.location.href = "/cart";
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleResetButtonClick = () => {
+    navigate("/custom-page")
+  }
+
+  const handleConfirmButtonClick = async (event) => {
+    event.preventDefault();
+    const url = '';
+    const data = {
+      userId: auth?.user?.userId,
+      styleName: name,
+    };
+
+    setIsLoading(true);
+
+    try {
+      const response = await api.post(url, data);
+
+      if (response) {
+        setSelectedStyle(styleName);
+        navigate("/cart");
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+
+    if (isLoading) {
+      return;
+    }
   };
+  
 
   return (
     <div className="custom-page">
@@ -43,10 +76,10 @@ const TotalPage = () => {
             <p>Kích thước: <span className="custom-summary-total-detail-info">100x50"</span></p>
             <p>Vật liệu: <span className="custom-summary-total-detail-info">Vàng</span></p>
             <p>Màu sắc: <span className="custom-summary-total-detail-info">Đỏ</span></p>
-            <h4>Giá lồng: <span className="custom-summary-total-detail-price">5000$</span></h4>
+            <h4>Giá lồng: <span className="custom-summary-total-detail-price">₫50000</span></h4>
           </div>
           <div className="custom-summary-total-detail-button">
-            <button type="submit" className="custom-summary-total-reset">Thiết Lập Lại Đơn Hàng</button>
+            <button type="submit" className="custom-summary-total-reset" onClick={handleResetButtonClick}>Thiết Lập Lại Đơn Hàng</button>
             <button type="submit" onClick={handleConfirmButtonClick} className="custom-summary-total-confirm">Thêm vào giỏ hàng</button>
           </div>
         </div>

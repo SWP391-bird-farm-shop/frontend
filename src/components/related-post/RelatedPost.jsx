@@ -2,6 +2,23 @@ import React from 'react';
 import './RelatedPost.css'
 
 const RelatedPost = () => {
+
+    // const [relatedPosts, suggestedRelatedPosts] = useState(null);
+
+    // const fetchData = async () => {
+    //     const url = "";
+    //     try {
+    //         const response = await api.get(url);
+    //         console.log(response.data);
+    //         suggestedRelatedPosts(response.data);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
     // Dummy data for suggested articles
     const suggestedRelatedPosts = [
         {
@@ -44,7 +61,7 @@ const RelatedPost = () => {
             <div className='related-post-container'>
                 {suggestedRelatedPosts.map((relatedpost, index) => (
                     <div key={index} className='related-post-item'>
-                        <a href={relatedpost.url}>
+                        <Link to={relatedpost.url}>
                             <div className="related-post-item-img">
                                 <img src={relatedpost.image} alt={relatedpost.title} />
                             </div>
@@ -53,7 +70,7 @@ const RelatedPost = () => {
                                 <span className="related-post-date">{relatedpost.date}</span> . <span className="related-post-author">bởi {relatedpost.author}</span>
                             </p>
                             <p className='related-post-item-link'>Xem chi tiết &raquo;</p>
-                        </a>
+                        </Link>
                     </div>
                 ))},
             </div>

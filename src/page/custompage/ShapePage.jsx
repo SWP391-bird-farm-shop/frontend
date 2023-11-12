@@ -3,10 +3,15 @@ import "./CustomPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../components/utils/requestAPI";
+import { event } from "jquery";
 
-const SizePage = () => {
+const ShapePage = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
+
+  const [selectedStyle, setSelectedStyle] = useState();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [listStyle, setListStyle] = useState(null);
 
@@ -25,8 +30,32 @@ const SizePage = () => {
     fetchData();
   }, [auth]);
 
-  const handleButtonClick = () => {
-    window.location.href = "/custom-products-size";
+  const handleButtonClick = async (event, id) => {
+    event.preventDefault();
+    const url = '';
+    const data = {
+      userId: auth?.user?.userId,
+      styleName: id,
+    };
+
+    setIsLoading(true);
+
+    try {
+      const response = await api.post(url, data);
+
+      if (response) {
+        setSelectedStyle(styleId);
+        navigate("/custom-products-size");
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+
+    if (isLoading) {
+      return;
+    }
   };
 
   return (
@@ -62,11 +91,11 @@ const SizePage = () => {
               <div className="custom-detail-item">
                 <h3> {style.styleName} </h3>
                 <img
-                  src="public\Longhinhtru.jpg"
+                  src={style.imageUrl}
                   alt="Chim"
                   className="custom-product-image"
                 />
-                <button onClick={handleButtonClick} className="choose-button">
+                <button onClick={(event) => handleButtonClick(event, style.styleId)} className="choose-button">
                   Chọn
                 </button>
               </div>
@@ -77,7 +106,7 @@ const SizePage = () => {
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
               <p>
-                Hình dáng: <span>Hình vuông</span>
+                Hình dáng: <span>{selectedStyle}</span>
               </p>
               <p>
                 Kích thước: <span>100x50"</span>
@@ -89,7 +118,7 @@ const SizePage = () => {
                 Màu sắc: <span>Đỏ</span>
               </p>
 
-              <h4>Giá Hiện Tại: 5000$</h4>
+              <h4>Giá Hiện Tại: ₫50000</h4>
             </div>
 
             <div className="custom-summary-reset">
@@ -102,4 +131,4 @@ const SizePage = () => {
   );
 };
 
-export default SizePage;
+export default ShapePage;

@@ -12,7 +12,7 @@ const LogInPage = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [authen, setAuthen] = useState();
@@ -24,15 +24,21 @@ const LogInPage = () => {
       userName: username,
       password: password,
     };
-
+    setIsLoading(true);
     try {
       console.log(data);
       const response = await api.post(url, data);
       console.log(response.data);
       localStorage.setItem("Authen", response.data);
       setAuthen(response.data);
+
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+    }
+
+    if (isLoading) {
+      return;
     }
   };
 
