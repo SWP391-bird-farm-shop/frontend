@@ -3,10 +3,7 @@ import Carousel from "../components/carousel/Carousel";
 import Article from "../components/article/Article";
 import Slider from "../components/slider/Slider";
 
-import { useState } from "react";
-
 function UserPage() {
-  const [popup, setPopup] = useState(true);
 
   return (
     <Fragment>
@@ -17,6 +14,8 @@ function UserPage() {
         <Carousel className="Bird" />
         <h3>Lồng chim</h3>
         <Carousel className="Product" />
+        <h3>Thức ăn cho chim</h3>
+        <Carousel className="Food" />
         <h3>Phụ kiện - Đồ chơi</h3>
         <Carousel className="Toy" />
       </div>

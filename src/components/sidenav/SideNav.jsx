@@ -15,6 +15,7 @@ import {
   FaBoxes,
   FaCreativeCommonsSa,
   FaUser,
+  FaUserEdit,
 } from "react-icons/fa";
 import "./SideNav.css";
 import useAuth from "../../hooks/useAuth";
@@ -26,11 +27,14 @@ const SideNav = () => {
   if (auth?.user?.roleId === "1") {
     return (
       <div className="side-navbar">
-        <Link to="/manage-account" className="side-navbar-link">
+        <Link to="/manage-account/view" className="side-navbar-link">
           <FaUserAlt className="side-navbar-link-icon" /> Xem toàn bộ tài khoản
         </Link>
         <Link to="/create-user" className="side-navbar-link">
           <FaUser className="side-navbar-link-icon" /> Tạo tài khoản
+        </Link>
+        <Link to="/manage-account/update" className="side-navbar-link">
+          <FaUserEdit className="side-navbar-link-icon" /> Chỉnh sửa tài khoản
         </Link>
       </div>
     );

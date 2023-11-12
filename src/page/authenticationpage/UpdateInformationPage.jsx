@@ -12,7 +12,7 @@ const UpdateInformationPage = () => {
   const [birthday, setBirthday] = useState("");
   const [address, setAddress] = useState();
   const [phonenumber, setPhonenumber] = useState();
-
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [birth, setBirth] = useState("");
@@ -66,6 +66,8 @@ const UpdateInformationPage = () => {
       gender: sex,
       dateOfBird: birthday,
     };
+
+    setIsLoading(true);
     console.log(auth.user.userId);
     console.log(sex);
     const response = await api.put(url, data);
@@ -75,6 +77,11 @@ const UpdateInformationPage = () => {
       setAuth({ user, auth });
       navigate("/user-page");
     } else alert("Kiểm tra lại");
+    setIsLoading(false);
+
+    if (isLoading) {
+      return;
+    }
   };
 
   useEffect(() => {
