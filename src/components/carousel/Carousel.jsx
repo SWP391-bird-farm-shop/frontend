@@ -60,7 +60,7 @@ const Carousel = ({ className }) => {
                         }
                     }).then(response => {
                         console.log(response)
-                        setProductData(response.data);
+                        setFoodData(response.data);
                     });
                 } catch (error) {
                     console.error(error);

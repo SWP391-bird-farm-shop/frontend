@@ -92,7 +92,7 @@ const App = () => {
       </Route>
 
       <Route path="/log-in" element={<LogInPage />} />
-      <Route path="/question" element={<QuestionPage />} />
+      <Route path="/question/:action" element={<QuestionPage />} />
       <Route path="/reset-pass" element={<ResetPasswordPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />

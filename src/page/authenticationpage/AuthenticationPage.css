@@ -151,6 +151,11 @@
     padding: 0 15px;
 }
 
+.input-password {
+    display: flex;
+    align-items: center;
+}
+
 .log-in-password-toggle-button,
 .sign-up-password-toggle-button,
 .confirm-password-toggle-button,
@@ -165,10 +170,10 @@
     padding-top: 5px;
     border-radius: 50%;
     border: none;
-    margin-left: 11.2vw;
+    margin-left: 25vw;
 }
 
-.authentication-input-container .log-in-password-toggle-button {
+/* .authentication-input-container .log-in-password-toggle-button {
     top: 47.2vh;
 }
 
@@ -186,7 +191,7 @@
 
 .authentication-input-container .confirm-reset-password-toggle-button {
     top: 52.7vh;
-}
+} */
 
 .log-in-password-toggle-button:hover,
 .sign-up-password-toggle-button:hover,

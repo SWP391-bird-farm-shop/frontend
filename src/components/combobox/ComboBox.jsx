@@ -180,7 +180,8 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
         </select>
       </div>
     );
-  } else {
+  }
+  else {
     return (
       //product
       // <div className="combo-box-price">
