@@ -1,25 +1,24 @@
-input {
-  padding: 0 10px;
+.search-bar {
+  display: flex;
+  align-items: center;
 }
 
-.search-bar {
+.search-bar-input {
   width: 18vw;
   height: 35px;
   background-color: white;
   color: black;
   font-size: 15px;
   font-family: Oregano, Orienta, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  margin-left: 10px;
-  margin-top: 8px;
 }
 
-.search-bar:focus {
+.search-bar-input:focus {
   outline: none;
 }
 
 .search-icon {
   width: 40px;
-  height: 36.5px;
+  height: 39px;
   background-color: white;
   color: black;
   padding: 10px 0;

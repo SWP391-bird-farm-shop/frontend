@@ -3,7 +3,7 @@ import "./AuthenticationPage.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import jwtDecode from "jwt-decode";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../components/utils/requestAPI";
 
 const LogInPage = () => {
@@ -110,31 +110,33 @@ const LogInPage = () => {
             >
               Mật khẩu
             </label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              className="authentication-input"
-              required
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            <button
-              type="button"
-              className="log-in-password-toggle-button"
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
+            <div className="input-password">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                className="authentication-input"
+                required
+                onChange={(event) => setPassword(event.target.value)}
+              />
+              <button
+                type="button"
+                className="log-in-password-toggle-button"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
-          <a href="/question" className="forgot-password-link">
+          <Link to="/question/forgot-pass" className="forgot-password-link">
             Quên mật khẩu?
-          </a>
+          </Link>
           <button type="submit" className="authentication-button">
             Đăng nhập
           </button>
         </form>
         <p>
-          Chưa có tài khoản đăng nhập? <a href="/sign-up">Đăng ký</a>
+          Chưa có tài khoản đăng nhập? <Link to="/sign-up">Đăng ký</Link>
         </p>
       </div>
     </div>

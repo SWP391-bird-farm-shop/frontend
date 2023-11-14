@@ -3,7 +3,7 @@ import './AuthenticationPage.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import api from '../../components/utils/requestAPI';
 import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {
 
@@ -93,21 +93,26 @@ const SignUpPage = () => {
           </div>
           <div className="authentication-input-container">
             <label htmlFor="password" className='authentication-input-container-label'>Mật khẩu</label>
-            <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required onChange={(event) => setPassword(event.target.value)} />
-            <button type="button" className="sign-up-password-toggle-button" onClick={togglePasswordVisibility}>
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
+            <div className="input-password">
+              <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required onChange={(event) => setPassword(event.target.value)} />
+              <button type="button" className="sign-up-password-toggle-button" onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+
           </div>
           <div className="authentication-input-container">
             <label htmlFor="password-confirm" className='authentication-input-container-label'>Xác nhận mật khẩu</label>
-            <input type={showConfirmPassword ? "text" : "password"} id="password-confirm" name="password-confirm" className='authentication-input' required onChange={(event) => setConfirm(event.target.value)} />
-            <button type="button" className="confirm-password-toggle-button" onClick={toggleConfirmPasswordVisibility}>
-              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
+            <div className="input-password">
+              <input type={showConfirmPassword ? "text" : "password"} id="password-confirm" name="password-confirm" className='authentication-input' required onChange={(event) => setConfirm(event.target.value)} />
+              <button type="button" className="confirm-password-toggle-button" onClick={toggleConfirmPasswordVisibility}>
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
           <button type="submit" className='authentication-button' onClick={handleSubmit}>Đăng ký</button>
         </form>
-        <p>Bạn đã có tài khoản? <a href='/log-in'>Đăng nhập</a></p>
+        <p>Bạn đã có tài khoản? <Link href='/log-in'>Đăng nhập</Link></p>
       </div>
     </div>
   );
