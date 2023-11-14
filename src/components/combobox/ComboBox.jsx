@@ -232,11 +232,11 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
       //</div>
       <div className="combo-box-question">
         <select value={selected} onChange={(e) => setSelected(e.target.value)}>
-          <option value="" disabled hidden selected>
+          <option value="" disabled hidden>
             Chọn câu hỏi xác thực
           </option>
           {questionOptions.map((questionOption) => (
-            <option key={questionOption} value={questionOption}>
+            <option key={questionOption} value={questionOption} className="combobox-option" style={{padding: '5px'}}>
               {questionOption}
             </option>
           ))}
