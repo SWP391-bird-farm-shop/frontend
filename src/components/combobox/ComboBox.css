@@ -37,3 +37,9 @@
 .combo-box-question select {
     border-radius: 15px;
 }
+
+.combobox-option {
+    min-height: 50px;
+    padding: 50px 0;
+    border-radius: 5px;
+}

@@ -128,11 +128,11 @@ const SideNav = () => {
 
       //quản lí đơn hàng
       // <div className="side-navbar">
-      //     <Link to="/order" className='side-navbar-link'>
+      //     <Link to="/order/view" className='side-navbar-link'>
       //         <FaRegListAlt className='side-navbar-link-icon'/> Xem đơn hàng
       //     </Link>
-      //     <Link to="/announce-order" className='side-navbar-link'>
-      //         <FaBullhorn className='side-navbar-link-icon'/> Thông báo đơn hàng
+      //     <Link to="/order/confirm-custom" className='side-navbar-link'>
+      //         <FaBullhorn className='side-navbar-link-icon'/> Thông báo đơn hàng thiết kế
       //     </Link>
       // </div>
 
