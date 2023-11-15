@@ -13,7 +13,7 @@ const AdminPage = () => {
             <div className="role-page-manage-tasks">
                 <Link to="/manage-account" className="role-page-manage-task">
                     <h3 className="role-page-manage-task-title">Quản lí tài khoản</h3>
-                    <img src="./vet.jpg" className="role-page-manage-task-img" />
+                    <img src="./account.png" className="role-page-manage-task-img" />
                 </Link>
             </div>
         </div>

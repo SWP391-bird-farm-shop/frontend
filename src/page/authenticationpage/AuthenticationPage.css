@@ -154,6 +154,7 @@
 .input-password {
     display: flex;
     align-items: center;
+    width: 101.3%;
 }
 
 .log-in-password-toggle-button,
