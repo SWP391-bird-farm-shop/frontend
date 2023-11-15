@@ -187,11 +187,11 @@
 
 .add-product-style-input-container {
     display: flex;
-    margin-left: 2vw;
+    justify-content: space-between;
+    margin: 0 1vw;
 }
 
 .add-product-style-input {
-    margin: 0 2vw;
     display: flex;
     justify-content: center;
     align-items: center;

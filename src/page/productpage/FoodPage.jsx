@@ -23,7 +23,7 @@ const FoodPage = () => {
   }, []);
 
   function formatCash(currency) {
-    return n?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    return currency?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
   }
 
   return (

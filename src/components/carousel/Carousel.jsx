@@ -100,7 +100,7 @@ const Carousel = ({ className }) => {
         return (
             <OwlCarousel className={className} {...options}>
                 {birdData?.map(bird => (
-                    <Link href={`/bird/${bird.birdId}`} className="bird-carousel-item" key={bird.birdId}>
+                    <Link to={`/bird/${bird.birdId}`} className="bird-carousel-item" key={bird.birdId}>
                         {bird.image.map(image => (
                             <img src={image.imageUrl} alt={bird.birdName} key={image.imageId} />
                         ))}
@@ -114,7 +114,7 @@ const Carousel = ({ className }) => {
         return (
             <OwlCarousel className={className} {...options}>
                 {productData?.map(product => (
-                    <Link href={`/cage/${product.productId}`} className="product-carousel-item" key={product.productId}>
+                    <Link to={`/item-info/${product.productId}`} className="product-carousel-item" key={product.productId}>
                         {product.image.map(image => (
                             <img src={image.imageUrl} alt={product.productName} key={image.imageId} />
                         ))}
@@ -128,7 +128,7 @@ const Carousel = ({ className }) => {
         return (
             <OwlCarousel className={className} {...options}>
                 {foodData?.map(food => (
-                    <Link href={`/cage/${food.productId}`} className="product-carousel-item" key={food.productId}>
+                    <Link to={`/item-info/${food.productId}`} className="product-carousel-item" key={food.productId}>
                         {food.image.map(image => (
                             <img src={image.imageUrl} alt={food.productName} key={image.imageId} />
                         ))}
@@ -142,7 +142,7 @@ const Carousel = ({ className }) => {
         return (
             <OwlCarousel className={className} {...options}>
                 {toyData?.map(toy => (
-                    <Link href={`/bird/${toy.productId}`} className="product-carousel-item" key={toy.productId}>
+                    <Link to={`/item-info/${toy.productId}`} className="product-carousel-item" key={toy.productId}>
                         {toy.image.map(image => (
                             <img src={image.imageUrl} alt={toy.productName} key={image.imageId} />
                         ))}

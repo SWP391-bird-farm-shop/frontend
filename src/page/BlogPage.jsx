@@ -80,6 +80,14 @@ const BlogPage = () => {
     setSuccess(false);
   }
 
+  function formatDate(date) {
+    const d = new Date(date);
+    const day = d.getDate().toString().padStart(2, '0');
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
   if (auth?.user?.roleId === "3") {
     if (action === "view") {
       return (
@@ -100,7 +108,7 @@ const BlogPage = () => {
                   <div className="blog-item-information">
                     <h3 className="blog-title">{blog.blogTitle}</h3>
                     <p className="blog-meta">
-                      <span className="blog-date">{blog.createAt}</span> .{" "}
+                      <span className="blog-date">{formatDate(blog.createAt)}</span> .{" "}
                       <span className="blog-author">
                         bởi {blog.user.fullName}
                       </span>
@@ -136,7 +144,7 @@ const BlogPage = () => {
                   <div className="blog-item-information">
                     <h3 className="blog-title">{blog.blogTitle}</h3>
                     <p className="blog-meta">
-                      <span className="blog-date">{blog.createAt}</span> .{" "}
+                      <span className="blog-date">{formatDate(blog.createAt)}</span> .{" "}
                       <span className="blog-author">
                         bởi {blog.user.fullName}
                       </span>
@@ -186,7 +194,7 @@ const BlogPage = () => {
               <div className="blog-item-information">
                 <h3 className="blog-title">{blog.blogTitle}</h3>
                 <p className="blog-meta">
-                  <span className="blog-date">{blog.createAt}</span> .{" "}
+                  <span className="blog-date">{formatDate(blog.createAt)}</span> .{" "}
                   <span className="blog-author">bởi {blog.user.fullName}</span>
                 </p>
                 <p className="blog-description">{blog.blogSummary}</p>

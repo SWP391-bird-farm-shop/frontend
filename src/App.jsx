@@ -101,24 +101,17 @@ const App = () => {
         <Route path="/home" element={<HomePage />} />
         <Route path="/products/cages" element={<CagePage />} />
         <Route path="/products/food" element={<FoodPage />} />
-        <Route
-          path="/products/accessories-toys"
-          element={<AccessoriesToysPage />}
-        />
+        <Route path="/products/accessories-toys" element={<AccessoriesToysPage />} />
         <Route path="/blogs" element={<BlogPage />} />
         <Route path="/blog-content/:blogId" element={<BlogContentPage />} />
-        <Route path="/parrot" element={<SpeciesPage />} />
+        <Route path="/bird/:birdId" element={<SpeciesPage />} />
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
         <Route path="/order-confirm" element={<ConfirmPage />} />
         <Route path="/order-waiting" element={<WaitingOrderPage />} />
         <Route path="/custom-products-size" element={<SizePage />} />
-
       </Route>
-      <Route path="/admin-page" element={<AdminPage />} />
-      <Route path="/manager-page" element={<ManagerPage />} />
-      <Route path="/staff-page" element={<StaffPage />} />
 
       {/* user routes */}
       <Route element={<RequireAuth allowedRoles={["4"]} />}>
@@ -126,10 +119,7 @@ const App = () => {
           <Route path="/user-page" element={<UserPage />} />
           <Route path="/products/cages" element={<CagePage />} />
           <Route path="/products/food" element={<FoodPage />} />
-          <Route
-            path="/products/accessories-toys"
-            element={<AccessoriesToysPage />}
-          />
+          <Route path="/products/accessories-toys" element={<AccessoriesToysPage />} />
           <Route path="/blogs" element={<BlogPage />} />
           <Route path="/bird/:birdId" element={<SpeciesPage />} />
           <Route path="/item-info/:productId" element={<ItemInformation />} />
@@ -142,10 +132,7 @@ const App = () => {
           <Route path="/custom-products-color" element={<ColorPage />} />
           <Route path="/custom-products-end" element={<TotalPage />} />
         </Route>
-        <Route
-          path="/update-info/:userId"
-          element={<SettingInformationPage />}
-        />
+        <Route path="/update-info/:userId" element={<SettingInformationPage />} />
       </Route>
 
       {/* admin routes */}
@@ -154,10 +141,7 @@ const App = () => {
         <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
           <Route path="/manage-account/:action" element={<ManageAccount />} />
-          <Route
-            path="/info-setting/:action/:userId"
-            element={<SettingInformationPage />}
-          />
+          <Route path="/info-setting/:action/:userId" element={<SettingInformationPage />} />
           <Route path="/create-user" element={<CreateUser />} />
         </Route>
       </Route>
@@ -166,15 +150,9 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["2"]} />}>
         <Route path="/manager-page" element={<ManagerPage />} />
         <Route element={<RoleLayout />}>
-          <Route
-            path="/create-voucer/:action"
-            element={<CreateVoucherPage />}
-          />
+          <Route path="/create-voucher/:action" element={<CreateVoucherPage />} />
           <Route path="/add-product/:action" element={<AddProductPage />} />
-          <Route
-            path="/update-product/:action/:productId"
-            element={<AddProductPage />}
-          />
+          <Route path="/update-product/:action/:productId" element={<AddProductPage />} />
           <Route path="/product/:action" element={<ProductPage />} />
           <Route path="/voucher/:action" element={<VoucherPage />} />
         </Route>
