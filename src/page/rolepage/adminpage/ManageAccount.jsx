@@ -130,7 +130,7 @@ const ManageAccount = () => {
     );
   } else {
     return (
-      <div className="manage">
+      <div className="edit">
         <h1 className="page-title">Tài khoản</h1>
         <table className="user-table">
           <thead>

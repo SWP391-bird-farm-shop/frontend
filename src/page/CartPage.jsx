@@ -590,7 +590,6 @@ const CartPage = () => {
           <h2 className="cart-and-payment-heading">Giỏ hàng</h2>
           <div className="cart-items">
             <div>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
-            <p>Thành tiền: ₫0</p>
           </div>
         </div>
 
