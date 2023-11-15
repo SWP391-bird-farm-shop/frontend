@@ -38,7 +38,7 @@ const Slider = () => {
             <div className="product-section">
                 <div className="custom-product-box-section">
                     <Link to="/custom-cage" className="custom-product-box">
-                        <img className="custom-product-box-image" src="/demo.jpg" alt="custom-product" />
+                        <img className="custom-product-box-image" src="/customcage.png" alt="custom-product" />
                         <h3 className="custom-product-box-heading">Thiết kế lồng chim</h3>
                         <h3 className="custom-product-box-heading">theo sở thích của bạn</h3>
                     </Link>

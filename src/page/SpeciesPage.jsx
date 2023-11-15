@@ -3,11 +3,13 @@ import About from '../components/about/About';
 import Carousel from '../components/carousel/Carousel';
 import CageList from '../components/cage-list/CageList'
 import './SpeciesPage.css';
+import { useParams } from 'react-router-dom';
 
 const SpeciesPage = () => {
+    const { birdId } = useParams();
     return (
         <Fragment>
-            <About />
+            <About birdId={birdId}/>
             <div className="bird-of-species-section">
                 <h3>Lồng phù hợp với chim</h3>
                 <CageList />

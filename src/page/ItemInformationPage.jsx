@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Img1 from "/demo.jpg";
 import Carousel from "../components/carousel/Carousel";
 import Feedback from "../components/feedback/Feedback";
 import { FaMinus, FaPlus } from "react-icons/fa";
@@ -208,32 +207,18 @@ const ItemInformation = () => {
         </div>
         <div className="product-information-summary">
           <h2 className="product-information-title">{product?.productName}</h2>
-          <p className="product-information-price">
-            ₫{formatCash(product?.price)}
-          </p>
-          <p className="product-information-description">
-            {product?.description}
-          </p>
+          <p className="product-information-price">₫{formatCash(product?.price)}</p>
+          <p className="product-information-description">{product?.description}</p>
           <div className="quantity-section">
             <div className="quantity">
-              <button
-                className="quantity-button left"
-                onClick={decrementQuantity}
-              >
-                <FaMinus className="quantity-icon" />
-              </button>
+              <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
               <input
                 className="quantity-number"
                 type="number"
                 value={quantity}
                 readOnly
               />
-              <button
-                className="quantity-button right"
-                onClick={incrementQuantity}
-              >
-                <FaPlus className="quantity-icon" />
-              </button>
+              <button className="quantity-button right" onClick={incrementQuantity}> <FaPlus className="quantity-icon" /></button>
             </div>
             <p className="quantity-inventory">{message}</p>
           </div>
@@ -245,12 +230,11 @@ const ItemInformation = () => {
 
       <div className="product-information-detail">
         <h4 className="product-information-detail-heading">Mô tả sản phẩm</h4>
-        <p className="product-information-detail-description">
-          {product?.description}
-        </p>
+        <p className="product-information-detail-description">{product?.description}</p>
       </div>
 
       <Feedback />
+      
       <div className="different-products-carousel">
         <h3 className="different-products-carousel-heading">
           Các sản phẩm tương tự

@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import './About.css';
 import api from "../utils/requestAPI";
-import { useParams } from "react-router-dom";
 
-const About = () => {
+const About = ({birdId}) => {
 
-    const { birdId } = useParams();
-    const [bird, setBird] = useState();
+    const [birds, setBird] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
-            const url = '';
+            const url = `/api/Bird/get-bird-by-id?id=${birdId}`;
             try {
                 const response = await api.get(url);
                 console.log(response.data);
@@ -24,10 +22,10 @@ const About = () => {
 
     return (
         <div className="about-container">
-            {bird?.map((bird) => {
+            {birds?.map((bird) => {
                 <div className="about-section">
                     <div className="image-container">
-                        <img src={bird?.imageUrl} alt="Vet" key={bird?.birdId}/>
+                        <img src={bird?.imageUrl} alt={bird?.birdName} key={bird?.birdId}/>
                     </div>
                     <div className="description-container">
                         <h2>{bird?.birdName}</h2>

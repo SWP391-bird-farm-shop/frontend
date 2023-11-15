@@ -1,74 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import './Article.css'
 import { Link } from 'react-router-dom';
+import api from '../utils/requestAPI';
 
 const Article = () => {
 
-    // const [suggestedArticles, setsuggestedArticles] = useState(null);
+    const [suggestedArticles, setSuggestedArticles] = useState(null);
 
-    // const fetchData = async () => {
-    //     const url = "";
-    //     try {
-    //         const response = await api.get(url);
-    //         console.log(response.data);
-    //         setsuggestedArticles(response.data);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
+    const fetchData = async () => {
+        const url = "/api/Blog/get-first-4-blogs";
+        try {
+            const response = await api.post(url);
+            console.log(response.data);
+            setSuggestedArticles(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-    const suggestedArticles = [
-        {
-            id: 1,
-            title: 'Article 1',
-            date: "October 1, 2023",
-            author: "John Smith",
-            url: '/blog-content',
-            image: '/bocau.jpg'
-        },
-        {
-            id: 2,
-            title: 'Article 2',
-            date: "October 1, 2023",
-            author: "John Smith",
-            url: '/blog-content',
-            image: '/chaomao.png'
-        },
-        {
-            id: 3,
-            title: 'Article 3',
-            date: "October 1, 2023",
-            author: "John Smith",
-            url: '/blog-content',
-            image: '/cu.jpg'
-        },
-        {
-            id: 4,
-            title: 'Article 4',
-            date: "October 1, 2023",
-            author: "John Smith",
-            url: '/blog-content',
-            image: '/hoami.png'
-        },
-    ];
+    function formatDate(date) {
+        const d = new Date(date);
+        const day = d.getDate().toString().padStart(2, '0');
+        const month = (d.getMonth() + 1).toString().padStart(2, '0');
+        const year = d.getFullYear();
+        return `${day}/${month}/${year}`;
+      }
 
     return (
         <div className="blogs-section">
             <h3>Cẩm nang về chim</h3>
             <div className='blogs-container'>
-                {suggestedArticles.map((article, index) => (
-                    <div key={index} className='blog-container'>
-                        <Link to={article.url}>
-                            <div className="blog-container-img">
-                                <img src={article.image} alt={article.title} />
-                            </div>
-                            <h4 className='article-title'>{article.title}</h4>
+                {suggestedArticles?.map((article) => (
+                    <div className='blog-container'>
+                        <Link to={`/view-blog/${article.blogId}`}>
+                            {article?.image?.map((img) => {
+                                <div className="blog-container-img">
+                                    <img src={img.imageUrl} alt={article.blogTitle} />
+                                </div>
+                            })}
+                            <h4 className='article-title'>{article.blogTitle}</h4>
                             <p className="article-meta">
-                                <span className="article-date">{article.date}</span> . <span className="article-author">bởi {article.author}</span>
+                                <span className="article-date">{formatDate(article.createAt)}</span> . <span className="article-author">bởi {article.userId}</span>
                             </p>
                             <p className='blog-container-link'>Xem chi tiết &raquo;</p>
                         </Link>

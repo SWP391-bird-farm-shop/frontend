@@ -3,21 +3,24 @@
     position: relative;
 }
 
-.bird-carousel-item {
+.bird-carousel-item,
+.product-carousel-item {
     display: block;
     height: 270px;
     margin: 0 3%;
     text-decoration: none;
 }
 
-.bird-carousel-item img {
+.bird-carousel-item img,
+.product-carousel-item img {
     width: 100%;
     height: 80%;
     border: 1px solid #ccc;
     border-radius: 15px;
 }
 
-.bird-carousel-item h4 {
+.bird-carousel-item h4,
+.product-carousel-item h4 {
     position: relative;
     height: 20%;
     color: #0366D6;
