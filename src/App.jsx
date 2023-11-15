@@ -39,6 +39,9 @@ import ManageAccount from './page/rolepage/adminpage/ManageAccount'
 import CreateUser from './page/rolepage/adminpage/CreateUser'
 import AddProductPage from './page/rolepage/managerpage/AddProductPage'
 import BlogForm from './page/rolepage/staffpage/CreateBlog'
+import Dashboard from './page/rolepage/managerpage/dashboard/Dashboard'
+
+
 
 
 const App = () => {
@@ -61,15 +64,13 @@ const App = () => {
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Route>
 
       <Route element={<RoleLayout />}>
         <Route path='/create-voucher' element={<CreateVoucherPage />} />
 
       </Route>
-
-
-
 
       {/* user routes */}
       <Route element={<RequireAuth allowedRoles={['4']} />}>
@@ -98,6 +99,7 @@ const App = () => {
       <Route path='/create-blog' element={<BlogForm />} />
 
       {/* admin routes */}
+
       <Route element={<RequireAuth allowedRoles={['1']} />}>
         <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
@@ -114,6 +116,7 @@ const App = () => {
           <Route path='/add-product/:action' element={<AddProductPage />} />
           <Route path='/product/:action' element={<ProductPage />} />
           <Route path='/voucher/:action' element={<VoucherPage />} />
+
         </Route>
       </Route>
 
