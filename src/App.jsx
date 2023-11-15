@@ -32,7 +32,6 @@ import StaffPage from "./page/rolepage/staffpage/StaffPage";
 import ManagerPage from "./page/rolepage/managerpage/ManagerPage";
 import AdminPage from "./page/rolepage/adminpage/AdminPage";
 import ViewOrderPage from "./page/rolepage/staffpage/ViewOrderPage";
-import AnnounceOrderPage from "./page/rolepage/staffpage/AnnounceOrderPage";
 import FeedbackPage from "./page/rolepage/staffpage/FeedbackPage";
 import ProductPage from "./page/rolepage/managerpage/ProductPage";
 import VoucherPage from "./page/rolepage/managerpage/VoucherPage";
@@ -73,6 +72,9 @@ const App = () => {
         <Route path="/order-waiting" element={<WaitingOrderPage />} />
         <Route path="/custom-products-size" element={<SizePage />} />
       </Route>
+      <Route path="/admin-page" element={<AdminPage />} />
+      <Route path="/manager-page" element={<ManagerPage />} />
+      <Route path="/staff-page" element={<StaffPage />} />
 
       {/* user routes */}
       <Route element={<RequireAuth allowedRoles={["4"]} />}>
@@ -85,7 +87,7 @@ const App = () => {
             element={<AccessoriesToysPage />}
           />
           <Route path="/blogs" element={<BlogPage />} />
-          <Route path="/parrot" element={<SpeciesPage />} />
+          <Route path="/bird/:birdId" element={<SpeciesPage />} />
           <Route path="/item-info/:productId" element={<ItemInformation />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
@@ -141,8 +143,7 @@ const App = () => {
           <Route path="/manage-blogs/:action" element={<BlogPage />} />
           <Route path="/view-blog/:blogId" element={<BlogContentPage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
-          <Route path="/order" element={<ViewOrderPage />} />
-          <Route path="/announce-order" element={<AnnounceOrderPage />} />
+          <Route path="/order/:action" element={<ViewOrderPage />} />
         </Route>
       </Route>
     </Routes>

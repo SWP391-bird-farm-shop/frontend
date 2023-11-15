@@ -112,7 +112,7 @@ const SignUpPage = () => {
           </div>
           <button type="submit" className='authentication-button' onClick={handleSubmit}>Đăng ký</button>
         </form>
-        <p>Bạn đã có tài khoản? <Link href='/log-in'>Đăng nhập</Link></p>
+        <p>Bạn đã có tài khoản? <Link to='/log-in'>Đăng nhập</Link></p>
       </div>
     </div>
   );
