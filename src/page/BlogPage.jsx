@@ -121,7 +121,8 @@ const BlogPage = () => {
           </div>
         </div>
       );
-    } else {
+    }
+    if (action === 'edit') {
       return (
         <div className="blog-page">
           <div className="blog-list">

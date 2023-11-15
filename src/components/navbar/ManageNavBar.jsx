@@ -157,15 +157,15 @@ const ManageNavbar = ({ className }) => {
             </a>
           </div>
           <NavMenu className="first-role-section">
-            <NavLink to="/blogs" className="first-section-component-staff">
+            <NavLink to="/manage-blogs/view" className="first-section-component-staff">
               Quản lí bài viết
             </NavLink>
-            {/* <NavLink to="/feedback/view" className="first-section-component-staff"> */}
-            {/* Quản lí feedback */}
-            {/* </NavLink> */}
-            {/* <NavLink to="/order" className="first-section-component-staff"> */}
-            {/* Quản lí đơn hàng */}
-            {/* </NavLink> */}
+            <NavLink to="/feedback/view" className="first-section-component-staff">
+              Quản lí feedback
+            </NavLink>
+            <NavLink to="/order/view" className="first-section-component-staff">
+              Quản lí đơn hàng
+            </NavLink>
           </NavMenu>
 
           <div className="second-role-section">

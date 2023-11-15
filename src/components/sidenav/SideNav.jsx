@@ -95,7 +95,7 @@ const SideNav = () => {
         <Link to="/create-blog" className="side-navbar-link">
           <FaRegEdit className="side-navbar-link-icon" /> Tạo bài viết
         </Link>
-        <Link to="/manage-blogs/update" className="side-navbar-link">
+        <Link to="/manage-blogs/edit" className="side-navbar-link">
           <FaEdit className="side-navbar-link-icon" /> Chỉnh sửa bài viết
         </Link>
       </div>
