@@ -9,6 +9,8 @@ const ShapePage = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
+  const [ProductCustom, setProductCustom] = useState(null);
+
   const [selectedStyle, setSelectedStyle] = useState();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -26,25 +28,39 @@ const ShapePage = () => {
     }
   };
 
+  const fetchUserCage = async () => {
+    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setProductCustom(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    fetchUserCage();
   }, [auth]);
 
   const handleButtonClick = async (event, id) => {
     event.preventDefault();
-    const url = '';
+    const url = "/api/ProductCustom/update-style-custom-product";
     const data = {
+      productId: ProductCustom?.productCustomId,
       userId: auth?.user?.userId,
-      styleName: id,
+      styleId: id,
     };
 
     setIsLoading(true);
 
     try {
-      const response = await api.post(url, data);
+      console.log(data);
+      const response = await api.put(url, data);
 
       if (response) {
-        setSelectedStyle(styleId);
+        setSelectedStyle(id);
         navigate("/custom-products-size");
       }
 
@@ -95,7 +111,10 @@ const ShapePage = () => {
                   alt="Chim"
                   className="custom-product-image"
                 />
-                <button onClick={(event) => handleButtonClick(event, style.styleId)} className="choose-button">
+                <button
+                  onClick={(event) => handleButtonClick(event, style.styleId)}
+                  className="choose-button"
+                >
                   Chọn
                 </button>
               </div>
@@ -105,20 +124,13 @@ const ShapePage = () => {
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
-              <p>
-                Hình dáng: <span>{selectedStyle}</span>
-              </p>
-              <p>
-                Kích thước: <span>100x50"</span>
-              </p>
-              <p>
-                Vật liệu: <span>Vàng</span>
-              </p>
-              <p>
-                Màu sắc: <span>Đỏ</span>
-              </p>
+              <p>Tên lồng: {ProductCustom?.productName}</p>
+              <p>Hình dáng: Chưa chọn</p>
+              <p>Kích thước: Chưa chọn</p>
+              <p>Vật liệu: Chưa chọn</p>
+              <p>Màu sắc: Chưa chọn</p>
 
-              <h4>Giá Hiện Tại: ₫50000</h4>
+              <h4>Giá Hiện Tại: {ProductCustom?.price}</h4>
             </div>
 
             <div className="custom-summary-reset">

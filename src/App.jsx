@@ -72,7 +72,6 @@ const App = () => {
         <Route path="/order-confirm" element={<ConfirmPage />} />
         <Route path="/order-waiting" element={<WaitingOrderPage />} />
         <Route path="/custom-products-size" element={<SizePage />} />
-
       </Route>
 
       {/* user routes */}

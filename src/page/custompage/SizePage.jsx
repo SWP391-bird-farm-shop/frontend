@@ -1,19 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CustomPage.css";
 import ComboBox from "../../components/combobox/ComboBox";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import api from "../../components/utils/requestAPI";
 
 const SizePage = () => {
-
   const { auth } = useAuth();
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [ListSize, setListSize] = useState(null);
+  const [product, setProduct] = useState(null);
+
+  const fetchUserCage = async () => {
+    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setProduct(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserCage();
+  });
+
   const handleButtonClick = async (event, name) => {
     event.preventDefault();
-    const url = '';
+    const url = "";
     const data = {
       userId: auth?.user?.userId,
       styleName: name,
@@ -104,7 +122,7 @@ const SizePage = () => {
                 Chọn
               </button>
             </div>
-          </div>  
+          </div>
 
           <div className="custom-summary">
             <div className="custom-summary-detail">
