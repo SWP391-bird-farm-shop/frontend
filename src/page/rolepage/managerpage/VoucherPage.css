@@ -1,16 +1,22 @@
 .voucher-page {
-    border: 1px solid black;
-    padding: 10px 40px;
-    margin: 40px;
-    margin-right: 0;
-    margin-bottom: 20px;
-    width: 100%;
+    width: 90%;
 }
 
 .voucher-page-info {
+    border: 1px solid #ccc;
+    padding: 10px 40px;
+    padding-top: 5px;
+    padding-right: 10px;
+    margin: 40px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.voucher-info-section {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 10px 40px;
 }
 
 .voucher-name,
@@ -29,4 +35,8 @@
 
 .voucher-date {
     text-align: justify;
+}
+
+.voucher-info-section {
+    display: flex;
 }

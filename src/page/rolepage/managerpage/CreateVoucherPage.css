@@ -1,13 +1,11 @@
 .create-voucher-page {
-  width: 35%;
-  margin: 0 auto;
-  padding: 50px;
-  padding-top: 20px;
+  width: 40%;
+  padding: 20px 50px;
   background-color: white;
   border-radius: 15px;
   border: 1px solid #ccc;
   color: black;
-  margin-top: 20px;
+  margin: 30px auto;
 }
 
 .create-voucher-title {
@@ -15,6 +13,10 @@
   margin-bottom: 20px;
   color: #4CAF50;
   text-align: center;
+}
+
+.create-voucher-input-container {
+  margin-bottom: 10px;
 }
 
 .create-voucher-input-label {

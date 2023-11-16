@@ -2,54 +2,84 @@ import React from 'react'
 import './Dashboard.css';
 import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill }
   from 'react-icons/bs'
-// import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
-//   from 'recharts';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
+  from 'recharts';
 
 function Home() {
 
   const data = [
     {
-      name: 'Page A',
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+      name: '1',
+      đơn: 1000,
+      đồng: 5000,
+
     },
     {
-      name: 'Page B',
-      uv: 3000,
-      pv: 1398,
+      name: '2',
+      đơn: 5000,
+      đồng: 1398,
       amt: 2210,
     },
     {
-      name: 'Page C',
-      uv: 2000,
-      pv: 9800,
+      name: '3',
+      đơn: 100,
+      đồng: 9800,
       amt: 2290,
     },
     {
-      name: 'Page D',
-      uv: 2780,
-      pv: 3908,
+      name: '4',
+      đơn: 100,
+      đồng: 3908,
       amt: 2000,
     },
     {
-      name: 'Page E',
-      uv: 1890,
-      pv: 4800,
+      name: '5',
+      đơn: 100,
+      đồng: 4800,
       amt: 2181,
     },
     {
-      name: 'Page F',
-      uv: 2390,
-      pv: 3800,
+      name: '6',
+      đơn: 100,
+      đồng: 3800,
       amt: 2500,
     },
     {
-      name: 'Page G',
-      uv: 3490,
-      pv: 4300,
+      name: '7',
+      đơn: 100,
+      đồng: 4300,
       amt: 2100,
     },
+    {
+      name: '8',
+      đơn: 100,
+      đồng: 4300,
+      amt: 2100,
+    },
+    {
+      name: '9',
+      đơn: 100,
+      đồng: 4300,
+      amt: 2100,
+    },
+    {
+      name: '10',
+      đơn: 100,
+      đồng: 4300,
+      amt: 2100,
+    },
+    {
+      name: '11',
+      đơn: 100,
+      đồng: 4300,
+      amt: 2100,
+    },
+    {
+      name: '12',
+      đơn: 100,
+      đồng: 4300,
+      amt: 2100,
+    }
   ];
 
 
@@ -83,10 +113,10 @@ function Home() {
         </div>
         <div className='card'>
           <div className='card-inner'>
-            <h3>ALERTS</h3>
+            <h3>Orders</h3>
             <BsFillBellFill className='card_icon' />
           </div>
-          <h1>42</h1>
+          <h1>10</h1>
         </div>
       </div>
 
@@ -108,8 +138,8 @@ function Home() {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-            <Bar dataKey="uv" fill="#82ca9d" />
+            <Bar dataKey="đồng" fill="#8884d8" />
+            <Bar dataKey="đơn" fill="#82ca9d" />
           </BarChart>
         </ResponsiveContainer>
 
@@ -130,8 +160,8 @@ function Home() {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="đồng" stroke="#8884d8" activeDot={{ r: 8 }} />
+            <Line type="monotone" dataKey="đơn" stroke="#82ca9d" />
           </LineChart>
         </ResponsiveContainer>
 

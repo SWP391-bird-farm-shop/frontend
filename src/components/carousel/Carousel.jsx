@@ -11,6 +11,7 @@ const Carousel = ({ className }) => {
 
     const [birdData, setBirdData] = useState();
     const [productData, setProductData] = useState();
+    const [foodData, setFoodData] = useState();
     const [toyData, setToyData] = useState();
 
 
@@ -36,7 +37,24 @@ const Carousel = ({ className }) => {
         if (className === 'Product') {
             const fetchData = async () => {
                 try {
-                    await api.get('/api/Product/get-for-customer', {
+                    await api.get('api/Product/get-by-category?categoryId=Cate90fb2', {
+                        headers: {
+                            'accept': '*/*'
+                        }
+                    }).then(response => {
+                        console.log(response)
+                        setProductData(response.data);
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            fetchData();
+        }
+        if (className === 'Food') {
+            const fetchData = async () => {
+                try {
+                    await api.get('', {
                         headers: {
                             'accept': '*/*'
                         }
@@ -101,6 +119,20 @@ const Carousel = ({ className }) => {
                             <img src={image.imageUrl} alt={product.productName} key={image.imageId} />
                         ))}
                         <h4>{product.productName}</h4>
+                    </Link>
+                ))}
+            </OwlCarousel>
+        );
+    }
+    if (className === 'Food') {
+        return (
+            <OwlCarousel className={className} {...options}>
+                {foodData?.map(food => (
+                    <Link href={`/cage/${food.productId}`} className="product-carousel-item" key={food.productId}>
+                        {food.image.map(image => (
+                            <img src={image.imageUrl} alt={food.productName} key={image.imageId} />
+                        ))}
+                        <h4>{food.productName}</h4>
                     </Link>
                 ))}
             </OwlCarousel>

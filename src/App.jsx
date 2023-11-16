@@ -20,27 +20,30 @@ import './App.css'
 import UserPage from './page/UserPage'
 import SettingInformationPage from './page/SettingInformationPage'
 
-import CreateVoucherPage from './page/rolepage/managerpage/CreateVoucherPage'
-import ShapePage from './page/custompage/ShapePage'
-import SizePage from './page/custompage/SizePage'
-import MaterialPage from './page/custompage/MaterialPage'
-import ColorPage from './page/custompage/ColorPage'
-import TotalPage from './page/custompage/TotalPage'
-import RoleLayout from './components/layout/RoleLayout'
-import StaffPage from './page/rolepage/staffpage/StaffPage'
-import ManagerPage from './page/rolepage/managerpage/ManagerPage'
-import AdminPage from './page/rolepage/adminpage/AdminPage'
-import ViewOrderPage from './page/rolepage/staffpage/ViewOrderPage'
-import AnnounceOrderPage from './page/rolepage/staffpage/AnnounceOrderPage'
-import FeedbackPage from './page/rolepage/staffpage/FeedbackPage'
-import ProductPage from './page/rolepage/managerpage/ProductPage'
-import VoucherPage from './page/rolepage/managerpage/VoucherPage'
-import ManageAccount from './page/rolepage/adminpage/ManageAccount'
-import CreateUser from './page/rolepage/adminpage/CreateUser'
-import AddProductPage from './page/rolepage/managerpage/AddProductPage'
-import BlogForm from './page/rolepage/staffpage/CreateBlog'
+import CreateVoucherPage from "./page/rolepage/managerpage/CreateVoucherPage";
+import CustomPage from "./page/custompage/CustomPage";
+import ShapePage from "./page/custompage/ShapePage";
+import SizePage from "./page/custompage/SizePage";
+import MaterialPage from "./page/custompage/MaterialPage";
+import ColorPage from "./page/custompage/ColorPage";
+import TotalPage from "./page/custompage/TotalPage";
+import RoleLayout from "./components/layout/RoleLayout";
+import StaffPage from "./page/rolepage/staffpage/StaffPage";
+import ManagerPage from "./page/rolepage/managerpage/ManagerPage";
+import AdminPage from "./page/rolepage/adminpage/AdminPage";
+import ViewOrderPage from "./page/rolepage/staffpage/ViewOrderPage";
+import AnnounceOrderPage from "./page/rolepage/staffpage/AnnounceOrderPage";
+import FeedbackPage from "./page/rolepage/staffpage/FeedbackPage";
+import ProductPage from "./page/rolepage/managerpage/ProductPage";
+import VoucherPage from "./page/rolepage/managerpage/VoucherPage";
+import ManageAccount from "./page/rolepage/adminpage/ManageAccount";
+import CreateUser from "./page/rolepage/adminpage/CreateUser";
+import AddProductPage from "./page/rolepage/managerpage/AddProductPage";
+import BlogForm from "./page/rolepage/staffpage/CreateBlog";
+import ConfirmPage from "./page/ConfirmPage";
+import WaitingOrderPage from "./page/WaitingOrderPage";
+import TermsAndConditionsPage from "./page/TermsAndConditionsPage";
 import Dashboard from './page/rolepage/managerpage/dashboard/Dashboard'
-
 
 
 
@@ -94,51 +97,101 @@ const App = () => {
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
 
-      <Route path="/staff-page" element={<StaffPage />} />
+      <Route element={<Layout />}>
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/products/cages" element={<CagePage />} />
+        <Route path="/products/food" element={<FoodPage />} />
+        <Route
+          path="/products/accessories-toys"
+          element={<AccessoriesToysPage />}
+        />
+        <Route path="/blogs" element={<BlogPage />} />
+        <Route path="/blog-content/:blogId" element={<BlogContentPage />} />
+        <Route path="/parrot" element={<SpeciesPage />} />
+        <Route path="/item-info/:productId" element={<ItemInformation />} />
+        <Route path="/about-us" element={<AboutPage />} />
+        <Route path="/term-condition" element={<TermsAndConditionsPage />} />
+        <Route path="/order-confirm" element={<ConfirmPage />} />
+        <Route path="/order-waiting" element={<WaitingOrderPage />} />
+        <Route path="/custom-products-size" element={<SizePage />} />
 
-      <Route path='/create-blog' element={<BlogForm />} />
+      </Route>
+
+      {/* user routes */}
+      <Route element={<RequireAuth allowedRoles={["4"]} />}>
+        <Route element={<Layout />}>
+          <Route path="/user-page" element={<UserPage />} />
+          <Route path="/products/cages" element={<CagePage />} />
+          <Route path="/products/food" element={<FoodPage />} />
+          <Route
+            path="/products/accessories-toys"
+            element={<AccessoriesToysPage />}
+          />
+          <Route path="/blogs" element={<BlogPage />} />
+          <Route path="/parrot" element={<SpeciesPage />} />
+          <Route path="/item-info/:productId" element={<ItemInformation />} />
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/custom-cage" element={<CustomPage />} />
+          <Route path="/custom-products-shape" element={<ShapePage />} />
+          <Route path="/custom-products-size" element={<SizePage />} />
+          <Route path="/custom-products-material" element={<MaterialPage />} />
+          <Route path="/custom-products-color" element={<ColorPage />} />
+          <Route path="/custom-products-end" element={<TotalPage />} />
+        </Route>
+        <Route
+          path="/update-info/:userId"
+          element={<SettingInformationPage />}
+        />
+      </Route>
 
       {/* admin routes */}
 
       <Route element={<RequireAuth allowedRoles={['1']} />}>
         <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
-          <Route path='/manage-account' element={<ManageAccount />} />
-          <Route path='/info-setting' element={<SettingInformationPage />} />
-          <Route path='/create-user' element={<CreateUser />} />
+          <Route path="/manage-account/:action" element={<ManageAccount />} />
+          <Route
+            path="/info-setting/:action/:userId"
+            element={<SettingInformationPage />}
+          />
+          <Route path="/create-user" element={<CreateUser />} />
         </Route>
       </Route>
 
       {/* manager routes */}
-      <Route element={<RequireAuth allowedRoles={['2']} />}>
+      <Route element={<RequireAuth allowedRoles={["2"]} />}>
         <Route path="/manager-page" element={<ManagerPage />} />
         <Route element={<RoleLayout />}>
-          <Route path='/add-product/:action' element={<AddProductPage />} />
-          <Route path='/product/:action' element={<ProductPage />} />
-          <Route path='/voucher/:action' element={<VoucherPage />} />
-
+          <Route
+            path="/create-voucer/:action"
+            element={<CreateVoucherPage />}
+          />
+          <Route path="/add-product/:action" element={<AddProductPage />} />
+          <Route
+            path="/update-product/:action/:productId"
+            element={<AddProductPage />}
+          />
+          <Route path="/product/:action" element={<ProductPage />} />
+          <Route path="/voucher/:action" element={<VoucherPage />} />
         </Route>
       </Route>
 
-      {/* manager routes */}
-      <Route element={<RequireAuth allowedRoles={['2']} />}>
-        <Route path="/manager-page" element={<ManagerPage />} />
+      {/* staff routes */}
+      <Route element={<RequireAuth allowedRoles={["3"]} />}>
+        <Route path="/staff-page" element={<StaffPage />} />
         <Route element={<RoleLayout />}>
-          <Route path='/add-product/:action' element={<AddProductPage />} />
-          <Route path='/product/:action' element={<ProductPage />} />
-          <Route path='/voucher/:action' element={<VoucherPage />} />
+          <Route path="/create-blog" element={<BlogForm />} />
+          <Route path="/manage-blogs/:action" element={<BlogPage />} />
+          <Route path="/view-blog/:blogId" element={<BlogContentPage />} />
+          <Route path="/feedback" element={<FeedbackPage />} />
+          <Route path="/order" element={<ViewOrderPage />} />
+          <Route path="/announce-order" element={<AnnounceOrderPage />} />
         </Route>
-      </Route>
-
-      <Route element={<RoleLayout />}>
-
-        <Route path='/blog-content' element={<BlogContentPage />} />
-        <Route path='/feedback' element={<FeedbackPage />} />
-        <Route path='/order' element={<ViewOrderPage />} />
-        <Route path='/announce-order' element={<AnnounceOrderPage />} />
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

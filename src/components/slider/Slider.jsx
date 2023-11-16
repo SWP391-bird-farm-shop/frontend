@@ -3,32 +3,30 @@ import Slide1 from "/Slide 1.png";
 import Slide2 from "/Slide 2.png";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import "./Slider.css";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    const images = [
-        Slide1,
-        Slide2,
-    ];
+  const images = [Slide1, Slide2];
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 2500);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 2500);
 
-        return () => clearInterval(interval);
-    }, [images.length]);
+    return () => clearInterval(interval);
+  }, [images.length]);
 
-    const nextImage = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    };
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
 
-    const previousImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex === 0 ? images.length - 1 : prevIndex - 1
-        );
-    };
+  const previousImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
 
     return (
         <div className="slider-section">
@@ -39,15 +37,15 @@ const Slider = () => {
             </div>
             <div className="product-section">
                 <div className="custom-product-box-section">
-                    <a href="/custom-products-shape" className="custom-product-box">
+                    <Link to="/custom-cage" className="custom-product-box">
                         <img className="custom-product-box-image" src="/demo.jpg" alt="custom-product" />
                         <h3 className="custom-product-box-heading">Thiết kế lồng chim</h3>
                         <h3 className="custom-product-box-heading">theo sở thích của bạn</h3>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
-    )
-}
+  );
+};
 
 export default Slider;

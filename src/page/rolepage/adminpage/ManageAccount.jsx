@@ -1,100 +1,26 @@
-
 import React, { useEffect, useState } from "react";
-import './ManageAccount.css';
+import "./ManageAccount.css";
 import "../RolePage.css";
 import api from "../../../components/utils/requestAPI";
+import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import PopupModal from "../../../components/modal/PopupModal";
 
 // Sample user account data (replace with your data)
-const userAccounts = [
-  {
-    UserID: 1,
-    RoleID: 1,
-    ImageURL: "user1.jpg",
-    UserName: "john_doe",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com"
-  },
-  {
-    UserID: 2,
-    RoleID: 2,
-    ImageURL: ":user2.jpg",
-    UserName: "j:ane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com"
-  },
-  {
-    UserID: 3,
-    RoleID: 3,
-    ImageURL: "user2.jpg",
-    UserName: "jane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com"
-  },
-  {
-    UserID: 4,
-    RoleID: 4,
-    ImageURL: "user2.jpg",
-    UserName: "jane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com"
-  },
-  {
-    UserID: 5,
-    RoleID: 4,
-    ImageURL: "user2.jpg",
-    UserName: "jane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com"
-  },
-  {
-    UserID: 6,
-    RoleID: 4,
-    ImageURL: "user2.jpg",
-    UserName: "jane_smith",
-    PassWord: "******",
-    FullName: "string",
-    Gender: 1,
-    DateOfBird: "2023-10-15",
-    Address: "string",
-    PhoneNumber: "192371928",
-    Email: "string@gmail.com"
-  }
-];
-
 const ManageAccount = () => {
-  const handleButtonClick = () => {
-    window.location.href = "/";
-  };
+  const { auth } = useAuth();
+  const { action } = useParams();
 
+  const [result, setResult] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [listUser, setListUser] = useState(null);
+  const [id, setId] = useState("");
+
+  const navigate = useNavigate();
 
   const fetchData = async () => {
-    const url = '/api/User/get-all';
+    const url = "/api/User/get-all";
     try {
       const response = await api.get(url);
       console.log(response.data);
@@ -104,63 +30,171 @@ const ManageAccount = () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
+
+  const handleDelete = async (id) => {
+    const url = `/api/User/remove`;
+    const data = {
+      userID: id,
+    };
+    try {
+      const response = await api.delete(url, {
+        headers: {
+          "Content-Type": "application/json-patch+json",
+        },
+        data: JSON.stringify(data),
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleUpdate = async (id) => {
+    navigate(`/info-setting/admin/${id}`);
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, [auth, handleDelete]);
 
-  return (
-    <div className="manage">
-      <h1 className="page-title">List of User Account Information</h1>
-      <table className="user-table">
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Role ID</th>
-            <th className="image-colum">Image</th>
-            <th>Username</th>
-            <th>FullName</th>
-            <th>Gender</th>
-            <th>Date Of Bird</th>
-            <th>Address</th>
-            <th>PhoneNumber</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody className="content-info">
-          {listUser?.map((user, index) => (
-            <tr key={index}>
-              <td>{user.userId}</td>
-              <td>{user.roleId}</td>
-              <td>
-                <img src={user.imageUrl} alt={`User ${user.userName}`} />
-              </td>
-              <td>{user.userName}</td>
-              <td>{user.fullName}</td>
-              {
-                user.gender ? (
+  const handlePopup = (id) => {
+    setShowPopup(true);
+    setId(id);
+  };
+
+  const handleClose = () => {
+    setShowPopup(false);
+  };
+
+  if (result) {
+    handleDelete(id);
+    setResult(false);
+  }
+
+  if (action === 'view') {
+
+    return (
+      <div className="manage">
+        <h1 className="page-title">Tài khoản</h1>
+        <table className="user-table">
+          <thead>
+            <tr>
+              <th>Ảnh đại diện</th>
+              <th>Tên đăng nhập</th>
+              <th>Họ và tên</th>
+              <th>Giới tính</th>
+              <th>Ngày sinh</th>
+              <th>Địa chỉ</th>
+              <th>Số điện thoại</th>
+              <th>Email</th>
+              <th>Chức vụ</th>
+            </tr>
+          </thead>
+          <tbody className="content-info">
+            {listUser?.map((user, index) => (
+              <tr key={index}>
+                <td>
+                  <img src={user.imageURL} alt={`${user.userName}`} />
+                </td>
+                <td className="overflow overflow-scroll short">{user.userName}</td>
+                <td className="overflow overflow-scroll short">{user.fullName}</td>
+                {
+                  user.gender ? (
+                    // Nội dung khi user.gender là true
+                    <td>Nam</td>
+                  ) : (
+                    // Nội dung khi user.gender là false
+                    <td>Nữ</td>
+                  )
+                }
+
+                <td>{user.dateOfBird}</td>
+                <td className="overflow overflow-scroll">{user.address}</td>
+                <td>{user.phoneNumber}</td>
+                <td className="overflow overflow-scroll">{user.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  } else {
+    return (
+      <div className="manage">
+        <h1 className="page-title">Tài khoản</h1>
+        <table className="user-table">
+          <thead>
+            <tr>
+              <th>Ảnh đại diện</th>
+              <th>Tên đăng nhập</th>
+              <th>Họ và tên</th>
+              <th>Giới tính</th>
+              <th>Ngày sinh</th>
+              <th>Địa chỉ</th>
+              <th>Số điện thoại</th>
+              <th>Email</th>
+              <th>Chức vụ</th>
+            </tr>
+          </thead>
+          <tbody className="content-info">
+            {listUser?.map((user, index) => (
+              <tr key={index}>
+                <td>
+                  <img src={user.imageURL} alt={`${user.userName}`} />
+                </td>
+                <td className="overflow-edit overflow-scroll short">
+                  {user.userName}
+                </td>
+                <td className="overflow-edit overflow-scroll short">
+                  {user.fullName}
+                </td>
+                {user.gender ? (
                   // Nội dung khi user.gender là true
                   <td>Nam</td>
                 ) : (
                   // Nội dung khi user.gender là false
                   <td>Nữ</td>
-                )
-              }
+                )}
 
-              <td>{user.dateOfBird}</td>
-              <td>{user.address}</td>
-              <td>{user.phoneNumber}</td>
-              <td>{user.email}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button className="back-button" onClick={handleButtonClick}>
-        Go Back
-      </button>
-    </div>
-  );
+                <td>{user.dateOfBird}</td>
+                <td className="overflow-edit overflow-scroll long">
+                  {user.address}
+                </td>
+                <td>{user.phoneNumber}</td>
+                <td className="overflow-edit overflow-scroll long">
+                  {user.email}
+                </td>
+                <td>
+                  <button
+                    className="update-button"
+                    onClick={() => handleUpdate(user.userId)}
+                  >
+                    <FaRegEdit />
+                  </button>
+                  <button
+                    className="remove-button"
+                    onClick={() => handlePopup(user.userId)}
+                  >
+                    <FaTrashAlt />
+                  </button>
+                  {showPopup && (
+                    <PopupModal
+                      action={"remove"}
+                      statusReturn={result}
+                      setStatusReturn={setResult}
+                      open={showPopup}
+                      onClose={handleClose} />
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+
 }
 
 export default ManageAccount;

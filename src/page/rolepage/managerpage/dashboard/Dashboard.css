@@ -1,10 +1,10 @@
-body {
+/* body {
   margin: 0;
   padding: 0;
   background-color: #1d2634;
   color: #9e9ea4;
   font-family: 'Montserrat', sans-serif;
-}
+} */
 
 .icon {
   vertical-align: middle;
@@ -61,7 +61,7 @@ body {
 #sidebar {
   grid-area: sidebar;
   height: 100%;
-  background-color: #263043;
+  background-color: rgb(15, 107, 38);
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
