@@ -94,7 +94,7 @@ const ManageNavbar = ({ className }) => {
         <Nav id="manage-navbar">
           <Bars />
           <div id="logo">
-            <Link to="/admin-page">
+            <Link to="/manager-page">
               <img src="/bcs-icon.png" alt="bcs-logo" />
             </Link>
           </div>
@@ -152,20 +152,20 @@ const ManageNavbar = ({ className }) => {
         <Nav id="manage-navbar">
           <Bars />
           <div id="logo">
-            <a href="/home">
+            <Link to="/staff-page">
               <img src="/bcs-icon.png" alt="bcs-logo" />
-            </a>
+            </Link>
           </div>
           <NavMenu className="first-role-section">
-            <NavLink to="/blogs" className="first-section-component-staff">
+            <NavLink to="/manage-blogs/view" className="first-section-component-staff">
               Quản lí bài viết
             </NavLink>
-            {/* <NavLink to="/feedback/view" className="first-section-component-staff"> */}
-            {/* Quản lí feedback */}
-            {/* </NavLink> */}
-            {/* <NavLink to="/order" className="first-section-component-staff"> */}
-            {/* Quản lí đơn hàng */}
-            {/* </NavLink> */}
+            <NavLink to="/feedback/view" className="first-section-component-staff">
+              Quản lí feedback
+            </NavLink>
+            <NavLink to="/order/view" className="first-section-component-staff">
+              Quản lí đơn hàng
+            </NavLink>
           </NavMenu>
 
           <div className="second-role-section">

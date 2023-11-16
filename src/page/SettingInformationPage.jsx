@@ -134,7 +134,7 @@ const SettingInformationPage = () => {
                 </div>
                 <div className="update-info-of-profile">
                   <h2>Hồ sơ</h2>
-                  <form>
+                  <form onSubmit={handleUpdate}>
                     <div className="update-info-input-container">
                       <label
                         htmlFor="name"
@@ -198,7 +198,6 @@ const SettingInformationPage = () => {
               <button
                 type="submit"
                 className="update-info-button"
-                onClick={handleUpdate}
               >
                 Lưu thay đổi
               </button>

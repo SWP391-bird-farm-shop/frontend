@@ -34,9 +34,9 @@
 }
 
 .role-page-manage-task-img {
-    width: 70%;
+    width: 60%;
     height: auto;
-    border: 1px solid #ccc;
     border-radius: 15px;
+    margin-top: 50px;
 }
 

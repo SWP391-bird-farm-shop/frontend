@@ -90,6 +90,7 @@ const UpdateInformationPage = () => {
 
   return (
     <div className="authentication-section">
+      <a href='/sign-up' className='homepage-link'> Về trang đăng kí</a>
       <div className="authentication-container">
         <h2>Điền thông tin</h2>
         <form onSubmit={handleSubmit}>
@@ -146,7 +147,6 @@ const UpdateInformationPage = () => {
                 type="date"
                 name="dob"
                 className="authentication-date"
-                value={birth}
                 onChange={(event) => setBirthday(event.target.value)}
                 onBlur={validateDateOfBirth}
                 required

@@ -41,7 +41,7 @@ const PopupModal = ({
             <DialogTitle style={{ fontSize: "20px" }}>Thành công</DialogTitle>
             <Divider />
             <DialogContent sx={{ fontSize: "18px" }}>
-              Bạn có đã thêm thành công
+              Bạn đã thêm thành công
             </DialogContent>
           </ModalDialog>
         </Modal>
@@ -62,7 +62,7 @@ const PopupModal = ({
             <DialogTitle style={{ fontSize: "20px" }}>Thành công</DialogTitle>
             <Divider />
             <DialogContent sx={{ fontSize: "18px" }}>
-              Bạn có đã xóa thành công
+              Bạn đã xóa thành công
             </DialogContent>
           </ModalDialog>
         </Modal>
@@ -127,7 +127,7 @@ const PopupModal = ({
             <DialogTitle style={{ fontSize: "20px" }}>Thành công</DialogTitle>
             <Divider />
             <DialogContent sx={{ fontSize: "18px" }}>
-              Bạn có đã chỉnh sửa thành công
+              Bạn đã chỉnh sửa thành công
             </DialogContent>
           </ModalDialog>
         </Modal>

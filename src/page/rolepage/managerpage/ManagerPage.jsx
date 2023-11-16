@@ -14,11 +14,11 @@ const ManagerPage = () => {
       <div className="role-page-manage-tasks">
         <Link to={`/product/view-product`} className="role-page-manage-task">
           <h3 className="role-page-manage-task-title">Quản lí sản phẩm</h3>
-          <img src="./vet.jpg" className="role-page-manage-task-img" />
+          <img src="./product.png" className="role-page-manage-task-img" />
         </Link>
         <Link to={`/voucher/view-voucher`} className="role-page-manage-task">
           <h3 className="role-page-manage-task-title">Quản lí voucher</h3>
-          <img src="./vet.jpg" className="role-page-manage-task-img" />
+          <img src="./voucher.png" className="role-page-manage-task-img" />
         </Link>
       </div>
     </div>

@@ -1,5 +1,5 @@
 .authentication-section {
-    background-image: url('./sign-in-up-background.png');
+    background: url('./sign-in-up-background.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
@@ -151,13 +151,19 @@
     padding: 0 15px;
 }
 
+.input-password {
+    display: flex;
+    align-items: center;
+    width: 101.3%;
+}
+
 .log-in-password-toggle-button,
 .sign-up-password-toggle-button,
 .confirm-password-toggle-button,
 .reset-password-toggle-button,
 .confirm-reset-password-toggle-button {
     position: absolute;
-    background-color: aliceblue;
+    background-color: rgba(0, 0, 0, 0);
     color: gray;
     font-size: 18px;
     width: 34px;
@@ -165,27 +171,7 @@
     padding-top: 5px;
     border-radius: 50%;
     border: none;
-    margin-left: 11.2vw;
-}
-
-.authentication-input-container .log-in-password-toggle-button {
-    top: 47.2vh;
-}
-
-.authentication-input-container .sign-up-password-toggle-button {
-    top: 48.8vh;
-}
-
-.authentication-input-container .confirm-password-toggle-button {
-    top: 60vh;
-}
-
-.authentication-input-container .reset-password-toggle-button {
-    top: 42vh;
-}
-
-.authentication-input-container .confirm-reset-password-toggle-button {
-    top: 52.7vh;
+    margin-left: 25vw;
 }
 
 .log-in-password-toggle-button:hover,
