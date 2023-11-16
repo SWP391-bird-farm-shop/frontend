@@ -23,12 +23,12 @@ const FoodPage = () => {
   }, []);
 
   function formatCash(currency) {
-    return currency?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   return (
     <div className="product-page">
-      {/* <ComboBox /> */}
+      <ComboBox classname='product' />
       <div className="product-items-section">
         {food?.map((product) => (
           <Link to={`/item-info/${product.productId}`} className="product-item">

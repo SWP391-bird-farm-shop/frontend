@@ -79,7 +79,7 @@ const CreateUser = () => {
   return (
     <div className="create-user-container">
       <h1 className="create-user-title">Tạo tài khoản nhân viên & quản lý</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="create-user-input-container">
           <label className="create-user-label">Họ và Tên</label>
           <input
@@ -176,7 +176,6 @@ const CreateUser = () => {
         <button
           type="submit"
           className="create-user-button"
-          onClick={handleSubmit}
         >
           Tạo mới
         </button>

@@ -56,7 +56,7 @@ const CustomPage = () => {
         Mời bạn đặt tên cho lồng chim của mình
       </h2>
       <div className="custom-page-input-form">
-        <form className="custom-page-form">
+        <form className="custom-page-form" onSubmit={handleButtonClick}>
           <div className="custom-page-input-container">
             <label htmlFor="name" className="custom-page-input-container-label">
               Tên lồng chim
@@ -70,13 +70,7 @@ const CustomPage = () => {
               onChange={(event) => setName(event.target.value)}
             />
           </div>
-          <button
-            onClick={handleButtonClick}
-            type="submit"
-            className="choose-button"
-          >
-            Xác nhận
-          </button>
+          <button type="submit" className="choose-button">Xác nhận</button>
         </form>
       </div>
       <PopupModal />

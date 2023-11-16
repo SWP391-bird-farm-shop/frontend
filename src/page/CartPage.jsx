@@ -104,7 +104,7 @@ const CartPage = () => {
 
   //format money
   function formatCash(currency) {
-    return currency?.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   //fetch for order

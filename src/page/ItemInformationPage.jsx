@@ -195,8 +195,8 @@ const ItemInformation = () => {
     }
   };
 
-  function formatCash(n) {
-    return n?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  function formatCash(currency) {
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   return (

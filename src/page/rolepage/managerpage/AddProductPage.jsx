@@ -375,7 +375,7 @@ const AddProductPage = () => {
               </div>
               <div className="add-product-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleShowUpdatePopup}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -501,7 +501,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
@@ -551,7 +550,7 @@ const AddProductPage = () => {
               </div>
               <div className="add-product-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -680,7 +679,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleSubmit}
             >
               Lưu sản phẩm
             </button>
@@ -770,7 +768,7 @@ const AddProductPage = () => {
               </div>
               <div className="add-product-food-at-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleShowUpdatePopup}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -844,7 +842,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
@@ -894,7 +891,7 @@ const AddProductPage = () => {
               </div>
               <div className="add-product-food-at-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleFoodSubmit}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -964,7 +961,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleFoodSubmit}
             >
               Lưu sản phẩm
             </button>
@@ -1052,7 +1048,7 @@ const AddProductPage = () => {
               </div>
               <div className="add-product-food-at-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleShowUpdatePopup}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -1126,7 +1122,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
@@ -1175,7 +1170,7 @@ const AddProductPage = () => {
               </div>
               <div className="add-product-food-at-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleToySubmit}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -1245,7 +1240,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleToySubmit}
             >
               Lưu sản phẩm
             </button>

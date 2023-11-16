@@ -1,34 +1,3 @@
-.species-carousel {
-    margin: 5px 0;
-    position: relative;
-}
-
-.bird-carousel-item,
-.product-carousel-item {
-    display: block;
-    height: 270px;
-    margin: 0 3%;
-    text-decoration: none;
-}
-
-.bird-carousel-item img,
-.product-carousel-item img {
-    width: 100%;
-    height: 80%;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-}
-
-.bird-carousel-item h4,
-.product-carousel-item h4 {
-    position: relative;
-    height: 20%;
-    color: #0366D6;
-    margin: 20px;
-    font-size: 17px;
-    font-weight: 550;
-}
-
 .switch-icon-prev,
 .switch-icon-next {
     font-size: 30px;
@@ -56,4 +25,43 @@
 .switch-icon-next {
     padding-left: 2px;
     right: 10px;
+}
+
+.bird-carousel-item,
+.product-carousel-item {
+    display: block;
+    height: 290px;
+    margin: 0 3%;
+    text-decoration: none;
+}
+
+.product-carousel-item {
+    height: 310px;
+}
+
+.bird-carousel-item img,
+.product-carousel-item img {
+    width: 100%;
+    height: 70%;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.bird-carousel-item h4,
+.product-carousel-item h4 {
+    position: relative;
+    text-align: center;
+    height: 5%;
+    color: #0366D6;
+    margin: 20px auto;
+    font-size: 17px;
+    font-weight: 550;
+}
+
+.product-carousel-item p {
+    height: 15%;
+    text-align: center;
+    color: red;
+    font-size: 17px;
+    font-weight: 550;
 }
