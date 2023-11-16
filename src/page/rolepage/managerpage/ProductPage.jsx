@@ -100,8 +100,8 @@ const ProductPage = () => {
     }
   }, [listProduct]);
 
-  function formatCash(n, currency) {
-    return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+  function formatCash(currency) {
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   const handlePopup = (id) => {

@@ -54,7 +54,7 @@ const Carousel = ({ className }) => {
         if (className === 'Food') {
             const fetchData = async () => {
                 try {
-                    await api.get('', {
+                    await api.get('api/Product/get-by-category?categoryId=Cate7646a', {
                         headers: {
                             'accept': '*/*'
                         }
@@ -86,6 +86,11 @@ const Carousel = ({ className }) => {
             fetchData();
         }
     }, [])
+
+    function formatCash(currency) {
+        return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
     const options = {
         items: 5, // Number of items to display
         autoplay: true, // Autoplay enabled
@@ -119,6 +124,7 @@ const Carousel = ({ className }) => {
                             <img src={image.imageUrl} alt={product.productName} key={image.imageId} />
                         ))}
                         <h4>{product.productName}</h4>
+                        <p>₫{formatCash(product.price)}</p>
                     </Link>
                 ))}
             </OwlCarousel>
@@ -133,6 +139,7 @@ const Carousel = ({ className }) => {
                             <img src={image.imageUrl} alt={food.productName} key={image.imageId} />
                         ))}
                         <h4>{food.productName}</h4>
+                        <p>₫{formatCash(food.price)}</p>
                     </Link>
                 ))}
             </OwlCarousel>
@@ -147,6 +154,7 @@ const Carousel = ({ className }) => {
                             <img src={image.imageUrl} alt={toy.productName} key={image.imageId} />
                         ))}
                         <h4>{toy.productName}</h4>
+                        <p>₫{formatCash(toy.price)}</p>
                     </Link>
                 ))}
             </OwlCarousel>

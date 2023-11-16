@@ -28,7 +28,7 @@ const Article = () => {
         const month = (d.getMonth() + 1).toString().padStart(2, '0');
         const year = d.getFullYear();
         return `${day}/${month}/${year}`;
-      }
+    }
 
     return (
         <div className="blogs-section">
@@ -37,11 +37,11 @@ const Article = () => {
                 {suggestedArticles?.map((article) => (
                     <div className='blog-container'>
                         <Link to={`/blog-content/${article.blogId}`}>
-                            {article?.image?.map((img) => {
-                                <div className="blog-container-img">
-                                    <img src={img.imageUrl} alt={article.blogTitle} />
-                                </div>
-                            })}
+                            <div className="blog-container-img">
+                                {article.image.map((img) => {
+                                    <img src={img?.imageUrl} alt={article.blogTitle} />
+                                })}
+                            </div>
                             <h4 className='article-title'>{article.blogTitle}</h4>
                             <p className="article-meta">
                                 <span className="article-date">{formatDate(article.createAt)}</span> . <span className="article-author">bởi {article.userId}</span>

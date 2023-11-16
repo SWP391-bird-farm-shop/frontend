@@ -94,7 +94,7 @@ const ManageNavbar = ({ className }) => {
         <Nav id="manage-navbar">
           <Bars />
           <div id="logo">
-            <Link to="/admin-page">
+            <Link to="/manager-page">
               <img src="/bcs-icon.png" alt="bcs-logo" />
             </Link>
           </div>
@@ -152,9 +152,9 @@ const ManageNavbar = ({ className }) => {
         <Nav id="manage-navbar">
           <Bars />
           <div id="logo">
-            <a href="/home">
+            <Link to="/staff-page">
               <img src="/bcs-icon.png" alt="bcs-logo" />
-            </a>
+            </Link>
           </div>
           <NavMenu className="first-role-section">
             <NavLink to="/manage-blogs/view" className="first-section-component-staff">

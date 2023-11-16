@@ -57,10 +57,6 @@ const BlogPage = () => {
     fetchData();
   }, [removeBlog]);
 
-  const handleButtonClick = () => {
-    window.location.href = "/home";
-  };
-
   const handleShow = (id) => {
     setShowPopup(true);
     setId(id);
