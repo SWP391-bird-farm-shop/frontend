@@ -43,6 +43,9 @@ import ConfirmPage from "./page/ConfirmPage";
 import WaitingOrderPage from "./page/WaitingOrderPage";
 import TermsAndConditionsPage from "./page/TermsAndConditionsPage";
 import Dashboard from './page/rolepage/managerpage/dashboard/Dashboard'
+import InventoryDashboard from './page/rolepage/managerpage/dashboard/InventoryDashboard'
+import RevenueDashboard from './page/rolepage/managerpage/dashboard/RevenueDashboard'
+import OrderDashboard from './page/rolepage/managerpage/dashboard/OrderDashboard'
 
 
 
@@ -66,12 +69,13 @@ const App = () => {
         <Route path='/custom-products-material' element={<MaterialPage />} />
         <Route path='/custom-products-color' element={<ColorPage />} />
         <Route path='/custom-products-end' element={<TotalPage />} />
-        <Route path='/dashboard' element={<Dashboard />} />
       </Route>
 
       <Route element={<RoleLayout />}>
-        <Route path='/create-voucher' element={<CreateVoucherPage />} />
-
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/dashboard/revenue' element={<RevenueDashboard />} />
+        <Route path='/dashboard/inventory' element={<InventoryDashboard />} />
+        <Route path='/dashboard/order' element={<OrderDashboard />} />
       </Route>
 
       {/* user routes */}

@@ -16,6 +16,11 @@ import {
   FaCreativeCommonsSa,
   FaUser,
   FaUserEdit,
+  FaMoneyBillWave,
+  FaBox,
+  FaUsers,
+  FaShoppingCart,
+  FaChartBar,
 } from "react-icons/fa";
 import "./SideNav.css";
 import useAuth from "../../hooks/useAuth";
@@ -61,7 +66,10 @@ const SideNav = () => {
           </Link>
         </div>
       );
-    } else {
+    }
+
+    if (action === 'view-product' || action === 'add-cage' || action === 'add-food'
+      || action === 'add-toy' || action === 'edit-product') {
       return (
         <div className="side-navbar">
           <Link to="/product/view-product" className="side-navbar-link">
@@ -83,6 +91,26 @@ const SideNav = () => {
           </Link>
         </div>
       );
+    } else {
+      <div className="side-navbar">
+        <Link to="/dashboard" className="side-navbar-link">
+          <FaBoxes className="side-navbar-link-icon" /> Bảng thống kê tổng
+        </Link>
+        <Link to="/dashboard/add-cage" className="side-navbar-link">
+          <FaDove className="side-navbar-link-icon" /> Bảng thống kê doanh thu
+        </Link>
+        <Link to="/dashboard/add-food" className="side-navbar-link">
+          <FaBreadSlice className="side-navbar-link-icon" /> Bảng thống kê hàng hóa
+          chim
+        </Link>
+        <Link to="/dashboard/add-toy" className="side-navbar-link">
+          <FaGift className="side-navbar-link-icon" /> Bảng thống kê lượng truy cập
+        </Link>
+        <Link to="/dashboard/edit-product" className="side-navbar-link">
+          <FaEdit className="side-navbar-link-icon" /> Bảng thống kê đơn hàng
+          phẩm
+        </Link>
+      </div>
     }
   }
 
@@ -158,12 +186,27 @@ const SideNav = () => {
 
       //admin
       //quản lí account
+      // <div className="side-navbar">
+      //   <Link to="/manage-account" className="side-navbar-link">
+      //     <FaUserAlt className="side-navbar-link-icon" /> Xem toàn bộ tài khoản
+      //   </Link>
+      //   <Link to="/create-user" className="side-navbar-link">
+      //     <FaRegEdit className="side-navbar-link-icon" /> Tạo tài khoản
+      //   </Link>
+      // </div>
+
       <div className="side-navbar">
-        <Link to="/manage-account" className="side-navbar-link">
-          <FaUserAlt className="side-navbar-link-icon" /> Xem toàn bộ tài khoản
+        <Link to="/dashboard" className="side-navbar-link">
+          <FaChartBar className="side-navbar-link-icon" /> Thống kê tổng
         </Link>
-        <Link to="/create-user" className="side-navbar-link">
-          <FaRegEdit className="side-navbar-link-icon" /> Tạo tài khoản
+        <Link to="/dashboard/revenue" className="side-navbar-link">
+          <FaMoneyBillWave className="side-navbar-link-icon" /> Thống kê doanh thu
+        </Link>
+        <Link to="/dashboard/inventory" className="side-navbar-link">
+          <FaBox className="side-navbar-link-icon" /> Thống kê hàng hóa
+        </Link>
+        <Link to="/dashboard/order" className="side-navbar-link">
+          <FaShoppingCart className="side-navbar-link-icon" /> Thống kê đơn hàng
         </Link>
       </div>
     );
