@@ -43,6 +43,13 @@ const BlogContentPage = () => {
         ));
     };
 
+    function formatDate(date) {
+        const d = new Date(date);
+        const day = d.getDate().toString().padStart(2, '0');
+        const month = (d.getMonth() + 1).toString().padStart(2, '0');
+        const year = d.getFullYear();
+        return `${day}/${month}/${year}`;
+      }
 
     return (
         <div className="blog-content-page">
@@ -50,7 +57,7 @@ const BlogContentPage = () => {
                 <div className="blog-content-item-information">
                     <h2 className="blog-content-title">{blog?.blogTitle}</h2>
                     <p className="blog-content-meta">
-                        <span className="blog-content-date">{blog?.createAt}</span> . <span className="blog-content-author">bởi {blog?.user.fullName}</span>
+                        <span className="blog-content-date">{formatDate(blog?.createAt)}</span> . <span className="blog-content-author">bởi {blog?.user.fullName}</span>
                     </p>
                 </div>
                 <div className="blog-content-section">

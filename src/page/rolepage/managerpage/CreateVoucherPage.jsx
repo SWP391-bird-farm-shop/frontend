@@ -111,6 +111,8 @@ function CreateVoucherPage() {
             type="date"
             id="begin"
             name="begin"
+            pattern="\d{1,2}/\d{1,2}/\d{4}"
+            placeholder="dd/mm/yyyy"
             value={voucher.begin}
             onChange={handleInputChange}
             required
@@ -125,6 +127,8 @@ function CreateVoucherPage() {
             type="date"
             id="expiry"
             name="expiry"
+            pattern="\d{1,2}/\d{1,2}/\d{4}"
+            placeholder="dd/mm/yyyy"
             value={voucher.expiry}
             onChange={handleInputChange}
             required

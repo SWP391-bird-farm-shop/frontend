@@ -5,11 +5,12 @@
 
 .search-bar-input {
   width: 18vw;
-  height: 35px;
+  height: 35.5px;
   background-color: white;
   color: black;
   font-size: 15px;
   font-family: Oregano, Orienta, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 1px 10px;
 }
 
 .search-bar-input:focus {

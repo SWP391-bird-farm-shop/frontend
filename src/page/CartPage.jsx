@@ -93,9 +93,18 @@ const CartPage = () => {
     }
   };
 
+  const handleClose = () => {
+    setShowPopup(false);
+  };
+
+  //handle showPopup
+  const handleShowPopup = async () => {
+    setShowPopup(true);
+  };
+
   //format money
   function formatCash(currency) {
-    return currency?.toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   //fetch for order
@@ -108,15 +117,6 @@ const CartPage = () => {
       const response = await api.post(url, data);
       setCartItems(response.data);
       console.log(response.data);
-      if (response) {
-        const paymentUrl = `/api/Payment/get-payment?OrderId=${cartItems[0]?.orderId}`;
-        const responsePayment = await api.get(paymentUrl);
-        if (responsePayment.data.status) {
-          const finshPaymentUrl = `/api/Order/paid?OrderID=${cartItems[0]?.orderId}`;
-          const responseFinish = await api.post(finshPaymentUrl);
-          console.log(responseFinish);
-        }
-      }
     } catch (error) {
       console.error(error);
     }
@@ -222,11 +222,6 @@ const CartPage = () => {
     });
   };
 
-  // Calculate cart total
-  const calculateTotal = () => {
-    return cartItems?.reduce((total, item) => total + item.total, 0);
-  };
-
   const paymentSubmit = async () => {
     //update product total lastime to payment
     if (selectVoucher === "") setTotalPrice(cartItems[0]?.total);
@@ -308,7 +303,7 @@ const CartPage = () => {
   }, [updateQuantity]);
   //updateQuantity, paymentSubmit, auth
 
-  if (cartItems) {
+  if (cartItems?.length > 0) {
     //to fetch Data voucher
     let fetch = null;
     //handle select voucher and decrese total payment
@@ -337,15 +332,6 @@ const CartPage = () => {
       console.log(total);
       setSelectVoucher(selectedVoucher);
       setTotalPrice(total);
-    };
-
-    const handleClose = () => {
-      setShowPopup(false);
-    };
-
-    //handle showPopup
-    const handleShowPopup = async () => {
-      setShowPopup(true);
     };
 
     if (statusReturn) {
@@ -542,7 +528,7 @@ const CartPage = () => {
             <p className="order-summary-title">
               Tổng tiền hàng:{" "}
               <span className="order-summary-price">
-              ₫{formatCash(cartItems[0]?.total) || 0}
+                ₫{formatCash(cartItems[0]?.total) || 0}
               </span>
             </p>
             <p className="order-summary-title">
@@ -553,7 +539,7 @@ const CartPage = () => {
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
                 <span className="order-summary-price">
-                ₫{formatCash(
+                  ₫{formatCash(
                     (parseFloat(selectVoucher) / 100) * cartItems[0]?.total
                   )}{" "}
                 </span>
@@ -599,9 +585,192 @@ const CartPage = () => {
     );
   } else {
     return (
-      <>
-        <div>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
-      </>
+      <div className="cart-and-payment">
+        <div className="cart-container">
+          <h2 className="cart-and-payment-heading">Giỏ hàng</h2>
+          <div className="cart-items">
+            <div>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
+          </div>
+        </div>
+
+        <div className="payment-container">
+          <h2 className="cart-and-payment-heading">Hóa đơn</h2>
+          <div className="customer-info-section">
+            {isEditingName ? (
+              <div className="flex">
+                <p>
+                  Tên khách hàng:
+                  <input
+                    type="text"
+                    onChange={(event) => setEditName(event.target.value)}
+                    className="customer-info-section-input"
+                    placeholder={name}
+                    required
+                  />
+                </p>
+              </div>
+            ) : (
+              <p>Tên khách hàng: {editName}</p>
+            )}
+
+            {isEditingPhoneNumber ? (
+              <div className="flex">
+                <p>
+                  Số điện thoại:
+                  <input
+                    type="number"
+                    onChange={(event) => setEditPhonenumber(event.target.value)}
+                    className="customer-info-section-input"
+                    minLength={10}
+                    maxLength={11}
+                    placeholder={phoneNumber}
+                    required
+                  />
+                </p>
+              </div>
+            ) : (
+              <p className="flex">Số điện thoại: {editPhonenumber} </p>
+            )}
+
+            {isEditingAddress ? (
+              <div className="flex">
+                <p>
+                  Địa chỉ:
+                  <input
+                    type="text"
+                    onChange={(event) => setEditAddress(event.target.value)}
+                    className="customer-info-section-input"
+                    placeholder={address}
+                    required
+                  />
+                </p>
+              </div>
+            ) : (
+              <p className="flex">Địa chỉ: {editAddress} </p>
+            )}
+
+            <div className="editting-information">
+              {isEditing ? (
+                <>
+                  <button
+                    onClick={handleSave}
+                    className="customer-info-section-button"
+                  >
+                    Lưu
+                  </button>
+                  <p>
+                    <span
+                      className="change-info change-customer-info"
+                      onClick={handleCustomerCancel}
+                    >
+                      Hủy
+                    </span>
+                  </p>
+                </>
+              ) : (
+                <p>
+                  <span
+                    className="change-info change-customer-info"
+                    onClick={handleCustomerEdit}
+                  >
+                    Thay đổi
+                  </span>
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="voucher-section">
+            <div className="voucher-section-combobox">
+              <select
+                name="voucher"
+                id="voucher"
+                className="voucher-combobox"
+              >
+                <option value="" hidden>
+                  Chọn Voucher
+                </option>
+              </select>
+            </div>
+            <div className="voucher-info">
+              <h3 className="voucher-info-title">
+                Không thể chọn voucher
+              </h3>
+              <p className="voucher-info-description">
+                Bạn chưa có sản phẩm nên không được chọn voucher
+              </p>
+            </div>
+          </div>
+
+          <div className="payment-section">
+            <div className="payment-method">
+              <input
+                type="radio"
+                name="payment"
+                value="vnpay"
+                id="vnpay-button"
+                className="payment-section-button"
+              />
+              <img src="bocau.jpg" alt="vnpay" className="payment-logo" />
+              <p>VnPay</p>
+            </div>
+
+            <div className="payment-method">
+              <input
+                type="radio"
+                name="payment"
+                value="cash"
+                id="cash-button"
+                className="payment-section-button"
+              />
+              <img src="tienmat.jpg" alt="cash" className="payment-logo" />
+              <p>Tiền Mặt</p>
+            </div>
+          </div>
+
+          <div className="order-summary-section">
+            <p className="order-summary-title">
+              Tổng tiền hàng:{" "}
+              <span className="order-summary-price">
+                ₫0
+              </span>
+            </p>
+            <p className="order-summary-title">
+              Tổng tiền phí vận chuyển:{" "}
+              <span className="order-summary-price">₫0</span>
+            </p>
+            <p className="order-summary-title">
+              Tổng cộng Voucher giảm giá:{" "}
+              <span className="order-summary-price">₫0</span>
+            </p>
+          </div>
+
+          <div className="total-section">
+            <h3>Tổng thanh toán</h3>
+            <p>₫0</p>
+          </div>
+
+          <div className="confirm-order">
+            <button
+              type="submit"
+              // onClick={paymentSubmit}
+              onClick={handleShowPopup}
+              className="confirm-button"
+            >
+              Thanh toán
+            </button>
+          </div>
+        </div>
+        {showPopup && (
+          <PopupModal
+            action={"payment"}
+            statusReturn={statusReturn}
+            setStatusReturn={setStatusReturn}
+            open={true}
+            onClose={handleClose}
+          />
+        )}
+      </div>
     );
   }
 };

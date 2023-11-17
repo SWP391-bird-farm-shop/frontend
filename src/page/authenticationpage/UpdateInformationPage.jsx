@@ -147,7 +147,6 @@ const UpdateInformationPage = () => {
                 type="date"
                 name="dob"
                 className="authentication-date"
-                value={birth}
                 onChange={(event) => setBirthday(event.target.value)}
                 onBlur={validateDateOfBirth}
                 required

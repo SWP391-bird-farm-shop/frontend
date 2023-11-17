@@ -51,7 +51,7 @@
 .blog-item-image img {
     border-radius: 15px;
     width: 60%;
-    height: auto;
+    height: 25vh;
 }
 
 .blog-item-information {
