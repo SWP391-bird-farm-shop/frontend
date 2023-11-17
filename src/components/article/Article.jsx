@@ -44,7 +44,7 @@ const Article = () => {
                             </div>
                             <h4 className='article-title'>{article.blogTitle}</h4>
                             <p className="article-meta">
-                                <span className="article-date">{formatDate(article.createAt)}</span> . <span className="article-author">bởi {article.userId}</span>
+                                <span className="article-date">{formatDate(article.createAt)}</span> . <span className="article-author">bởi {article?.user.fullName}</span>
                             </p>
                             <p className='blog-container-link'>Xem chi tiết &raquo;</p>
                         </Link>
