@@ -68,6 +68,10 @@ const SizePage = () => {
     }
   };
 
+  function formatCash(currency) {
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   return (
     <div className="custom-page">
       <h2 className="custom-title">Thiết Kế Lồng</h2>
@@ -128,7 +132,7 @@ const SizePage = () => {
                 Màu sắc: <span>Đỏ</span>
               </p>
 
-              <h4>Giá Hiện Tại: ₫50000</h4>
+              <h4>Giá Hiện Tại: ₫{formatCash(50000)}</h4>
             </div>
 
             <div className="custom-summary-reset">

@@ -82,7 +82,7 @@ const SignUpPage = () => {
       <a href='/home' className='homepage-link'> Về trang chủ</a>
       <div className="authentication-container">
         <h2>Đăng ký</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="authentication-input-container">
             <label htmlFor="username" className='authentication-input-container-label' >Tên đăng nhập</label>
             <input type="text" id="name" name="name" className='authentication-input' required onChange={(event) => setUsername(event.target.value)} />
@@ -110,7 +110,7 @@ const SignUpPage = () => {
               </button>
             </div>
           </div>
-          <button type="submit" className='authentication-button' onClick={handleSubmit}>Đăng ký</button>
+          <button type="submit" className='authentication-button'>Đăng ký</button>
         </form>
         <p>Bạn đã có tài khoản? <Link to='/log-in'>Đăng nhập</Link></p>
       </div>

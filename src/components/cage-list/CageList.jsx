@@ -21,10 +21,12 @@ const CageList = () => {
         fetchData();
     }, []);
 
+    function formatCash(currency) {
+        return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
     return (
         <div className="list-item">
-
-            
             {cage?.map((product) => (
                 <Link to={`/item-info/${product.productId}`} className="list-item-container">
                     <div className="list-item-image">
@@ -38,7 +40,6 @@ const CageList = () => {
                     </div>
                 </Link>
             ))}
-
         </div>
     );
 }

@@ -72,6 +72,14 @@ const ManageAccount = () => {
     setResult(false);
   }
 
+  function formatDate(date) {
+    const d = new Date(date);
+    const day = d.getDate().toString().padStart(2, "0");
+    const month = (d.getMonth() + 1).toString().padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+
   if (action === "view") {
     return (
       <div className="manage">
@@ -81,13 +89,13 @@ const ManageAccount = () => {
             <tr>
               {/* <th>Ảnh đại diện</th> */}
               <th>Tên đăng nhập</th>
+              <th>Chức vụ</th>
               <th>Họ và tên</th>
               <th>Giới tính</th>
               <th>Ngày sinh</th>
               <th>Địa chỉ</th>
               <th>Số điện thoại</th>
               <th>Email</th>
-              <th>Chức vụ</th>
             </tr>
           </thead>
           <tbody className="content-info">
@@ -100,6 +108,10 @@ const ManageAccount = () => {
                   {user.userName}
                 </td>
                 <td className="overflow overflow-scroll short">
+                  {user.userName}
+                </td>
+                <td className="overflow overflow-scroll short">chức vụ</td>
+                <td className="overflow overflow-scroll short">
                   {user.fullName}
                 </td>
                 {user.gender ? (
@@ -110,7 +122,7 @@ const ManageAccount = () => {
                   <td>Nữ</td>
                 )}
 
-                <td>{user.dateOfBird}</td>
+                <td>{formatDate(user.dateOfBird)}</td>
                 <td className="overflow overflow-scroll">{user.address}</td>
                 <td>{user.phoneNumber}</td>
                 <td className="overflow overflow-scroll">{user.email}</td>
@@ -122,20 +134,21 @@ const ManageAccount = () => {
     );
   } else {
     return (
-      <div className="manage">
+      <div className="edit">
         <h1 className="page-title">Tài khoản</h1>
         <table className="user-table">
           <thead>
             <tr>
               <th>Ảnh đại diện</th>
               <th>Tên đăng nhập</th>
+              <th>Chức vụ</th>
               <th>Họ và tên</th>
               <th>Giới tính</th>
               <th>Ngày sinh</th>
               <th>Địa chỉ</th>
               <th>Số điện thoại</th>
               <th>Email</th>
-              <th>Chức vụ</th>
+              <th>Tác vụ</th>
             </tr>
           </thead>
           <tbody className="content-info">
@@ -147,6 +160,7 @@ const ManageAccount = () => {
                 <td className="overflow-edit overflow-scroll short">
                   {user.userName}
                 </td>
+                <td className="overflow overflow-scroll short">chức vụ</td>
                 <td className="overflow-edit overflow-scroll short">
                   {user.fullName}
                 </td>
@@ -158,7 +172,7 @@ const ManageAccount = () => {
                   <td>Nữ</td>
                 )}
 
-                <td>{user.dateOfBird}</td>
+                <td>{formatDate(user.dateOfBird)}</td>
                 <td className="overflow-edit overflow-scroll long">
                   {user.address}
                 </td>

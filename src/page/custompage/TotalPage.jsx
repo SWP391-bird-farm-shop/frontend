@@ -41,6 +41,9 @@ const TotalPage = () => {
     }
   };
   
+  function formatCash(currency) {
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
   return (
     <div className="custom-page">
@@ -76,7 +79,7 @@ const TotalPage = () => {
             <p>Kích thước: <span className="custom-summary-total-detail-info">100x50"</span></p>
             <p>Vật liệu: <span className="custom-summary-total-detail-info">Vàng</span></p>
             <p>Màu sắc: <span className="custom-summary-total-detail-info">Đỏ</span></p>
-            <h4>Giá lồng: <span className="custom-summary-total-detail-price">₫50000</span></h4>
+            <h4>Giá lồng: <span className="custom-summary-total-detail-price">₫{formatCash(50000)}</span></h4>
           </div>
           <div className="custom-summary-total-detail-button">
             <button type="submit" className="custom-summary-total-reset" onClick={handleResetButtonClick}>Thiết Lập Lại Đơn Hàng</button>

@@ -23,19 +23,19 @@ const CagePage = () => {
   }, []);
 
   function formatCash(currency) {
-    return currency?.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   return (
     <div className="product-page">
-      {/* <ComboBox /> */}
+      <ComboBox classname='product'/>
 
       <div className="product-items-section">
         {cage?.map((product) => (
           <Link to={`/item-info/${product.productId}`} className="product-item">
             <div className="product-image">
               {product.image.map((image) => (
-                <img src={image.imageUrl} alt="Food" key={image.imageId} />
+                <img src={image.imageUrl} alt="Cage" key={image.imageId} />
               ))}
             </div>
             <div className="product-details">

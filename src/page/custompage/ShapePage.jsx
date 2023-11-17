@@ -74,6 +74,10 @@ const ShapePage = () => {
     }
   };
 
+  function formatCash(currency) {
+    return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   return (
     <div className="custom-page">
       <h2 className="custom-title">Thiết Kế Lồng</h2>

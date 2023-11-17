@@ -8,7 +8,9 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import PopupModal from "../../../components/modal/PopupModal";
 
 const AddProductPage = () => {
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatarUrlCage, setAvatarUrlCage] = useState("");
+  const [avatarUrlFood, setAvatarUrlFood] = useState("");
+  const [avatarUrlAccess, setAvatarUrlAccess] = useState("");
   const [listStyle, setListStyle] = useState(null);
 
   const [name, setName] = useState("");
@@ -20,7 +22,9 @@ const AddProductPage = () => {
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
-  const [imageU, setImageU] = useState("");
+  const [imageCage, setImageCage] = useState("");
+  const [imageFood, setImageFood] = useState("");
+  const [imageAccess, setImageAccess] = useState("");
 
   //lấy param trên url
   const { action, productId } = useParams();
@@ -40,7 +44,7 @@ const AddProductPage = () => {
 
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleAvatarChange = async (event) => {
+  const handleAvatarChangeCage = async (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -55,10 +59,62 @@ const AddProductPage = () => {
 
     console.log(imageUrl);
 
-    setImageU(imageUrl);
+    setImageCage(imageUrl);
 
     reader.onload = () => {
-      setAvatarUrl(reader.result);
+      setAvatarUrlCage(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAvatarChangeFood = async (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    const data = await event.target.files[0].arrayBuffer();
+    const metadata = {
+      contentType: "image/png",
+    };
+    const storageRef = ref(storage, `/lama/${event.target.value}`);
+    await uploadBytes(storageRef, data, metadata);
+
+    const imageUrl = await getDownloadURL(storageRef);
+
+    console.log(imageUrl);
+
+    setImageFood(imageUrl);
+
+    reader.onload = () => {
+      setAvatarUrlFood(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleAvatarChangeAccess = async (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    const data = await event.target.files[0].arrayBuffer();
+    const metadata = {
+      contentType: "image/png",
+    };
+    const storageRef = ref(storage, `/lama/${event.target.value}`);
+    await uploadBytes(storageRef, data, metadata);
+
+    const imageUrl = await getDownloadURL(storageRef);
+
+    console.log(imageUrl);
+
+    setImageAccess(imageUrl);
+
+    reader.onload = () => {
+      setAvatarUrlAccess(reader.result);
     };
 
     if (file) {
@@ -143,7 +199,7 @@ const AddProductPage = () => {
             materialID: selectMaterial,
           },
         ],
-        imageUrl: imageU,
+        imageUrl: imageCage,
       };
       try {
         const response = await api.post(url, data);
@@ -176,7 +232,7 @@ const AddProductPage = () => {
         category: {
           categoryID: "Catef5d6d",
         },
-        imageUrl: imageU,
+        imageUrl: imageAccess,
       };
       try {
         const response = await api.post(url, data);
@@ -206,7 +262,7 @@ const AddProductPage = () => {
         category: {
           categoryID: "Cate7646a",
         },
-        imageUrl: imageU,
+        imageUrl: imageFood,
       };
       try {
         const response = await api.post(url, data);
@@ -266,7 +322,7 @@ const AddProductPage = () => {
                 materialID: selectMaterial,
               },
             ],
-            imageUrl: imageU,
+            imageUrl: imageCage,
           };
           try {
             const response = await api.put(url, data);
@@ -302,7 +358,7 @@ const AddProductPage = () => {
               <div className="add-product-of-img">
                 <h2>Ảnh sản phẩm</h2>
                 <img
-                  src={imageU}
+                  src={imageCage}
                   alt="Product A"
                   className="product-cage-img"
                 />
@@ -313,13 +369,13 @@ const AddProductPage = () => {
                   type="file"
                   id="imageInput"
                   accept="image/*"
-                  onChange={handleAvatarChange}
+                  onChange={handleAvatarChangeCage}
                   style={{ display: "none" }}
                 />
               </div>
               <div className="add-product-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleShowUpdatePopup}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -445,7 +501,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
@@ -478,7 +533,7 @@ const AddProductPage = () => {
               <div className="add-product-of-img">
                 <h2>Ảnh sản phẩm</h2>
                 <img
-                  src={avatarUrl}
+                  src={avatarUrlCage}
                   alt="Product A"
                   className="product-cage-img"
                 />
@@ -489,13 +544,13 @@ const AddProductPage = () => {
                   type="file"
                   id="imageInput"
                   accept="image/*"
-                  onChange={handleAvatarChange}
+                  onChange={handleAvatarChangeCage}
                   style={{ display: "none" }}
                 />
               </div>
               <div className="add-product-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -624,7 +679,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleSubmit}
             >
               Lưu sản phẩm
             </button>
@@ -660,7 +714,7 @@ const AddProductPage = () => {
             price: priceDouble,
             discountPrice: 0,
             status: true,
-            imageUrl: imageU,
+            imageUrl: imageFood,
           };
           try {
             const response = await api.put(url, data);
@@ -697,7 +751,7 @@ const AddProductPage = () => {
               <div className="add-product-food-at-of-img">
                 <h2>Ảnh sản phẩm</h2>
                 <img
-                  src={imageU}
+                  src={imageFood}
                   alt="Product A"
                   className="product-food-at-img"
                 />
@@ -708,13 +762,13 @@ const AddProductPage = () => {
                   type="file"
                   id="imageInput"
                   accept="image/*"
-                  onChange={handleAvatarChange}
+                  onChange={handleAvatarChangeFood}
                   style={{ display: "none" }}
                 />
               </div>
               <div className="add-product-food-at-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleShowUpdatePopup}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -788,7 +842,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
@@ -821,7 +874,7 @@ const AddProductPage = () => {
               <div className="add-product-food-at-of-img">
                 <h2>Ảnh sản phẩm</h2>
                 <img
-                  src={avatarUrl}
+                  src={avatarUrlFood}
                   alt="Product A"
                   className="product-food-at-img"
                 />
@@ -832,13 +885,13 @@ const AddProductPage = () => {
                   type="file"
                   id="imageInput"
                   accept="image/*"
-                  onChange={handleAvatarChange}
+                  onChange={handleAvatarChangeFood}
                   style={{ display: "none" }}
                 />
               </div>
               <div className="add-product-food-at-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleFoodSubmit}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -908,7 +961,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleFoodSubmit}
             >
               Lưu sản phẩm
             </button>
@@ -944,7 +996,7 @@ const AddProductPage = () => {
             price: priceDouble,
             discountPrice: 0,
             status: true,
-            imageUrl: imageU,
+            imageUrl: imageAccess,
           };
           try {
             const response = await api.put(url, data);
@@ -979,7 +1031,7 @@ const AddProductPage = () => {
               <div className="add-product-food-at-of-img">
                 <h2>Ảnh sản phẩm</h2>
                 <img
-                  src={imageU}
+                  src={imageAccess}
                   alt="Product A"
                   className="product-food-at-img"
                 />
@@ -990,13 +1042,13 @@ const AddProductPage = () => {
                   type="file"
                   id="imageInput"
                   accept="image/*"
-                  onChange={handleAvatarChange}
+                  onChange={handleAvatarChangeAccess}
                   style={{ display: "none" }}
                 />
               </div>
               <div className="add-product-food-at-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleShowUpdatePopup}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -1070,7 +1122,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleShowUpdatePopup}
             >
               Lưu sản phẩm
             </button>
@@ -1102,7 +1153,7 @@ const AddProductPage = () => {
               <div className="add-product-food-at-of-img">
                 <h2>Ảnh sản phẩm</h2>
                 <img
-                  src={avatarUrl}
+                  src={avatarUrlAccess}
                   alt="Product A"
                   className="product-food-at-img"
                 />
@@ -1113,13 +1164,13 @@ const AddProductPage = () => {
                   type="file"
                   id="imageInput"
                   accept="image/*"
-                  onChange={handleAvatarChange}
+                  onChange={handleAvatarChangeAccess}
                   style={{ display: "none" }}
                 />
               </div>
               <div className="add-product-food-at-of-profile">
                 <h2>Hồ sơ</h2>
-                <form>
+                <form onSubmit={handleToySubmit}>
                   <div className="add-product-input-container">
                     <label
                       htmlFor="name"
@@ -1189,7 +1240,6 @@ const AddProductPage = () => {
             <button
               type="submit"
               className="add-product-button"
-              onClick={handleToySubmit}
             >
               Lưu sản phẩm
             </button>

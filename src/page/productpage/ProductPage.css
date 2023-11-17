@@ -6,11 +6,11 @@
 
 .product-items-section {
     margin-top: 8vh;
-    display: flex;
+    /* display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: space-between;
+    justify-content: space-between; */
 }
 
 .product-item {
@@ -30,7 +30,7 @@
 
 .product-item img {
     width: 100%;
-    height: auto;
+    height: 200px;
     border-bottom: 1px solid rgba(125, 125, 125, 0.5);
     border-radius: 15px 15px 0 0;
 }
