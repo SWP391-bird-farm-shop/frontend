@@ -24,13 +24,12 @@
 .blogs-section .blog-container {
     background-color: white;
     width: 24%;
-    height: auto;
+    height: 400px;
     border-radius: 15px;
     margin-bottom: 10px;
 }
 
-.blog-container a {
-    height: 100%;
+.article-link {
     color: #333;
     text-decoration: none;
 }

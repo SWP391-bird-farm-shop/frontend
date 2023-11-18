@@ -1,24 +1,24 @@
-import { Navigate, Routes, Route } from "react-router-dom";
-import RequireAuth from "./components/ReqAuth/RequireAuth";
-import Layout from "./components/layout/layout";
-import HomePage from "./page/HomePage";
-import CagePage from "./page/productpage/CagePage";
-import FoodPage from "./page/productpage/FoodPage";
-import AccessoriesToysPage from "./page/productpage/AccessoriesToysPage";
-import BlogPage from "./page/BlogPage";
-import BlogContentPage from "./page/BlogContentPage";
-import SpeciesPage from "./page/SpeciesPage";
-import ItemInformation from "./page/ItemInformationPage";
-import AboutPage from "./page/AboutPage";
-import CartPage from "./page/CartPage";
-import LogInPage from "./page/authenticationpage/LogInPage";
-import QuestionPage from "./page/authenticationpage/forgotpasswordpage/QuestionPage";
-import ResetPasswordPage from "./page/authenticationpage/forgotpasswordpage/ResetPasswordPage";
-import SignUpPage from "./page/authenticationpage/SignUpPage";
-import UpdateInformationPage from "./page/authenticationpage/UpdateInformationPage";
-import "./App.css";
-import UserPage from "./page/UserPage";
-import SettingInformationPage from "./page/SettingInformationPage";
+import { Navigate, Routes, Route } from 'react-router-dom'
+import RequireAuth from './components/ReqAuth/RequireAuth'
+import Layout from './components/layout/layout'
+import HomePage from './page/HomePage'
+import CagePage from './page/productpage/CagePage'
+import FoodPage from './page/productpage/FoodPage'
+import AccessoriesToysPage from './page/productpage/AccessoriesToysPage'
+import BlogPage from './page/BlogPage'
+import BlogContentPage from './page/BlogContentPage'
+import SpeciesPage from './page/SpeciesPage'
+import ItemInformation from './page/ItemInformationPage'
+import AboutPage from './page/AboutPage'
+import CartPage from './page/CartPage'
+import LogInPage from './page/authenticationpage/LogInPage'
+import QuestionPage from './page/authenticationpage/forgotpasswordpage/QuestionPage'
+import ResetPasswordPage from './page/authenticationpage/forgotpasswordpage/ResetPasswordPage'
+import SignUpPage from './page/authenticationpage/SignUpPage'
+import UpdateInformationPage from './page/authenticationpage/UpdateInformationPage'
+import './App.css'
+import UserPage from './page/UserPage'
+import SettingInformationPage from './page/SettingInformationPage'
 
 import CreateVoucherPage from "./page/rolepage/managerpage/CreateVoucherPage";
 import CustomPage from "./page/custompage/CustomPage";
@@ -40,19 +40,31 @@ import CreateUser from "./page/rolepage/adminpage/CreateUser";
 import AddProductPage from "./page/rolepage/managerpage/AddProductPage";
 import BlogForm from "./page/rolepage/staffpage/CreateBlog";
 import ConfirmPage from "./page/ConfirmPage";
-import WaitingOrderPage from "./page/WaitingOrderPage";
 import TermsAndConditionsPage from "./page/TermsAndConditionsPage";
+import Dashboard from './page/rolepage/managerpage/dashboard/Dashboard'
+import InventoryDashboard from './page/rolepage/managerpage/dashboard/InventoryDashboard'
+import RevenueDashboard from './page/rolepage/managerpage/dashboard/RevenueDashboard'
+import OrderDashboard from './page/rolepage/managerpage/dashboard/OrderDashboard'
+
+
 
 const App = () => {
   return (
     <Routes>
-      {/* public routes */}
+      <Route element={<RoleLayout />}>
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/dashboard/revenue' element={<RevenueDashboard />} />
+        <Route path='/dashboard/inventory' element={<InventoryDashboard />} />
+        <Route path='/dashboard/order' element={<OrderDashboard />} />
+      </Route>
+
       <Route path="/log-in" element={<LogInPage />} />
       <Route path="/question/:action" element={<QuestionPage />} />
       <Route path="/reset-pass" element={<ResetPasswordPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
 
+      {/* public routes */}
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />
@@ -65,22 +77,12 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
-        <Route path="/order-confirm" element={<ConfirmPage />} />
-        <Route path="/order-waiting" element={<WaitingOrderPage />} />
-        <Route path="/custom-products-size" element={<SizePage />} />
       </Route>
 
       {/* user routes */}
       <Route element={<RequireAuth allowedRoles={["4"]} />}>
         <Route element={<Layout />}>
           <Route path="/user-page" element={<UserPage />} />
-          <Route path="/products/cages" element={<CagePage />} />
-          <Route path="/products/food" element={<FoodPage />} />
-          <Route path="/products/accessories-toys" element={<AccessoriesToysPage />} />
-          <Route path="/blogs" element={<BlogPage />} />
-          <Route path="/bird/:birdId" element={<SpeciesPage />} />
-          <Route path="/item-info/:productId" element={<ItemInformation />} />
-          <Route path="/about-us" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/custom-cage" element={<CustomPage />} />
           <Route path="/custom-products-shape" element={<ShapePage />} />
@@ -88,12 +90,14 @@ const App = () => {
           <Route path="/custom-products-material" element={<MaterialPage />} />
           <Route path="/custom-products-color" element={<ColorPage />} />
           <Route path="/custom-products-end" element={<TotalPage />} />
+          <Route path="/order-confirm" element={<ConfirmPage />} />
         </Route>
         <Route path="/update-info/:userId" element={<SettingInformationPage />} />
       </Route>
 
       {/* admin routes */}
-      <Route element={<RequireAuth allowedRoles={["1"]} />}>
+
+      <Route element={<RequireAuth allowedRoles={['1']} />}>
         <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
           <Route path="/manage-account/:action" element={<ManageAccount />} />
@@ -111,6 +115,10 @@ const App = () => {
           <Route path="/update-product/:action/:productId" element={<AddProductPage />} />
           <Route path="/product/:action" element={<ProductPage />} />
           <Route path="/voucher/:action" element={<VoucherPage />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard/revenue' element={<RevenueDashboard />} />
+          <Route path='/dashboard/inventory' element={<InventoryDashboard />} />
+          <Route path='/dashboard/order' element={<OrderDashboard />} />
         </Route>
       </Route>
 

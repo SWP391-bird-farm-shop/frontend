@@ -448,14 +448,12 @@ const CartPage = () => {
                   >
                     Lưu
                   </button>
-                  <p>
-                    <span
-                      className="change-info change-customer-info"
-                      onClick={handleCustomerCancel}
-                    >
-                      Hủy
-                    </span>
-                  </p>
+                  <button
+                    className="customer-info-section-button red"
+                    onClick={handleCustomerCancel}
+                  >
+                    Hủy
+                  </button>
                 </>
               ) : (
                 <p>
@@ -589,7 +587,10 @@ const CartPage = () => {
         <div className="cart-container">
           <h2 className="cart-and-payment-heading">Giỏ hàng</h2>
           <div className="cart-items">
-            <div>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
+            <div className="empty-cart">
+              <img src="/empty-cart.png" alt="empty-cart" className="empty-cart-img" />
+              <h3 className="empty-cart-text">Bạn chưa thêm sản phẩm vào giỏ hàng</h3>
+            </div>
           </div>
         </div>
 
@@ -658,14 +659,12 @@ const CartPage = () => {
                   >
                     Lưu
                   </button>
-                  <p>
-                    <span
-                      className="change-info change-customer-info"
-                      onClick={handleCustomerCancel}
-                    >
-                      Hủy
-                    </span>
-                  </p>
+                  <button
+                    className="customer-info-section-button red"
+                    onClick={handleCustomerCancel}
+                  >
+                    Hủy
+                  </button>
                 </>
               ) : (
                 <p>

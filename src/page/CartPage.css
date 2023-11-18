@@ -118,6 +118,23 @@
   flex-direction: column;
 }
 
+.empty-cart {
+  display: flex;
+  align-items: center;
+  margin: 35% auto;
+}
+
+.empty-cart-img {
+  width: 30%;
+}
+
+.empty-cart-text {
+  color: black;
+  font-size: 19px;
+  font-weight: 600;
+  text-align: left;
+}
+
 .customer-info-section,
 .voucher-section,
 .payment-section,
@@ -134,7 +151,7 @@
 .customer-info-section p {
   margin: 5px 0;
   text-align: left;
-  padding-left: 20%;
+  padding: 0 auto;
   margin: 5px;
   font-size: 18px;
 }
@@ -147,9 +164,15 @@
 
 .customer-info-section-input {
   color: black;
+  width: 420px;
   background-color: white;
-  padding: 0px 0;
+  padding: 8px 10px;
+  border-radius: 10px;
   margin: 0 10px;
+}
+
+.customer-info-section-input:focus {
+  outline: none;
 }
 
 .customer-info-section-input::-webkit-inner-spin-button,
@@ -158,6 +181,13 @@
   margin: 0;
   display: none;
   padding: 0;
+}
+
+.editting-information,
+.change-customer-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .customer-info-section-button {
@@ -174,29 +204,22 @@
   background-color: #45a049;
 }
 
+.red {
+  background-color: red;
+  margin-left: 20px;
+}
+
+.red:hover {
+  background-color: rgb(226, 15, 15) !important;
+}
+
 .change-info {
+  margin: 0 auto;
   cursor: pointer;
 }
 
 .change-info:hover {
   color: #4CAF50;
-}
-
-.editting-information {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.change-customer-info {
-  margin-left: -5vh;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .voucher-section {

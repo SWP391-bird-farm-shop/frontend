@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import './About.css';
 import api from "../utils/requestAPI";
 
-const About = ({birdId}) => {
+const About = ({ birdId }) => {
 
-    const [birds, setBird] = useState();
+    const [bird, setBird] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,18 +22,15 @@ const About = ({birdId}) => {
 
     return (
         <div className="about-container">
-            {birds?.map((bird) => {
-                <div className="about-section">
-                    <div className="image-container">
-                        <img src={bird?.imageUrl} alt={bird?.birdName} key={bird?.birdId}/>
-                    </div>
-                    <div className="description-container">
-                        <h2>{bird?.birdName}</h2>
-                        <p>{bird?.description}</p>
-                    </div>
+            <div className="about-section">
+                <div className="image-container">
+                    <img src={bird?.image[0]?.imageUrl} alt={bird?.birdName} key={bird?.birdId} />
                 </div>
-            })}
-
+                <div className="description-container">
+                    <h2>{bird?.birdName}</h2>
+                    <p>{bird?.description}</p>
+                </div>
+            </div>
         </div>
     )
 }

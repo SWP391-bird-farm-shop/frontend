@@ -27,13 +27,9 @@
     margin-right: 20vw;
 }
 
-.first-section-component-staff {
-    margin: 0 5vw;
-    padding: 16.5px;
-}
-
+.first-section-component-staff,
 .first-section-component-manager {
-    margin: 0 10vw;
+    margin: 0 5vw;
     padding: 16.5px;
 }
 
@@ -57,7 +53,7 @@
     position: absolute;
     top: 100%;
     left: -130px;
-    width: 220px;
+    width: 230px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;

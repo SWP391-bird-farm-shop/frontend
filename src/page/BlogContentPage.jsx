@@ -66,7 +66,7 @@ const BlogContentPage = () => {
                     {formatContent(blog?.blogContent)}
                 </div>
             </div>
-            <RelatedPost />
+            <RelatedPost blogType={blog?.blogType}/>
         </div>
     );
 };
