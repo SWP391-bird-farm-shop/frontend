@@ -13,6 +13,9 @@ const SizePage = () => {
 
   const [ListSize, setListSize] = useState(null);
   const [product, setProduct] = useState(null);
+  const [sizeNames, setSizeNames] = useState([]);
+  const [sizeData, setSizeData] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(sizeData[0]?.size1);
 
   const fetchUserCage = async () => {
     const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
@@ -26,19 +29,76 @@ const SizePage = () => {
   };
 
   const fetchData = async () => {
-    const url = `/api/Size/get-by-style?styleid=${product?.productStyle}`;
+    // const url = `/api/Size/get-by-style?styleid=S831874f7`;
+    // try {
+    // const response = await api.get(url);
+    // setListSize(response.data);
+    // } catch (error) {
+    // console.error(error);
+    // }
+    const url = "/api/Size/uniqueNames";
     try {
       const response = await api.get(url);
-      setListSize(response.data);
+      console.log(response.data);
+      setSizeNames(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
+  // useEffect(() => {
+  // const url = "/api/Size/uniqueNames";
+  // try {
+  // const response = api.get(url);
+  // console.log(response.data);
+  // setSizeNames(response.data);
+  // } catch (error) {
+  // console.error(error);
+  // }
+  // });
+
+  const fetchDataDescription = async () => {
+    for (const sizeName of sizeNames) {
+      const url = `/api/Size/get-by-name?SizeName=${sizeName}`;
+      const response = await api.post(url);
+      console.log(sizeName);
+      console.log(response.data);
+      setSizeData((prevSizeData) => [...prevSizeData, response.data]);
+    }
+  };
+
   useEffect(() => {
-    fetchUserCage();
+    fetchDataDescription();
+  }, []);
+
+  const handleSizeChange = (event) => {
+    setSelectedSize(event.target.value);
+  };
+  const renderSizeOptions = () => {
+    const currentSizeData = sizeData.filter((size) =>
+      sizeNames.reduce((acc, sizeName) => {
+        if (size.size1 === sizeName) {
+          acc.push(size);
+        }
+        return acc;
+      }, [])
+    );
+
+    currentSizeData.map((size) => {
+      console.log(size);
+    });
+
+    return currentSizeData.map((size) => {
+      <option key={size.sizeId} value={size.size1}>
+        {size.sizeDescription} - ₫{formatCash(size.price)}
+      </option>;
+    });
+  };
+
+  useEffect(() => {
+    // fetchUserCage();
     fetchData();
-  });
+  }, []);
 
   const handleButtonClick = async (event, name) => {
     event.preventDefault();
@@ -101,15 +161,23 @@ const SizePage = () => {
         </h2>
         <div className="custom-choose-and-detail">
           <div className="custom-option-detail-list">
-            {ListSize?.map((size) => (
+            {sizeNames?.map((size) => (
               <div className="custom-detail-item">
-                <h3> Thanh Đan: {size.size} </h3>
+                <h3> Thanh Đan: {size} </h3>
                 <img
                   src="public\Panel\5.jpg"
                   alt="Chim"
                   className="custom-product-image"
                 />
                 <p>{size.sizeDescription}</p>
+                <select
+                  value={selectedSize}
+                  onChange={handleSizeChange}
+                  placeholder="Chọn kích thước"
+                >
+                  {renderSizeOptions()}
+                </select>
+
                 <button onClick={handleButtonClick} className="choose-button">
                   Chọn
                 </button>
@@ -120,7 +188,7 @@ const SizePage = () => {
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
-              <p>Tên sản phẩm: {product.productName}</p>
+              {/* <p>Tên sản phẩm: {product.productName}</p> */}
               <p>Hình dáng: </p>
               <p>
                 Kích thước: <span>100x50"</span>
