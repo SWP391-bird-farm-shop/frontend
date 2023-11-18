@@ -36,10 +36,11 @@ const Article = () => {
             <div className='blogs-container'>
                 {suggestedArticles?.map((article) => (
                     <div className='blog-container'>
-                        <Link to={`/blog-content/${article.blogId}`} className='article-link'>
+                        <Link to={`/blog-content/${article.blogId}`} className='article-link' key={article.blogId}>
                             <div className="blog-container-img">
-                                {article.image.map((img) => {
+                                {article?.image?.map((img) => {
                                     <img src={img?.imageUrl} alt={article.blogTitle} />
+                                    console.log(img)
                                 })}
                             </div>
                             <h4 className='article-title'>{article.blogTitle}</h4>

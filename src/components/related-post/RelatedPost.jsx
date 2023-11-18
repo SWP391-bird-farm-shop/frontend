@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './RelatedPost.css'
+import api from '../utils/requestAPI';
+import { Link } from 'react-router-dom';
 
 const RelatedPost = ({blogType}) => {
 
@@ -59,15 +61,15 @@ const RelatedPost = ({blogType}) => {
         <div className="related-post-section">
             <h3>Bài viết liên quan</h3>
             <div className='related-post-container'>
-                {relatedPosts.map((relatedpost) => (
-                    <div className='related-post-item'>
+                {relatedPosts?.map((relatedpost) => (
+                    <div key={relatedpost.blogId} className='related-post-item'>
                         <Link to={relatedpost.url}>
                             <div className="related-post-item-img">
-                                <img src={relatedpost.image} alt={relatedpost.title} />
+                                <img src={relatedpost.image.imageUrl} alt={relatedpost.blogTitle} />
                             </div>
-                            <h4 className='related-post-title'>{relatedpost.title}</h4>
+                            <h4 className='related-post-title'>{relatedpost.blogTitle}</h4>
                             <p className="related-post-meta">
-                                <span className="related-post-date">{relatedpost.date}</span> . <span className="related-post-author">bởi {relatedpost.user}</span>
+                                <span className="related-post-date">{relatedpost.createAt}</span> . <span className="related-post-author">bởi {relatedpost.user.fullName}</span>
                             </p>
                             <p className='related-post-item-link'>Xem chi tiết &raquo;</p>
                         </Link>

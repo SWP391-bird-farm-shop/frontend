@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "../components/carousel/Carousel";
-import Feedback from "../components/feedback/Feedback";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import "../components/button/QuantityButton.css";
 import "./ItemInformationPage.css";

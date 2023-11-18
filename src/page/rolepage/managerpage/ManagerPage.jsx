@@ -20,6 +20,10 @@ const ManagerPage = () => {
           <h3 className="role-page-manage-task-title">Quản lí voucher</h3>
           <img src="./voucher.png" className="role-page-manage-task-img" />
         </Link>
+        <Link to={`/dashboard`} className="role-page-manage-task">
+          <h3 className="role-page-manage-task-title">Thống kê</h3>
+          <img src="./dashboard.png" className="role-page-manage-task-img" />
+        </Link>
       </div>
     </div>
   );

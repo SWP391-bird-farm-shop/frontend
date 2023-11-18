@@ -51,46 +51,11 @@ import OrderDashboard from './page/rolepage/managerpage/dashboard/OrderDashboard
 const App = () => {
   return (
     <Routes>
-      {/* public routes */}
-      <Route element={<Layout />}>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path='/products/cages' element={<CagePage />} />
-        <Route path='/products/food' element={<FoodPage />} />
-        <Route path='/products/accessories-toys' element={<AccessoriesToysPage />} />
-        <Route path="/blogs" element={<BlogPage />} />
-        <Route path='/blog-content/:blogId' element={<BlogContentPage />} />
-        <Route path='/parrot' element={<SpeciesPage />} />
-        <Route path="/item-info/:productId" element={<ItemInformation />} />
-        <Route path='/about-us' element={<AboutPage />} />
-        <Route path='/custom-products-shape' element={<ShapePage />} />
-        <Route path='/custom-products-size' element={<SizePage />} />
-        <Route path='/custom-products-material' element={<MaterialPage />} />
-        <Route path='/custom-products-color' element={<ColorPage />} />
-        <Route path='/custom-products-end' element={<TotalPage />} />
-      </Route>
-
       <Route element={<RoleLayout />}>
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/dashboard/revenue' element={<RevenueDashboard />} />
         <Route path='/dashboard/inventory' element={<InventoryDashboard />} />
         <Route path='/dashboard/order' element={<OrderDashboard />} />
-      </Route>
-
-      {/* user routes */}
-      <Route element={<RequireAuth allowedRoles={['4']} />}>
-        <Route element={<Layout />}>
-          <Route path="/user-page" element={<UserPage />} />
-          <Route path='/products/cages' element={<CagePage />} />
-          <Route path='/products/food' element={<FoodPage />} />
-          <Route path='/products/accessories-toys' element={<AccessoriesToysPage />} />
-          <Route path="/blogs" element={<BlogPage />} />
-          <Route path='/parrot' element={<SpeciesPage />} />
-          <Route path="/item-info/:productId" element={<ItemInformation />} />
-          <Route path='/about-us' element={<AboutPage />} />
-          <Route path='/cart' element={<CartPage />} />
-
-        </Route>
       </Route>
 
       <Route path="/log-in" element={<LogInPage />} />
@@ -99,6 +64,7 @@ const App = () => {
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
 
+      {/* public routes */}
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />
@@ -111,21 +77,12 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
-        <Route path="/order-confirm" element={<ConfirmPage />} />
-        <Route path="/custom-products-size" element={<SizePage />} />
       </Route>
 
       {/* user routes */}
       <Route element={<RequireAuth allowedRoles={["4"]} />}>
         <Route element={<Layout />}>
           <Route path="/user-page" element={<UserPage />} />
-          <Route path="/products/cages" element={<CagePage />} />
-          <Route path="/products/food" element={<FoodPage />} />
-          <Route path="/products/accessories-toys" element={<AccessoriesToysPage />} />
-          <Route path="/blogs" element={<BlogPage />} />
-          <Route path="/bird/:birdId" element={<SpeciesPage />} />
-          <Route path="/item-info/:productId" element={<ItemInformation />} />
-          <Route path="/about-us" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/custom-cage" element={<CustomPage />} />
           <Route path="/custom-products-shape" element={<ShapePage />} />
@@ -133,6 +90,7 @@ const App = () => {
           <Route path="/custom-products-material" element={<MaterialPage />} />
           <Route path="/custom-products-color" element={<ColorPage />} />
           <Route path="/custom-products-end" element={<TotalPage />} />
+          <Route path="/order-confirm" element={<ConfirmPage />} />
         </Route>
         <Route path="/update-info/:userId" element={<SettingInformationPage />} />
       </Route>
