@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './Feedback.css'
 
-const ProductFeedbackList = () => {
+const ProductFeedbackList = ({ productId }) => {
+
+    const [feedbacks, setFeedbacks] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const url = ``;
+            try {
+                const response = await api.get(url);
+                console.log(response.data);
+                setFeedbacks(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, [productId])
 
     const feedbackList = [
         {
@@ -27,18 +43,32 @@ const ProductFeedbackList = () => {
     ]
 
     return (
-        <div className="product-feedback-list">
-            {feedbackList.map((feedback) => (
-                <div className="product-feedback-item">
-                    <img src={feedback.img} alt="" className="product-feedback-user-avatar"></img>
-                    <div className="product-feedback-detail">
-                        <h4 className="product-feedback-detail-username">{feedback.userName}</h4>
-                        <p className="product-feedback-detail-content">{feedback.content}</p>
+        <div className="feedback-section">
+            <h3 className='feedback-heading'>Đánh giá sản phẩm</h3>
+            <div className="product-feedback-list">
+                {feedbackList.map((feedback) => (
+                    <div className="product-feedback-item">
+                        <img src={feedback.img} alt="" className="product-feedback-user-avatar"></img>
+                        <div className="product-feedback-detail">
+                            <h4 className="product-feedback-detail-username">{feedback.userName}</h4>
+                            <p className="product-feedback-detail-content">{feedback.content}</p>
+                        </div>
                     </div>
-                </div>
-            ))}
-
+                ))}
+            </div>
         </div>
+
+        // <div className="product-feedback-list">
+        //     {feedbacks?.map((feedback) => (
+        //         <div className="product-feedback-item">
+        //             <img src={feedback?.user?.image?.imageUrl} alt="" className="product-feedback-user-avatar"></img>
+        //             <div className="product-feedback-detail">
+        //                 <h4 className="product-feedback-detail-username">{feedback?.userName}</h4>
+        //                 <p className="product-feedback-detail-content">{feedback?.content}</p>
+        //             </div>
+        //         </div>
+        //     ))}
+        // </div>
     )
 }
 

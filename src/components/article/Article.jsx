@@ -36,7 +36,7 @@ const Article = () => {
             <div className='blogs-container'>
                 {suggestedArticles?.map((article) => (
                     <div className='blog-container'>
-                        <Link to={`/blog-content/${article.blogId}`}>
+                        <Link to={`/blog-content/${article.blogId}`} className='article-link'>
                             <div className="blog-container-img">
                                 {article.image.map((img) => {
                                     <img src={img?.imageUrl} alt={article.blogTitle} />

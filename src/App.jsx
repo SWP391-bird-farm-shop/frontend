@@ -40,7 +40,6 @@ import CreateUser from "./page/rolepage/adminpage/CreateUser";
 import AddProductPage from "./page/rolepage/managerpage/AddProductPage";
 import BlogForm from "./page/rolepage/staffpage/CreateBlog";
 import ConfirmPage from "./page/ConfirmPage";
-import WaitingOrderPage from "./page/WaitingOrderPage";
 import TermsAndConditionsPage from "./page/TermsAndConditionsPage";
 import Dashboard from './page/rolepage/managerpage/dashboard/Dashboard'
 import InventoryDashboard from './page/rolepage/managerpage/dashboard/InventoryDashboard'
@@ -113,7 +112,6 @@ const App = () => {
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
         <Route path="/order-confirm" element={<ConfirmPage />} />
-        <Route path="/order-waiting" element={<WaitingOrderPage />} />
         <Route path="/custom-products-size" element={<SizePage />} />
       </Route>
 
@@ -159,6 +157,10 @@ const App = () => {
           <Route path="/update-product/:action/:productId" element={<AddProductPage />} />
           <Route path="/product/:action" element={<ProductPage />} />
           <Route path="/voucher/:action" element={<VoucherPage />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard/revenue' element={<RevenueDashboard />} />
+          <Route path='/dashboard/inventory' element={<InventoryDashboard />} />
+          <Route path='/dashboard/order' element={<OrderDashboard />} />
         </Route>
       </Route>
 
