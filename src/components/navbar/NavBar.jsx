@@ -8,7 +8,7 @@ import {
   SubNavItem,
 } from "./NavbarElements.jsx";
 import "./NavBar.css";
-import { FaShoppingCart, FaSignOutAlt, FaUserEdit } from "react-icons/fa";
+import { FaRegListAlt, FaShoppingCart, FaSignOutAlt, FaUserEdit } from "react-icons/fa";
 import SearchBar from "../search/SearchBar.jsx";
 import useAuth from "../../hooks/useAuth.jsx";
 
@@ -56,8 +56,6 @@ const Navbar = ({ className }) => {
             <NavLink to="/about-us" className="first-section-component">
               Giới thiệu
             </NavLink>
-            {/* Second Nav */}
-            {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
           </NavMenu>
           <NavMenu className="second-section">
             <SearchBar className="search" />
@@ -87,11 +85,8 @@ const Navbar = ({ className }) => {
                     to="/order-confirm"
                     className="navbar-user-img-subnav-link"
                   >
-                    <FaUserEdit /> Đơn hàng đã xác nhận
+                    <FaRegListAlt /> Đơn hàng của bạn
                   </SubNavItem>
-                  {/* <SubNavItem to="/order-waiting" className="navbar-user-img-subnav-link"> */}
-                  {/* <FaUserEdit /> Đơn hàng đang chờ xác nhận */}
-                  {/* </SubNavItem> */}
                   <SubNavItem
                     to="/home"
                     className="navbar-user-img-subnav-link"

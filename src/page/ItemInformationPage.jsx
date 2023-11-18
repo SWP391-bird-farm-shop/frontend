@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "../components/carousel/Carousel";
-import Feedback from "../components/feedback/Feedback";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import "../components/button/QuantityButton.css";
 import "./ItemInformationPage.css";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
+import ProductFeedbackList from "../components/feedback/ProductFeedbackList";
 
 const ItemInformation = () => {
   const { auth } = useAuth();
@@ -233,7 +233,7 @@ const ItemInformation = () => {
         <p className="product-information-detail-description">{product?.description}</p>
       </div>
 
-      <Feedback />
+      <ProductFeedbackList productId={productId} />
       
       <div className="different-products-carousel">
         <h3 className="different-products-carousel-heading">

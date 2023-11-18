@@ -128,9 +128,9 @@ const LogInPage = () => {
               </button>
             </div>
           </div>
-          <Link to="/question/forgot-pass" className="forgot-password-link">
+          {/* <Link to="/question/forgot-pass" className="forgot-password-link">
             Quên mật khẩu?
-          </Link>
+          </Link> */}
           <button type="submit" className="authentication-button">
             Đăng nhập
           </button>
