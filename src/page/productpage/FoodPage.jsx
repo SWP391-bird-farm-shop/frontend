@@ -28,7 +28,7 @@ const FoodPage = () => {
 
   return (
     <div className="product-page">
-      <ComboBox classname='product' />
+      <ComboBox classname="product" />
       <div className="product-items-section">
         {food?.map((product) => (
           <Link to={`/item-info/${product.productId}`} className="product-item">

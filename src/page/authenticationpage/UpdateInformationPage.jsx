@@ -90,7 +90,10 @@ const UpdateInformationPage = () => {
 
   return (
     <div className="authentication-section">
-      <a href='/sign-up' className='homepage-link'> Về trang đăng kí</a>
+      <a href="/sign-up" className="homepage-link">
+        {" "}
+        Về trang đăng kí
+      </a>
       <div className="authentication-container">
         <h2>Điền thông tin</h2>
         <form onSubmit={handleSubmit}>

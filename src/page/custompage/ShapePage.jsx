@@ -110,11 +110,13 @@ const ShapePage = () => {
             {listStyle?.map((style) => (
               <div className="custom-detail-item">
                 <h3> {style.styleName} </h3>
-                <img
-                  src={style.imageUrl}
-                  alt="Chim"
-                  className="custom-product-image"
-                />
+                {style?.image?.map((img) => (
+                  <img
+                    src={img.imageUrl}
+                    alt="Chim"
+                    className="custom-product-image"
+                  />
+                ))}
                 <button
                   onClick={(event) => handleButtonClick(event, style.styleId)}
                   className="choose-button"

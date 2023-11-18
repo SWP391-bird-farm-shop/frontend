@@ -74,21 +74,20 @@ const ManageAccount = () => {
 
   function formatDate(date) {
     const d = new Date(date);
-    const day = d.getDate().toString().padStart(2, '0');
-    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const day = d.getDate().toString().padStart(2, "0");
+    const month = (d.getMonth() + 1).toString().padStart(2, "0");
     const year = d.getFullYear();
     return `${day}/${month}/${year}`;
   }
 
-  if (action === 'view') {
-
+  if (action === "view") {
     return (
       <div className="manage">
         <h1 className="page-title">Tài khoản</h1>
         <table className="user-table">
           <thead>
             <tr>
-              <th>Ảnh đại diện</th>
+              {/* <th>Ảnh đại diện</th> */}
               <th>Tên đăng nhập</th>
               <th>Chức vụ</th>
               <th>Họ và tên</th>
@@ -102,21 +101,26 @@ const ManageAccount = () => {
           <tbody className="content-info">
             {listUser?.map((user, index) => (
               <tr key={index}>
-                <td>
-                  <img src={user.imageURL} alt={`${user.userName}`} />
+                {/* <td> */}
+                {/* <img src={user.imageURL} alt={`${user.userName}`} /> */}
+                {/* </td> */}
+                <td className="overflow overflow-scroll short">
+                  {user.userName}
                 </td>
-                <td className="overflow overflow-scroll short">{user.userName}</td>
+                <td className="overflow overflow-scroll short">
+                  {user.userName}
+                </td>
                 <td className="overflow overflow-scroll short">chức vụ</td>
-                <td className="overflow overflow-scroll short">{user.fullName}</td>
-                {
-                  user.gender ? (
-                    // Nội dung khi user.gender là true
-                    <td>Nam</td>
-                  ) : (
-                    // Nội dung khi user.gender là false
-                    <td>Nữ</td>
-                  )
-                }
+                <td className="overflow overflow-scroll short">
+                  {user.fullName}
+                </td>
+                {user.gender ? (
+                  // Nội dung khi user.gender là true
+                  <td>Nam</td>
+                ) : (
+                  // Nội dung khi user.gender là false
+                  <td>Nữ</td>
+                )}
 
                 <td>{formatDate(user.dateOfBird)}</td>
                 <td className="overflow overflow-scroll">{user.address}</td>
@@ -195,7 +199,8 @@ const ManageAccount = () => {
                       statusReturn={result}
                       setStatusReturn={setResult}
                       open={showPopup}
-                      onClose={handleClose} />
+                      onClose={handleClose}
+                    />
                   )}
                 </td>
               </tr>
@@ -204,8 +209,7 @@ const ManageAccount = () => {
         </table>
       </div>
     );
-  };
-
-}
+  }
+};
 
 export default ManageAccount;
