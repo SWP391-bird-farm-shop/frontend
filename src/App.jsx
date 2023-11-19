@@ -45,6 +45,7 @@ import Dashboard from './page/rolepage/managerpage/dashboard/Dashboard'
 import InventoryDashboard from './page/rolepage/managerpage/dashboard/InventoryDashboard'
 import RevenueDashboard from './page/rolepage/managerpage/dashboard/RevenueDashboard'
 import OrderDashboard from './page/rolepage/managerpage/dashboard/OrderDashboard'
+import SearchPage from './page/SearchPage'
 
 
 
@@ -68,12 +69,10 @@ const App = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/products/cages" element={<CagePage />} />
         <Route path="/products/food" element={<FoodPage />} />
-        <Route
-          path="/products/accessories-toys"
-          element={<AccessoriesToysPage />}
-        />
+        <Route path="/products/accessories-toys" element={<AccessoriesToysPage />} />
         <Route path="/blogs" element={<BlogPage />} />
         <Route path="/blog-content/:blogId" element={<BlogContentPage />} />
         <Route path="/bird/:birdId" element={<SpeciesPage />} />
