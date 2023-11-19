@@ -11,6 +11,7 @@ import "./NavBar.css";
 import { FaRegListAlt, FaShoppingCart, FaSignOutAlt, FaUserEdit } from "react-icons/fa";
 import SearchBar from "../search/SearchBar.jsx";
 import useAuth from "../../hooks/useAuth.jsx";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ className }) => {
   const [showSubNav, setShowSubNav] = useState(false);
@@ -32,9 +33,9 @@ const Navbar = ({ className }) => {
         <Nav id="navbar">
           <Bars />
           <div id="logo">
-            <a href="/home">
+            <Link to="/home">
               <img src="/bcs-icon.png" alt="bcs-logo" />
-            </a>
+            </Link>
           </div>
           <NavMenu className="first-section">
             <NavLink to="/home" className="first-section-component">
@@ -108,9 +109,9 @@ const Navbar = ({ className }) => {
         <Nav id="navbar">
           <Bars />
           <div id="logo">
-            <a href="/home">
+            <Link to="/home">
               <img src="/bcs-icon.png" alt="bcs-logo" />
-            </a>
+            </Link>
           </div>
           <NavMenu className="first-section">
             <NavLink to="/home" className="first-section-component">
