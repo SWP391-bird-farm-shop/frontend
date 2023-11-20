@@ -66,6 +66,7 @@ const CustomPage = () => {
               id="name"
               name="name"
               className="custom-page-input"
+              placeholder="Tên lồng chim"
               required
               onChange={(event) => setName(event.target.value)}
             />
