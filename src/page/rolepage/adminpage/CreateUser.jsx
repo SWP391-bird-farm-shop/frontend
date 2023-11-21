@@ -85,6 +85,7 @@ const CreateUser = () => {
           <input
             type="text"
             name="fullName"
+            placeholder="Nhập họ và tên"
             onChange={(event) => setFullname(event.target.value)}
             className="create-user-input"
           />
@@ -141,6 +142,7 @@ const CreateUser = () => {
             type="text"
             name="address"
             className="create-user-input"
+            placeholder="Nhập địa chỉ"
             onChange={(event) => setAddress(event.target.value)}
           />
         </div>
@@ -150,6 +152,7 @@ const CreateUser = () => {
             type="number"
             name="phoneNumber"
             className="create-user-input"
+            placeholder="Nhập số điện thoại"
             onChange={(event) => setPhoneNumber(event.target.value)}
           />
         </div>
@@ -159,6 +162,7 @@ const CreateUser = () => {
             type="text"
             name="username"
             className="create-user-input"
+            placeholder="Nhập tên đăng nhập"
             onChange={(event) => setUsername(event.target.value)}
             required
           />
@@ -169,6 +173,7 @@ const CreateUser = () => {
             type="password"
             name="password"
             className="create-user-input"
+            placeholder="Nhập mật khẩu"
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
