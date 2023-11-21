@@ -4,81 +4,81 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
     from 'recharts';
 import { FaBox, FaMoneyBillWave, FaShoppingCart, FaUsers } from 'react-icons/fa';
 
-function RevenueDashboard({ data }) {
-    // const data = [
-    //     {
-    //         name: '1',
-    //         revenue: 500,
-    //         expense: 200,
-    //         income: 300,
-    //     },
-    //     {
-    //         name: '2',
-    //         revenue: 500,
-    //         expense: 138,
-    //         income: 200,
-    //     },
-    //     {
-    //         name: '3',
-    //         revenue: 600,
-    //         expense: 180,
-    //         income: 500,
-    //     },
-    //     {
-    //         name: '4',
-    //         revenue: 600,
-    //         expense: 398,
-    //         income: 200,
-    //     },
-    //     {
-    //         name: '5',
-    //         revenue: 500,
-    //         expense: 480,
-    //         income: 20,
-    //     },
-    //     {
-    //         name: '6',
-    //         revenue: 100,
-    //         expense: 300,
-    //         income: 200,
-    //     },
-    //     {
-    //         name: '7',
-    //         revenue: 100,
-    //         expense: 430,
-    //         income: 200,
-    //     },
-    //     {
-    //         name: '8',
-    //         revenue: 100,
-    //         expense: 400,
-    //         income: 300,
-    //     },
-    //     {
-    //         name: '9',
-    //         revenue: 100,
-    //         expense: 430,
-    //         income: 240,
-    //     },
-    //     {
-    //         name: '10',
-    //         revenue: 100,
-    //         expense: 300,
-    //         income: 206,
-    //     },
-    //     {
-    //         name: '11',
-    //         revenue: 100,
-    //         expense: 400,
-    //         income: 208,
-    //     },
-    //     {
-    //         name: '12',
-    //         revenue: 100,
-    //         expense: 300,
-    //         income: 900,
-    //     }
-    // ];
+function RevenueDashboard() {
+    const data = [
+        {
+            name: '1',
+            revenue: 500,
+            expense: 200,
+            income: 300,
+        },
+        {
+            name: '2',
+            revenue: 500,
+            expense: 138,
+            income: 200,
+        },
+        {
+            name: '3',
+            revenue: 600,
+            expense: 180,
+            income: 500,
+        },
+        {
+            name: '4',
+            revenue: 600,
+            expense: 398,
+            income: 200,
+        },
+        {
+            name: '5',
+            revenue: 500,
+            expense: 480,
+            income: 20,
+        },
+        {
+            name: '6',
+            revenue: 100,
+            expense: 300,
+            income: 200,
+        },
+        {
+            name: '7',
+            revenue: 100,
+            expense: 430,
+            income: 200,
+        },
+        {
+            name: '8',
+            revenue: 100,
+            expense: 400,
+            income: 300,
+        },
+        {
+            name: '9',
+            revenue: 100,
+            expense: 430,
+            income: 240,
+        },
+        {
+            name: '10',
+            revenue: 100,
+            expense: 300,
+            income: 206,
+        },
+        {
+            name: '11',
+            revenue: 100,
+            expense: 400,
+            income: 208,
+        },
+        {
+            name: '12',
+            revenue: 100,
+            expense: 300,
+            income: 900,
+        }
+    ];
 
     // format tien nheeee :>
     function formatCash(currency) {
@@ -119,21 +119,21 @@ function RevenueDashboard({ data }) {
                             <h3>TỔNG DOANH THU</h3>
                             <FaMoneyBillWave className='card_icon' />
                         </div>
-                        <h1>₫{formatCash(totalRevenue)}</h1>
+                        <h1>{formatCash(totalRevenue)}₫</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG CHI PHÍ</h3>
                             <FaMoneyBillWave className='card_icon' />
                         </div>
-                        <h1>₫{formatCash(totalExpenses)}</h1>
+                        <h1>{formatCash(totalExpenses)}₫</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG LỢI NHUẬN</h3>
                             <FaMoneyBillWave className='card_icon' />
                         </div>
-                        <h1>₫{formatCash(totalProfit)}</h1>
+                        <h1>{formatCash(totalProfit)}₫</h1>
                     </div>
                 </div>
 

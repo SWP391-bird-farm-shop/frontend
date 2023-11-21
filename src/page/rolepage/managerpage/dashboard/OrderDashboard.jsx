@@ -7,82 +7,107 @@ import { FaBox, FaMoneyBillWave, FaShoppingCart, FaUsers } from 'react-icons/fa'
 function OrderDashboard() {
     const data = [
         {
-            name: '1',
+            month: '1',
             order: 100,
             custom: 200,
 
         },
         {
-            name: '2',
+            month: '2',
             order: 500,
             custom: 138,
 
         },
         {
-            name: '3',
+            month: '3',
             order: 100,
             custom: 180,
 
         },
         {
-            name: '4',
+            month: '4',
             order: 100,
             custom: 398,
 
         },
         {
-            name: '5',
+            month: '5',
             order: 100,
             custom: 480,
 
         },
         {
-            name: '6',
+            month: '6',
             order: 100,
             custom: 300,
 
         },
         {
-            name: '7',
+            month: '7',
             order: 100,
             custom: 430,
 
         },
         {
-            name: '8',
+            month: '8',
             order: 100,
             custom: 400,
 
         },
         {
-            name: '9',
+            month: '9',
             order: 100,
             custom: 430,
 
         },
         {
-            name: '10',
+            month: '10',
             order: 100,
             custom: 300,
 
         },
         {
-            name: '11',
+            month: '11',
             order: 100,
-            custom: 400,
+            custom: 10,
 
         },
         {
-            name: '12',
+            month: '12',
             order: 100,
-            custom: 300,
+            custom: 100,
 
         }
     ];
 
-    function formatCash(currency) {
-        return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
+    // function formatCash(currency) {
+    //     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    // }
+
+    const getTotalOrderQuantity = () => {
+        const totalOrderQuantity = data.reduce((acc, entry) => acc + entry.order, 0);
+        return totalOrderQuantity;
+    };
+
+    const getTotalDesignOrderQuantity = () => {
+        const totalDesignOrderQuantity = data.reduce((acc, entry) => acc + entry.custom, 0);
+        return totalDesignOrderQuantity;
+    };
+
+    const getMonthWithMostOrders = () => {
+        const monthCounts = {};
+
+        data.forEach((entry) => {
+            const month = entry.month;
+            monthCounts[month] = (monthCounts[month] || 0) + 1;
+        });
+
+        const mostOrdersMonth = Object.keys(monthCounts).reduce((a, b) =>
+            monthCounts[a] > monthCounts[b] ? a : b
+        );
+
+        return mostOrdersMonth;
+    };
 
     return (
         <div className='dashboard'>
@@ -94,21 +119,21 @@ function OrderDashboard() {
                             <h3>TỔNG SỐ LƯỢNG ĐƠN HÀNG</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1>200</h1>
+                        <h1>{getTotalOrderQuantity()}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG ĐƠN HÀNG THIẾT KẾ</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1>12</h1>
+                        <h1>{getTotalDesignOrderQuantity()}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>THÁNG CÓ NHIỀU ĐƠN NHẤT</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1 className='card-text'>THÁNG 7 (20)</h1>
+                        <h1 className='card-text'>{getMonthWithMostOrders()}</h1>
                     </div>
                 </div>
 
@@ -128,7 +153,7 @@ function OrderDashboard() {
                                 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="month" />
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
