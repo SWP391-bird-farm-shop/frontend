@@ -170,14 +170,18 @@ const SizePage = () => {
                   className="custom-product-image"
                 />
                 <p>{size.sizeDescription}</p>
-                <select
-                  value={selectedSize}
-                  onChange={handleSizeChange}
-                  placeholder="Chọn kích thước"
-                >
-                  {renderSizeOptions()}
-                </select>
-
+                <div className="combo-box-product">
+                  <select
+                    value={selectedSize}
+                    onChange={handleSizeChange}
+                    placeholder="Chọn kích thước"
+                  >
+                    <option value="" hidden>
+                      Chọn kích thước lồng
+                    </option>
+                    {renderSizeOptions()}
+                  </select>
+                </div>
                 <button onClick={handleButtonClick} className="choose-button">
                   Chọn
                 </button>
