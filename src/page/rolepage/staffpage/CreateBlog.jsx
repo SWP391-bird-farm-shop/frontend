@@ -85,6 +85,7 @@ const BlogForm = () => {
                   className="create-blog-input"
                   type="text"
                   id="blogTitle"
+                  placeholder="Nhập tiêu đề bài viết"
                   value={blogTitle}
                   onChange={(e) => setBlogTitle(e.target.value)}
                 />
@@ -94,6 +95,7 @@ const BlogForm = () => {
                 <div
                   className="create-blog-input create-blog-textarea"
                   id="blogContent"
+                  placeholder="Nhập nội dung bài viết"
                   value={blogContent}
                   contentEditable="true"
                   onInput={(e) => setBlogContent(e.target.innerHTML)}

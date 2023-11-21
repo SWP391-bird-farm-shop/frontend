@@ -92,13 +92,14 @@ const LogInPage = () => {
               htmlFor="email"
               className="authentication-input-container-label"
             >
-              Email
+              Tên đăng nhập
             </label>
             <input
               type="text"
               id="email"
               name="email"
               className="authentication-input"
+              placeholder="Tên đăng nhập"
               required
               onChange={(event) => setUsername(event.target.value)}
             />
@@ -116,6 +117,7 @@ const LogInPage = () => {
                 id="password"
                 name="password"
                 className="authentication-input"
+                placeholder="Mật khẩu"
                 required
                 onChange={(event) => setPassword(event.target.value)}
               />
