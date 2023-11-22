@@ -73,11 +73,8 @@ const ColorPage = () => {
           <li>
             <Link to="/custom-products-material"> Chất Liệu </Link>
           </li>
-          <li>
+          <li className="bc-grey">
             <Link to="/custom-products-color">Màu Sắc </Link>
-          </li>
-          <li>
-            <Link to="/custom-products-end">Tổng Thể </Link>
           </li>
         </ul>
       </div>
@@ -129,6 +126,7 @@ const ColorPage = () => {
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
+              {/* <p>Tên lồng: {product.productName}</p> */}
               <p>
                 Hình dáng: <span>Hình vuông</span>
               </p>

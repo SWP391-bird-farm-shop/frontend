@@ -69,7 +69,7 @@ const App = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/search" element={<SearchPage />} />
+        <Route path="/search/:keyword" element={<SearchPage />} />
         <Route path="/products/cages" element={<CagePage />} />
         <Route path="/products/food" element={<FoodPage />} />
         <Route path="/products/accessories-toys" element={<AccessoriesToysPage />} />
@@ -90,6 +90,11 @@ const App = () => {
           <Route path='/dashboard/inventory' element={<InventoryDashboard />} />
           <Route path='/dashboard/order' element={<OrderDashboard />} />
         </Route>
+        <Route path="/custom-products-shape" element={<ShapePage />} />
+        <Route path="/custom-products-size" element={<SizePage />} />
+        <Route path="/custom-products-material" element={<MaterialPage />} />
+        <Route path="/custom-products-color" element={<ColorPage />} />
+        <Route path="/custom-products-end" element={<TotalPage />} />
       </Route>
 
       {/* user routes */}
