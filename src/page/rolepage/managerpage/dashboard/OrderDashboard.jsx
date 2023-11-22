@@ -99,20 +99,32 @@ function OrderDashboard() {
 
         data.forEach((entry) => {
             const month = entry.month;
-            monthCounts[month] = (monthCounts[month] || 0) + 1;
+            const total = entry.order + entry.custom;
+
+            if (!monthCounts[month]) {
+                monthCounts[month] = 0;
+            }
+
+            monthCounts[month] += total;
         });
 
-        const mostOrdersMonth = Object.keys(monthCounts).reduce((a, b) =>
-            monthCounts[a] > monthCounts[b] ? a : b
-        );
+        let mostOrdersMonth;
+        let maxTotal = 0;
+
+        for (let month in monthCounts) {
+            if (monthCounts[month] > maxTotal) {
+                mostOrdersMonth = month;
+                maxTotal = monthCounts[month];
+            }
+        }
 
         return mostOrdersMonth;
-    };
+    }
 
     return (
         <div className='dashboard'>
             <main className='main-container'>
-                <h3 className='main-title'>BẢNG THỐNG KÊ HÀNG HÓA</h3>
+                <h3 className='main-title'>BẢNG THỐNG KÊ ĐƠN HÀNG</h3>
                 <div className='main-cards'>
                     <div className='card'>
                         <div className='card-inner'>

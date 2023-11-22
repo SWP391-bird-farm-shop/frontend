@@ -79,6 +79,17 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
+        <Route element={<RoleLayout />}>
+          <Route path="/create-voucher/:action" element={<CreateVoucherPage />} />
+          <Route path="/add-product/:action" element={<AddProductPage />} />
+          <Route path="/update-product/:action/:productId" element={<AddProductPage />} />
+          <Route path="/product/:action" element={<ProductPage />} />
+          <Route path="/voucher/:action" element={<VoucherPage />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/dashboard/revenue' element={<RevenueDashboard />} />
+          <Route path='/dashboard/inventory' element={<InventoryDashboard />} />
+          <Route path='/dashboard/order' element={<OrderDashboard />} />
+        </Route>
       </Route>
 
       {/* user routes */}

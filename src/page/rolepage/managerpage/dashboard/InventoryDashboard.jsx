@@ -172,8 +172,7 @@ function InventoryDashboard() {
     return (
         <div className='dashboard'>
             <main className='main-container'>
-                {/* ... (existing code) */}
-
+                <h3 className='main-title'>BẢNG THỐNG KÊ HÀNG HÓA</h3>
                 <div className='main-cards'>
                     <div className='card'>
                         <div className='card-inner'>
