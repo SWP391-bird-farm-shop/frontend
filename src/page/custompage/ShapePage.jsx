@@ -83,7 +83,7 @@ const ShapePage = () => {
       <h2 className="custom-title">Thiết Kế Lồng</h2>
       <div className="custom-option">
         <ul>
-          <li>
+          <li className="bc-grey">
             <Link to="/custom-products-shape"> Hình Dáng </Link>
           </li>
           <li>
@@ -94,9 +94,6 @@ const ShapePage = () => {
           </li>
           <li>
             <Link to="/custom-products-color">Màu Sắc </Link>
-          </li>
-          <li>
-            <Link to="/custom-products-end">Tổng Thể </Link>
           </li>
         </ul>
       </div>

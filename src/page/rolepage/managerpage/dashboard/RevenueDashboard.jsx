@@ -80,9 +80,34 @@ function RevenueDashboard() {
         }
     ];
 
+    // format tien nheeee :>
     function formatCash(currency) {
         return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
+    // Tong doanh thu nèee( là tổng tiền các đơn hàng đã bán dc á) :>
+    function calculateTotalRevenue(data) {
+        return data.reduce((total, item) => total + item.revenue, 0);
+    }
+    // Tong Chi Phi nèee( là tổng tiền chi phí hao hụt các đơn hàng đã bán dc á. < ĐỂ 45% phí đỡ > ) :>
+    function calculateTotalExpenses(data) {
+        const expensePercentage = 0.45; // 45%
+        const totalRevenue = calculateTotalRevenue(data);
+        const totalExpenses = totalRevenue * expensePercentage;
+
+        return totalExpenses;
+    }
+    // Tong Lợi nhuận nèee( là tổng tiền lời cuối cuùng sau khhi lấy doanh thu - chi phí ) :>
+    function calculateTotalProfit(data) {
+        const totalRevenue = calculateTotalRevenue(data);
+        const totalExpenses = calculateTotalExpenses(data);
+        const totalProfit = totalRevenue - totalExpenses;
+
+        return totalProfit;
+    }
+    // đặt biến r gọi ở dưới class thui chứ ko có zi :>
+    const totalRevenue = calculateTotalRevenue(data);
+    const totalExpenses = calculateTotalExpenses(data);
+    const totalProfit = calculateTotalProfit(data);
 
     return (
         <div className='dashboard'>
@@ -94,21 +119,21 @@ function RevenueDashboard() {
                             <h3>TỔNG DOANH THU</h3>
                             <FaMoneyBillWave className='card_icon' />
                         </div>
-                        <h1>₫{formatCash(3000000)}</h1>
+                        <h1>{formatCash(totalRevenue)}₫</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG CHI PHÍ</h3>
                             <FaMoneyBillWave className='card_icon' />
                         </div>
-                        <h1>₫{formatCash(3000000)}</h1>
+                        <h1>{formatCash(totalExpenses)}₫</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG LỢI NHUẬN</h3>
                             <FaMoneyBillWave className='card_icon' />
                         </div>
-                        <h1>₫{formatCash(3000000)}</h1>
+                        <h1>{formatCash(totalProfit)}₫</h1>
                     </div>
                 </div>
 

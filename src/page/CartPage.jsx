@@ -505,7 +505,7 @@ const CartPage = () => {
                 id="vnpay-button"
                 className="payment-section-button"
               />
-              <img src="bocau.jpg" alt="vnpay" className="payment-logo" />
+              <img src="vnpay.png" alt="vnpay" className="payment-logo" />
               <p>VnPay</p>
             </div>
 
@@ -517,7 +517,7 @@ const CartPage = () => {
                 id="cash-button"
                 className="payment-section-button"
               />
-              <img src="tienmat.jpg" alt="cash" className="payment-logo" />
+              <img src="cash.png" alt="cash" className="payment-logo" />
               <p>Tiền Mặt</p>
             </div>
           </div>

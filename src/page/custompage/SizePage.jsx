@@ -119,7 +119,7 @@ const SizePage = () => {
       <h2 className="custom-title">Thiết Kế Lồng</h2>
       <div className="custom-option">
         <ul>
-          <li>
+          <li className="bc-grey">
             <Link to="/custom-products-shape"> Hình Dáng </Link>
           </li>
           <li>
@@ -130,9 +130,6 @@ const SizePage = () => {
           </li>
           <li>
             <Link to="/custom-products-color">Màu Sắc </Link>
-          </li>
-          <li>
-            <Link to="/custom-products-end">Tổng Thể </Link>
           </li>
         </ul>
       </div>
@@ -152,7 +149,18 @@ const SizePage = () => {
                   className="custom-product-image"
                 />
                 <p>{size.sizeDescription}</p>
-                {renderSizeOptions(size)}
+                <div className="combo-box-product">
+                  <select
+                    value={selectedSize}
+                    onChange={handleSizeChange}
+                    placeholder="Chọn kích thước"
+                  >
+                    <option value="" hidden>
+                      Chọn kích thước lồng
+                    </option>
+                    {renderSizeOptions()}
+                  </select>
+                </div>
                 <button onClick={handleButtonClick} className="choose-button">
                   Chọn
                 </button>
@@ -163,7 +171,7 @@ const SizePage = () => {
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
-              {/* <p>Tên sản phẩm: {product.productName}</p> */}
+              {/* <p>Tên lồng: {product.productName}</p> */}
               <p>Hình dáng: </p>
               <p>
                 Kích thước: <span>100x50"</span>

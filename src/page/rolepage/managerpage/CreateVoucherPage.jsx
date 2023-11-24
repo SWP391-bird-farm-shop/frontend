@@ -60,7 +60,7 @@ function CreateVoucherPage() {
   return (
     <div className="create-voucher-page">
       <h1 className="create-voucher-title">Tạo Voucher</h1>
-      <form>
+      <form onSubmit={handleAddVoucher}>
         <div className="create-voucher-input-container">
           <label className="create-voucher-input-label" htmlFor="name">
             Tên voucher
@@ -70,6 +70,7 @@ function CreateVoucherPage() {
             type="text"
             id="name"
             name="name"
+            placeholder="Nhập tên voucher"
             value={voucher.name}
             onChange={handleInputChange}
             required
@@ -84,6 +85,7 @@ function CreateVoucherPage() {
             type="text"
             id="description"
             name="description"
+            placeholder="Nhập mô tả voucher"
             value={voucher.description}
             onChange={handleInputChange}
           />
@@ -97,6 +99,7 @@ function CreateVoucherPage() {
             type="number"
             id="value"
             name="value"
+            placeholder="Nhập giá trị giảm"
             value={voucher.value}
             onChange={handleInputChange}
             required
@@ -134,7 +137,7 @@ function CreateVoucherPage() {
             required
           />
         </div>
-        <button className="add-button" type="button" onClick={handleAddVoucher}>
+        <button className="add-button" type="button">
           Thêm voucher
         </button>
       </form>
