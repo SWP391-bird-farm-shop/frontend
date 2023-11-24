@@ -2,30 +2,64 @@ import React, { useEffect, useState } from "react";
 import "./CustomPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import api from "../../components/utils/requestAPI";
 
 const MaterialPage = () => {
-
   const { auth } = useAuth();
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [chose, setChose] = useState("");
+  const [listMaterial, setListMaterial] = useState(null);
+  const [product, setProduct] = useState(null);
+
+  const fetchData = async (size) => {
+    const url = `/api/Material/get-for-custom?sizeId=${size}`;
+    // const url = `/api/Material/get-for-custom?sizeId=Sif4a814d`;
+    try {
+      const response = await api.get(url);
+      setListMaterial(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchUserCage = async () => {
+    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+    try {
+      const response = await api.get(url);
+      setProduct(response.data);
+      console.log(response.data.productSize);
+      if (response.data) {
+        fetchData(response.data.productSize);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useState(() => {
+    fetchUserCage();
+  }, [product]);
 
   const handleButtonClick = async (event, name) => {
     event.preventDefault();
-    const url = '';
+    setChose(event.target.value);
+    console.log(event.target.value);
+    const url = "/api/ProductCustom/update-material-custom-product";
     const data = {
       userId: auth?.user?.userId,
-      styleName: name,
+      productId: product?.productCustomId,
+      materialId: chose,
     };
-
     setIsLoading(true);
 
     try {
-      const response = await api.post(url, data);
+      const response = await api.put(url, data);
 
       if (response) {
-        setSelectedStyle(styleName);
         navigate("/custom-products-color");
+        console.log(response.data);
       }
 
       setIsLoading(false);
@@ -37,23 +71,6 @@ const MaterialPage = () => {
       return;
     }
   };
-
-  const [listMaterial, setListMaterial] = useState(null);
-
-  const fetchData = async () => {
-    const url = "/api/Style/get-for-custom";
-    try {
-      const response = await api.get(url);
-      console.log(response.data);
-      setListMaterial(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [auth]);
 
   function formatCash(currency) {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -84,44 +101,25 @@ const MaterialPage = () => {
           Chọn Chất Liệu Lồng Của Bạn{" "}
         </h2>
         <div className="custom-choose-and-detail">
-
           <div className="custom-option-detail-list">
-            {listMaterial.map((material) => {
+            {listMaterial?.map((material) => (
               <div className="custom-detail-item">
-                <h3>{material.materialName}</h3>
+                <h3>{material?.materialName}</h3>
                 <img
                   src={material.imageUrl}
                   alt="Chim"
                   className="custom-product-image"
                 />
-                <button onClick={handleButtonClick} className="choose-button">
+                <p>₫{formatCash(material?.price)}</p>
+                <button
+                  onClick={handleButtonClick}
+                  value={material?.materialId}
+                  className="choose-button"
+                >
                   Chọn
                 </button>
               </div>
-            })}
-
-            <div className="custom-detail-item">
-              <h3> Màu Gỗ </h3>
-              <img
-                src="public\Longhinhtru.jpg"
-                alt="Chim"
-                className="custom-product-image"
-              />
-              <button onClick={handleButtonClick} className="choose-button">
-                Chọn
-              </button>
-            </div>
-            <div className="custom-detail-item">
-              <h3> Màu Trắng </h3>
-              <img
-                src="public\Longhinhtru.jpg"
-                alt="Chim"
-                className="custom-product-image"
-              />
-              <button onClick={handleButtonClick} className="choose-button">
-                Chọn
-              </button>
-            </div>
+            ))}
           </div>
 
           <div className="custom-summary">

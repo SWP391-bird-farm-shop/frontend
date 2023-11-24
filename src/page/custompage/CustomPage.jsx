@@ -71,7 +71,9 @@ const CustomPage = () => {
               onChange={(event) => setName(event.target.value)}
             />
           </div>
-          <button type="submit" className="choose-button">Xác nhận</button>
+          <button type="submit" className="choose-button">
+            Xác nhận
+          </button>
         </form>
       </div>
       <PopupModal />
