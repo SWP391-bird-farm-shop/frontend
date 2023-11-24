@@ -1,103 +1,59 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Dashboard.css';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
     from 'recharts';
 import { FaBox, FaMoneyBillWave, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import api from '../../../../components/utils/requestAPI';
 
-function OrderDashboard() {
-    const data = [
-        {
-            month: '1',
-            order: 100,
-            custom: 200,
+const OrderDashboard = () => {
 
-        },
-        {
-            month: '2',
-            order: 500,
-            custom: 138,
+    const [monthOrders, setMonthOrders] = useState([]);
+    const [dataset, setDataset] = useState([])
 
-        },
-        {
-            month: '3',
-            order: 100,
-            custom: 180,
-
-        },
-        {
-            month: '4',
-            order: 100,
-            custom: 398,
-
-        },
-        {
-            month: '5',
-            order: 100,
-            custom: 480,
-
-        },
-        {
-            month: '6',
-            order: 100,
-            custom: 300,
-
-        },
-        {
-            month: '7',
-            order: 100,
-            custom: 430,
-
-        },
-        {
-            month: '8',
-            order: 100,
-            custom: 400,
-
-        },
-        {
-            month: '9',
-            order: 100,
-            custom: 430,
-
-        },
-        {
-            month: '10',
-            order: 100,
-            custom: 300,
-
-        },
-        {
-            month: '11',
-            order: 100,
-            custom: 10,
-
-        },
-        {
-            month: '12',
-            order: 100,
-            custom: 100,
-
+    const fetchData = async () => {
+        const url = "/api/Order/get-Orders-By-Month";
+        try {
+            const response = await api.get(url);
+            console.log(response.data);
+            setMonthOrders(response.data);
+        } catch (error) {
+            console.error(error);
         }
-    ];
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        if (monthOrders.length > 0) {
+            const updatedData = monthOrders.map(order => ({
+                month: order.month,
+                order: order.num,
+                custom: 100,
+            }));
+            setDataset(updatedData)
+        }
+    }, [monthOrders]);
 
     // function formatCash(currency) {
     //     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     // }
 
-    const getTotalOrderQuantity = () => {
-        const totalOrderQuantity = data.reduce((acc, entry) => acc + entry.order, 0);
+    const getTotalOrderQuantity = (data) => {
+        const totalOrderQuantity = data?.reduce((acc, entry) => acc + entry.order, 0);
         return totalOrderQuantity;
     };
 
-    const getTotalDesignOrderQuantity = () => {
-        const totalDesignOrderQuantity = data.reduce((acc, entry) => acc + entry.custom, 0);
+    const getTotalDesignOrderQuantity = (data) => {
+        const totalDesignOrderQuantity = data?.reduce((acc, entry) => acc + entry.custom, 0);
         return totalDesignOrderQuantity;
     };
 
-    const getMonthWithMostOrders = () => {
+    const getMonthWithMostOrders = (data) => {
         const monthCounts = {};
 
-        data.forEach((entry) => {
+        data?.forEach((entry) => {
             const month = entry.month;
             const total = entry.order + entry.custom;
 
@@ -121,6 +77,11 @@ function OrderDashboard() {
         return mostOrdersMonth;
     }
 
+    const totalOrderQuantity = getTotalOrderQuantity(dataset);
+    const totalDesignOrderQuantity = getTotalDesignOrderQuantity(dataset);
+    const totalOrder = totalOrderQuantity + totalDesignOrderQuantity;
+    const mostOrderMonth = getMonthWithMostOrders(dataset);
+
     return (
         <div className='dashboard'>
             <main className='main-container'>
@@ -131,21 +92,21 @@ function OrderDashboard() {
                             <h3>TỔNG SỐ LƯỢNG ĐƠN HÀNG</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1>{getTotalOrderQuantity()}</h1>
+                        <h1>{totalOrder}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG ĐƠN HÀNG THIẾT KẾ</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1>{getTotalDesignOrderQuantity()}</h1>
+                        <h1>{totalDesignOrderQuantity}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>THÁNG CÓ NHIỀU ĐƠN NHẤT</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1 className='card-text'>{getMonthWithMostOrders()}</h1>
+                        <h1 className='card-text'>THÁNG {mostOrderMonth}</h1>
                     </div>
                 </div>
 
@@ -156,7 +117,7 @@ function OrderDashboard() {
                             <BarChart
                                 width={1000}
                                 height={600}
-                                data={data}
+                                data={dataset}
                                 margin={{
                                     top: 5,
                                     right: 30,

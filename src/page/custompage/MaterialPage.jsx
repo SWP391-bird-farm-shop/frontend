@@ -127,6 +127,7 @@ const MaterialPage = () => {
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
+              {/* <p>Tên lồng: {product.productName}</p> */}
               <p>
                 Hình dáng: <span>Hình vuông</span>
               </p>

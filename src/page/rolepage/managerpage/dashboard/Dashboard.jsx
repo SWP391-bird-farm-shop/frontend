@@ -1,10 +1,41 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Dashboard.css';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
   from 'recharts';
 import { FaBox, FaMoneyBillWave, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import api from '../../../../components/utils/requestAPI';
 
-function Dashboard() {
+const Dashboard = () => {
+
+  const [monthOrders, setMonthOrders] = useState([]);
+  const [dataset, setDataset] = useState([])
+
+  const fetchData = async () => {
+    const url = "/api/Order/get-Orders-By-Month";
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setMonthOrders(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (monthOrders.length > 0) {
+      const updatedData = monthOrders.map(order => ({
+        month: order.month,
+        revenue: order.sum + 100,
+        order: order.num + 200,
+      }));
+      setDataset(updatedData)
+    }
+  }, [monthOrders]);
+
   const data = [
     {
       x: '1',
@@ -84,20 +115,24 @@ function Dashboard() {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  const getTotalRevenue = () => {
-    const totalRevenue = data.reduce((acc, entry) => acc + entry.revenue, 0);
+  const getTotalRevenue = (data) => {
+    const totalRevenue = data?.reduce((acc, entry) => acc + entry.revenue, 0);
     return formatCash(totalRevenue);
   };
 
-  const getTotalInventory = () => {
-    const totalInventory = data.reduce((acc, entry) => acc + entry.inventory, 0);
+  const getTotalInventory = (data) => {
+    const totalInventory = data?.reduce((acc, entry) => acc + entry.inventory, 0);
     return totalInventory;
   };
 
-  const getTotalOrders = () => {
-    const totalOrders = data.reduce((acc, entry) => acc + entry.order, 0);
+  const getTotalOrders = (data) => {
+    const totalOrders = data?.reduce((acc, entry) => acc + entry.order, 0);
     return totalOrders;
   };
+
+  const totalRevenue = getTotalRevenue(dataset);
+  // const totalInventory = getTotalInventory(dataset);
+  const totalOrder = getTotalOrders(dataset);
 
   return (
     <div className='dashboard'>
@@ -109,21 +144,21 @@ function Dashboard() {
               <h3>DOANH THU</h3>
               <FaMoneyBillWave className='card_icon' />
             </div>
-            <h1>{getTotalRevenue()}₫</h1>
+            <h1>{totalRevenue}₫</h1>
           </div>
           <div className='card'>
             <div className='card-inner'>
               <h3>HÀNG HÓA</h3>
               <FaBox className='card_icon' />
             </div>
-            <h1>{getTotalInventory()}</h1>
+            {/* <h1>{totalInventory}</h1> */}
           </div>
           <div className='card'>
             <div className='card-inner'>
               <h3>ĐƠN HÀNG</h3>
               <FaShoppingCart className='card_icon' />
             </div>
-            <h1>{getTotalOrders()}</h1>
+            <h1>{totalOrder}</h1>
           </div>
         </div>
 
@@ -134,7 +169,7 @@ function Dashboard() {
               <BarChart
                 width={1000}
                 height={600}
-                data={data}
+                data={dataset}
                 margin={{
                   top: 5,
                   right: 30,
@@ -143,7 +178,7 @@ function Dashboard() {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="x" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
@@ -171,7 +206,7 @@ function Dashboard() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="inventory" fill="#8884d8" name='hàng hóa' />
+                <Bar dataKey="inventory" fill="#8884d8" name='hàng hóa đã bán' />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -182,7 +217,7 @@ function Dashboard() {
               <BarChart
                 width={1000}
                 height={600}
-                data={data}
+                data={dataset}
                 margin={{
                   top: 5,
                   right: 30,
@@ -191,7 +226,7 @@ function Dashboard() {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="x" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
