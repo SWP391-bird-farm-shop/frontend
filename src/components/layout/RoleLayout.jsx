@@ -9,8 +9,10 @@ const RoleLayout = () => {
 
     const { action } = useParams();
 
-    if (action === 'view' || action === 'edit' || action === "view-voucher" || action === "view-product"
-        || action === "view-voucher" || action === "edit-product") {
+    if (action === 'view-feedback' || action === 'edit-feedback' || action === "view-voucher" || action === "view-product"
+        || action === "view-voucher" || action === "edit-product" || action === 'view-order' || action === 'confirm-order'
+        || action === "view-blog" || action === "edit-blog") {
+            console.log(action);
         return (
             <Fragment>
                 <ManageNavbar className="layout-manage-navbar" />

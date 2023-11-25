@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FeedbackPage.css";
 import { FaTrashAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
@@ -50,7 +50,7 @@ const FeedbackPage = () => {
     setResult(false);
   }
 
-  if (action === "view") {
+  if (action === "view-feedback") {
     return (
       <div className="feedback-page">
         {listFeedback.map((feedback) => {

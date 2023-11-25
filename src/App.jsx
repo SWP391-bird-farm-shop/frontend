@@ -78,22 +78,6 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
-        <Route element={<RoleLayout />}>
-          <Route path="/create-voucher/:action" element={<CreateVoucherPage />} />
-          <Route path="/add-product/:action" element={<AddProductPage />} />
-          <Route path="/update-product/:action/:productId" element={<AddProductPage />} />
-          <Route path="/product/:action" element={<ProductPage />} />
-          <Route path="/voucher/:action" element={<VoucherPage />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/dashboard/revenue' element={<RevenueDashboard />} />
-          <Route path='/dashboard/inventory' element={<InventoryDashboard />} />
-          <Route path='/dashboard/order' element={<OrderDashboard />} />
-        </Route>
-        <Route path="/custom-products-shape" element={<ShapePage />} />
-        <Route path="/custom-products-size" element={<SizePage />} />
-        <Route path="/custom-products-material" element={<MaterialPage />} />
-        <Route path="/custom-products-color" element={<ColorPage />} />
-        <Route path="/custom-products-end" element={<TotalPage />} />
       </Route>
 
       {/* user routes */}
@@ -153,10 +137,10 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["3"]} />}>
         <Route path="/staff-page" element={<StaffPage />} />
         <Route element={<RoleLayout />}>
-          <Route path="/create-blog" element={<BlogForm />} />
+          <Route path="/create-blog/:action" element={<BlogForm />} />
           <Route path="/manage-blogs/:action" element={<BlogPage />} />
           <Route path="/view-blog/:blogId" element={<BlogContentPage />} />
-          <Route path="/feedback" element={<FeedbackPage />} />
+          <Route path="/feedback/:action" element={<FeedbackPage />} />
           <Route path="/order/:action" element={<ViewOrderPage />} />
         </Route>
       </Route>
