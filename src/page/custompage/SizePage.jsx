@@ -119,10 +119,10 @@ const SizePage = () => {
       <h2 className="custom-title">Thiết Kế Lồng</h2>
       <div className="custom-option">
         <ul>
-          <li className="bc-grey">
+          <li>
             <Link to="/custom-products-shape"> Hình Dáng </Link>
           </li>
-          <li>
+          <li  className="bc-grey">
             <Link to="/custom-products-size"> Kích Thước </Link>
           </li>
           <li>

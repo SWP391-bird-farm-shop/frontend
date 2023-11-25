@@ -5,15 +5,6 @@
     margin-left: 3%;
 }
 
-.list-items-section {
-    margin-top: 8vh;
-    display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-between;
-}
-
 .list-item-container {
     float: left;
     width: 17.7%;

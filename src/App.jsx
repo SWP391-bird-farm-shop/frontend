@@ -78,6 +78,10 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
+        <Route path="/custom-products-shape" element={<ShapePage />} />
+          <Route path="/custom-products-size" element={<SizePage />} />
+          <Route path="/custom-products-material" element={<MaterialPage />} />
+          <Route path="/custom-products-color" element={<ColorPage />} />
       </Route>
 
       {/* user routes */}
