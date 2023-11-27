@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./CustomPage.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../components/utils/requestAPI";
 
 const MaterialPage = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
+
+  const { productId } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
   const [chose, setChose] = useState("");
@@ -25,11 +27,16 @@ const MaterialPage = () => {
   };
 
   const fetchUserCage = async () => {
-    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+    const url = "/api/ProductCustom/get-product-custom-for-user";
+    const data = {
+      userId: auth?.user?.userId,
+      productId: productId,
+    };
+    console.log(data);
     try {
-      const response = await api.get(url);
+      const response = await api.post(url, data);
       setProduct(response.data);
-      console.log(response.data.productSize);
+      console.log(response.data);
       if (response.data) {
         fetchData(response.data.productSize);
       }
@@ -50,7 +57,7 @@ const MaterialPage = () => {
     const data = {
       userId: auth?.user?.userId,
       productId: product?.productCustomId,
-      materialId: chose,
+      materialId: event.target.value,
     };
     setIsLoading(true);
 
@@ -58,7 +65,7 @@ const MaterialPage = () => {
       const response = await api.put(url, data);
 
       if (response) {
-        navigate("/custom-products-color");
+        navigate(`/custom-products-color/${productId}`);
         console.log(response.data);
       }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CustomPage.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../components/utils/requestAPI";
 import { event } from "jquery";
@@ -9,12 +9,11 @@ const ShapePage = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
+  const { productId } = useParams();
+
   const [ProductCustom, setProductCustom] = useState(null);
-
   const [selectedStyle, setSelectedStyle] = useState();
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [listStyle, setListStyle] = useState(null);
 
   const fetchData = async () => {
@@ -29,9 +28,13 @@ const ShapePage = () => {
   };
 
   const fetchUserCage = async () => {
-    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+    const url = "/api/ProductCustom/get-product-custom-for-user?UserId";
+    const data = {
+      userId: auth?.user?.userId,
+      productId: productId,
+    };
     try {
-      const response = await api.get(url);
+      const response = await api.post(url, data);
       console.log(response.data);
       setProductCustom(response.data);
     } catch (error) {
@@ -61,7 +64,7 @@ const ShapePage = () => {
 
       if (response) {
         setSelectedStyle(id);
-        navigate("/custom-products-size");
+        navigate(`/custom-products-size/${productId}`);
       }
 
       setIsLoading(false);

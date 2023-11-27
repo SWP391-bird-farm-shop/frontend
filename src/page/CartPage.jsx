@@ -10,6 +10,9 @@ import PopupModal from "../components/modal/PopupModal";
 const CartPage = () => {
   const { auth } = useAuth();
   const [cartItems, setCartItems] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+
   const [voucherList, setVoucherList] = useState(null);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -223,23 +226,6 @@ const CartPage = () => {
   };
 
   const paymentSubmit = async () => {
-    //update product total lastime to payment
-    if (selectVoucher === "") setTotalPrice(cartItems[0]?.total);
-    const urlUpdate = "/api/Order/update-order-to-add-product";
-    let note = editName + " " + editPhonenumber + " " + editAddress;
-    const dataUpdate = {
-      orderId: cartItems[0].orderId,
-      userId: auth.user.userId,
-      note: note,
-      price: totalPrice,
-    };
-    try {
-      const updateResponse = await api.put(urlUpdate, dataUpdate);
-      console.log(updateResponse.data);
-    } catch (error) {
-      console.error(error);
-    }
-
     //select method
     let method = "";
     const radioButtons = document.querySelectorAll(
@@ -251,13 +237,13 @@ const CartPage = () => {
         console.log(method);
       }
     });
-    console.log(cartItems[0]?.total);
     if (method === "") {
       window.prompt("Please payment options");
     }
     if (method === "vnpay") {
       //create new payment
       const url = `/api/Payment/create-payment?OrderId=${cartItems[0]?.orderId}`;
+      setLoading(true);
       try {
         const response = await api.post(url);
         if (response) {
@@ -267,6 +253,7 @@ const CartPage = () => {
           try {
             const response = await api.get(paymentUrl);
             console.log(response);
+            setLoading(false);
             window.open(response.data);
           } catch (error) {
             console.error(error);
@@ -278,14 +265,17 @@ const CartPage = () => {
     } else if (method === "cash") {
       //create new payment
       const orderFinishurl = `/api/Order/paid?OrderID=${cartItems[0]?.orderId}`;
+      setLoading(true);
       try {
         const response = await api.post(orderFinishurl);
         console.log(response.data);
+        setLoading(false);
         //setting order true
       } catch (error) {
         console.error(error);
       }
     }
+    if (loading) return;
   };
 
   // Fetch User Cart
@@ -303,7 +293,7 @@ const CartPage = () => {
   }, [updateQuantity]);
   //updateQuantity, paymentSubmit, auth
 
-  if (cartItems?.length > 0) {
+  if (cartItems?.orderDetail?.length > 0) {
     //to fetch Data voucher
     let fetch = null;
     //handle select voucher and decrese total payment
@@ -372,8 +362,8 @@ const CartPage = () => {
                         }
                       />
                       <p>
-                        Thành tiền:
-                        ₫{formatCash(product.price * product.quantity)}
+                        Thành tiền: ₫
+                        {formatCash(product.price * product.quantity)}
                       </p>
                     </div>
                   </div>
@@ -537,7 +527,8 @@ const CartPage = () => {
               <p className="order-summary-title">
                 Tổng cộng Voucher giảm giá:{" "}
                 <span className="order-summary-price">
-                  ₫{formatCash(
+                  ₫
+                  {formatCash(
                     (parseFloat(selectVoucher) / 100) * cartItems[0]?.total
                   )}{" "}
                 </span>
@@ -588,8 +579,14 @@ const CartPage = () => {
           <h2 className="cart-and-payment-heading">Giỏ hàng</h2>
           <div className="cart-items">
             <div className="empty-cart">
-              <img src="/empty-cart.png" alt="empty-cart" className="empty-cart-img" />
-              <h3 className="empty-cart-text">Bạn chưa thêm sản phẩm vào giỏ hàng</h3>
+              <img
+                src="/empty-cart.png"
+                alt="empty-cart"
+                className="empty-cart-img"
+              />
+              <h3 className="empty-cart-text">
+                Bạn chưa thêm sản phẩm vào giỏ hàng
+              </h3>
             </div>
           </div>
         </div>
@@ -681,20 +678,14 @@ const CartPage = () => {
 
           <div className="voucher-section">
             <div className="voucher-section-combobox">
-              <select
-                name="voucher"
-                id="voucher"
-                className="voucher-combobox"
-              >
+              <select name="voucher" id="voucher" className="voucher-combobox">
                 <option value="" hidden>
                   Chọn Voucher
                 </option>
               </select>
             </div>
             <div className="voucher-info">
-              <h3 className="voucher-info-title">
-                Không thể chọn voucher
-              </h3>
+              <h3 className="voucher-info-title">Không thể chọn voucher</h3>
               <p className="voucher-info-description">
                 Bạn chưa có sản phẩm nên không được chọn voucher
               </p>
@@ -729,10 +720,7 @@ const CartPage = () => {
 
           <div className="order-summary-section">
             <p className="order-summary-title">
-              Tổng tiền hàng:{" "}
-              <span className="order-summary-price">
-                ₫0
-              </span>
+              Tổng tiền hàng: <span className="order-summary-price">₫0</span>
             </p>
             <p className="order-summary-title">
               Tổng tiền phí vận chuyển:{" "}
