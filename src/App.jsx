@@ -124,7 +124,10 @@ const App = () => {
           <Route path="/manage-blogs/:action" element={<BlogPage />} />
           <Route path="/view-blog/:blogId" element={<BlogContentPage />} />
           <Route path="/feedback/:action" element={<FeedbackPage />} />
-          <Route path="/item-info/:action/:productId" element={<ItemInformation />} />
+          <Route
+            path="/item-info/:action/:productId"
+            element={<ItemInformation />}
+          />
           <Route path="/order/:action" element={<ViewOrderPage />} />
         </Route>
       </Route>

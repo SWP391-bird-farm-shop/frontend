@@ -58,7 +58,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     fetchData();
-  }, [auth, handleDelete]);
+  }, [listProduct]);
 
   useEffect(() => {
     const sortByCage = () => {
