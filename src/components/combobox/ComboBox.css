@@ -34,7 +34,13 @@
     border-radius: 15px;
 }
 
+.combo-box-product option,
+.combo-box-question option {
+    font-size: 16px;
+}
+
 .combobox-option {
+    font-size: 16px;
     min-height: 50px;
     padding: 50px 0;
     border-radius: 5px;

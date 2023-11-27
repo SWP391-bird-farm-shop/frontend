@@ -55,7 +55,7 @@ const ProductFeedbackList = ({ productId, action }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const url = ``;
+            const url = `/api/Feedback/get-feedback-by-product-id?productId=${productId}`;
             try {
                 const response = await api.get(url);
                 console.log(response.data);
@@ -95,7 +95,7 @@ const ProductFeedbackList = ({ productId, action }) => {
             <div className="feedback-section">
                 <h3 className='feedback-heading'>Đánh giá sản phẩm</h3>
                 <div className="product-feedback-list">
-                    {feedbackList.map((feedback) => (
+                    {feedbacks?.map((feedback) => (
                         <div className="product-feedback-item">
                             <button
                                 className="remove-button"
@@ -127,7 +127,7 @@ const ProductFeedbackList = ({ productId, action }) => {
             <div className="feedback-section">
                 <h3 className='feedback-heading'>Đánh giá sản phẩm</h3>
                 <div className="product-feedback-list">
-                    {feedbackList.map((feedback) => (
+                    {feedbacks?.map((feedback) => (
                         <div className="product-feedback-item">
                             <img src={feedback.img} alt="" className="product-feedback-user-avatar"></img>
                             <div className="product-feedback-detail">
