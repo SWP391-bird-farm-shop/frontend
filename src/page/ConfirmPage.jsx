@@ -79,7 +79,7 @@ const ConfirmPage = () => {
         <div className="confirmed-orders">
           <div className="empty-cart-confirm">
             <img
-              src="/empty-cart.png"
+              src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fempty-cart.png?alt=media&token=477cd9aa-45ba-44a1-ba8c-6623fc2c8e87"
               alt="empty-cart"
               className="empty-cart-confirm-img"
             />

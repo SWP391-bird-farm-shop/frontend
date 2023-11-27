@@ -13,7 +13,7 @@ const AdminPage = () => {
             <div className="role-page-manage-tasks">
                 <Link to="/manage-account/view" className="role-page-manage-task">
                     <h3 className="role-page-manage-task-title">Quản lí tài khoản</h3>
-                    <img src="./account.png" className="role-page-manage-task-img" />
+                    <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Faccount.png?alt=media&token=8b0d9b42-377f-4a3f-bc04-9d59458b0106" className="role-page-manage-task-img" />
                 </Link>
             </div>
         </div>

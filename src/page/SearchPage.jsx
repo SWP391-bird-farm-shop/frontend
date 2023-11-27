@@ -5,54 +5,6 @@ import api from "../components/utils/requestAPI";
 import ComboBox from "../components/combobox/ComboBox";
 
 const SearchPage = () => {
-    // const [cage, setCage] = useState();
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const url = `/api/Product/get-by-category?categoryId=Cate90fb2`;
-    //             const response = await api.get(url);
-    //             console.log(response.data);
-    //             setCage(response.data);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
-
-    // const [food, setFood] = useState();
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const url = `/api/Product/get-by-category?categoryId=Cate7646a`;
-    //             const response = await api.get(url);
-    //             console.log(response.data);
-    //             setFood(response.data);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
-
-    // const [toy, setToy] = useState();
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const url = `/api/Product/get-by-category?categoryId=Catef5d6d`;
-    //             const response = await api.get(url);
-    //             console.log(response.data);
-    //             setToy(response.data);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
-
     const { keyword } = useParams();
     const [product, setProduct] = useState();
 
