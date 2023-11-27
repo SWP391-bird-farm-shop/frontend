@@ -210,7 +210,24 @@ const ItemInformation = () => {
             <div className="product-information-summary">
               <h2 className="product-information-title">{product?.productName}</h2>
               <p className="product-information-price">₫{formatCash(product?.price)}</p>
-              <p className="product-information-description">{product?.description}</p>
+              <p className="product-information-description">
+                Kích thước:{" "}
+                <span className="custom-summary-total-detail-info">
+                  kích thước
+                </span>
+              </p>
+              <p className="product-information-description">
+                Vật liệu:{" "}
+                <span className="custom-summary-total-detail-info">
+                  vật liệu
+                </span>
+              </p>
+              <p className="product-information-description">
+                Màu sắc:{" "}
+                <span className="custom-summary-total-detail-info">
+                  màu sắc
+                </span>
+              </p>
               <div className="quantity-section">
                 <div className="quantity">
                   <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
@@ -232,7 +249,7 @@ const ItemInformation = () => {
             <p className="product-information-detail-description">{product?.description}</p>
           </div>
 
-          <ProductFeedbackList productId={productId} action={"view-product"}/>
+          <ProductFeedbackList productId={productId} action={"view-product"} />
 
           <div className="different-products-carousel">
             <h3 className="different-products-carousel-heading">
@@ -252,7 +269,24 @@ const ItemInformation = () => {
             <div className="product-information-summary">
               <h2 className="product-information-title">{product?.productName}</h2>
               <p className="product-information-price">₫{formatCash(product?.price)}</p>
-              <p className="product-information-description">{product?.description}</p>
+              <p className="product-information-description">
+                Kích thước:{" "}
+                <span className="custom-summary-total-detail-info">
+                  kích thước
+                </span>
+              </p>
+              <p className="product-information-description">
+                Vật liệu:{" "}
+                <span className="custom-summary-total-detail-info">
+                  vật liệu
+                </span>
+              </p>
+              <p className="product-information-description">
+                Màu sắc:{" "}
+                <span className="custom-summary-total-detail-info">
+                  màu sắc
+                </span>
+              </p>
               <div className="quantity-section">
                 <div className="quantity">
                   <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
@@ -274,7 +308,7 @@ const ItemInformation = () => {
             <p className="product-information-detail-description">{product?.description}</p>
           </div>
 
-          <ProductFeedbackList productId={productId} action={"edit-product"}/>
+          <ProductFeedbackList productId={productId} action={"edit-product"} />
 
           <div className="different-products-carousel">
             <h3 className="different-products-carousel-heading">
@@ -295,7 +329,24 @@ const ItemInformation = () => {
           <div className="product-information-summary">
             <h2 className="product-information-title">{product?.productName}</h2>
             <p className="product-information-price">₫{formatCash(product?.price)}</p>
-            <p className="product-information-description">{product?.description}</p>
+            <p className="product-information-description">
+              Kích thước:{" "}
+              <span className="custom-summary-total-detail-info">
+                kích thước
+              </span>
+            </p>
+            <p className="product-information-description">
+              Vật liệu:{" "}
+              <span className="custom-summary-total-detail-info">
+                vật liệu
+              </span>
+            </p>
+            <p className="product-information-description">
+              Màu sắc:{" "}
+              <span className="custom-summary-total-detail-info">
+                màu sắc
+              </span>
+            </p>
             <div className="quantity-section">
               <div className="quantity">
                 <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>

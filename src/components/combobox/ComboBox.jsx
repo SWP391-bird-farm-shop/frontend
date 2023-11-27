@@ -19,6 +19,12 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
     "Câu hỏi 5",
   ];
 
+  const blogTypeOptions = [
+    "Hướng dẫn chăm sóc ",
+    "Tư vấn mua lồng",
+    "Bài viết về chim",
+  ];
+
   const handleChangeSelect = (e) => {
     setSelected(e.target.value);
     onChange(e.target.value);
@@ -185,14 +191,31 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
   if (classname === 'product') {
     return (
       <div className="combo-box-price">
-          <select value={selected} onChange={e => setSelected(e.target.value)}>
-              <option value="" disabled hidden selected>Sắp xếp theo giá</option>
-              {priceOptions.map(priceOption => (
-                  <option key={priceOption} value={priceOption}>
-                      {priceOption}
-                  </option>
-              ))}
-          </select>
+        <select value={selected} onChange={e => setSelected(e.target.value)}>
+          <option value="" disabled hidden selected>Sắp xếp theo giá</option>
+          {priceOptions.map(priceOption => (
+            <option key={priceOption} value={priceOption}>
+              {priceOption}
+            </option>
+          ))}
+        </select>
+      </div>
+    )
+  }
+
+  if (classname === 'question') {
+    return (
+      <div className="combo-box-question">
+        <select value={selected} onChange={(e) => setSelected(e.target.value)}>
+          <option value="" disabled hidden>
+            Chọn câu hỏi xác thực
+          </option>
+          {questionOptions.map((questionOption) => (
+            <option key={questionOption} value={questionOption} className="combobox-option" style={{ padding: '5px' }}>
+              {questionOption}
+            </option>
+          ))}
+        </select>
       </div>
     )
   }
@@ -246,18 +269,32 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
       //        ))}
       //    </select>
       //</div>
+      // <div className="combo-box-question">
+      //   <select value={selected} onChange={(e) => setSelected(e.target.value)}>
+      //     <option value="" disabled hidden>
+      //       Chọn câu hỏi xác thực
+      //     </option>
+      //     {questionOptions.map((questionOption) => (
+      //       <option key={questionOption} value={questionOption} className="combobox-option" style={{padding: '5px'}}>
+      //         {questionOption}
+      //       </option>
+      //     ))}
+      //   </select>
+      // </div>
+
       <div className="combo-box-question">
         <select value={selected} onChange={(e) => setSelected(e.target.value)}>
           <option value="" disabled hidden>
-            Chọn câu hỏi xác thực
+            Chọn loại bài viết
           </option>
-          {questionOptions.map((questionOption) => (
-            <option key={questionOption} value={questionOption} className="combobox-option" style={{padding: '5px'}}>
-              {questionOption}
+          {blogTypeOptions.map((option) => (
+            <option key={option} value={option} className="combobox-option" style={{ padding: '5px' }}>
+              {option}
             </option>
           ))}
         </select>
       </div>
+
     );
   }
 };

@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import api from "../../../components/utils/requestAPI";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../components/utils/firebase";
+import ComboBox from "../../../components/combobox/ComboBox";
 
 const BlogForm = () => {
   const { auth } = useAuth();
@@ -100,6 +101,13 @@ const BlogForm = () => {
                   contentEditable="true"
                   onInput={(e) => setBlogContent(e.target.innerHTML)}
                 ></div>
+              </div>
+              <div className="create-blog-input-container">
+                <label htmlFor="blogTitle">Loại bài viết</label>
+                <ComboBox
+                  className={"blogtype"}
+                  // onChange={(e) => setBlogType(e.target.value)}
+                />
               </div>
 
               <div className="create-blog-input-container">

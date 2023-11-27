@@ -53,7 +53,7 @@ const ManageNavbar = ({ className }) => {
             </NavLink>
           </NavMenu>
           <div className="second-role-section">
-            <p className="manage-navbar-user-name">Xin chao</p>
+            <p className="manage-navbar-user-name">{auth?.user?.fullName}</p>
             <NavLink>
               <img
                 src="/chaomao.png"
@@ -119,7 +119,7 @@ const ManageNavbar = ({ className }) => {
             </NavLink>
           </NavMenu>
           <div className="second-role-section">
-            <p className="manage-navbar-user-name">Xin chao</p>
+            <p className="manage-navbar-user-name">{auth?.user?.fullName}</p>
             <NavLink>
               <img
                 src="/chaomao.png"
@@ -175,7 +175,7 @@ const ManageNavbar = ({ className }) => {
           </NavMenu>
 
           <div className="second-role-section">
-            <p className="manage-navbar-user-name">Xin chao</p>
+            <p className="manage-navbar-user-name">{auth?.user?.fullName}</p>
             <NavLink>
               <img
                 src="/chaomao.png"
@@ -235,7 +235,7 @@ const ManageNavbar = ({ className }) => {
       //       </NavLink>
       //     </NavMenu>
       //     <div className="second-role-section">
-      //       <p className="manage-navbar-user-name">Xin chao</p>
+      //       <p className="manage-navbar-user-name">{auth?.user?.fullName}</p>
       //       <NavLink>
       //         <img
       //           src="/chaomao.png"
