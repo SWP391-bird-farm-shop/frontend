@@ -1,4 +1,4 @@
-.feedback-page {
+/* .feedback-page {
     border: 1px solid black;
     padding: 5px 40px;
     margin: 40px;
@@ -45,4 +45,9 @@
 .author {
     font-weight: 600;
     color: #4CAF50;
+} */
+
+.link {
+    display: block;
+    text-decoration: none;
 }
