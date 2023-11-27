@@ -16,7 +16,7 @@ const StaffPage = () => {
           <h3 className="role-page-manage-task-title">Quản lí bài viết</h3>
           <img src="./blog.png" className="role-page-manage-task-img" />
         </Link>
-         <Link to="/feedback/view-feedback" className="role-page-manage-task"> 
+         <Link to="/feedback/view-product" className="role-page-manage-task"> 
          <h3 className="role-page-manage-task-title">Quản lí feedback</h3> 
          <img src="./feedback.png" className="role-page-manage-task-img" /> 
          </Link> 

@@ -128,13 +128,13 @@ const SideNav = () => {
         </div>
       );
     }
-    if (action === "view-feedback" || action === "edit-feedback") {
+    if (action === "view-product" || action === "edit-product") {
       return (
         <div className="side-navbar">
-          <Link to="/feedback/view-feedback" className='side-navbar-link'>
+          <Link to="/feedback/view-product" className='side-navbar-link'>
             <FaRegCommentAlt className='side-navbar-link-icon' /> Xem feedback
           </Link>
-          <Link to="/feedback/edit-feedback" className='side-navbar-link'>
+          <Link to="/feedback/edit-product" className='side-navbar-link'>
             <FaEdit className='side-navbar-link-icon' /> Chỉnh sửa feedback
           </Link>
         </div>
