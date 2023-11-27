@@ -101,11 +101,8 @@ const ManageAccount = () => {
           <tbody className="content-info">
             {listUser?.map((user, index) => (
               <tr key={index}>
-                {/* <td> */}
-                {/* <img src={user.imageURL} alt={`${user.userName}`} /> */}
-                {/* </td> */}
-                <td className="overflow overflow-scroll short">
-                  {user.userName}
+                <td>
+                  <img src={user.imageURL} alt={`${user.userName}`} />
                 </td>
                 <td className="overflow overflow-scroll short">
                   {user.userName}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import './Feedback.css'
-import { useParams } from "react-router-dom";
 import PopupModal from "../modal/PopupModal";
 import { FaTrashAlt } from "react-icons/fa";
 import api from "../utils/requestAPI";
@@ -13,20 +12,18 @@ const ProductFeedbackList = ({ productId, action }) => {
     const [showPopup, setShowPopup] = useState(false);
 
     const fetchData = async () => {
-        const url = "";
+        const url = `/api/Feedback/get-feedback-by-product-id?productId=${productId}`;
         try {
             const response = await api.get(url);
             console.log(response.data);
-            const list = Object.values(response.data);
-            const sortList = list.sort((a, b) => a.roleId - b.roleId);
-            setListUser(sortList);
+            setFeedbacks(response.data);
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     };
 
     const handleDelete = async (id) => {
-        const url = '';
+        const url = `/api/Feedback/remove-feedback-by-id?feedbackId=${id}`;
         try {
             const response = await api.delete(url);
             console.log(response.data);
@@ -52,20 +49,6 @@ const ProductFeedbackList = ({ productId, action }) => {
         handleDelete(id);
         setResult(false);
     }
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const url = `/api/Feedback/get-feedback-by-product-id?productId=${productId}`;
-            try {
-                const response = await api.get(url);
-                console.log(response.data);
-                setFeedbacks(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [productId])
 
     const feedbackList = [
         {
@@ -99,7 +82,7 @@ const ProductFeedbackList = ({ productId, action }) => {
                         <div className="product-feedback-item">
                             <button
                                 className="remove-button"
-                                onClick={() => handlePopup(voucher.voucherId)}
+                                onClick={() => handlePopup(feedback.feedbackId)}
                             >
                                 <FaTrashAlt />
                             </button>

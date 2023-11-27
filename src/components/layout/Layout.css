@@ -5,7 +5,7 @@
 }
 
 #content {
-    background-image: url(/background-content.jpg);
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fbackground-content.jpg?alt=media&token=f51b4626-3023-4dfe-8658-fb74b6e94dd9");
     background-size: 20%;
     background-repeat: no-repeat;
     margin-top: 55px;
