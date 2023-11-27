@@ -8,13 +8,21 @@ import {
   SubNavItem,
 } from "./NavbarElements.jsx";
 import "./NavBar.css";
-import { FaRegListAlt, FaShoppingCart, FaSignOutAlt, FaUserEdit } from "react-icons/fa";
+import {
+  FaRegListAlt,
+  FaShoppingCart,
+  FaSignOutAlt,
+  FaUserEdit,
+} from "react-icons/fa";
 import SearchBar from "../search/SearchBar.jsx";
 import useAuth from "../../hooks/useAuth.jsx";
 import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Navbar = ({ className }) => {
   const [showSubNav, setShowSubNav] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleImgClick = () => {
     setShowSubNav(!showSubNav);

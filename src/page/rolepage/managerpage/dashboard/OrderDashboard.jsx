@@ -1,114 +1,112 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Dashboard.css';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
     from 'recharts';
 import { FaBox, FaMoneyBillWave, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import api from '../../../../components/utils/requestAPI';
 
-function OrderDashboard() {
-    const data = [
-        {
-            name: '1',
-            order: 100,
-            custom: 200,
+const OrderDashboard = () => {
 
-        },
-        {
-            name: '2',
-            order: 500,
-            custom: 138,
+    const [monthOrders, setMonthOrders] = useState([]);
+    const [dataset, setDataset] = useState([])
 
-        },
-        {
-            name: '3',
-            order: 100,
-            custom: 180,
-
-        },
-        {
-            name: '4',
-            order: 100,
-            custom: 398,
-
-        },
-        {
-            name: '5',
-            order: 100,
-            custom: 480,
-
-        },
-        {
-            name: '6',
-            order: 100,
-            custom: 300,
-
-        },
-        {
-            name: '7',
-            order: 100,
-            custom: 430,
-
-        },
-        {
-            name: '8',
-            order: 100,
-            custom: 400,
-
-        },
-        {
-            name: '9',
-            order: 100,
-            custom: 430,
-
-        },
-        {
-            name: '10',
-            order: 100,
-            custom: 300,
-
-        },
-        {
-            name: '11',
-            order: 100,
-            custom: 400,
-
-        },
-        {
-            name: '12',
-            order: 100,
-            custom: 300,
-
+    const fetchData = async () => {
+        const url = "/api/Order/get-Orders-By-Month";
+        try {
+            const response = await api.get(url);
+            console.log(response.data);
+            setMonthOrders(response.data);
+        } catch (error) {
+            console.error(error);
         }
-    ];
+    };
 
-    function formatCash(currency) {
-        return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        if (monthOrders.length > 0) {
+            const updatedData = monthOrders.map(order => ({
+                month: order.month,
+                order: order.num,
+                custom: 100,
+            }));
+            setDataset(updatedData)
+        }
+    }, [monthOrders]);
+
+    // function formatCash(currency) {
+    //     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    // }
+
+    const getTotalOrderQuantity = (data) => {
+        const totalOrderQuantity = data?.reduce((acc, entry) => acc + entry.order, 0);
+        return totalOrderQuantity;
+    };
+
+    const getTotalDesignOrderQuantity = (data) => {
+        const totalDesignOrderQuantity = data?.reduce((acc, entry) => acc + entry.custom, 0);
+        return totalDesignOrderQuantity;
+    };
+
+    const getMonthWithMostOrders = (data) => {
+        const monthCounts = {};
+
+        data?.forEach((entry) => {
+            const month = entry.month;
+            const total = entry.order + entry.custom;
+
+            if (!monthCounts[month]) {
+                monthCounts[month] = 0;
+            }
+
+            monthCounts[month] += total;
+        });
+
+        let mostOrdersMonth;
+        let maxTotal = 0;
+
+        for (let month in monthCounts) {
+            if (monthCounts[month] > maxTotal) {
+                mostOrdersMonth = month;
+                maxTotal = monthCounts[month];
+            }
+        }
+
+        return mostOrdersMonth;
     }
+
+    const totalOrderQuantity = getTotalOrderQuantity(dataset);
+    const totalDesignOrderQuantity = getTotalDesignOrderQuantity(dataset);
+    const totalOrder = totalOrderQuantity + totalDesignOrderQuantity;
+    const mostOrderMonth = getMonthWithMostOrders(dataset);
 
     return (
         <div className='dashboard'>
             <main className='main-container'>
-                <h3 className='main-title'>BẢNG THỐNG KÊ HÀNG HÓA</h3>
+                <h3 className='main-title'>BẢNG THỐNG KÊ ĐƠN HÀNG</h3>
                 <div className='main-cards'>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG SỐ LƯỢNG ĐƠN HÀNG</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1>200</h1>
+                        <h1>{totalOrder}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG ĐƠN HÀNG THIẾT KẾ</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1>12</h1>
+                        <h1>{totalDesignOrderQuantity}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>THÁNG CÓ NHIỀU ĐƠN NHẤT</h3>
                             <FaShoppingCart className='card_icon' />
                         </div>
-                        <h1 className='card-text'>THÁNG 7 (20)</h1>
+                        <h1 className='card-text'>THÁNG {mostOrderMonth}</h1>
                     </div>
                 </div>
 
@@ -119,7 +117,7 @@ function OrderDashboard() {
                             <BarChart
                                 width={1000}
                                 height={600}
-                                data={data}
+                                data={dataset}
                                 margin={{
                                     top: 5,
                                     right: 30,
@@ -128,7 +126,7 @@ function OrderDashboard() {
                                 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="month" />
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />

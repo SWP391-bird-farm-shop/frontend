@@ -1,79 +1,110 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Dashboard.css';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
   from 'recharts';
 import { FaBox, FaMoneyBillWave, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import api from '../../../../components/utils/requestAPI';
 
-function Dashboard() {
+const Dashboard = () => {
+
+  const [monthOrders, setMonthOrders] = useState([]);
+  const [dataset, setDataset] = useState([])
+
+  const fetchData = async () => {
+    const url = "/api/Order/get-Orders-By-Month";
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setMonthOrders(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (monthOrders.length > 0) {
+      const updatedData = monthOrders.map(order => ({
+        month: order.month,
+        revenue: order.sum + 100,
+        order: order.num + 200,
+      }));
+      setDataset(updatedData)
+    }
+  }, [monthOrders]);
+
   const data = [
     {
-      name: '1',
+      x: '1',
       revenue: 1000,
       inventory: 2000,
       order: 30
     },
     {
-      name: '2',
+      x: '2',
       revenue: 5000,
       inventory: 1398,
       order: 30
     },
     {
-      name: '3',
+      x: '3',
       revenue: 100,
       inventory: 1800,
       order: 30
     },
     {
-      name: '4',
+      x: '4',
       revenue: 100,
       inventory: 3908,
       order: 30
     },
     {
-      name: '5',
+      x: '5',
       revenue: 100,
       inventory: 4800,
       order: 30
     },
     {
-      name: '6',
+      x: '6',
       revenue: 100,
       inventory: 3800,
       order: 30
     },
     {
-      name: '7',
+      x: '7',
       revenue: 100,
       inventory: 4300,
       order: 30
     },
     {
-      name: '8',
+      x: '8',
       revenue: 100,
       inventory: 4300,
       order: 30
     },
     {
-      name: '9',
+      x: '9',
       revenue: 100,
       inventory: 4300,
       order: 30
     },
     {
-      name: '10',
+      x: '10',
       revenue: 100,
       inventory: 4300,
       order: 30
     },
     {
-      name: '11',
+      x: '11',
       revenue: 100,
       inventory: 4300,
       order: 30
     },
     {
-      name: '12',
+      x: '12',
       revenue: 100,
       inventory: 4300,
       order: 30,
@@ -83,6 +114,25 @@ function Dashboard() {
   function formatCash(currency) {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
+
+  const getTotalRevenue = (data) => {
+    const totalRevenue = data?.reduce((acc, entry) => acc + entry.revenue, 0);
+    return formatCash(totalRevenue);
+  };
+
+  const getTotalInventory = (data) => {
+    const totalInventory = data?.reduce((acc, entry) => acc + entry.inventory, 0);
+    return totalInventory;
+  };
+
+  const getTotalOrders = (data) => {
+    const totalOrders = data?.reduce((acc, entry) => acc + entry.order, 0);
+    return totalOrders;
+  };
+
+  const totalRevenue = getTotalRevenue(dataset);
+  // const totalInventory = getTotalInventory(dataset);
+  const totalOrder = getTotalOrders(dataset);
 
   return (
     <div className='dashboard'>
@@ -94,21 +144,21 @@ function Dashboard() {
               <h3>DOANH THU</h3>
               <FaMoneyBillWave className='card_icon' />
             </div>
-            <h1>₫{formatCash(3000000)}</h1>
+            <h1>{totalRevenue}₫</h1>
           </div>
           <div className='card'>
             <div className='card-inner'>
               <h3>HÀNG HÓA</h3>
               <FaBox className='card_icon' />
             </div>
-            <h1>12</h1>
+            {/* <h1>{totalInventory}</h1> */}
           </div>
           <div className='card'>
             <div className='card-inner'>
               <h3>ĐƠN HÀNG</h3>
               <FaShoppingCart className='card_icon' />
             </div>
-            <h1>10</h1>
+            <h1>{totalOrder}</h1>
           </div>
         </div>
 
@@ -119,7 +169,7 @@ function Dashboard() {
               <BarChart
                 width={1000}
                 height={600}
-                data={data}
+                data={dataset}
                 margin={{
                   top: 5,
                   right: 30,
@@ -128,7 +178,7 @@ function Dashboard() {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
@@ -152,11 +202,11 @@ function Dashboard() {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="x" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="inventory" fill="#8884d8" name='hàng hóa' />
+                <Bar dataKey="inventory" fill="#8884d8" name='hàng hóa đã bán' />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -167,7 +217,7 @@ function Dashboard() {
               <BarChart
                 width={1000}
                 height={600}
-                data={data}
+                data={dataset}
                 margin={{
                   top: 5,
                   right: 30,
@@ -176,7 +226,7 @@ function Dashboard() {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Legend />

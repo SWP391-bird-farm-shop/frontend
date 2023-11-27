@@ -34,7 +34,7 @@ const ConfirmPage = () => {
   if (order?.length > 0) {
     return (
       <div className="confirm-page">
-        <h1 className="confirm-page-title">Danh sách đơn hàng đã xác nhận</h1>
+        <h1 className="confirm-page-title">Danh sách đơn hàng</h1>
         <div className="confirmed-orders">
           {order?.map((detail) => (
             <div key={detail.orderId} className="confirmed-order">

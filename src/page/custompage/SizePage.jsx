@@ -15,116 +15,98 @@ const SizePage = () => {
   const [product, setProduct] = useState(null);
   const [sizeNames, setSizeNames] = useState([]);
   const [sizeData, setSizeData] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(sizeData[0]?.size1);
+  const [selectedSize, setSelectedSize] = useState("");
 
-  const fetchUserCage = async () => {
-    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+  const fetchData = async (style) => {
+    const url = `/api/Size/uniqueNames?styleId=${style}`;
     try {
       const response = await api.get(url);
-      console.log(response.data);
-      setProduct(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchData = async () => {
-    // const url = `/api/Size/get-by-style?styleid=S831874f7`;
-    // try {
-    // const response = await api.get(url);
-    // setListSize(response.data);
-    // } catch (error) {
-    // console.error(error);
-    // }
-    const url = "/api/Size/uniqueNames";
-    try {
-      const response = await api.get(url);
-      console.log(response.data);
       setSizeNames(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  // useEffect(() => {
-  // const url = "/api/Size/uniqueNames";
-  // try {
-  // const response = api.get(url);
-  // console.log(response.data);
-  // setSizeNames(response.data);
-  // } catch (error) {
-  // console.error(error);
-  // }
-  // });
+  const fetchUserCage = async () => {
+    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+    try {
+      const response = await api.get(url);
+      setProduct(response.data);
+      if (response.data) {
+        fetchData(response.data.productStyle);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserCage();
+  }, [product]);
 
   const fetchDataDescription = async () => {
+    const list = [];
     for (const sizeName of sizeNames) {
       const url = `/api/Size/get-by-name?SizeName=${sizeName}`;
       const response = await api.post(url);
-      console.log(sizeName);
-      console.log(response.data);
-      setSizeData((prevSizeData) => [...prevSizeData, response.data]);
+
+      response.data.forEach((item) => {
+        list.push(item);
+      });
     }
+    setSizeData(list);
   };
 
   useEffect(() => {
     fetchDataDescription();
-  }, []);
+  }, [sizeNames]);
 
   const handleSizeChange = (event) => {
+    setSelectedSize("");
     setSelectedSize(event.target.value);
   };
-  const renderSizeOptions = () => {
-    const currentSizeData = sizeData.filter((size) =>
-      sizeNames.reduce((acc, sizeName) => {
-        if (size.size1 === sizeName) {
-          acc.push(size);
-        }
-        return acc;
-      }, [])
+  const renderSizeOptions = (size) => {
+    const currentSizeData = sizeData.filter((item) => item.size1 === size);
+
+    return (
+      <select
+        value={selectedSize}
+        placeholder="Chọn kích thước"
+        onChange={handleSizeChange}
+      >
+        <option value={null} hidden>
+          Hãy chọn kích thước
+        </option>
+        {currentSizeData.map((size) => (
+          <option key={size.sizeId} value={size.sizeId}>
+            {size.sizeDescription} - ₫{formatCash(size.price)}
+          </option>
+        ))}
+      </select>
     );
-
-    currentSizeData.map((size) => {
-      console.log(size);
-    });
-
-    return currentSizeData.map((size) => {
-      <option key={size.sizeId} value={size.size1}>
-        {size.sizeDescription} - ₫{formatCash(size.price)}
-      </option>;
-    });
   };
-
-  useEffect(() => {
-    // fetchUserCage();
-    fetchData();
-  }, []);
 
   const handleButtonClick = async (event, name) => {
     event.preventDefault();
-    const url = "";
+    const url = "/api/ProductCustom/update-size-custom-product";
     const data = {
+      productId: product?.productCustomId,
       userId: auth?.user?.userId,
-      styleName: name,
+      sizeId: selectedSize,
     };
-
     setIsLoading(true);
-
     try {
-      const response = await api.post(url, data);
-
+      const response = await api.put(url, data);
       if (response) {
-        setSelectedStyle(styleName);
         navigate("/custom-products-material");
+        setIsLoading(false);
       }
-
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
-    }
 
-    if (isLoading) {
-      return;
+      if (isLoading) {
+        return;
+      }
     }
   };
 
@@ -140,7 +122,7 @@ const SizePage = () => {
           <li>
             <Link to="/custom-products-shape"> Hình Dáng </Link>
           </li>
-          <li>
+          <li  className="bc-grey">
             <Link to="/custom-products-size"> Kích Thước </Link>
           </li>
           <li>
@@ -148,9 +130,6 @@ const SizePage = () => {
           </li>
           <li>
             <Link to="/custom-products-color">Màu Sắc </Link>
-          </li>
-          <li>
-            <Link to="/custom-products-end">Tổng Thể </Link>
           </li>
         </ul>
       </div>
@@ -192,7 +171,7 @@ const SizePage = () => {
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
-              {/* <p>Tên sản phẩm: {product.productName}</p> */}
+              {/* <p>Tên lồng: {product.productName}</p> */}
               <p>Hình dáng: </p>
               <p>
                 Kích thước: <span>100x50"</span>

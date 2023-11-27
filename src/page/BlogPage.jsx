@@ -85,7 +85,7 @@ const BlogPage = () => {
   }
 
   if (auth?.user?.roleId === "3") {
-    if (action === "view") {
+    if (action === "view-blog") {
       return (
         <div className="blog-page">
           <div className="blog-list">
@@ -118,7 +118,7 @@ const BlogPage = () => {
         </div>
       );
     }
-    if (action === 'edit') {
+    if (action === 'edit-blog') {
       return (
         <div className="blog-page">
           <div className="blog-list">

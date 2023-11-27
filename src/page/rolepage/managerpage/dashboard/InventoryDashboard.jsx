@@ -1,88 +1,146 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Dashboard.css';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
     from 'recharts';
 import { FaBox, FaMoneyBillWave, FaShoppingCart, FaUsers } from 'react-icons/fa';
+import api from '../../../../components/utils/requestAPI';
 
-function InventoryDashboard() {
+const InventoryDashboard = () => {
+
+    const [allProducts, setAllProducts] = useState();
+
+    const fetchData = async () => {
+        const url = "/api/Product/Count-all-products";
+        try {
+            const response = await api.get(url);
+            console.log(response.data);
+            setAllProducts(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const data = [
         {
-            name: '1',
+            month: 1,
             cage: 100,
             food: 200,
             toy: 200,
         },
         {
-            name: '2',
+            month: 1,
             cage: 500,
             food: 138,
             toy: 200,
         },
         {
-            name: '3',
+            month: 1,
             cage: 100,
             food: 180,
             toy: 200,
         },
         {
-            name: '4',
+            month: 1,
             cage: 100,
             food: 398,
             toy: 200,
         },
         {
-            name: '5',
+            month: 1,
             cage: 100,
             food: 480,
             toy: 200,
         },
         {
-            name: '6',
+            month: 1,
             cage: 100,
             food: 300,
             toy: 200,
         },
         {
-            name: '7',
+            month: 1,
             cage: 100,
             food: 430,
             toy: 200,
         },
         {
-            name: '8',
+            month: 1,
             cage: 100,
             food: 400,
             toy: 200,
         },
         {
-            name: '9',
+            month: 1,
             cage: 100,
             food: 430,
             toy: 200,
         },
         {
-            name: '10',
+            month: 10,
             cage: 100,
             food: 300,
             toy: 200,
         },
         {
-            name: '11',
+            month: 11,
             cage: 100,
             food: 400,
             toy: 200,
         },
         {
-            name: '12',
+            month: 12,
             cage: 100,
             food: 300,
             toy: 200,
         }
     ];
 
-    function formatCash(currency) {
-        return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
+
+
+    // function formatCash(currency) {
+    //     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    // }
+
+    const getTotalQuantity = (data) => {
+        const totalQuantity = data.reduce((acc, entry) => acc + entry.cage + entry.food + entry.toy, 0);
+        return totalQuantity;
+    };
+
+    const getTotalQuantitySold = (data) => {
+        const totalQuantitySold = data.reduce((acc, entry) => acc + entry.cage + entry.food + entry.toy, 0);
+        return totalQuantitySold;
+    };
+
+    // sản phẩm bán chạy nhất
+    const getBestSellingProduct = () => {
+        const products = data.map(entry => ({
+            name: 'lồng',
+            quantity: entry.cage,
+        }, {
+            name: 'thức ăn',
+            quantity: entry.food,
+        }, {
+            name: 'phụ kiện - đồ chơi',
+            quantity: entry.toy,
+        }));
+
+        const totalQuantities = {};
+
+        products.forEach(product => {
+            const { name, quantity } = product;
+            totalQuantities[name] = (totalQuantities[name] || 0) + quantity;
+        });
+
+        const bestSellingProduct = Object.keys(totalQuantities).reduce((a, b) =>
+            totalQuantities[a] > totalQuantities[b] ? a : b
+        );
+
+        return bestSellingProduct;
+    };
 
     return (
         <div className='dashboard'>
@@ -94,76 +152,28 @@ function InventoryDashboard() {
                             <h3>TỔNG SỐ LƯỢNG</h3>
                             <FaBox className='card_icon' />
                         </div>
-                        <h1>200</h1>
+                        <h1>{getTotalQuantity(data)}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>TỔNG SỐ LƯỢNG ĐÃ BÁN</h3>
                             <FaBox className='card_icon' />
                         </div>
-                        <h1>12</h1>
+                        <h1>{getTotalQuantitySold(data)}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>SẢN PHẨM BÁN CHẠY NHẤT</h3>
                             <FaBox className='card_icon' />
                         </div>
-                        <h1 className='card-text'>LỒNG CHIM A (20)</h1>
+                        <h1 className='card-text'>{getBestSellingProduct()}</h1>
                     </div>
                 </div>
 
                 <div className='charts'>
-                    <div className="chart">
-                        <h3 className="chart-title">TỔNG SỐ LƯỢNG</h3>
-                        {/* <ResponsiveContainer width="100%" height="100%">
-                            <BarChart
-                                width={1000}
-                                height={600}
-                                data={data}
-                                margin={{
-                                    top: 5,
-                                    right: 30,
-                                    left: 20,
-                                    bottom: 5,
-                                }}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Bar dataKey="cage" fill="#8884d8" name='lồng' />
-                                <Bar dataKey="food" fill="#82ca9d" name='thức ăn' />
-                                <Bar dataKey="toy" fill="#82ca9d" name='phụ kiện - đồ chơi' />
-                            </BarChart>
-                        </ResponsiveContainer> */}
-                        <ResponsiveContainer width="100%" height="100%">
-                            <LineChart
-                                width={500}
-                                height={300}
-                                data={data}
-                                margin={{
-                                    top: 5,
-                                    right: 30,
-                                    left: 20,
-                                    bottom: 5,
-                                }}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Line type="monotone" dataKey="cage" stroke="#8884d8" name='lồng' activeDot={{ r: 6 }} />
-                                <Line type="monotone" dataKey="food" stroke="#82ca9d" name='thức ăn' activeDot={{ r: 6 }} />
-                                <Line type="monotone" dataKey="toy" stroke="#82ca9d" name='phụ kiện - đồ chơi' activeDot={{ r: 6 }} />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-
-                    <div className="chart">
+                    <div className="chart order">
                         <h3 className="chart-title">TỔNG SỐ LƯỢNG ĐÃ BÁN</h3>
-                        {/* <ResponsiveContainer width="100%" height="100%">
+                        <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 width={1000}
                                 height={600}
@@ -176,36 +186,12 @@ function InventoryDashboard() {
                                 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="month" />
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="cage" fill="#8884d8" name='lồng' />
-                                <Bar dataKey="food" fill="#82ca9d" name='thức ăn' />
-                                <Bar dataKey="toy" fill="#82ca9d" name='phụ kiện - đồ chơi' />
+                                <Bar dataKey="food" fill="#8884d8" name='tổng số lượng đã bán' />
                             </BarChart>
-                        </ResponsiveContainer> */}
-                        <ResponsiveContainer width="100%" height="100%">
-                            <LineChart
-                                width={500}
-                                height={300}
-                                data={data}
-                                margin={{
-                                    top: 5,
-                                    right: 30,
-                                    left: 20,
-                                    bottom: 5,
-                                }}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Line type="monotone" dataKey="cage" stroke="#8884d8" name='lồng' activeDot={{ r: 6 }} />
-                                <Line type="monotone" dataKey="food" stroke="#82ca9d" name='thức ăn' activeDot={{ r: 6 }} />
-                                <Line type="monotone" dataKey="toy" stroke="#82ca9d" name='phụ kiện - đồ chơi' activeDot={{ r: 6 }} />
-                            </LineChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
