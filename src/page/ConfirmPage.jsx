@@ -20,7 +20,7 @@ const ConfirmPage = () => {
     };
     try {
       const response = await api.post(url, data);
-      console.log(response.data.status);
+      console.log(response.data);
       setOrder(response.data);
     } catch (error) {
       console.error(error);
@@ -78,12 +78,18 @@ const ConfirmPage = () => {
         <h1 className="confirm-page-title">Danh sách đơn hàng đã xác nhận</h1>
         <div className="confirmed-orders">
           <div className="empty-cart-confirm">
-            <img src="/empty-cart.png" alt="empty-cart" className="empty-cart-confirm-img" />
-            <h3 className="empty-cart-confirm-text">Bạn chưa thêm sản phẩm vào giỏ hàng</h3>
+            <img
+              src="/empty-cart.png"
+              alt="empty-cart"
+              className="empty-cart-confirm-img"
+            />
+            <h3 className="empty-cart-confirm-text">
+              Bạn chưa thêm sản phẩm vào giỏ hàng
+            </h3>
           </div>
         </div>
       </div>
-    )
+    );
   }
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CustomPage.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../components/utils/requestAPI";
 
@@ -8,25 +8,37 @@ const ColorPage = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
+  const { productId } = useParams();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [product, setProduct] = useState(null);
   const [listColor, setListColor] = useState(null);
 
+  const current = new Date();
+  const date = `${current.getFullYear()}-${
+    current.getMonth() + 1
+  }-${current.getDate()}`;
+
   const fetchUserCage = async () => {
-    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+    const url = "/api/ProductCustom/get-product-custom-for-user";
+    const data = {
+      userId: auth?.user?.userId,
+      productId: productId,
+    };
     try {
-      const response = await api.get(url);
+      const response = await api.post(url, data);
+      console.log(response.data);
       setProduct(response.data);
-      if (response.data) {
-        fetchData(response.data.productMaterial);
+      if (response.data != null) {
+        fetchData();
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const fetchData = async (material) => {
+  const fetchData = async () => {
     // const url = `/api/Color/get-for-custom?materialId=${material}`;
     const url = `/api/Color/get-for-custom`;
     try {
@@ -37,26 +49,28 @@ const ColorPage = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchUserCage();
   }, []);
 
   const handleButtonClick = async (event, name) => {
     event.preventDefault();
-    const url = "";
+    console.log(name);
+    const url = "/api/ProductCustom/update-color-custom-product";
     const data = {
       userId: auth?.user?.userId,
-      styleName: name,
+      productId: productId,
+      colorId: name,
     };
 
     setIsLoading(true);
 
     try {
-      const response = await api.post(url, data);
-
-      if (response) {
-        setSelectedStyle(styleName);
-        navigate("/custom-products-end");
+      const response = await api.put(url, data);
+      console.log(response.data);
+      if (response.data) {
+        createNewOrderCustom(response.data.price);
       }
 
       setIsLoading(false);
@@ -64,6 +78,53 @@ const ColorPage = () => {
       console.log(error);
     }
 
+    if (isLoading) {
+      return;
+    }
+  };
+
+  //function to add new order => order custom
+
+  const createCustomOrderDetail = async (orderId) => {
+    const url = `/api/OrderDetail/create-new`;
+    const data = {
+      orderId: orderId,
+      productId: productId,
+      feedbackId: null,
+      quantity: 1,
+    };
+    setIsLoading(true);
+
+    try {
+      const response = await api.post(url, data);
+      if (response.data) navigate(`/custom-products-end/${orderId}`);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+    if (isLoading) {
+      return;
+    }
+  };
+
+  const createNewOrderCustom = async (total) => {
+    const url = "/api/Order/create-new-custom-product";
+    const data = {
+      userID: auth.user.userId,
+      productCustomId: productId,
+      note: "string",
+      createDate: date,
+      total: total,
+    };
+    setIsLoading(true);
+    try {
+      const response = await api.post(url, data);
+      console.log(response.data);
+      createCustomOrderDetail(response.data.orderId);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
     if (isLoading) {
       return;
     }
@@ -107,7 +168,10 @@ const ColorPage = () => {
                   alt="Chim"
                   className="custom-product-image"
                 />
-                <button onClick={handleButtonClick} className="choose-button">
+                <button
+                  onClick={(event) => handleButtonClick(event, color.colorId)}
+                  className="choose-button"
+                >
                   Chọn
                 </button>
               </div>
