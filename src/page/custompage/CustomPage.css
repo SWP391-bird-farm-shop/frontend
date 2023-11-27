@@ -117,6 +117,7 @@
 }
 
 .custom-detail-item {
+  float: left;
   width: 25%;
   border: 2px solid #ccc;
   border-radius: 5px;

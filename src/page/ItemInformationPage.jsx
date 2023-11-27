@@ -10,6 +10,7 @@ import ProductFeedbackList from "../components/feedback/ProductFeedbackList";
 
 const ItemInformation = () => {
   const { auth } = useAuth();
+  const { action } = useParams();
 
   const { productId } = useParams();
   const [order, setOrder] = useState(null);
@@ -21,9 +22,8 @@ const ItemInformation = () => {
   const [popup, setPopup] = useState(false);
 
   const current = new Date();
-  const date = `${current.getFullYear()}-${
-    current.getMonth() + 1
-  }-${current.getDate()}`;
+  const date = `${current.getFullYear()}-${current.getMonth() + 1
+    }-${current.getDate()}`;
 
   const navigate = useNavigate();
 
@@ -199,50 +199,138 @@ const ItemInformation = () => {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  return (
-    <div className="product-information-layout">
-      <div className="product-information-container">
-        <div className="product-information-image">
-          <img src={product?.image[0]?.imageUrl} alt="Food" />
-        </div>
-        <div className="product-information-summary">
-          <h2 className="product-information-title">{product?.productName}</h2>
-          <p className="product-information-price">₫{formatCash(product?.price)}</p>
-          <p className="product-information-description">{product?.description}</p>
-          <div className="quantity-section">
-            <div className="quantity">
-              <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
-              <input
-                className="quantity-number"
-                type="number"
-                value={quantity}
-                readOnly
-              />
-              <button className="quantity-button right" onClick={incrementQuantity}> <FaPlus className="quantity-icon" /></button>
+  if (auth?.user?.roleId === "3") {
+    if (action === "view-product") {
+      return (
+        <div className="product-information-layout">
+          <div className="product-information-container">
+            <div className="product-information-image">
+              <img src={product?.image[0]?.imageUrl} alt="Food" />
             </div>
-            <p className="quantity-inventory">{message}</p>
+            <div className="product-information-summary">
+              <h2 className="product-information-title">{product?.productName}</h2>
+              <p className="product-information-price">₫{formatCash(product?.price)}</p>
+              <p className="product-information-description">{product?.description}</p>
+              <div className="quantity-section">
+                <div className="quantity">
+                  <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
+                  <input
+                    className="quantity-number"
+                    type="number"
+                    value={quantity}
+                    readOnly
+                  />
+                  <button className="quantity-button right" onClick={incrementQuantity}> <FaPlus className="quantity-icon" /></button>
+                </div>
+                <p className="quantity-inventory">{message}</p>
+              </div>
+            </div>
           </div>
-          <button className="add-to-cart" onClick={handleAuth}>
-            Thêm vào giỏ hàng
-          </button>{" "}
+
+          <div className="product-information-detail">
+            <h4 className="product-information-detail-heading">Mô tả sản phẩm</h4>
+            <p className="product-information-detail-description">{product?.description}</p>
+          </div>
+
+          <ProductFeedbackList productId={productId} action={"view-product"}/>
+
+          <div className="different-products-carousel">
+            <h3 className="different-products-carousel-heading">
+              Các sản phẩm tương tự
+            </h3>
+            <Carousel className='Product' />
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="product-information-layout">
+          <div className="product-information-container">
+            <div className="product-information-image">
+              <img src={product?.image[0]?.imageUrl} alt="Food" />
+            </div>
+            <div className="product-information-summary">
+              <h2 className="product-information-title">{product?.productName}</h2>
+              <p className="product-information-price">₫{formatCash(product?.price)}</p>
+              <p className="product-information-description">{product?.description}</p>
+              <div className="quantity-section">
+                <div className="quantity">
+                  <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
+                  <input
+                    className="quantity-number"
+                    type="number"
+                    value={quantity}
+                    readOnly
+                  />
+                  <button className="quantity-button right" onClick={incrementQuantity}> <FaPlus className="quantity-icon" /></button>
+                </div>
+                <p className="quantity-inventory">{message}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="product-information-detail">
+            <h4 className="product-information-detail-heading">Mô tả sản phẩm</h4>
+            <p className="product-information-detail-description">{product?.description}</p>
+          </div>
+
+          <ProductFeedbackList productId={productId} action={"edit-product"}/>
+
+          <div className="different-products-carousel">
+            <h3 className="different-products-carousel-heading">
+              Các sản phẩm tương tự
+            </h3>
+            <Carousel className='Product' />
+          </div>
+        </div>
+      )
+    }
+  } else {
+    return (
+      <div className="product-information-layout">
+        <div className="product-information-container">
+          <div className="product-information-image">
+            <img src={product?.image[0]?.imageUrl} alt="Food" />
+          </div>
+          <div className="product-information-summary">
+            <h2 className="product-information-title">{product?.productName}</h2>
+            <p className="product-information-price">₫{formatCash(product?.price)}</p>
+            <p className="product-information-description">{product?.description}</p>
+            <div className="quantity-section">
+              <div className="quantity">
+                <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
+                <input
+                  className="quantity-number"
+                  type="number"
+                  value={quantity}
+                  readOnly
+                />
+                <button className="quantity-button right" onClick={incrementQuantity}> <FaPlus className="quantity-icon" /></button>
+              </div>
+              <p className="quantity-inventory">{message}</p>
+            </div>
+            <button className="add-to-cart" onClick={handleAuth}>
+              Thêm vào giỏ hàng
+            </button>{" "}
+          </div>
+        </div>
+
+        <div className="product-information-detail">
+          <h4 className="product-information-detail-heading">Mô tả sản phẩm</h4>
+          <p className="product-information-detail-description">{product?.description}</p>
+        </div>
+
+        <ProductFeedbackList productId={productId} />
+
+        <div className="different-products-carousel">
+          <h3 className="different-products-carousel-heading">
+            Các sản phẩm tương tự
+          </h3>
+          <Carousel className='Product' />
         </div>
       </div>
-
-      <div className="product-information-detail">
-        <h4 className="product-information-detail-heading">Mô tả sản phẩm</h4>
-        <p className="product-information-detail-description">{product?.description}</p>
-      </div>
-
-      <ProductFeedbackList productId={productId} />
-      
-      <div className="different-products-carousel">
-        <h3 className="different-products-carousel-heading">
-          Các sản phẩm tương tự
-        </h3>
-        <Carousel className='Product'/>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default ItemInformation;
