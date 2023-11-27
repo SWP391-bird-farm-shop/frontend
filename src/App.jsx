@@ -1,6 +1,6 @@
 import { Navigate, Routes, Route } from "react-router-dom";
 import RequireAuth from "./components/ReqAuth/RequireAuth";
-import Layout from "./components/layout/layout";
+import Layout from "./components/layout/Layout";
 import HomePage from "./page/HomePage";
 import CagePage from "./page/productpage/CagePage";
 import FoodPage from "./page/productpage/FoodPage";
