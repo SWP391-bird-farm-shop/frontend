@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./CustomPage.css";
 import ComboBox from "../../components/combobox/ComboBox";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../components/utils/requestAPI";
 
 const SizePage = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
+
+  const { productId } = useParams();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,11 +18,24 @@ const SizePage = () => {
   const [sizeNames, setSizeNames] = useState([]);
   const [sizeData, setSizeData] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
+  const [styleData, setStyleData] = useState(null);
+
+  const fetchStyleData = async (id) => {
+    const url = `/api/Style/get-by-id?styleId=${id}`;
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setStyleData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fetchData = async (style) => {
     const url = `/api/Size/uniqueNames?styleId=${style}`;
     try {
       const response = await api.get(url);
+      console.log(response.data);
       setSizeNames(response.data);
     } catch (error) {
       console.error(error);
@@ -28,12 +43,17 @@ const SizePage = () => {
   };
 
   const fetchUserCage = async () => {
-    const url = `/api/ProductCustom/get-product-custom-for-user?UserId=${auth?.user?.userId}`;
+    const url = "/api/ProductCustom/get-product-custom-for-user";
+    const data = {
+      userId: auth?.user?.userId,
+      productId: productId,
+    };
     try {
-      const response = await api.get(url);
+      const response = await api.post(url, data);
       setProduct(response.data);
       if (response.data) {
         fetchData(response.data.productStyle);
+        fetchStyleData(response.data.productStyle);
       }
     } catch (error) {
       console.log(error);
@@ -42,7 +62,7 @@ const SizePage = () => {
 
   useEffect(() => {
     fetchUserCage();
-  }, [product]);
+  }, []);
 
   const fetchDataDescription = async () => {
     const list = [];
@@ -53,6 +73,7 @@ const SizePage = () => {
       response.data.forEach((item) => {
         list.push(item);
       });
+      console.log(list);
     }
     setSizeData(list);
   };
@@ -98,7 +119,7 @@ const SizePage = () => {
     try {
       const response = await api.put(url, data);
       if (response) {
-        navigate("/custom-products-material");
+        navigate(`/custom-products-material/${productId}`);
         setIsLoading(false);
       }
     } catch (error) {
@@ -113,87 +134,105 @@ const SizePage = () => {
   function formatCash(currency) {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
-
-  return (
-    <div className="custom-page">
-      <h2 className="custom-title">Thiết Kế Lồng</h2>
-      <div className="custom-option">
-        <ul>
-          <li>
-            <Link to="/custom-products-shape"> Hình Dáng </Link>
-          </li>
-          <li  className="bc-grey">
-            <Link to="/custom-products-size"> Kích Thước </Link>
-          </li>
-          <li>
-            <Link to="/custom-products-material"> Chất Liệu </Link>
-          </li>
-          <li>
-            <Link to="/custom-products-color">Màu Sắc </Link>
-          </li>
-        </ul>
-      </div>
-
-      <div className="custom-option-detail">
-        <h2 className="custom-option-detail-title">
-          Chọn Kích Thuớc Lồng Của Bạn{" "}
-        </h2>
-        <div className="custom-choose-and-detail">
-          <div className="custom-option-detail-list">
-            {sizeNames?.map((size) => (
-              <div className="custom-detail-item">
-                <h3> Thanh Đan: {size} </h3>
-                <img
-                  src="public\Panel\5.jpg"
-                  alt="Chim"
-                  className="custom-product-image"
-                />
-                <p>{size.sizeDescription}</p>
-                <div className="combo-box-product">
-                  <select
-                    value={selectedSize}
-                    onChange={handleSizeChange}
-                    placeholder="Chọn kích thước"
-                  >
-                    <option value="" hidden>
-                      Chọn kích thước lồng
-                    </option>
-                    {renderSizeOptions()}
-                  </select>
+  if (productId !== null) {
+    return (
+      <div className="custom-page">
+        <h2 className="custom-title">Thiết Kế Lồng</h2>
+        <div className="custom-option">
+          <ul>
+            <li className="bc-grey">
+              <Link to="/custom-products-shape"> Hình Dáng </Link>
+            </li>
+            <li>
+              <Link to="/custom-products-size"> Kích Thước </Link>
+            </li>
+            <li>
+              <Link to="/custom-products-material"> Chất Liệu </Link>
+            </li>
+            <li>
+              <Link to="/custom-products-color">Màu Sắc </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="custom-option-detail">
+          <h2 className="custom-option-detail-title">
+            Chọn Kích Thuớc Lồng Của Bạn{" "}
+          </h2>
+          <div className="custom-choose-and-detail">
+            <div className="custom-option-detail-list">
+              {sizeNames?.map((size) => (
+                <div className="custom-detail-item">
+                  <h3> Thanh Đan: {size} </h3>
+                  <img
+                    src="public\Panel\5.jpg"
+                    alt="Chim"
+                    className="custom-product-image"
+                  />
+                  <p>{size.sizeDescription}</p>
+                  <div className="combo-box-product">
+                    {renderSizeOptions(size)}
+                  </div>
+                  <button onClick={handleButtonClick} className="choose-button">
+                    Chọn
+                  </button>
                 </div>
-                <button onClick={handleButtonClick} className="choose-button">
-                  Chọn
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <div className="custom-summary">
-            <div className="custom-summary-detail">
-              <h2>Thông tin lồng</h2>
-              {/* <p>Tên lồng: {product.productName}</p> */}
-              <p>Hình dáng: </p>
-              <p>
-                Kích thước: <span>100x50"</span>
-              </p>
-              <p>
-                Vật liệu: <span>Vàng</span>
-              </p>
-              <p>
-                Màu sắc: <span>Đỏ</span>
-              </p>
-
-              <h4>Giá Hiện Tại: ₫{formatCash(50000)}</h4>
+              ))}
             </div>
 
-            <div className="custom-summary-reset">
-              <button type="submit">Thiết Lập Lại Đơn Hàng</button>
+            <div className="custom-summary">
+              <div className="custom-summary-detail">
+                <h2>Thông tin lồng</h2>
+                <p>Tên lồng: {product?.productName}</p>
+                <p>Hình dáng: {styleData?.styleName} </p>
+                <p>
+                  Kích thước: <span>Chưa chọn</span>
+                </p>
+                <p>
+                  Vật liệu: <span>Chưa chọn</span>
+                </p>
+                <p>
+                  Màu sắc: <span>Chưa chọn</span>
+                </p>
+
+                <h4>Giá Hiện Tại: ₫{formatCash(product?.price)}</h4>
+              </div>
+
+              <div className="custom-summary-reset">
+                <button type="submit">Thiết Lập Lại Đơn Hàng</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="custom-page">
+        <h2 className="custom-title">Thiết Kế Lồng</h2>
+        <div className="custom-option">
+          <ul>
+            <li className="bc-grey">
+              <Link to="/custom-products-shape"> Hình Dáng </Link>
+            </li>
+            <li>
+              <Link to="/custom-products-size"> Kích Thước </Link>
+            </li>
+            <li>
+              <Link to="/custom-products-material"> Chất Liệu </Link>
+            </li>
+            <li>
+              <Link to="/custom-products-color">Màu Sắc </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="custom-option-detail">
+          <h2 className="custom-option-detail-title">
+            Xin hãy hoàn thành bước trước đó
+          </h2>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default SizePage;
