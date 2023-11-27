@@ -154,7 +154,6 @@ const SizePage = () => {
             </li>
           </ul>
         </div>
-
         <div className="custom-option-detail">
           <h2 className="custom-option-detail-title">
             Chọn Kích Thuớc Lồng Của Bạn{" "}

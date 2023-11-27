@@ -87,7 +87,7 @@ const ManageAccount = () => {
         <table className="user-table">
           <thead>
             <tr>
-              {/* <th>Ảnh đại diện</th> */}
+              <th>Ảnh đại diện</th>
               <th>Tên đăng nhập</th>
               <th>Chức vụ</th>
               <th>Họ và tên</th>
@@ -134,7 +134,7 @@ const ManageAccount = () => {
     );
   } else {
     return (
-      <div className="edit">
+      <div className="edit-account">
         <h1 className="page-title">Tài khoản</h1>
         <table className="user-table">
           <thead>

@@ -6,7 +6,7 @@ const ViewOrderPage = () => {
 
     const { action } = useParams();
 
-    if (action === view) {
+    if (action === "view-order") {
         return (
             <div className="order-page">
                 {/* <div className="order-customer-info-section"> */}

@@ -12,7 +12,7 @@ const SpeciesPage = () => {
             <About birdId={birdId}/>
             <div className="bird-of-species-section">
                 <h3>Lồng phù hợp với chim</h3>
-                <CageList />
+                <CageList birdId={birdId}/>
             </div>
             <div className="different-species-carousel">
                 <h3>Các loài chim khác</h3>

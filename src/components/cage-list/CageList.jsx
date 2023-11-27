@@ -3,13 +3,13 @@ import './CageList.css'; // Import the CSS file
 import api from '../utils/requestAPI';
 import { Link } from 'react-router-dom';
 
-const CageList = () => {
+const CageList = ({birdId}) => {
 
     const [cage, setCage] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
-            const url = '';
+            const url = `/api/Product/get-bird-by-id?birdID=${birdId}`;
             try {
                 const response = await api.get(url);
                 console.log(response.data);
@@ -28,7 +28,7 @@ const CageList = () => {
     return (
         <div className="list-item">
             {cage?.map((product) => (
-                <Link to={`/item-info/${product.productId}`} className="list-item-container">
+                <Link to={`/item-info/${product.productId}`} className="list-item-container" key={product.productId}>
                     <div className="list-item-image">
                         {product.image.map((image) => (
                             <img src={image.imageUrl} alt="Cage" key={image.imageId} />
