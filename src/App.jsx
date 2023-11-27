@@ -80,23 +80,6 @@ const App = () => {
         <Route path="/item-info/:productId" element={<ItemInformation />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/term-condition" element={<TermsAndConditionsPage />} />
-        <Route element={<RoleLayout />}>
-          <Route
-            path="/create-voucher/:action"
-            element={<CreateVoucherPage />}
-          />
-          <Route path="/add-product/:action" element={<AddProductPage />} />
-          <Route
-            path="/update-product/:action/:productId"
-            element={<AddProductPage />}
-          />
-          <Route path="/product/:action" element={<ProductPage />} />
-          <Route path="/voucher/:action" element={<VoucherPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/revenue" element={<RevenueDashboard />} />
-          <Route path="/dashboard/inventory" element={<InventoryDashboard />} />
-          <Route path="/dashboard/order" element={<OrderDashboard />} />
-        </Route>
       </Route>
 
       {/* user routes */}
@@ -188,7 +171,10 @@ const App = () => {
           <Route path="/manage-blogs/:action" element={<BlogPage />} />
           <Route path="/view-blog/:blogId" element={<BlogContentPage />} />
           <Route path="/feedback/:action" element={<FeedbackPage />} />
-        <Route path="/item-info/:action/:productId" element={<ItemInformation />} />
+          <Route
+            path="/item-info/:action/:productId"
+            element={<ItemInformation />}
+          />
           <Route path="/order/:action" element={<ViewOrderPage />} />
         </Route>
       </Route>
