@@ -41,7 +41,8 @@ const ManageNavbar = ({ className }) => {
           <Bars />
           <div id="logo">
             <Link to="/admin-page">
-              <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fbcs-icon.png?alt=media&token=cba6ce82-1150-4239-83ac-9a61b5ae4382" alt="bcs-logo" />
+              <img src="/bcs-icon.png" alt="bcs-logo" />
+              {/* <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fbcs-icon.png?alt=media&token=cba6ce82-1150-4239-83ac-9a61b5ae4382" alt="bcs-logo" /> */}
             </Link>
           </div>
           <NavMenu className="first-role-section">
@@ -56,7 +57,7 @@ const ManageNavbar = ({ className }) => {
             <p className="manage-navbar-user-name">{auth?.user?.fullName}</p>
             <NavLink>
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/default-non-user-no-photo-1.jpg?alt=media&token=64d98533-d6cc-4560-a48e-d2e75686045c"
+                src="/chaomao.png"
                 alt=""
                 className="manage-navbar-user-img"
                 onClick={handleImgClick}
@@ -95,7 +96,8 @@ const ManageNavbar = ({ className }) => {
           <Bars />
           <div id="logo">
             <Link to="/manager-page">
-              <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fbcs-icon.png?alt=media&token=cba6ce82-1150-4239-83ac-9a61b5ae4382" alt="bcs-logo" />
+              <img src="/bcs-icon.png" alt="bcs-logo" />
+              {/* <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fbcs-icon.png?alt=media&token=cba6ce82-1150-4239-83ac-9a61b5ae4382" alt="bcs-logo" /> */}
             </Link>
           </div>
           <NavMenu className="first-role-section">
@@ -122,7 +124,8 @@ const ManageNavbar = ({ className }) => {
             <p className="manage-navbar-user-name">{auth?.user?.fullName}</p>
             <NavLink>
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/default-non-user-no-photo-1.jpg?alt=media&token=64d98533-d6cc-4560-a48e-d2e75686045c"
+                src="/chaomao.png"
+                // src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/default-non-user-no-photo-1.jpg?alt=media&token=64d98533-d6cc-4560-a48e-d2e75686045c"
                 alt=""
                 className="manage-navbar-user-img"
                 onClick={handleImgClick}
@@ -159,7 +162,8 @@ const ManageNavbar = ({ className }) => {
           <Bars />
           <div id="logo">
             <Link to="/staff-page">
-              <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fbcs-icon.png?alt=media&token=cba6ce82-1150-4239-83ac-9a61b5ae4382" alt="bcs-logo" />
+              <img src="/bcs-icon.png" alt="bcs-logo" />
+              {/* <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fbcs-icon.png?alt=media&token=cba6ce82-1150-4239-83ac-9a61b5ae4382" alt="bcs-logo" /> */}
             </Link>
           </div>
           <NavMenu className="first-role-section">
@@ -178,7 +182,8 @@ const ManageNavbar = ({ className }) => {
             <p className="manage-navbar-user-name">{auth?.user?.fullName}</p>
             <NavLink>
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/default-non-user-no-photo-1.jpg?alt=media&token=64d98533-d6cc-4560-a48e-d2e75686045c"
+                src="/chaomao.png"
+                // src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/default-non-user-no-photo-1.jpg?alt=media&token=64d98533-d6cc-4560-a48e-d2e75686045c"
                 alt=""
                 className="manage-navbar-user-img"
                 onClick={handleImgClick}
@@ -211,6 +216,7 @@ const ManageNavbar = ({ className }) => {
       //     <Bars />
       //     <div id="logo">
       //       <Link to="/manager-page">
+      //         <img src="/bcs-icon.png" alt="bcs-logo" />
       //         <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fbcs-icon.png?alt=media&token=cba6ce82-1150-4239-83ac-9a61b5ae4382" alt="bcs-logo" />
       //       </Link>
       //     </div>
@@ -238,6 +244,7 @@ const ManageNavbar = ({ className }) => {
       //       <p className="manage-navbar-user-name">{auth?.user?.fullName}</p>
       //       <NavLink>
       //         <img
+      //           src="/chaomao.png"
       //           src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/default-non-user-no-photo-1.jpg?alt=media&token=64d98533-d6cc-4560-a48e-d2e75686045c"
       //           alt=""
       //           className="manage-navbar-user-img"

@@ -203,9 +203,9 @@ const InventoryDashboard = () => {
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey="cage" fill="#8884d8" name='lồng' />
-                                <Bar dataKey="food" fill="#8884d8" name='thức ăn' />
+                                <Bar dataKey="food" fill="#4484d8" name='thức ăn' />
                                 <Bar dataKey="toy" fill="#888888" name='phụ kiện đồ chơi' />
-                                <Bar dataKey="custom" fill="#8684d8" name='lồng thiết kế' />
+                                <Bar dataKey="custom" fill="#8664d6" name='lồng thiết kế' />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
