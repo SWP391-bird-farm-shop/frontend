@@ -15,10 +15,44 @@ const ColorPage = () => {
   const [product, setProduct] = useState(null);
   const [listColor, setListColor] = useState(null);
 
+  const [styleData, setStyleData] = useState(null);
+  const [sizeData, setSizeData] = useState(null);
+  const [materialData, setMaterialData] = useState(null);
+
   const current = new Date();
   const date = `${current.getFullYear()}-${
     current.getMonth() + 1
   }-${current.getDate()}`;
+
+  const fetchStyleData = async (id) => {
+    const url = `/api/Style/get-by-id?styleId=${id}`;
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setStyleData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const fetchSizeData = async (id) => {
+    const url = `/api/Size/get-by-id?id=${id}`;
+    try {
+      const response = await api.get(url);
+      setSizeData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchMaterialName = async (id) => {
+    const url = `/api/Material/get-by-id?id=${id}`;
+    try {
+      const response = await api.get(url);
+      setMaterialData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fetchUserCage = async () => {
     const url = "/api/ProductCustom/get-product-custom-for-user";
@@ -32,6 +66,9 @@ const ColorPage = () => {
       setProduct(response.data);
       if (response.data != null) {
         fetchData();
+        fetchStyleData(response.data.productStyle);
+        fetchSizeData(response.data.productSize);
+        fetchMaterialName(response.data.productMaterial);
       }
     } catch (error) {
       console.log(error);
@@ -97,7 +134,8 @@ const ColorPage = () => {
 
     try {
       const response = await api.post(url, data);
-      if (response.data) navigate(`/custom-products-end/${orderId}`);
+      if (response.data)
+        navigate(`/custom-products-end/${orderId}/${product.productCustomId}`);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -133,6 +171,17 @@ const ColorPage = () => {
   function formatCash(currency) {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
+
+  const handleRemove = async (event) => {
+    event.preventDefault();
+    const url = `/api/ProductCustom/remove?id=${productId}`;
+    try {
+      const response = await api.delete(url);
+      navigate(`/custom-cage`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="custom-page">
@@ -181,25 +230,27 @@ const ColorPage = () => {
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
-              {/* <p>Tên lồng: {product.productName}</p> */}
+              <p>Tên lồng: {product?.productName}</p>
+              <p>Hình dáng: {styleData?.styleName} </p>
               <p>
-                Hình dáng: <span>Hình vuông</span>
+                Kích thước:{" "}
+                <span>
+                  {sizeData?.size1} - {sizeData?.sizeDescription}
+                </span>
               </p>
               <p>
-                Kích thước: <span>100x50"</span>
+                Vật liệu: <span>{materialData?.materialName}</span>
               </p>
               <p>
-                Vật liệu: <span>Vàng</span>
+                Màu sắc: <span>Chưa chọn</span>
               </p>
-              <p>
-                Màu sắc: <span>Đỏ</span>
-              </p>
-
-              <h4>Giá Hiện Tại: ₫{formatCash(50000)}</h4>
+              <h4>Giá Hiện Tại: ₫{formatCash(product?.price) || 0}</h4>
             </div>
 
             <div className="custom-summary-reset">
-              <button type="submit">Thiết Lập Lại Đơn Hàng</button>
+              <button type="submit" onClick={(event) => handleRemove(event)}>
+                Thiết Lập Lại Đơn Hàng
+              </button>
             </div>
           </div>
         </div>

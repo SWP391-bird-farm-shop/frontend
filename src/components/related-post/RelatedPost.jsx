@@ -27,10 +27,10 @@ const RelatedPost = ({ blogType }) => {
       <div className="related-post-container">
         {relatedPosts?.map((relatedpost) => (
           <div key={relatedpost.blogId} className="related-post-item">
-            <Link to={relatedpost.url}>
+            <Link to={`/blog-content/${relatedpost.blogId}`}>
               <div className="related-post-item-img">
                 <img
-                  src={relatedpost.image.imageUrl}
+                  src={relatedpost.image[0].imageUrl}
                   alt={relatedpost.blogTitle}
                 />
               </div>
