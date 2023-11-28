@@ -22,8 +22,9 @@ const ItemInformation = () => {
   const [popup, setPopup] = useState(false);
 
   const current = new Date();
-  const date = `${current.getFullYear()}-${current.getMonth() + 1
-    }-${current.getDate()}`;
+  const date = `${current.getFullYear()}-${
+    current.getMonth() + 1
+  }-${current.getDate()}`;
 
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ const ItemInformation = () => {
       const url = `/api/Product/get-by-id?id=${productId}`;
       try {
         const response = await api.get(url);
+        console.log(response.data);
         setProduct(response.data);
       } catch (error) {
         console.error(error);
@@ -208,36 +210,52 @@ const ItemInformation = () => {
               <img src={product?.image[0]?.imageUrl} alt="Food" />
             </div>
             <div className="product-information-summary">
-              <h2 className="product-information-title">{product?.productName}</h2>
-              <p className="product-information-price">₫{formatCash(product?.price)}</p>
+              <h2 className="product-information-title">
+                {product?.productName}
+              </h2>
+              <p className="product-information-price">
+                ₫{formatCash(product?.price)}
+              </p>
               <p className="product-information-description">
                 Kích thước:{" "}
                 <span className="custom-summary-total-detail-info">
-                  kích thước
+                  {product?.sizeProduct[0]?.size.size1} -{" "}
+                  {product?.sizeProduct[0]?.size.sizeDescription}
                 </span>
               </p>
               <p className="product-information-description">
                 Vật liệu:{" "}
                 <span className="custom-summary-total-detail-info">
-                  vật liệu
+                  {product?.materialProduct[0]?.material.materialName}
                 </span>
               </p>
               <p className="product-information-description">
                 Màu sắc:{" "}
                 <span className="custom-summary-total-detail-info">
-                  màu sắc
+                  {product?.colorProduct[0]?.color.colorName}
                 </span>
               </p>
               <div className="quantity-section">
                 <div className="quantity">
-                  <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
+                  <button
+                    className="quantity-button left"
+                    onClick={decrementQuantity}
+                  >
+                    <FaMinus className="quantity-icon" />
+                  </button>
                   <input
                     className="quantity-number"
                     type="number"
                     value={quantity}
                     readOnly
                   />
-                  <button className="quantity-button right" onClick={incrementQuantity}> <FaPlus className="quantity-icon" /></button>
+                  <button
+                    className="quantity-button right"
+                    onClick={incrementQuantity}
+                  >
+                    {" "}
+                    <FaPlus className="quantity-icon" />
+                  </button>
                 </div>
                 <p className="quantity-inventory">{message}</p>
               </div>
@@ -245,8 +263,12 @@ const ItemInformation = () => {
           </div>
 
           <div className="product-information-detail">
-            <h4 className="product-information-detail-heading">Mô tả sản phẩm</h4>
-            <p className="product-information-detail-description">{product?.description}</p>
+            <h4 className="product-information-detail-heading">
+              Mô tả sản phẩm
+            </h4>
+            <p className="product-information-detail-description">
+              {product?.description}
+            </p>
           </div>
 
           <ProductFeedbackList productId={productId} action={"view-product"} />
@@ -255,7 +277,7 @@ const ItemInformation = () => {
             <h3 className="different-products-carousel-heading">
               Các sản phẩm tương tự
             </h3>
-            <Carousel className='Product' />
+            <Carousel className="Product" />
           </div>
         </div>
       );
@@ -267,36 +289,47 @@ const ItemInformation = () => {
               <img src={product?.image[0]?.imageUrl} alt="Food" />
             </div>
             <div className="product-information-summary">
-              <h2 className="product-information-title">{product?.productName}</h2>
-              <p className="product-information-price">₫{formatCash(product?.price)}</p>
               <p className="product-information-description">
                 Kích thước:{" "}
                 <span className="custom-summary-total-detail-info">
-                  kích thước
+                  {product?.sizeProduct[0]?.size.size1} -{" "}
+                  {product?.sizeProduct[0]?.size.sizeDescription}
                 </span>
               </p>
               <p className="product-information-description">
                 Vật liệu:{" "}
                 <span className="custom-summary-total-detail-info">
-                  vật liệu
+                  {product?.materialProduct[0]?.material.materialName}
                 </span>
               </p>
               <p className="product-information-description">
                 Màu sắc:{" "}
                 <span className="custom-summary-total-detail-info">
-                  màu sắc
+                  {product?.colorProduct[0]?.color.colorName}
                 </span>
               </p>
+
               <div className="quantity-section">
                 <div className="quantity">
-                  <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
+                  <button
+                    className="quantity-button left"
+                    onClick={decrementQuantity}
+                  >
+                    <FaMinus className="quantity-icon" />
+                  </button>
                   <input
                     className="quantity-number"
                     type="number"
                     value={quantity}
                     readOnly
                   />
-                  <button className="quantity-button right" onClick={incrementQuantity}> <FaPlus className="quantity-icon" /></button>
+                  <button
+                    className="quantity-button right"
+                    onClick={incrementQuantity}
+                  >
+                    {" "}
+                    <FaPlus className="quantity-icon" />
+                  </button>
                 </div>
                 <p className="quantity-inventory">{message}</p>
               </div>
@@ -304,8 +337,12 @@ const ItemInformation = () => {
           </div>
 
           <div className="product-information-detail">
-            <h4 className="product-information-detail-heading">Mô tả sản phẩm</h4>
-            <p className="product-information-detail-description">{product?.description}</p>
+            <h4 className="product-information-detail-heading">
+              Mô tả sản phẩm
+            </h4>
+            <p className="product-information-detail-description">
+              {product?.description}
+            </p>
           </div>
 
           <ProductFeedbackList productId={productId} action={"edit-product"} />
@@ -314,10 +351,10 @@ const ItemInformation = () => {
             <h3 className="different-products-carousel-heading">
               Các sản phẩm tương tự
             </h3>
-            <Carousel className='Product' />
+            <Carousel className="Product" />
           </div>
         </div>
-      )
+      );
     }
   } else {
     return (
@@ -327,36 +364,52 @@ const ItemInformation = () => {
             <img src={product?.image[0]?.imageUrl} alt="Food" />
           </div>
           <div className="product-information-summary">
-            <h2 className="product-information-title">{product?.productName}</h2>
-            <p className="product-information-price">₫{formatCash(product?.price)}</p>
+            <h2 className="product-information-title">
+              {product?.productName}
+            </h2>
+            <p className="product-information-price">
+              ₫{formatCash(product?.price)}
+            </p>
             <p className="product-information-description">
               Kích thước:{" "}
               <span className="custom-summary-total-detail-info">
-                kích thước
+                {product?.sizeProduct[0]?.size.size1} -{" "}
+                {product?.sizeProduct[0]?.size.sizeDescription}
               </span>
             </p>
             <p className="product-information-description">
               Vật liệu:{" "}
               <span className="custom-summary-total-detail-info">
-                vật liệu
+                {product?.materialProduct[0]?.material.materialName}
               </span>
             </p>
             <p className="product-information-description">
               Màu sắc:{" "}
               <span className="custom-summary-total-detail-info">
-                màu sắc
+                {product?.colorProduct[0]?.color.colorName}
               </span>
             </p>
             <div className="quantity-section">
               <div className="quantity">
-                <button className="quantity-button left" onClick={decrementQuantity}><FaMinus className="quantity-icon" /></button>
+                <button
+                  className="quantity-button left"
+                  onClick={decrementQuantity}
+                >
+                  <FaMinus className="quantity-icon" />
+                </button>
                 <input
                   className="quantity-number"
                   type="number"
                   value={quantity}
                   readOnly
                 />
-                <button className="quantity-button right" onClick={incrementQuantity}> <FaPlus className="quantity-icon" /></button>
+                <button
+                  className="quantity-button right"
+                  onClick={incrementQuantity}
+                >
+                  {" "}
+                  <FaPlus className="quantity-icon" />
+                </button>
               </div>
               <p className="quantity-inventory">{message}</p>
             </div>
@@ -368,7 +421,9 @@ const ItemInformation = () => {
 
         <div className="product-information-detail">
           <h4 className="product-information-detail-heading">Mô tả sản phẩm</h4>
-          <p className="product-information-detail-description">{product?.description}</p>
+          <p className="product-information-detail-description">
+            {product?.description}
+          </p>
         </div>
 
         <ProductFeedbackList productId={productId} />
@@ -377,7 +432,7 @@ const ItemInformation = () => {
           <h3 className="different-products-carousel-heading">
             Các sản phẩm tương tự
           </h3>
-          <Carousel className='Product' />
+          <Carousel className="Product" />
         </div>
       </div>
     );

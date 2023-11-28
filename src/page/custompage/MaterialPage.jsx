@@ -149,11 +149,6 @@ const MaterialPage = () => {
             {listMaterial?.map((material) => (
               <div className="custom-detail-item">
                 <h3>{material?.materialName}</h3>
-                <img
-                  src={material.imageUrl}
-                  alt="Chim"
-                  className="custom-product-image"
-                />
                 <p>₫{formatCash(material?.price)}</p>
                 <button
                   onClick={handleButtonClick}

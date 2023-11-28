@@ -128,6 +128,7 @@ const ShapePage = () => {
                     className="custom-product-image"
                   />
                 ))}
+                <p>₫{formatCash(style?.price)}</p>
                 <button
                   onClick={(event) => handleButtonClick(event, style.styleId)}
                   className="choose-button"

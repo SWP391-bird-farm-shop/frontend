@@ -16,7 +16,7 @@ const ViewOrderPage = () => {
   useEffect(() => {
     fetchOrder();
     fetchCustomOrder();
-  }, []);
+  }, [order, customOrder]);
 
   const fetchOrder = async () => {
     const url = `/api/Order/get-to-confirm`;

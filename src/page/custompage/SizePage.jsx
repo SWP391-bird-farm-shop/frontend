@@ -175,7 +175,7 @@ const SizePage = () => {
                 <div className="custom-detail-item">
                   <h3> Thanh Đan: {size} </h3>
                   <img
-                    src="public\Panel\5.jpg"
+                    src="../../../public/Panel/8.jpg"
                     alt="Chim"
                     className="custom-product-image"
                   />
