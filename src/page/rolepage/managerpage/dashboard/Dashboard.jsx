@@ -38,76 +38,88 @@ const Dashboard = () => {
 
   const data = [
     {
-      x: '1',
-      revenue: 1000,
-      inventory: 2000,
-      order: 30
+      month: 1,
+      cage: 100,
+      food: 22,
+      toy: 12,
+      custom: 9
     },
     {
-      x: '2',
-      revenue: 5000,
-      inventory: 1398,
-      order: 30
+      month: 2,
+      cage: 107,
+      food: 58,
+      toy: 20,
+      custom: 10
     },
     {
-      x: '3',
-      revenue: 100,
-      inventory: 1800,
-      order: 30
+      month: 3,
+      cage: 84,
+      food: 30,
+      toy: 41,
+      custom: 17
     },
     {
-      x: '4',
-      revenue: 100,
-      inventory: 3908,
-      order: 30
+      month: 4,
+      cage: 63,
+      food: 39,
+      toy: 19,
+      custom: 17
     },
     {
-      x: '5',
-      revenue: 100,
-      inventory: 4800,
-      order: 30
+      month: 5,
+      cage: 74,
+      food: 48,
+      toy: 30,
+      custom: 15
     },
     {
-      x: '6',
-      revenue: 100,
-      inventory: 3800,
-      order: 30
+      month: 6,
+      cage: 63,
+      food: 30,
+      toy: 52,
+      custom: 6
     },
     {
-      x: '7',
-      revenue: 100,
-      inventory: 4300,
-      order: 30
+      month: 7,
+      cage: 55,
+      food: 43,
+      toy: 20,
+      custom: 4
     },
     {
-      x: '8',
-      revenue: 100,
-      inventory: 4300,
-      order: 30
+      month: 8,
+      cage: 72,
+      food: 22,
+      toy: 36,
+      custom: 13
     },
     {
-      x: '9',
-      revenue: 100,
-      inventory: 4300,
-      order: 30
+      month: 9,
+      cage: 86,
+      food: 68,
+      toy: 54,
+      custom: 12
     },
     {
-      x: '10',
-      revenue: 100,
-      inventory: 4300,
-      order: 30
+      month: 10,
+      cage: 61,
+      food: 23,
+      toy: 37,
+      custom: 5
     },
     {
-      x: '11',
-      revenue: 100,
-      inventory: 4300,
-      order: 30
+      month: 11,
+      cage: 50,
+      food: 34,
+      toy: 20,
+      custom: 10
     },
     {
-      x: '12',
-      revenue: 100,
-      inventory: 4300,
-      order: 30,
+      month: 12,
+      cage: 0,
+      food: 0,
+      toy: 0,
+      custom: 0
     }
   ];
 
@@ -120,9 +132,9 @@ const Dashboard = () => {
     return formatCash(totalRevenue);
   };
 
-  const getTotalInventory = (data) => {
-    const totalInventory = data?.reduce((acc, entry) => acc + entry.inventory, 0);
-    return totalInventory;
+  const getTotalQuantitySold = (data) => {
+    const totalQuantitySold = data.reduce((acc, entry) => acc + entry.cage + entry.food + entry.toy + entry.custom, 0);
+    return totalQuantitySold;
   };
 
   const getTotalOrders = (data) => {
@@ -151,7 +163,7 @@ const Dashboard = () => {
               <h3>HÀNG HÓA</h3>
               <FaBox className='card_icon' />
             </div>
-            {/* <h1>{totalInventory}</h1> */}
+            <h1>{getTotalQuantitySold(data)}</h1>
           </div>
           <div className='card'>
             <div className='card-inner'>
@@ -202,11 +214,14 @@ const Dashboard = () => {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="x" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="inventory" fill="#8884d8" name='hàng hóa đã bán' />
+                <Bar dataKey="cage" fill="#8884d8" name='lồng' />
+                <Bar dataKey="food" fill="#8884d8" name='thức ăn' />
+                <Bar dataKey="toy" fill="#888888" name='phụ kiện đồ chơi' />
+                <Bar dataKey="custom" fill="#8684d8" name='lồng thiết kế' />
               </BarChart>
             </ResponsiveContainer>
           </div>

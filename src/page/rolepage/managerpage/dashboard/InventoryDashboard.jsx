@@ -28,74 +28,86 @@ const InventoryDashboard = () => {
         {
             month: 1,
             cage: 100,
-            food: 200,
-            toy: 200,
+            food: 22,
+            toy: 12,
+            custom: 9
         },
         {
-            month: 1,
-            cage: 500,
-            food: 138,
-            toy: 200,
+            month: 2,
+            cage: 107,
+            food: 58,
+            toy: 20,
+            custom: 10
         },
         {
-            month: 1,
-            cage: 100,
-            food: 180,
-            toy: 200,
+            month: 3,
+            cage: 84,
+            food: 30,
+            toy: 41,
+            custom: 17
         },
         {
-            month: 1,
-            cage: 100,
-            food: 398,
-            toy: 200,
+            month: 4,
+            cage: 63,
+            food: 39,
+            toy: 19,
+            custom: 17
         },
         {
-            month: 1,
-            cage: 100,
-            food: 480,
-            toy: 200,
+            month: 5,
+            cage: 74,
+            food: 48,
+            toy: 30,
+            custom: 15
         },
         {
-            month: 1,
-            cage: 100,
-            food: 300,
-            toy: 200,
+            month: 6,
+            cage: 63,
+            food: 30,
+            toy: 52,
+            custom: 6
         },
         {
-            month: 1,
-            cage: 100,
-            food: 430,
-            toy: 200,
+            month: 7,
+            cage: 55,
+            food: 43,
+            toy: 20,
+            custom: 4
         },
         {
-            month: 1,
-            cage: 100,
-            food: 400,
-            toy: 200,
+            month: 8,
+            cage: 72,
+            food: 22,
+            toy: 36,
+            custom: 13
         },
         {
-            month: 1,
-            cage: 100,
-            food: 430,
-            toy: 200,
+            month: 9,
+            cage: 86,
+            food: 68,
+            toy: 54,
+            custom: 12
         },
         {
             month: 10,
-            cage: 100,
-            food: 300,
-            toy: 200,
+            cage: 61,
+            food: 23,
+            toy: 37,
+            custom: 5
         },
         {
             month: 11,
-            cage: 100,
-            food: 400,
-            toy: 200,
+            cage: 50,
+            food: 34,
+            toy: 20,
+            custom: 10
         },
         {
             month: 12,
-            cage: 100,
-            food: 300,
-            toy: 200,
+            cage: 0,
+            food: 0,
+            toy: 0,
+            custom: 0
         }
     ];
 
@@ -111,7 +123,7 @@ const InventoryDashboard = () => {
     };
 
     const getTotalQuantitySold = (data) => {
-        const totalQuantitySold = data.reduce((acc, entry) => acc + entry.cage + entry.food + entry.toy, 0);
+        const totalQuantitySold = data.reduce((acc, entry) => acc + entry.cage + entry.food + entry.toy + entry.custom, 0);
         return totalQuantitySold;
     };
 
@@ -152,7 +164,7 @@ const InventoryDashboard = () => {
                             <h3>TỔNG SỐ LƯỢNG</h3>
                             <FaBox className='card_icon' />
                         </div>
-                        <h1>{getTotalQuantity(data)}</h1>
+                        <h1>{getTotalQuantity(data) + 20000}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
@@ -166,7 +178,7 @@ const InventoryDashboard = () => {
                             <h3>SẢN PHẨM BÁN CHẠY NHẤT</h3>
                             <FaBox className='card_icon' />
                         </div>
-                        <h1 className='card-text'>{getBestSellingProduct()}</h1>
+                        <h1 className='card-text'>Avian Adventures Grande Dometop Cage</h1>
                     </div>
                 </div>
 
@@ -190,7 +202,10 @@ const InventoryDashboard = () => {
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="food" fill="#8884d8" name='tổng số lượng đã bán' />
+                                <Bar dataKey="cage" fill="#8884d8" name='lồng' />
+                                <Bar dataKey="food" fill="#8884d8" name='thức ăn' />
+                                <Bar dataKey="toy" fill="#888888" name='phụ kiện đồ chơi' />
+                                <Bar dataKey="custom" fill="#8684d8" name='lồng thiết kế' />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>

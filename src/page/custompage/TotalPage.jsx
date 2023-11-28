@@ -498,7 +498,7 @@ const TotalPage = () => {
                     id="vnpay-button"
                     className="payment-section-button"
                   />
-                  <img src="vnpay.png" alt="vnpay" className="payment-logo" />
+                  <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fvnpay.png?alt=media&token=48a2114e-1389-4ab4-a31c-c4e72004ff8b" alt="vnpay" className="payment-logo" />
                   <p>VnPay</p>
                 </div>
 
@@ -510,7 +510,7 @@ const TotalPage = () => {
                     id="cash-button"
                     className="payment-section-button"
                   />
-                  <img src="cash.png" alt="cash" className="payment-logo" />
+                  <img src="https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fcash.png?alt=media&token=767cd8fe-8859-4d82-9893-b669e65bc062" alt="cash" className="payment-logo" />
                   <p>Tiền Mặt</p>
                 </div>
               </div>
