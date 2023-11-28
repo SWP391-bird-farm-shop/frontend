@@ -78,7 +78,7 @@ const FeedbackPage = () => {
             {listCage.map((cage) => (
               <Link
                 to={`/item-info/${action}/${cage.productId}`}
-                className="product-manager-page-section"
+                className="product-manager-page-section link"
                 key={cage.productId}
               >
                 <h3 className="product-name">{cage.productName}</h3>
@@ -110,7 +110,7 @@ const FeedbackPage = () => {
             {listFood?.map((food) => (
               <Link
                 to={`/item-info/${action}/${food.productId}`}
-                className="product-manager-page-section"
+                className="product-manager-page-section link"
                 key={food.productId}
               >
                 <h3 className="product-name">{food.productName}</h3>
@@ -142,7 +142,7 @@ const FeedbackPage = () => {
             {listToy?.map((toy) => (
               <Link
                 to={`/item-info/${action}/${toy.productId}`}
-                className="product-manager-page-section"
+                className="product-manager-page-section link"
                 key={toy.productId}
               >
                 <h3 className="product-name">{toy.productName}</h3>
@@ -180,7 +180,7 @@ const FeedbackPage = () => {
               return (
                 <Link
                   to={`/item-info/${action}/${cage.productId}`}
-                  className="product-manager-page-section"
+                  className="product-manager-page-section link"
                   key={cage.productId}
                 >
                   <div className="product-manager-page-section-header">
@@ -219,7 +219,7 @@ const FeedbackPage = () => {
               return (
                 <Link
                   to={`/item-info/${action}/${food.productId}`}
-                  className="product-manager-page-section"
+                  className="product-manager-page-section link"
                   key={food.productId}
                 >
                   <div className="product-manager-page-section-header">
@@ -257,7 +257,7 @@ const FeedbackPage = () => {
             {listToy?.map((toy) => (
               <Link
                 to={`/item-info/${action}/${toy.productId}`}
-                className="product-manager-page-section"
+                className="product-manager-page-section link"
                 key={toy.productId}
               >
                 <div className="product-manager-page-section-header">
