@@ -15,7 +15,7 @@ const TotalPage = () => {
   const [material, setMaterial] = useState(null);
   const [Color, setColor] = useState(null);
 
-  const { productId } = useParams();
+  const { productId, orderId } = useParams();
 
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -226,8 +226,22 @@ const TotalPage = () => {
     setTotalPrice(total);
   };
 
-  const handleResetButtonClick = () => {
-    navigate("/custom-page");
+  const handleResetButtonClick = async (event) => {
+    event.preventDefault();
+    const url = `/api/ProductCustom/remove?id=${productId}`;
+    try {
+      const response = await api.delete(url);
+      navigate(`/custom-cage`);
+    } catch (error) {
+      console.error(error);
+    }
+    const orderUrl = `/api/Order/remove-order?OrderId=${orderId}`;
+    try {
+      const responseOrder = await api.delete(orderUrl);
+      navigate("/user-page");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // const handleConfirmButtonClick = async (event) => {
@@ -543,7 +557,7 @@ const TotalPage = () => {
                 <button
                   type="submit"
                   className="custom-summary-total-reset"
-                  onClick={handleResetButtonClick}
+                  onClick={(event) => handleResetButtonClick(event)}
                 >
                   Thiết Lập Lại Đơn Hàng
                 </button>

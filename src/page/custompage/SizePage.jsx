@@ -134,6 +134,17 @@ const SizePage = () => {
   function formatCash(currency) {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
+
+  const handleRemove = async (event) => {
+    event.preventDefault();
+    const url = `/api/ProductCustom/remove?id=${productId}`;
+    try {
+      const response = await api.delete(url);
+      navigate(`/custom-cage`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   if (productId !== null) {
     return (
       <div className="custom-page">
@@ -164,7 +175,7 @@ const SizePage = () => {
                 <div className="custom-detail-item">
                   <h3> Thanh Đan: {size} </h3>
                   <img
-                    src="public\Panel\5.jpg"
+                    src="../../../public/Panel/8.jpg"
                     alt="Chim"
                     className="custom-product-image"
                   />
@@ -194,11 +205,13 @@ const SizePage = () => {
                   Màu sắc: <span>Chưa chọn</span>
                 </p>
 
-                <h4>Giá Hiện Tại: ₫{formatCash(product?.price)}</h4>
+                <h4>Giá Hiện Tại: ₫{formatCash(product?.price) || 0}</h4>
               </div>
 
               <div className="custom-summary-reset">
-                <button type="submit">Thiết Lập Lại Đơn Hàng</button>
+                <button type="submit" onClick={(event) => handleRemove(event)}>
+                  Thiết Lập Lại Đơn Hàng
+                </button>
               </div>
             </div>
           </div>

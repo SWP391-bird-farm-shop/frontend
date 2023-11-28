@@ -12,6 +12,7 @@ const ConfirmPage = () => {
   // ]
 
   const [order, setOrder] = useState(null);
+  const [user, setUser] = useState(null);
 
   const fetchData = async () => {
     const url = "/api/Order/get-paid";
@@ -31,44 +32,84 @@ const ConfirmPage = () => {
     fetchData();
   }, [auth]);
 
+  const getUserInformation = async (id) => {
+    const url = `/api/User/get-user-information`;
+    const data = {
+      userID: id,
+    };
+    try {
+      const response = await api.post(url, data);
+      setUser(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (order?.length > 0) {
     return (
       <div className="confirm-page">
         <h1 className="confirm-page-title">Danh sách đơn hàng</h1>
         <div className="confirmed-orders">
-          {order?.map((detail) => (
-            <div key={detail.orderId} className="confirmed-order">
-              <h3 className="confirmed-order-id">
-                Mã đơn hàng: {detail.orderId}
-              </h3>
-              <div className="confirmed-order-detail">
-                <div className="confirmed-order-customer-info-section">
-                  <p>Tên khách hàng: John Doe</p>
-                  <p>Số điện thoại: (555) 123-4567</p>
-                  <p>Địa chỉ: 123 Main St</p>
-                </div>
-                <div className="confirmed-order-product">
-                  {detail?.orderDetail?.map((item) => (
-                    <p className="confirmed-order-product-name">
-                      {item.product?.productName}
-                    </p>
-                  ))}
-                </div>
-                <div className="confirmed-order-price-status">
-                  <p className="confirmed-order-price">₫{detail.total}</p>
-                  {detail.status ? (
-                    <p className="confirmed-order-status">
-                      Trạng thái: Đã xác nhận
-                    </p>
+          {order?.map((detail) => {
+            let fname = "";
+            let phoneNumber = "";
+            let address = "";
+            getUserInformation(detail?.userId);
+            if (detail.note !== "string") {
+              const infoArray = detail.note.split(" ");
+              fname = infoArray[0];
+              phoneNumber = infoArray[1];
+              address = infoArray.slice(2).join(" ");
+            }
+            return (
+              <div key={detail.orderId} className="confirmed-order">
+                <h3 className="confirmed-order-id">
+                  Mã đơn hàng: {detail.orderId}
+                </h3>
+                <div className="confirmed-order-detail">
+                  {detail.note !== "string" ? (
+                    <div className="confirmed-order-customer-info-section">
+                      <p>Tên khách hàng: {fname}</p>
+                      <p>Số điện thoại: {phoneNumber}</p>
+                      <p>Địa chỉ: {address}</p>
+                    </div>
                   ) : (
-                    <p className="confirmed-order-status">
-                      Trạng thái: Chưa xác nhận
-                    </p>
+                    <div className="confirmed-order-customer-info-section">
+                      <p>Tên khách hàng: {user?.fullName}</p>
+                      <p>Số điện thoại: {user?.phoneNumber}</p>
+                      <p>Địa chỉ: {user?.address}</p>
+                    </div>
                   )}
+                  <div className="confirmed-order-product">
+                    {detail?.orderDetail?.map((item) => (
+                      <p className="confirmed-order-product-name">
+                        {item.product?.productName}
+                      </p>
+                    ))}
+                  </div>
+                  <div className="confirmed-order-price-status">
+                    <p className="confirmed-order-price">₫{detail.total}</p>
+                    {detail?.orderDetail?.map((item) => {
+                      if (item.status) {
+                        return (
+                          <p className="confirmed-order-status">
+                            Trạng thái: Đang gửi đến
+                          </p>
+                        );
+                      }
+                      if (detail.status) {
+                        return (
+                          <p className="confirmed-order-status">
+                            Trạng thái: Đã thanh toán
+                          </p>
+                        );
+                      }
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     );

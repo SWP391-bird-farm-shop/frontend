@@ -81,6 +81,17 @@ const ShapePage = () => {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
+  const handleRemove = async (event) => {
+    event.preventDefault();
+    const url = `/api/ProductCustom/remove?id=${productId}`;
+    try {
+      const response = await api.delete(url);
+      navigate(`/custom-cage`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="custom-page">
       <h2 className="custom-title">Thiết Kế Lồng</h2>
@@ -117,6 +128,7 @@ const ShapePage = () => {
                     className="custom-product-image"
                   />
                 ))}
+                <p>₫{formatCash(style?.price)}</p>
                 <button
                   onClick={(event) => handleButtonClick(event, style.styleId)}
                   className="choose-button"
@@ -136,11 +148,13 @@ const ShapePage = () => {
               <p>Vật liệu: Chưa chọn</p>
               <p>Màu sắc: Chưa chọn</p>
 
-              <h4>Giá Hiện Tại: {ProductCustom?.price}</h4>
+              <h4>Giá Hiện Tại: ₫{ProductCustom?.price || 0}</h4>
             </div>
 
             <div className="custom-summary-reset">
-              <button type="submit">Thiết Lập Lại Đơn Hàng</button>
+              <button type="submit" onClick={(event) => handleRemove(event)}>
+                Thiết Lập Lại Đơn Hàng
+              </button>
             </div>
           </div>
         </div>

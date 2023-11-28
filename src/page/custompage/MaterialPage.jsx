@@ -15,6 +15,30 @@ const MaterialPage = () => {
   const [listMaterial, setListMaterial] = useState(null);
   const [product, setProduct] = useState(null);
 
+  const [styleData, setStyleData] = useState(null);
+  const [sizeData, setSizeData] = useState(null);
+
+  const fetchStyleData = async (id) => {
+    const url = `/api/Style/get-by-id?styleId=${id}`;
+    try {
+      const response = await api.get(url);
+      console.log(response.data);
+      setStyleData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchSizeData = async (id) => {
+    const url = `/api/Size/get-by-id?id=${id}`;
+    try {
+      const response = await api.get(url);
+      setSizeData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const fetchData = async (size) => {
     const url = `/api/Material/get-for-custom?sizeId=${size}`;
     // const url = `/api/Material/get-for-custom?sizeId=Sif4a814d`;
@@ -39,6 +63,8 @@ const MaterialPage = () => {
       console.log(response.data);
       if (response.data) {
         fetchData(response.data.productSize);
+        fetchSizeData(response.data.productSize);
+        fetchStyleData(response.data.productStyle);
       }
     } catch (error) {
       console.log(error);
@@ -83,6 +109,17 @@ const MaterialPage = () => {
     return currency?.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
+  const handleRemove = async (event) => {
+    event.preventDefault();
+    const url = `/api/ProductCustom/remove?id=${productId}`;
+    try {
+      const response = await api.delete(url);
+      navigate(`/custom-cage`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="custom-page">
       <h2 className="custom-title">Thiết Kế Lồng</h2>
@@ -112,11 +149,6 @@ const MaterialPage = () => {
             {listMaterial?.map((material) => (
               <div className="custom-detail-item">
                 <h3>{material?.materialName}</h3>
-                <img
-                  src={material.imageUrl}
-                  alt="Chim"
-                  className="custom-product-image"
-                />
                 <p>₫{formatCash(material?.price)}</p>
                 <button
                   onClick={handleButtonClick}
@@ -132,25 +164,28 @@ const MaterialPage = () => {
           <div className="custom-summary">
             <div className="custom-summary-detail">
               <h2>Thông tin lồng</h2>
-              {/* <p>Tên lồng: {product.productName}</p> */}
+              <p>Tên lồng: {product?.productName}</p>
+              <p>Hình dáng: {styleData?.styleName} </p>
               <p>
-                Hình dáng: <span>Hình vuông</span>
+                Kích thước:{" "}
+                <span>
+                  {sizeData?.size1} - {sizeData?.sizeDescription}
+                </span>
               </p>
               <p>
-                Kích thước: <span>100x50"</span>
+                Vật liệu: <span>Chưa chọn</span>
               </p>
               <p>
-                Vật liệu: <span>Vàng</span>
-              </p>
-              <p>
-                Màu sắc: <span>Đỏ</span>
+                Màu sắc: <span>Chưa chọn</span>
               </p>
 
-              <h4>Giá Hiện Tại: ₫{formatCash(50000)}</h4>
+              <h4>Giá Hiện Tại: ₫{formatCash(product?.price) || 0}</h4>
             </div>
 
             <div className="custom-summary-reset">
-              <button type="submit">Thiết Lập Lại Đơn Hàng</button>
+              <button type="submit" onClick={(event) => handleRemove(event)}>
+                Thiết Lập Lại Đơn Hàng
+              </button>
             </div>
           </div>
         </div>
