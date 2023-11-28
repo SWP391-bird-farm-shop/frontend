@@ -1,5 +1,6 @@
 .authentication-section {
-    background-image: url('https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fsign-in-up-background.png?alt=media&token=b185b5da-2ee1-4f8c-9fce-464ceef94c4e');
+    background-image: url('./sign-in-up-background.png');
+    /* background-image: url('https://firebasestorage.googleapis.com/v0/b/bscswp.appspot.com/o/localImage%2Fsign-in-up-background.png?alt=media&token=b185b5da-2ee1-4f8c-9fce-464ceef94c4e'); */
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;

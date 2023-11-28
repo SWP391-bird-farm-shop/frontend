@@ -19,7 +19,7 @@ const RoleLayout = () => {
                 <SideNav />
                 <div id="content-role-page">
                     <div className="content-role-page-search">
-                        <SearchBar />
+                        {/* <SearchBar /> */}
                     </div>
                     <div className="content-outlet-role-page">
                         <Outlet />
