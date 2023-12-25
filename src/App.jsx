@@ -16,10 +16,8 @@ import QuestionPage from "./page/authenticationpage/forgotpasswordpage/QuestionP
 import ResetPasswordPage from "./page/authenticationpage/forgotpasswordpage/ResetPasswordPage";
 import SignUpPage from "./page/authenticationpage/SignUpPage";
 import UpdateInformationPage from "./page/authenticationpage/UpdateInformationPage";
-import "./App.css";
 import UserPage from "./page/UserPage";
 import SettingInformationPage from "./page/SettingInformationPage";
-
 import CreateVoucherPage from "./page/rolepage/managerpage/CreateVoucherPage";
 import CustomPage from "./page/custompage/CustomPage";
 import ShapePage from "./page/custompage/ShapePage";
@@ -39,13 +37,14 @@ import ManageAccount from "./page/rolepage/adminpage/ManageAccount";
 import CreateUser from "./page/rolepage/adminpage/CreateUser";
 import AddProductPage from "./page/rolepage/managerpage/AddProductPage";
 import BlogForm from "./page/rolepage/staffpage/CreateBlog";
-import ConfirmPage from "./page/ConfirmPage";
+import OrderConfirmPage from "./page/OrderConfirmPage";
 import TermsAndConditionsPage from "./page/TermsAndConditionsPage";
 import Dashboard from "./page/rolepage/managerpage/dashboard/Dashboard";
 import InventoryDashboard from "./page/rolepage/managerpage/dashboard/InventoryDashboard";
 import RevenueDashboard from "./page/rolepage/managerpage/dashboard/RevenueDashboard";
 import OrderDashboard from "./page/rolepage/managerpage/dashboard/OrderDashboard";
 import SearchPage from "./page/SearchPage";
+import "./App.css";
 
 const App = () => {
   return (
@@ -83,7 +82,7 @@ const App = () => {
           <Route path="/custom-products-material/:productId?" element={<MaterialPage />} />
           <Route path="/custom-products-color/:productId?" element={<ColorPage />} />
           <Route path="/custom-products-end/:orderId?/:productId?" element={<TotalPage />} />
-          <Route path="/order-confirm" element={<ConfirmPage />} />
+          <Route path="/order-confirm" element={<OrderConfirmPage />} />
         </Route>
         <Route path="/update-info/:userId" element={<SettingInformationPage />}
         />
@@ -94,9 +93,9 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["1"]} />}>
         <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
-          <Route path="/manage-account/:action" element={<ManageAccount />} />
-          <Route path="/info-setting/:action/:userId" element={<SettingInformationPage />} />
-          <Route path="/create-user" element={<CreateUser />} />
+          <Route path="/admin/manage-account/:action" element={<ManageAccount />} />
+          <Route path="/admin/info-setting/:action/:userId" element={<SettingInformationPage />} />
+          <Route path="/admin/create-user" element={<CreateUser />} />
         </Route>
       </Route>
 
@@ -104,15 +103,16 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["2"]} />}>
         <Route path="/manager-page" element={<ManagerPage />} />
         <Route element={<RoleLayout />}>
-          <Route path="/create-voucher/:action" element={<CreateVoucherPage />} />
-          <Route path="/add-product/:action" element={<AddProductPage />} />
-          <Route path="/update-product/:action/:productId" element={<AddProductPage />} />
-          <Route path="/product/:action" element={<ProductPage />} />
-          <Route path="/voucher/:action" element={<VoucherPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/revenue" element={<RevenueDashboard />} />
-          <Route path="/dashboard/inventory" element={<InventoryDashboard />} />
-          <Route path="/dashboard/order" element={<OrderDashboard />} />
+          <Route path="/manager/update-product/:action/:productId" element={<AddProductPage />} />
+          <Route path="/manager/product/:action" element={<ProductPage />} />
+          <Route path="/manager/item-info/:action/:productId" element={<ItemInformation />} />
+          <Route path="/manager/add-product/:action" element={<AddProductPage />} />
+          <Route path="/manager/voucher/:action" element={<VoucherPage />} />
+          <Route path="/manager/create-voucher/:action" element={<CreateVoucherPage />} />
+          <Route path="/manager/dashboard" element={<Dashboard />} />
+          <Route path="/manager/dashboard/revenue" element={<RevenueDashboard />} />
+          <Route path="/manager/dashboard/inventory" element={<InventoryDashboard />} />
+          <Route path="/manager/dashboard/order" element={<OrderDashboard />} />
         </Route>
       </Route>
 
@@ -120,15 +120,12 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["3"]} />}>
         <Route path="/staff-page" element={<StaffPage />} />
         <Route element={<RoleLayout />}>
-          <Route path="/create-blog/:action" element={<BlogForm />} />
-          <Route path="/manage-blogs/:action" element={<BlogPage />} />
-          <Route path="/view-blog/:blogId" element={<BlogContentPage />} />
-          <Route path="/feedback/:action" element={<FeedbackPage />} />
-          <Route
-            path="/item-info/:action/:productId"
-            element={<ItemInformation />}
-          />
-          <Route path="/order/:action" element={<ViewOrderPage />} />
+          <Route path="/staff/create-blog/:action" element={<BlogForm />} />
+          <Route path="/staff/manage-blogs/:action" element={<BlogPage />} />
+          <Route path="/staff/blog-content/:action/:blogId" element={<BlogContentPage />} />
+          <Route path="/staff/feedback/:action" element={<FeedbackPage />} />
+          <Route path="/staff/item-info/:action/:productId" element={<ItemInformation />} />
+          <Route path="/staff/order/:action" element={<ViewOrderPage />} />
         </Route>
       </Route>
     </Routes>

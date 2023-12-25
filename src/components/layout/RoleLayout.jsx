@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import "./RoleLayout.css"
 import { Outlet, useParams } from "react-router-dom";
 import ManageNavbar from "../navbar/ManageNavBar";
 import SideNav from "../sidenav/SideNav";
 import SearchBar from "../search/SearchBar";
+import "./RoleLayout.css"
 
 const RoleLayout = () => {
 
@@ -19,7 +19,7 @@ const RoleLayout = () => {
                 <SideNav />
                 <div id="content-role-page">
                     <div className="content-role-page-search">
-                        {/* <SearchBar /> */}
+                        <SearchBar />
                     </div>
                     <div className="content-outlet-role-page">
                         <Outlet />

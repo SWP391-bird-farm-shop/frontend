@@ -1,20 +1,23 @@
 .about-us-section {
     background-color: rgba(125, 125, 125, 0.1);
-    padding: 50px 30px;
+    padding: 50px 5%;
+    padding-top: 20px;
     margin-bottom: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-radius: 10px;
 }
 
 .about-us-text {
-    width: 50%;
+    width: 53%;
 }
 
 .about-us-heading {
     color: #1B8600;
     font-size: 28px;
     font-weight: bold;
+    margin: 0;
     margin-bottom: 50px;
 }
 
@@ -26,7 +29,7 @@
 }
 
 .about-us-image {
-    width: 46%;
+    width: 42%;
     margin-top: 75px;
 }
 

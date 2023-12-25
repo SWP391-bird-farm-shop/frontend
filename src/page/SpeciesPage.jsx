@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
+import { useParams } from 'react-router-dom';
 import About from '../components/about/About';
 import Carousel from '../components/carousel/Carousel';
 import CageList from '../components/cage-list/CageList'
 import './SpeciesPage.css';
-import { useParams } from 'react-router-dom';
 
 const SpeciesPage = () => {
     const { birdId } = useParams();

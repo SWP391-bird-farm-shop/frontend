@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./ComboBox.css";
 import api from "../utils/requestAPI";
+import "./ComboBox.css";
 
 const ComboBox = ({ classname, onChange, defaultValue }) => {
   const [selected, setSelected] = useState("");
@@ -222,66 +222,6 @@ const ComboBox = ({ classname, onChange, defaultValue }) => {
 
   else {
     return (
-      //product
-      // <div className="combo-box-price">
-      //     <select value={selected} onChange={e => setSelected(e.target.value)}>
-      //         <option value="" disabled hidden selected>Sắp xếp theo giá</option>
-      //         {priceOptions.map(priceOption => (
-      //             <option key={priceOption} value={priceOption}>
-      //                 {priceOption}
-      //             </option>
-      //         ))}
-      //     </select>
-      // </div>
-
-      // size
-      // <div className="combo-box-product">
-      //     <select value={selected} onChange={e => setSelected(e.target.value)}>
-      //         <option value="" disabled hidden selected>Chọn kích thước lồng</option>
-      //         {sizeOptions.map(sizeOption => (
-      //             <option key={sizeOption} value={sizeOption}>
-      //                 {sizeOption}
-      //             </option>
-      //         ))}
-      //     </select>
-      // </div>
-
-      // material
-      // <div className="combo-box-product">
-      //     <select value={selected} onChange={e => setSelected(e.target.value)}>
-      //         <option value="" disabled hidden selected>Chọn chất liệu lồng</option>
-      //         {materialOptions.map(materialOption => (
-      //             <option key={materialOption} value={materialOption}>
-      //                 {materialOption}
-      //             </option>
-      //         ))}
-      //     </select>
-      // </div>
-
-      //color
-      //<div className="combo-box-product">
-      //    <select value={selected} onChange={e => setSelected(e.target.value)}>
-      //        <option value="" disabled hidden selected>Chọn màu lồng</option>
-      //        {colorOptions.map(colorOption => (
-      //            <option key={colorOption} value={colorOption}>
-      //                {colorOption}
-      //            </option>
-      //        ))}
-      //    </select>
-      //</div>
-      // <div className="combo-box-question">
-      //   <select value={selected} onChange={(e) => setSelected(e.target.value)}>
-      //     <option value="" disabled hidden>
-      //       Chọn câu hỏi xác thực
-      //     </option>
-      //     {questionOptions.map((questionOption) => (
-      //       <option key={questionOption} value={questionOption} className="combobox-option" style={{padding: '5px'}}>
-      //         {questionOption}
-      //       </option>
-      //     ))}
-      //   </select>
-      // </div>
-
       <div className="combo-box-question">
         <select value={selected} onChange={(e) => setSelected(e.target.value)}>
           <option value="" disabled hidden>

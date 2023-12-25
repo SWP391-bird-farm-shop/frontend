@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../components/utils/requestAPI';
-import axios from 'axios'
 import OwlCarousel from 'react-owl-carousel';
+import useAuth from '../../hooks/useAuth';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import './Carousel.css'
-import { Link } from 'react-router-dom';
 
 const Carousel = ({ className }) => {
+    const { auth } = useAuth();
 
     const [birdData, setBirdData] = useState();
-    const [productData, setProductData] = useState();
+    const [cageData, setCageData] = useState();
     const [foodData, setFoodData] = useState();
     const [toyData, setToyData] = useState();
 
@@ -34,7 +35,7 @@ const Carousel = ({ className }) => {
 
             fetchData();
         }
-        if (className === 'Product') {
+        if (className === 'Cage') {
             const fetchData = async () => {
                 try {
                     await api.get('api/Product/get-by-category?categoryId=Cate90fb2', {
@@ -43,7 +44,7 @@ const Carousel = ({ className }) => {
                         }
                     }).then(response => {
                         console.log(response)
-                        setProductData(response.data);
+                        setCageData(response.data);
                     });
                 } catch (error) {
                     console.error(error);
@@ -101,64 +102,113 @@ const Carousel = ({ className }) => {
         dots: false,
         navClass: ["switch-icon-prev", "switch-icon-next"]
     };
-    if (className === 'Bird') {
-        return (
-            <OwlCarousel className={className} {...options}>
-                {birdData?.map(bird => (
-                    <Link to={`/bird/${bird.birdId}`} className="bird-carousel-item" key={bird.birdId}>
-                        {bird.image.map(image => (
-                            <img src={image.imageUrl} alt={bird.birdName} key={image.imageId} />
-                        ))}
-                        <h4>{bird.birdName}</h4>
-                    </Link>
-                ))}
-            </OwlCarousel>
-        );
-    }
-    if (className === 'Product') {
-        return (
-            <OwlCarousel className={className} {...options}>
-                {productData?.map(product => (
-                    <Link to={`/item-info/${product.productId}`} className="product-carousel-item" key={product.productId}>
-                        {product.image.map(image => (
-                            <img src={image.imageUrl} alt={product.productName} key={image.imageId} />
-                        ))}
-                        <h4>{product.productName}</h4>
-                        <p>₫{formatCash(product.price)}</p>
-                    </Link>
-                ))}
-            </OwlCarousel>
-        );
-    }
-    if (className === 'Food') {
-        return (
-            <OwlCarousel className={className} {...options}>
-                {foodData?.map(food => (
-                    <Link to={`/item-info/${food.productId}`} className="product-carousel-item" key={food.productId}>
-                        {food.image.map(image => (
-                            <img src={image.imageUrl} alt={food.productName} key={image.imageId} />
-                        ))}
-                        <h4>{food.productName}</h4>
-                        <p>₫{formatCash(food.price)}</p>
-                    </Link>
-                ))}
-            </OwlCarousel>
-        );
-    }
-    if (className === 'Toy') {
-        return (
-            <OwlCarousel className={className} {...options}>
-                {toyData?.map(toy => (
-                    <Link to={`/item-info/${toy.productId}`} className="product-carousel-item" key={toy.productId}>
-                        {toy.image.map(image => (
-                            <img src={image.imageUrl} alt={toy.productName} key={image.imageId} />
-                        ))}
-                        <h4>{toy.productName}</h4>
-                        <p>₫{formatCash(toy.price)}</p>
-                    </Link>
-                ))}
-            </OwlCarousel>
-        );
+
+    if (auth?.user?.roleId === '2') {
+        if (className === 'Cage') {
+            return (
+                <OwlCarousel className={className} {...options}>
+                    {cageData?.map(cage => (
+                        <Link to={`/manager/item-info/view-info/${cage.productId}`} className="product-carousel-item" key={cage.productId}>
+                            {cage.image.map(image => (
+                                <img src={image.imageUrl} alt={cage.productName} key={image.imageId} />
+                            ))}
+                            <h4>{cage.productName}</h4>
+                            <p>₫{formatCash(cage.price)}</p>
+                        </Link>
+                    ))}
+                </OwlCarousel>
+            );
+        }
+        if (className === 'Food') {
+            return (
+                <OwlCarousel className={className} {...options}>
+                    {foodData?.map(food => (
+                        <Link to={`/manager/item-info/view-info/${food.productId}`} className="product-carousel-item" key={food.productId}>
+                            {food.image.map(image => (
+                                <img src={image.imageUrl} alt={food.productName} key={image.imageId} />
+                            ))}
+                            <h4>{food.productName}</h4>
+                            <p>₫{formatCash(food.price)}</p>
+                        </Link>
+                    ))}
+                </OwlCarousel>
+            );
+        }
+        if (className === 'Toy') {
+            return (
+                <OwlCarousel className={className} {...options}>
+                    {toyData?.map(toy => (
+                        <Link to={`/manager/item-info/view-info/${toy.productId}`} className="product-carousel-item" key={toy.productId}>
+                            {toy.image.map(image => (
+                                <img src={image.imageUrl} alt={toy.productName} key={image.imageId} />
+                            ))}
+                            <h4>{toy.productName}</h4>
+                            <p>₫{formatCash(toy.price)}</p>
+                        </Link>
+                    ))}
+                </OwlCarousel>
+            );
+        }
+    } else {
+        if (className === 'Bird') {
+            return (
+                <OwlCarousel className={className} {...options}>
+                    {birdData?.map(bird => (
+                        <Link to={`/bird/${bird.birdId}`} className="bird-carousel-item" key={bird.birdId}>
+                            {bird.image.map(image => (
+                                <img src={image.imageUrl} alt={bird.birdName} key={image.imageId} />
+                            ))}
+                            <h4>{bird.birdName}</h4>
+                        </Link>
+                    ))}
+                </OwlCarousel>
+            );
+        }
+        if (className === 'Cage') {
+            return (
+                <OwlCarousel className={className} {...options}>
+                    {cageData?.map(cage => (
+                        <Link to={`/item-info/${cage.productId}`} className="product-carousel-item" key={cage.productId}>
+                            {cage.image.map(image => (
+                                <img src={image.imageUrl} alt={cage.productName} key={image.imageId} />
+                            ))}
+                            <h4>{cage.productName}</h4>
+                            <p>₫{formatCash(cage.price)}</p>
+                        </Link>
+                    ))}
+                </OwlCarousel>
+            );
+        }
+        if (className === 'Food') {
+            return (
+                <OwlCarousel className={className} {...options}>
+                    {foodData?.map(food => (
+                        <Link to={`/item-info/${food.productId}`} className="product-carousel-item" key={food.productId}>
+                            {food.image.map(image => (
+                                <img src={image.imageUrl} alt={food.productName} key={image.imageId} />
+                            ))}
+                            <h4>{food.productName}</h4>
+                            <p>₫{formatCash(food.price)}</p>
+                        </Link>
+                    ))}
+                </OwlCarousel>
+            );
+        }
+        if (className === 'Toy') {
+            return (
+                <OwlCarousel className={className} {...options}>
+                    {toyData?.map(toy => (
+                        <Link to={`/item-info/${toy.productId}`} className="product-carousel-item" key={toy.productId}>
+                            {toy.image.map(image => (
+                                <img src={image.imageUrl} alt={toy.productName} key={image.imageId} />
+                            ))}
+                            <h4>{toy.productName}</h4>
+                            <p>₫{formatCash(toy.price)}</p>
+                        </Link>
+                    ))}
+                </OwlCarousel>
+            );
+        }
     }
 };
 

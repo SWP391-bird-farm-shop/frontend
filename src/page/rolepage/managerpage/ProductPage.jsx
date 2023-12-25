@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./ProductPage.css";
-import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEye, FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../components/utils/requestAPI";
 import useAuth from "../../../hooks/useAuth";
 import { data } from "jquery";
 import PopupModal from "../../../components/modal/PopupModal";
+import "./ProductPage.css";
 
 const ProductPage = () => {
   const { auth } = useAuth();
@@ -45,20 +45,24 @@ const ProductPage = () => {
   };
 
   const handleUpdateCage = async (id) => {
-    navigate(`/update-product/add-cage/${id}`);
+    navigate(`/manager/update-product/add-cage/${id}`);
   };
 
   const handleUpdateFood = async (id) => {
-    navigate(`/update-product/add-food/${id}`);
+    navigate(`/manager/update-product/add-food/${id}`);
   };
 
   const handleUpdateToy = async (id) => {
-    navigate(`/update-product/add-toy/${id}`);
+    navigate(`/manager/update-product/add-toy/${id}`);
+  };
+
+  const handleShowInfo = async (id) => {
+    navigate(`/manager/item-info/view-info/${id}`);
   };
 
   useEffect(() => {
     fetchData();
-  }, [listProduct]);
+  }, []);
 
   useEffect(() => {
     const sortByCage = () => {
@@ -125,27 +129,70 @@ const ProductPage = () => {
         {listCage?.length > 0 ? (
           <div>
             <h2 className="product-manager-page-title">Lồng chim</h2>
-            {listCage.map((cage) => (
-              <div
-                className="product-manager-page-section"
-                key={cage.productId}
-              >
-                <h3 className="product-name">{cage.productName}</h3>
-                <div className="product-info">
-                  <div className="product-img">
-                    <img src={cage?.image[0]?.imageUrl} alt="cage" />
-                  </div>
-                  <div className="product-description">
-                    <p className="product-description-title">Mô tả sản phẩm</p>
-                    <p>{cage.description}</p>
-                  </div>
-                  <div className="quantity-and-price">
-                    <p>Đang có {cage.quantity} sản phẩm</p>
-                    <p>Giá tiền ₫{formatCash(cage.price)}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Kiểu dáng</th>
+                  <th>Kích thước</th>
+                  <th>Màu sắc</th>
+                  <th>Chất liệu</th>
+                  <th>Số lượng</th>
+                  <th>Giá tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Tác vụ</th>
+                </tr>
+              </thead>
+              <tbody className="content-info">
+                {listCage?.map((cage) => (
+                  <tr key={cage.productId}>
+                    <td> {cage.productId} </td>
+                    <td>
+                      <img src={cage?.image[0]?.imageUrl} alt={`${cage.productName}`} />
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {cage.productName}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      kiểu dáng
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {cage?.sizeProduct[0]?.size.sizeDescription}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {cage?.materialProduct[0]?.material.materialName}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {cage?.colorProduct[0]?.color.colorName}
+                    </td>
+
+                    <td className="overflow overflow-scroll short">
+                      {cage.quantity}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      ₫{formatCash(cage.price)}
+                    </td>
+                    {cage.status ? (
+                      // Nội dung khi user.gender là true
+                      <td>Hiển thị</td>
+                    ) : (
+                      // Nội dung khi user.gender là false
+                      <td>Không hiển thị</td>
+                    )}
+                    <td>
+                      <button
+                        className="update-button"
+                        onClick={() => handleShowInfo(cage.productId)}
+                      >
+                        <FaEye />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           <div>
@@ -156,27 +203,54 @@ const ProductPage = () => {
         {listFood?.length > 0 ? (
           <div>
             <h2 className="product-manager-page-title">Thức ăn cho chim</h2>
-            {listFood?.map((food) => (
-              <div
-                className="product-manager-page-section"
-                key={food.productId}
-              >
-                <h3 className="product-name">{food.productName}</h3>
-                <div className="product-info">
-                  <div className="product-img">
-                    <img src={food?.image[0]?.imageUrl} alt="avatar" />
-                  </div>
-                  <div className="product-description">
-                    <p className="product-description-title">Mô tả sản phẩm</p>
-                    <p>{food.description}</p>
-                  </div>
-                  <div className="quantity-and-price">
-                    <p>Đang có {food.quantity} sản phẩm</p>
-                    <p>Giá tiền ₫{formatCash(food.price)}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Giá tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Tác vụ</th>
+                </tr>
+              </thead>
+              <tbody className="content-info">
+                {listFood?.map((food) => (
+                  <tr key={food.productId}>
+                    <td> {food.productId} </td>
+                    <td>
+                      <img src={food?.image[0]?.imageUrl} alt={`${food.productName}`} />
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {food.productName}
+                    </td>
+
+                    <td className="overflow overflow-scroll short">
+                      {food.quantity}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      ₫{formatCash(food.price)}
+                    </td>
+                    {food.status ? (
+                      // Nội dung khi user.gender là true
+                      <td>Hiển thị</td>
+                    ) : (
+                      // Nội dung khi user.gender là false
+                      <td>Không hiển thị</td>
+                    )}
+                    <td>
+                      <button
+                        className="update-button"
+                        onClick={() => handleShowInfo(food.productId)}
+                      >
+                        <FaEye />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           <div>
@@ -187,24 +261,54 @@ const ProductPage = () => {
         {listToy?.length > 0 ? (
           <div>
             <h2 className="product-manager-page-title">Phụ kiện - Đồ chơi</h2>
-            {listToy?.map((toy) => (
-              <div className="product-manager-page-section" key={toy.productId}>
-                <h3 className="product-name">{toy.productName}</h3>
-                <div className="product-info">
-                  <div className="product-img">
-                    <img src={toy?.image[0]?.imageUrl} alt="avatar" />
-                  </div>
-                  <div className="product-description">
-                    <p className="product-description-title">Mô tả sản phẩm</p>
-                    <p>{toy.description}</p>
-                  </div>
-                  <div className="quantity-and-price">
-                    <p>Đang có {toy.quantity} sản phẩm</p>
-                    <p>Giá tiền ₫{formatCash(toy.price)}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Giá tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Tác vụ</th>
+                </tr>
+              </thead>
+              <tbody className="content-info">
+                {listToy?.map((toy) => (
+                  <tr key={toy.productId}>
+                    <td> {toy.productId} </td>
+                    <td>
+                      <img src={toy?.image[0]?.imageUrl} alt={`${toy.productName}`} />
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {toy.productName}
+                    </td>
+
+                    <td className="overflow overflow-scroll short">
+                      {toy.quantity}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      ₫{formatCash(toy.price)}
+                    </td>
+                    {toy.status ? (
+                      // Nội dung khi user.gender là true
+                      <td>Hiển thị</td>
+                    ) : (
+                      // Nội dung khi user.gender là false
+                      <td>Không hiển thị</td>
+                    )}
+                    <td>
+                      <button
+                        className="update-button"
+                        onClick={() => handleShowInfo(toy.productId)}
+                      >
+                        <FaEye />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           <div>
@@ -222,15 +326,59 @@ const ProductPage = () => {
         {listCage?.length > 0 ? (
           <div>
             <h2 className="product-manager-page-title">Lồng chim</h2>
-            {listCage?.map((cage) => {
-              return (
-                <div
-                  className="product-manager-page-section"
-                  key={cage.productId}
-                >
-                  <div className="product-manager-page-section-header">
-                    <h3 className="product-name">{cage.productName}</h3>
-                    <div className="role-page-edit-button">
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Kiểu dáng</th>
+                  <th>Kích thước</th>
+                  <th>Màu sắc</th>
+                  <th>Chất liệu</th>
+                  <th>Số lượng</th>
+                  <th>Giá tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Tác vụ</th>
+                </tr>
+              </thead>
+              <tbody className="content-info">
+                {listCage?.map((cage) => (
+                  <tr key={cage.productId}>
+                    <td> {cage.productId} </td>
+                    <td>
+                      <img src={cage?.image[0]?.imageUrl} alt={`${cage.productName}`} />
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {cage.productName}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      kiểu dáng
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {cage?.sizeProduct[0]?.size.sizeDescription}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {cage?.materialProduct[0]?.material.materialName}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {cage?.colorProduct[0]?.color.colorName}
+                    </td>
+
+                    <td className="overflow overflow-scroll short">
+                      {cage.quantity}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      ₫{formatCash(cage.price)}
+                    </td>
+                    {cage.status ? (
+                      // Nội dung khi user.gender là true
+                      <td>Hiển thị</td>
+                    ) : (
+                      // Nội dung khi user.gender là false
+                      <td>Không hiển thị</td>
+                    )}
+                    <td>
                       <button
                         className="update-button"
                         onClick={() => handleUpdateCage(cage.productId)}
@@ -243,26 +391,20 @@ const ProductPage = () => {
                       >
                         <FaTrashAlt />
                       </button>
-                    </div>
-                  </div>
-                  <div className="product-info">
-                    <div className="product-img">
-                      <img src={cage?.image[0]?.imageUrl} alt="avatar" />
-                    </div>
-                    <div className="product-description">
-                      <p className="product-description-title">
-                        Mô tả sản phẩm
-                      </p>
-                      <p>{cage.description}</p>
-                    </div>
-                    <div className="quantity-and-price">
-                      <p>Đang có {cage.quantity} sản phẩm</p>
-                      <p>Giá tiền ₫{formatCash(cage.price)}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                      {showPopup && (
+                        <PopupModal
+                          action={"remove"}
+                          statusReturn={result}
+                          setStatusReturn={setResult}
+                          open={showPopup}
+                          onClose={handleClose}
+                        />
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           <div>
@@ -274,15 +416,43 @@ const ProductPage = () => {
         {listFood?.length > 0 ? (
           <div>
             <h2 className="product-manager-page-title">Thức ăn cho chim</h2>
-            {listFood?.map((food) => {
-              return (
-                <div
-                  className="product-manager-page-section"
-                  key={food.productId}
-                >
-                  <div className="product-manager-page-section-header">
-                    <h3 className="product-name">{food.productName}</h3>
-                    <div className="role-page-edit-button">
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Giá tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Tác vụ</th>
+                </tr>
+              </thead>
+              <tbody className="content-info">
+                {listFood?.map((food) => (
+                  <tr key={food.productId}>
+                    <td> {food.productId} </td>
+                    <td>
+                      <img src={food?.image[0]?.imageUrl} alt={`${food.productName}`} />
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {food.productName}
+                    </td>
+
+                    <td className="overflow overflow-scroll short">
+                      {food.quantity}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      ₫{formatCash(food.price)}
+                    </td>
+                    {food.status ? (
+                      // Nội dung khi user.gender là true
+                      <td>Hiển thị</td>
+                    ) : (
+                      // Nội dung khi user.gender là false
+                      <td>Không hiển thị</td>
+                    )}
+                    <td>
                       <button
                         className="update-button"
                         onClick={() => handleUpdateFood(food.productId)}
@@ -291,30 +461,24 @@ const ProductPage = () => {
                       </button>
                       <button
                         className="remove-button"
-                        onClick={() => handleDelete(food.productId)}
+                        onClick={() => handlePopup(food.productId)}
                       >
                         <FaTrashAlt />
                       </button>
-                    </div>
-                  </div>
-                  <div className="product-info">
-                    <div className="product-img">
-                      <img src={food?.image[0]?.imageUrl} alt="avatar" />
-                    </div>
-                    <div className="product-description">
-                      <p className="product-description-title">
-                        Mô tả sản phẩm
-                      </p>
-                      <p>{food.description}</p>
-                    </div>
-                    <div className="quantity-and-price">
-                      <p>Đang có {food.quantity} sản phẩm</p>
-                      <p>Giá tiền ₫{formatCash(food.price)}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                      {showPopup && (
+                        <PopupModal
+                          action={"remove"}
+                          statusReturn={result}
+                          setStatusReturn={setResult}
+                          open={showPopup}
+                          onClose={handleClose}
+                        />
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           <div>
@@ -326,40 +490,69 @@ const ProductPage = () => {
         {listToy?.length > 0 ? (
           <div>
             <h2 className="product-manager-page-title">Phụ kiện - Đồ chơi</h2>
-            {listToy?.map((toy) => (
-              <div className="product-manager-page-section" key={toy.productId}>
-                <div className="product-manager-page-section-header">
-                  <h3 className="product-name">{toy?.productName}</h3>
-                  <div className="role-page-edit-button">
-                    <button
-                      className="update-button"
-                      onClick={() => handleUpdateToy(toy.productId)}
-                    >
-                      <FaRegEdit />
-                    </button>
-                    <button
-                      className="remove-button"
-                      onClick={() => handleDelete(toy.productId)}
-                    >
-                      <FaTrashAlt />
-                    </button>
-                  </div>
-                </div>
-                <div className="product-info">
-                  <div className="product-img">
-                    <img src={toy?.image[0].imageUrl} alt="avatar" />
-                  </div>
-                  <div className="product-description">
-                    <p className="product-description-title">Mô tả sản phẩm</p>
-                    <p>{toy.description}</p>
-                  </div>
-                  <div className="quantity-and-price">
-                    <p>Đang có {toy.quantity} sản phẩm</p>
-                    <p>Giá tiền ₫{formatCash(toy.price)}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <table className="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng</th>
+                  <th>Giá tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Tác vụ</th>
+                </tr>
+              </thead>
+              <tbody className="content-info">
+                {listToy?.map((toy) => (
+                  <tr key={toy.productId}>
+                    <td> {toy.productId} </td>
+                    <td>
+                      <img src={toy?.image[0]?.imageUrl} alt={`${toy.productName}`} />
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      {toy.productName}
+                    </td>
+
+                    <td className="overflow overflow-scroll short">
+                      {toy.quantity}
+                    </td>
+                    <td className="overflow overflow-scroll short">
+                      ₫{formatCash(toy.price)}
+                    </td>
+                    {toy.status ? (
+                      // Nội dung khi user.gender là true
+                      <td>Hiển thị</td>
+                    ) : (
+                      // Nội dung khi user.gender là false
+                      <td>Không hiển thị</td>
+                    )}
+                    <td>
+                      <button
+                        className="update-button"
+                        onClick={() => handleUpdateToy(toy.productId)}
+                      >
+                        <FaRegEdit />
+                      </button>
+                      <button
+                        className="remove-button"
+                        onClick={() => handlePopup(toy.productId)}
+                      >
+                        <FaTrashAlt />
+                      </button>
+                      {showPopup && (
+                        <PopupModal
+                          action={"remove"}
+                          statusReturn={result}
+                          setStatusReturn={setResult}
+                          open={showPopup}
+                          onClose={handleClose}
+                        />
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         ) : (
           <div>

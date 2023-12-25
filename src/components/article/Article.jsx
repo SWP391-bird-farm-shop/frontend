@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Article.css";
 import { Link } from "react-router-dom";
 import api from "../utils/requestAPI";
+import "./Article.css";
 
 const Article = () => {
   const [suggestedArticles, setSuggestedArticles] = useState(null);
@@ -40,7 +40,7 @@ const Article = () => {
               className="article-link"
               key={article.blogId}
             >
-              <div className="blog-container-img">
+              <div className="blog-container-img" key={article.blogId}>
                 {article?.image?.map((img) => (
                   <img src={img.imageUrl} alt={article.blogTitle} />
                 ))}

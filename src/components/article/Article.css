@@ -24,7 +24,7 @@
 .blogs-section .blog-container {
     background-color: white;
     width: 24%;
-    height: 400px;
+    height: 320px;
     border-radius: 15px;
     margin-bottom: 10px;
 }
@@ -49,8 +49,14 @@
 .article-meta {
     position: relative;
     text-align: left;
-    margin-top: 7px;
-    margin-left: 5%;
+    padding: 0 15px;
+    margin: 10px 0;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5rem;
 }
 
 .blog-container .article-title:hover,

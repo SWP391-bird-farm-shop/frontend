@@ -47,7 +47,7 @@ const ManageNavbar = ({ className }) => {
           </div>
           <NavMenu className="first-role-section">
             <NavLink
-              to="/manage-account"
+              to="/admin/manage-account"
               className="first-section-component-admin"
             >
               Quản lí tài khoản
@@ -65,7 +65,7 @@ const ManageNavbar = ({ className }) => {
               {showSubNav && (
                 <div className="manage-navbar-user-img-subnav">
                   <SubNavItem
-                    to="/update-info"
+                    to="/admin/update-info"
                     className="manage-navbar-user-img-subnav-link"
                   >
                     <FaUserEdit /> Chỉnh sửa thông tin
@@ -102,19 +102,19 @@ const ManageNavbar = ({ className }) => {
           </div>
           <NavMenu className="first-role-section">
             <NavLink
-              to="/product/view-product"
+              to="/manager/product/view-product"
               className="first-section-component-manager"
             >
               Quản lí sản phẩm
             </NavLink>
             <NavLink
-              to="/voucher/view-voucher"
+              to="/manager/voucher/view-voucher"
               className="first-section-component-manager"
             >
               Quản lí voucher
             </NavLink>
             <NavLink
-              to="/dashboard"
+              to="/manager/dashboard"
               className="first-section-component-manager"
             >
               Thống kê
@@ -133,7 +133,7 @@ const ManageNavbar = ({ className }) => {
               {showSubNav && (
                 <div className="manage-navbar-user-img-subnav">
                   <SubNavItem
-                    to="/update-info"
+                    to="/manager/update-info"
                     className="manage-navbar-user-img-subnav-link"
                   >
                     <FaUserEdit /> Chỉnh sửa thông tin
@@ -167,13 +167,13 @@ const ManageNavbar = ({ className }) => {
             </Link>
           </div>
           <NavMenu className="first-role-section">
-            <NavLink to="/manage-blogs/view-blog" className="first-section-component-staff">
+            <NavLink to="/staff/manage-blogs/view-blog" className="first-section-component-staff">
               Quản lí bài viết
             </NavLink>
-            <NavLink to="/feedback/view-product" className="first-section-component-staff">
+            <NavLink to="/staff/feedback/view-product" className="first-section-component-staff">
               Quản lí feedback
             </NavLink>
-            <NavLink to="/order/view-order" className="first-section-component-staff">
+            <NavLink to="/staff/order/view-order" className="first-section-component-staff">
               Quản lí đơn hàng
             </NavLink>
           </NavMenu>
@@ -192,7 +192,7 @@ const ManageNavbar = ({ className }) => {
               {showSubNav && (
                 <div className="manage-navbar-user-img-subnav">
                   <SubNavItem
-                    to="/update-info"
+                    to="/staff/update-info"
                     className="manage-navbar-user-img-subnav-link"
                   >
                     <FaUserEdit /> Chỉnh sửa thông tin

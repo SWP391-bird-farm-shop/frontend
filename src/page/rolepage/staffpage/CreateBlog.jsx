@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./CreateBlog.css";
-import useAuth from "../../../hooks/useAuth";
-import api from "../../../components/utils/requestAPI";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../components/utils/firebase";
+import useAuth from "../../../hooks/useAuth";
+import api from "../../../components/utils/requestAPI";
 import ComboBox from "../../../components/combobox/ComboBox";
+import "./CreateBlog.css";
 
 const BlogForm = () => {
   const { auth } = useAuth();
@@ -40,6 +40,18 @@ const BlogForm = () => {
 
     if (file) {
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleFocus = (e) => {
+    if (e.target.innerHTML === 'Nhập nội dung bài viết') {
+      e.target.innerHTML = '';
+    }
+  };
+
+  const handleBlur = (e) => {
+    if (e.target.innerHTML === '') {
+      e.target.innerHTML = 'Nhập nội dung bài viết';
     }
   };
 
@@ -96,17 +108,19 @@ const BlogForm = () => {
                 <div
                   className="create-blog-input create-blog-textarea"
                   id="blogContent"
-                  placeholder="Nhập nội dung bài viết"
-                  value={blogContent}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
                   contentEditable="true"
                   onInput={(e) => setBlogContent(e.target.innerHTML)}
-                ></div>
+                >
+                  {blogContent || 'Nhập nội dung bài viết'}
+                </div>
               </div>
               <div className="create-blog-input-container">
                 <label htmlFor="blogTitle">Loại bài viết</label>
                 <ComboBox
                   className={"blogtype"}
-                  // onChange={(e) => setBlogType(e.target.value)}
+                // onChange={(e) => setBlogType(e.target.value)}
                 />
               </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./CreateUser.css";
 import api from "../../../components/utils/requestAPI";
 import PopupModal from "../../../components/modal/PopupModal";
+import "./CreateUser.css";
 
 const CreateUser = () => {
   const [fullname, setFullname] = useState(null);

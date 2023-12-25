@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "./AddProductPage.css";
-import ComboBox from "../../../components/combobox/ComboBox";
 import { useParams } from "react-router-dom";
-import api from "../../../components/utils/requestAPI";
 import { storage } from "../../../components/utils/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import PopupModal from "../../../components/modal/PopupModal";
+import api from "../../../components/utils/requestAPI";
+import ComboBox from "../../../components/combobox/ComboBox";
+import "./AddProductPage.css";
 
 const AddProductPage = () => {
   const [avatarUrlCage, setAvatarUrlCage] = useState("");
@@ -904,6 +904,7 @@ const AddProductPage = () => {
                       id="name"
                       name="name"
                       className="add-product-input"
+                      placeholder="Nhập tên của sản phẩm"
                       required
                       onChange={(event) => setName(event.target.value)}
                     />
@@ -919,6 +920,7 @@ const AddProductPage = () => {
                       id="description"
                       name="description"
                       className="add-product-input des-textarea"
+                      placeholder="Nhập mô tả của sản phẩm"
                       required
                       onChange={(event) => setDes(event.target.value)}
                     />
@@ -935,6 +937,7 @@ const AddProductPage = () => {
                       id="price"
                       name="price"
                       className="add-product-input"
+                      placeholder="Nhập giá tiền của sản phẩm"
                       required
                       onChange={(event) => setPrice(event.target.value)}
                     />
@@ -951,6 +954,7 @@ const AddProductPage = () => {
                       id="inventory"
                       name="inventory"
                       className="add-product-input"
+                      placeholder="Nhập số lượng của sản phẩm"
                       required
                       onChange={(event) => setQuantity(event.target.value)}
                     />
@@ -1183,6 +1187,7 @@ const AddProductPage = () => {
                       id="name"
                       name="name"
                       className="add-product-input"
+                      placeholder="Nhập tên của sản phẩm"
                       required
                       onChange={(event) => setName(event.target.value)}
                     />
@@ -1198,6 +1203,7 @@ const AddProductPage = () => {
                       id="description"
                       name="description"
                       className="add-product-input des-textarea"
+                      placeholder="Nhập mô tả của sản phẩm"
                       required
                       onChange={(event) => setDes(event.target.value)}
                     />
@@ -1214,6 +1220,7 @@ const AddProductPage = () => {
                       id="price"
                       name="price"
                       className="add-product-input"
+                      placeholder="Nhập số tiền của sản phẩm"
                       required
                       onChange={(event) => setPrice(event.target.value)}
                     />
@@ -1230,6 +1237,7 @@ const AddProductPage = () => {
                       id="inventory"
                       name="inventory"
                       className="add-product-input"
+                      placeholder="Nhập số lượng của sản phẩm"
                       required
                       onChange={(event) => setQuantity(event.target.value)}
                     />

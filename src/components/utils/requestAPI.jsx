@@ -11,11 +11,11 @@ const authen = localStorage.getItem("Authen");
 
 // Request interceptor
 if (authen != null) {
+  console.log(authen);
   api.interceptors.request.use(
     function (config) {
-      config.headers.Authorization = ` Bearer ${localStorage.getItem(
-        "Authen"
-      )}`;
+      config.headers.Authorization = `Bearer ${authen}`;
+      console.log(config);
       return config;
     },
     function (error) {
@@ -38,3 +38,4 @@ api.interceptors.response.use(
 );
 
 export default api;
+

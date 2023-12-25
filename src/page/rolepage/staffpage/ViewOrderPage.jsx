@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./OrderPage.css";
 import { useParams } from "react-router-dom";
 import api from "../../../components/utils/requestAPI";
+import "./OrderPage.css";
 
 const ViewOrderPage = () => {
   const { action } = useParams();
@@ -19,7 +19,7 @@ const ViewOrderPage = () => {
   }, [order, customOrder]);
 
   const fetchOrder = async () => {
-    const url = `/api/Order/get-to-confirm`;
+    const url = `/api/Order/get-all`;
     setLoading(true);
     try {
       const response = await api.get(url);

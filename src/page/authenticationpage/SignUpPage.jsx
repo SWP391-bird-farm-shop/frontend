@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './AuthenticationPage.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../components/utils/requestAPI';
 import useAuth from '../../hooks/useAuth';
-import { Link, useNavigate } from 'react-router-dom';
+import './AuthenticationPage.css';
 
 const SignUpPage = () => {
 

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import './Dashboard.css';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
-    from 'recharts';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }from 'recharts';
 import { FaBox, FaMoneyBillWave, FaShoppingCart, FaUsers } from 'react-icons/fa';
 import api from '../../../../components/utils/requestAPI';
+import './Dashboard.css';
 
 const OrderDashboard = () => {
 

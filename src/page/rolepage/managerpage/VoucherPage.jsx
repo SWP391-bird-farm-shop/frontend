@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./VoucherPage.css";
 import { FaTrashAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import api from "../../../components/utils/requestAPI";
 import moment from "moment";
 import PopupModal from "../../../components/modal/PopupModal";
+import "./VoucherPage.css";
 
 const VoucherPage = () => {
   const { action } = useParams();

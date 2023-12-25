@@ -47,15 +47,26 @@
     border-radius: 15px;
 }
 
+.bird-carousel-item img {
+    height: 81%;
+}
+
 .bird-carousel-item h4,
 .product-carousel-item h4 {
     position: relative;
     text-align: center;
-    height: 12%;
+    max-height: 15%;
     color: #0366D6;
-    margin: 20px auto;
     font-size: 17px;
     font-weight: 550;
+    padding: 0 10px;
+    margin: 20px auto;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5rem;
 }
 
 .product-carousel-item p {

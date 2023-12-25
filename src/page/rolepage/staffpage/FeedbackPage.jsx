@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./FeedbackPage.css";
 import { Link, useParams } from "react-router-dom";
 import api from "../../../components/utils/requestAPI";
+import "./FeedbackPage.css";
 
 const FeedbackPage = () => {
   const { action } = useParams();
@@ -77,7 +77,7 @@ const FeedbackPage = () => {
             <h2 className="product-manager-page-title">Lồng chim</h2>
             {listCage.map((cage) => (
               <Link
-                to={`/item-info/${action}/${cage.productId}`}
+                to={`/staff/item-info/${action}/${cage.productId}`}
                 className="product-manager-page-section link"
                 key={cage.productId}
               >
@@ -109,7 +109,7 @@ const FeedbackPage = () => {
             <h2 className="product-manager-page-title">Thức ăn cho chim</h2>
             {listFood?.map((food) => (
               <Link
-                to={`/item-info/${action}/${food.productId}`}
+                to={`/staff/item-info/${action}/${food.productId}`}
                 className="product-manager-page-section link"
                 key={food.productId}
               >
@@ -141,7 +141,7 @@ const FeedbackPage = () => {
             <h2 className="product-manager-page-title">Phụ kiện - Đồ chơi</h2>
             {listToy?.map((toy) => (
               <Link
-                to={`/item-info/${action}/${toy.productId}`}
+                to={`/staff/item-info/${action}/${toy.productId}`}
                 className="product-manager-page-section link"
                 key={toy.productId}
               >
@@ -179,7 +179,7 @@ const FeedbackPage = () => {
             {listCage?.map((cage) => {
               return (
                 <Link
-                  to={`/item-info/${action}/${cage.productId}`}
+                  to={`/staff/item-info/${action}/${cage.productId}`}
                   className="product-manager-page-section link"
                   key={cage.productId}
                 >
@@ -218,7 +218,7 @@ const FeedbackPage = () => {
             {listFood?.map((food) => {
               return (
                 <Link
-                  to={`/item-info/${action}/${food.productId}`}
+                  to={`/staff/item-info/${action}/${food.productId}`}
                   className="product-manager-page-section link"
                   key={food.productId}
                 >
@@ -256,7 +256,7 @@ const FeedbackPage = () => {
             <h2 className="product-manager-page-title">Phụ kiện - Đồ chơi</h2>
             {listToy?.map((toy) => (
               <Link
-                to={`/item-info/${action}/${toy.productId}`}
+                to={`/staff/item-info/${action}/${toy.productId}`}
                 className="product-manager-page-section link"
                 key={toy.productId}
               >

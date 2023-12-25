@@ -163,7 +163,7 @@ const SettingInformationPage = () => {
                           onClick={(event) => setJob("2")}
                         />{" "}
                         <span className="create-user-button-title">
-                          Manager
+                          Quản lí
                         </span>
                         <input
                           type="radio"
@@ -172,7 +172,7 @@ const SettingInformationPage = () => {
                           checked={job === "3"}
                           onClick={(event) => setJob("3")}
                         />{" "}
-                        <span className="create-user-button-title">Staff</span>
+                        <span className="create-user-button-title">Nhân viên</span>
                       </div>
                       <div className="update-info-check-dob">
                         <label

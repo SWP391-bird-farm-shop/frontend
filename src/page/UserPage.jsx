@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Carousel from "../components/carousel/Carousel";
 import Article from "../components/article/Article";
 import Slider from "../components/slider/Slider";
+import "./HomePage.css";
 
-function UserPage() {
+const UserPage = () => {
 
   return (
     <Fragment>
@@ -13,7 +14,7 @@ function UserPage() {
         <h3>Loài chim</h3>
         <Carousel className="Bird" />
         <h3>Lồng chim</h3>
-        <Carousel className="Product" />
+        <Carousel className="Cage" />
         <h3>Thức ăn cho chim</h3>
         <Carousel className="Food" />
         <h3>Phụ kiện - Đồ chơi</h3>

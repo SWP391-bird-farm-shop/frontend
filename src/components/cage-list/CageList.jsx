@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './CageList.css'; // Import the CSS file
-import api from '../utils/requestAPI';
 import { Link } from 'react-router-dom';
+import api from '../utils/requestAPI';
+import './CageList.css';
 
 const CageList = ({birdId}) => {
 

@@ -33,7 +33,7 @@ const SearchPage = () => {
             <div className="search-product-section">
                 <div className="search-product-items-section">
                     {product?.map((product) => (
-                        <Link to={`/item-info/${product.productId}`} className="search-product-item">
+                        <Link to={`/item-info/${product.productId}`} className="search-product-item" key={product.productId}>
                             <div className="product-image">
                                 {product.image.map((image) => (
                                     <img src={image.imageUrl} alt="Cage" key={image.imageId} />

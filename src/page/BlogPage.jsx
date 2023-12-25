@@ -19,7 +19,7 @@ const BlogPage = () => {
   const [success, setSuccess] = useState(false);
 
   const fetchData = async () => {
-    const url = "/api/Blog/get-for-customer";
+    const url = "/api/Blog/get-all";
     try {
       const response = await api.get(url);
       console.log(response.data);
@@ -44,7 +44,6 @@ const BlogPage = () => {
       });
       if (response) {
         console.log(response);
-        console.log("yay");
         setSuccess(true);
         setShowPopup(true);
       }
@@ -55,7 +54,7 @@ const BlogPage = () => {
 
   useEffect(() => {
     fetchData();
-  }, [removeBlog]);
+  }, []);
 
   const handleShow = (id) => {
     setShowPopup(true);
@@ -64,12 +63,10 @@ const BlogPage = () => {
 
   const handleClose = () => {
     setShowPopup(false);
-    setShowPopup(false);
     setSuccess(false);
   };
 
   if (result) {
-    console.log("huhu");
     removeBlog(id);
     setResult(false);
     setShowPopup(false);
@@ -91,7 +88,7 @@ const BlogPage = () => {
           <div className="blog-list">
             {blogItem?.map((blog) => (
               <Link
-                to={`/view-blog/${blog.blogId}`}
+                to={`/staff/blog-content/view-info/${blog.blogId}`}
                 key={blog.blogId}
                 className="blog-item"
               >
@@ -201,32 +198,6 @@ const BlogPage = () => {
         ))}
       </div>
     </div>
-
-    // quản lí blog của staff (thêm 2 nút xóa và sửa)
-    // <div className="blog-page">
-    //   <div className="blog-list">
-    //     {blogs.map((blog) => (
-    //       <div className="blog-item">
-    //         <div className="role-page-edit-button">
-    //           <button onClick={handleButtonClick} className="update-button"><FaRegEdit /></button>
-    //           <button onClick={() => removeBlog(blog.id)} className="remove-button"><FaTrashAlt /></button>
-    //         </div>
-    //         <div className="blog-item-detail">
-    //           <div className="blog-item-image">
-    //             <img src={blog.image} alt="blog-image" />
-    //           </div>
-    //           <div className="blog-item-information">
-    //             <h3 className="blog-title">{blog.title}</h3>
-    //             <p className="blog-meta">
-    //               <span className="blog-date">{blog.date}</span> . <span className="blog-author">bởi {blog.author}</span>
-    //             </p>
-    //             <p className="blog-description">{blog.content}</p>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-    // </div>
   );
 };
 

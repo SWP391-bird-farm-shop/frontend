@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import Slide1 from "/Slide 1.png";
 import Slide2 from "/Slide 2.png";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import "./Slider.css";
-import { Link } from "react-router-dom";
 
 const Slider = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

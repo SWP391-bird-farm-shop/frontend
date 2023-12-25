@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./ManageAccount.css";
-import "../RolePage.css";
-import api from "../../../components/utils/requestAPI";
 import { FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import PopupModal from "../../../components/modal/PopupModal";
+import api from "../../../components/utils/requestAPI";
+import "./ManageAccount.css";
 
 // Sample user account data (replace with your data)
 const ManageAccount = () => {

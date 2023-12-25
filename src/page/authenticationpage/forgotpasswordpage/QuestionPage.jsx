@@ -1,7 +1,7 @@
 import React from 'react';
 import ComboBox from "../../../components/combobox/ComboBox";
-import '../AuthenticationPage.css';
 import { useParams } from 'react-router-dom';
+import '../AuthenticationPage.css';
 
 const QuestionPage = () => {
 

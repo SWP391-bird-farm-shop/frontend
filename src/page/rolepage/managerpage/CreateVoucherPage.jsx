@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import api from "../../../components/utils/requestAPI";
-import "./CreateVoucherPage.css";
 import PopupModal from "../../../components/modal/PopupModal";
+import "./CreateVoucherPage.css";
 
 function CreateVoucherPage() {
   const [voucher, setVoucher] = useState({

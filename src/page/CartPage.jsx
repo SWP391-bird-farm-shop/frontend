@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./CartPage.css";
-import QuantityButton from "../components/button/QuantityButton";
+import { useNavigate } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
+import QuantityButton from "../components/button/QuantityButton";
 import useAuth from "../hooks/useAuth";
 import api from "../components/utils/requestAPI";
-import { useNavigate } from "react-router-dom";
 import PopupModal from "../components/modal/PopupModal";
+import "./CartPage.css";
 
 const CartPage = () => {
   const { auth } = useAuth();

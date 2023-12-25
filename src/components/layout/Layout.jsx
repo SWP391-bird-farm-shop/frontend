@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
-import "./Layout.css";
-import NavBar from "../navbar/NavBar";
 import { Outlet } from "react-router-dom";
+import NavBar from "../navbar/NavBar";
 import Footer from "../footer/Footer";
+import "./Layout.css";
 
 const Layout = () => {
   return (

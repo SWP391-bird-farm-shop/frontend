@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../AuthenticationPage.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import '../AuthenticationPage.css';
 
 const ResetPasswordPage = () => {
   const [showPassword, setShowPassword] = useState(false);

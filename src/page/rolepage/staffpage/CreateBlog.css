@@ -28,10 +28,12 @@
 }
 
 .create-blog-textarea {
+    color: rgba(128, 128, 128) !important;
     text-align: left;
     overflow-y: scroll;
     height: 50vh !important;
     padding: 5px 10px;
+    cursor: default;
 }
 
 .create-blog-textarea::-webkit-scrollbar {

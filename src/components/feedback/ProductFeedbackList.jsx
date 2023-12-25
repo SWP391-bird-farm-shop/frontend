@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import './Feedback.css'
-import PopupModal from "../modal/PopupModal";
 import { FaTrashAlt } from "react-icons/fa";
 import api from "../utils/requestAPI";
+import PopupModal from "../modal/PopupModal";
+import './Feedback.css'
 
 const ProductFeedbackList = ({ productId, action }) => {
 

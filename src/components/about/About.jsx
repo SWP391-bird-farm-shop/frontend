@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import './About.css';
 import api from "../utils/requestAPI";
+import './About.css';
 
 const About = ({ birdId }) => {
 

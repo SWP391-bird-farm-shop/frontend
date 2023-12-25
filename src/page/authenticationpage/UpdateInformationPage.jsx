@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./AuthenticationPage.css";
+import { useNavigate } from "react-router-dom";
 import api from "../../components/utils/requestAPI";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import "./AuthenticationPage.css";
 
 const UpdateInformationPage = () => {
   const { auth, setAuth } = useAuth();

@@ -1,8 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Button from "@mui/joy/Button";
 import Modal from "@mui/joy/Modal";
-import Typography from "@mui/joy/Typography";
-import Sheet from "@mui/joy/Sheet";
 import {
   DialogActions,
   DialogContent,
@@ -12,7 +10,6 @@ import {
   ModalDialog,
 } from "@mui/joy";
 import { VscWarning } from "react-icons/vsc";
-import { FaTrashAlt } from "react-icons/fa";
 
 const PopupModal = ({
   action,

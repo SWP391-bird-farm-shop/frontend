@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from "react";
-import "./HomePage.css";
 import Slider from "../components/slider/Slider.jsx";
 import Carousel from "../components/carousel/Carousel";
 import Article from "../components/article/Article";
 import useAuth from "../hooks/useAuth.jsx";
+import "./HomePage.css";
 
 const HomePage = () => {
   const { auth } = useAuth();
@@ -30,7 +30,7 @@ const HomePage = () => {
         <h3>Loài chim</h3>
         <Carousel className="Bird" />
         <h3>Lồng chim</h3>
-        <Carousel className="Product" />
+        <Carousel className="Cage" />
         <h3>Thức ăn cho chim</h3>
         <Carousel className="Food" />
         <h3>Phụ kiện - Đồ chơi</h3>

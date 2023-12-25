@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Img1 from "/demo.jpg";
-import "./ProductPage.css";
+import { Link } from "react-router-dom";
 import ComboBox from "../../components/combobox/ComboBox";
 import api from "../../components/utils/requestAPI";
-import { Link } from "react-router-dom";
+import "./ProductPage.css";
 
 const AccessoriesToysPage = () => {
   const [toy, setToy] = useState();

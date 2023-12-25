@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Img1 from "/demo.jpg";
-import "./ProductPage.css";
 import api from "../../components/utils/requestAPI";
 import ComboBox from "../../components/combobox/ComboBox";
+import "./ProductPage.css";
 
 const CagePage = () => {
   const [cage, setCage] = useState();

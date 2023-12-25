@@ -31,7 +31,14 @@
     color: black;
     font-weight: 400;
     font-size: 16px;
+    padding: 0 15px;
     margin: 10px 0;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5rem;
 }
 
 .list-item-container .list-item-price {
